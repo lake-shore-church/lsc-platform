@@ -115,23 +115,32 @@ Requires `SANITY_API_TOKEN` and `SUPABASE_SERVICE_ROLE_KEY` in `apps/web/.env.lo
 
 **Goal:** A public link anyone can open (e.g. for Pastor Brian), without your laptop running.
 
-### Step 1 — Merge code on GitHub
+**GitHub:** `main` is the default branch (PR #1 merged). Vercel should deploy from **`main`** only.
 
-1. Open the pull request: [github.com/lake-shore-church/lsc-platform/pulls](https://github.com/lake-shore-church/lsc-platform/pulls)
-2. Review with whoever built the site (or trust the checklist in the PR description).
-3. Click **Merge pull request** → **Confirm merge**.
+### Option A — New Vercel project (recommended)
 
-This updates the `main` branch with the latest website code.
+1. Sign in at [vercel.com](https://vercel.com) → **Add New** → **Project**.
+2. Import **`lake-shore-church/lsc-platform`**.
+3. **Production Branch:** `main` (should be default).
+4. **Root Directory:** click **Edit** → set to **`apps/web`** → Enable **“Include source files outside of the Root Directory”** (monorepo).
+5. Leave **Framework** as Next.js (uses `apps/web/vercel.json` for install/build).
+6. Add env vars (Step 3 below) → **Deploy**.
 
-### Step 2 — Create Vercel project (one time)
+### Option B — Existing Vercel project (switch to `main`)
 
-1. Sign in at [vercel.com](https://vercel.com) (use the church GitHub account if possible).
-2. **Add New Project** → Import **`lake-shore-church/lsc-platform`**.
-3. Settings:
-   - **Framework:** Next.js
-   - **Root Directory:** `apps/web` (or use root `vercel.json` if importing from monorepo root)
-   - **Build command:** `pnpm build` (from `apps/web`) or as in root `vercel.json`
-   - **Install command:** `pnpm install` from repo root
+1. Vercel → your **lsc-platform** project → **Settings** → **Git**.
+2. **Production Branch** → change to **`main`** → Save.
+3. **Settings** → **General** → **Root Directory** → **`apps/web`** (enable include files outside root).
+4. **Deployments** → **Redeploy** latest, or push any commit to `main` to trigger a build.
+
+### CLI deploy (optional, for tech team)
+
+```bash
+npx vercel login          # once, in your browser
+cd apps/web
+npx vercel link           # link to church Vercel team/project
+npx vercel --prod         # deploy production from local
+```
 
 ### Step 3 — Environment variables (one time)
 
