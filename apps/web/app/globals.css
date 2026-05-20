@@ -86,6 +86,43 @@
   .link-hover {
     @apply hover:underline underline-offset-2;
   }
+
+  /* Ministry cards — distinct tints per theme variables */
+  .ministry-card[data-ministry="connect"] {
+    background: color-mix(in srgb, var(--color-primary) 12%, var(--color-background));
+    border-color: color-mix(in srgb, var(--color-primary) 35%, var(--color-border));
+  }
+  .ministry-card[data-ministry="connect"] .ministry-icon-wrap {
+    background: color-mix(in srgb, var(--color-primary) 20%, var(--color-surface));
+    color: var(--color-primary);
+  }
+  .ministry-card[data-ministry="connect"] .ministry-link {
+    color: var(--color-primary);
+  }
+
+  .ministry-card[data-ministry="serve"] {
+    background: color-mix(in srgb, var(--color-accent) 14%, var(--color-background));
+    border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+  }
+  .ministry-card[data-ministry="serve"] .ministry-icon-wrap {
+    background: color-mix(in srgb, var(--color-accent) 22%, var(--color-surface));
+    color: var(--color-accent);
+  }
+  .ministry-card[data-ministry="serve"] .ministry-link {
+    color: var(--color-accent);
+  }
+
+  .ministry-card[data-ministry="give"] {
+    background: color-mix(in srgb, var(--color-primary-hover) 10%, var(--color-surface));
+    border-color: color-mix(in srgb, var(--color-border-strong) 80%, var(--color-border));
+  }
+  .ministry-card[data-ministry="give"] .ministry-icon-wrap {
+    background: color-mix(in srgb, var(--color-accent) 18%, var(--color-surface-2));
+    color: var(--color-primary-hover);
+  }
+  .ministry-card[data-ministry="give"] .ministry-link {
+    color: var(--color-primary-hover);
+  }
 }
 
 @layer utilities {
