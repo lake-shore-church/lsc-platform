@@ -8,7 +8,7 @@
 
 ## Summary
 
-Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. **siteConfig** is seeded with real content from [lschurch.com](https://lschurch.com/); home hero, service strip, nav, and JSON-LD match the live church site. **Next:** member/staff portals, sermon/blog content in Sanity, Zeffy embed URL.
+Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. **Public site is content-ready:** Sanity Studio at `/studio`, seeded sermon/pages/blog/siteConfig, Supabase sample events + prayer request, Vercel config at repo root, `pnpm build` passes. **Next:** member auth + `(member)/` portal; staff `(staff)/` portal (prayer triage, sermon upload).
 
 ---
 
@@ -22,7 +22,7 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 | Sanity | ✅ Token set | Project `7hl877lg`, dataset `production` |
 | Cloudflare R2 | ⏳ Placeholder | Keys not in `.env.local` yet |
 | Resend / OpenAI / OneSignal | ⏳ Placeholder | Phase 2+ |
-| Vercel (web) | ⏳ Not deployed | Local dev only |
+| Vercel (web) | 🟡 Config ready | `vercel.json` + `.env.production.example`; connect repo in Vercel dashboard |
 | EAS (mobile) | ⏳ Not configured | Expo app scaffolded |
 
 ---
@@ -71,7 +71,8 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 - [x] Typecheck passes (`pnpm --filter @repo/cms check-types`)
 - [x] `activeTheme` on siteConfig schema
 - [x] `siteConfig` seeded with lschurch.com content (`pnpm seed:site-config`)
-- [ ] Deploy schemas to Sanity Studio (run studio config — next step)
+- [x] Full content seed (`pnpm seed:content`) — sermon, about/beliefs pages, blog, staff, series
+- [x] Sanity Studio embedded at `/studio` (`next-sanity`, `@sanity/vision`)
 
 ---
 
@@ -98,7 +99,7 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 | `(member)/` — Dashboard, Groups, Resources | ⏳ |
 | `(staff)/` — Prayer, Sermons, Events, Financials… | ⏳ |
 | `[locale]/` — /es /fr /pt /zh | ⏳ Phase 3 |
-| `studio/` — Sanity Studio embed | ⏳ |
+| `studio/` — Sanity Studio embed | ✅ |
 | `api/` — sermons RSS, tithing-statement, webhooks, revalidate | ⏳ |
 | `/platform` — **Living status page** (reads `docs/*.md`) | ✅ |
 
@@ -133,9 +134,8 @@ https://github.com/lake-shore-church/lsc-platform/compare/main...feat/platform-s
 
 ## Immediate next steps
 
-1. **Deploy Sanity schemas** — Studio route or `sanity deploy`; seed sermons, pages, siteConfig
-2. **Seed Supabase** — sample events for `/events` page
-3. **Configure Resend** — production `RESEND_API_KEY` for form acknowledgements
-4. Open PR `feat/platform-scaffold-db-mobile` → `main`
-5. Build `(member)/` and `(staff)/` route groups
-6. Fill Cloudflare R2 credentials when media upload is needed
+1. **Merge PR** → `main` and deploy on Vercel (env vars from `apps/web/.env.production.example`)
+2. **Member auth** — magic link + `(member)/` portal
+3. **Staff portal** — `(staff)/` prayer triage, sermon upload, financials
+4. **Configure Resend** — production `RESEND_API_KEY` for form acknowledgements
+5. Fill Cloudflare R2 credentials when media upload is needed

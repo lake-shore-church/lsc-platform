@@ -6,6 +6,12 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ## [Unreleased] — feat/platform-scaffold-db-mobile
 
+### Added
+
+- **Sanity Studio** — `/studio` route with `next-sanity`, `@sanity/vision`, schemas from `@repo/cms`.
+- **Content seed** — `pnpm seed:content` seeds sermon, about/beliefs pages, blog post, siteConfig, staff/series; Supabase sample events + prayer request.
+- **Vercel deploy config** — Root `vercel.json`, `apps/web/.env.production.example`, extra `next/image` domains (Sanity CDN, media.lschurch.com).
+
 ### Changed
 
 - **Homepage polish** — Removed duplicate quick-info strip and footer CTA; visit/address lives in “We'd love to meet you”; blog hidden when empty. Faith-focused Unsplash imagery (church interior + Bible composite hero). Typography: Fraunces headings + Source Sans 3 body, improved line heights.

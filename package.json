@@ -8,7 +8,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "verify": "turbo run check-types lint",
-    "seed:site-config": "tsx scripts/seed-site-config.ts"
+    "seed:site-config": "tsx scripts/seed-site-config.ts",
+    "seed:content": "tsx scripts/seed-content.ts"
   },
   "devDependencies": {
     "prettier": "^3.7.4",

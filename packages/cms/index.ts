@@ -61,3 +61,5 @@ export {
   buildChurchJsonLd,
 } from "./lib/siteConfig";
 export { seedSiteConfig } from "./seed/siteConfig";
+export { seedSanityContent } from "./seed/content";
+export { paragraphsToBlocks } from "./seed/portableText";
