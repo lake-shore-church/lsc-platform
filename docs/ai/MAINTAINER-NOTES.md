@@ -6,6 +6,18 @@
 
 ---
 
+## 2026-05-20 — Theme system (3 themes × light/dark/reading)
+
+- `packages/ui/web/tokens/themes.css`, `ThemeSwitcher.tsx`, `ThemeScript.tsx`.
+- Tailwind maps CSS variables; layout loads CMS `activeTheme` on `<html>`.
+- Commit message: `feat: packages/cms + full theme system (3 themes × light/dark/reading)`.
+
+## 2026-05-20 — packages/cms + Tailwind on web
+
+- **`@repo/cms`**: Sanity read/write clients, 7 schema types, queries (sermons, events, blog, pages/siteConfig/staff).
+- **`apps/web`**: Tailwind 3, LSC colors, Inter, Radix dialog/slot, `@repo/cms` dependency.
+- `pnpm run verify` + `pnpm --filter web build` pass.
+
 ## 2026-05-20 — A11y Studio–parity documentation pass
 
 - Added full agent/contributor stack: `AGENTS.md`, `CONTRIBUTING.md`, preflight, release checklist, master spec index, `TESTING.md`, `SDLC_STACK.md`, `IDENTITY.md`, `ADR-001`, prompt hub, `feature-branches` cursor rule, root `pnpm run verify`.

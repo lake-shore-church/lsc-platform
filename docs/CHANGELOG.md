@@ -8,6 +8,11 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
+- **Theme system** — 3 seasonal themes × 3 modes (light/dark/reading) via `packages/ui/web/tokens/themes.css`; `ThemeSwitcher` (Radix Popover, localStorage, 44px targets); `ThemeScript` FOUT prevention; Tailwind semantic tokens (`bg-background`, `text-brand-primary`, etc.).
+- **`siteConfig.activeTheme`** — Sanity field for staff default theme (default/advent/easter).
+- **`packages/cms`** — `@sanity/client` read/write clients; schemas (sermon, sermonSeries, event, blogPost, staffBio, page, siteConfig); typed GROQ queries for sermons, events, blog, pages.
+- **Tailwind on `apps/web`** — CSS variable–driven design tokens, Inter font, Radix Popover/Dialog/Slot.
+
 - **`docs/`** — Living documentation: `PROJECT_STATUS.md`, `ROADMAP.md`, `CHANGELOG.md`, `ai/CONTEXT.md`, `ai/MAINTAINER-NOTES.md`, `ai/UPDATE-WORKFLOW.md` (A11y Studio–style, git as source of truth).
 - **`/platform` page** — Next.js route renders `docs/` markdown (status, roadmap, changelog); `noindex` for now.
 - **`.cursor/rules/project-documentation.mdc`** — Requires agents to update changelog + status on every change.
@@ -23,7 +28,9 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Changed
 
-- **`apps/web/package.json`** — Added `@repo/db` workspace dependency.
+- **`apps/web/package.json`** — Added `@repo/db` and `@repo/cms` workspace dependencies.
+- **`apps/web/app/layout.tsx`** — Inter font, LSC metadata defaults.
+- **`turbo.json`** — `globalEnv` for Sanity env vars.
 
 ### Infrastructure (operator)
 

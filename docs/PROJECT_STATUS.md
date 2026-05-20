@@ -1,14 +1,14 @@
 # LSC Platform — Project Status
 
 **Last updated:** 2026-05-20  
-**Active branch:** `feat/platform-scaffold-db-mobile` (1 commit ahead of `main`)  
+**Active branch:** `feat/platform-scaffold-db-mobile` (ahead of `main`; cms + Tailwind local)  
 **Repository:** https://github.com/lake-shore-church/lsc-platform
 
 ---
 
 ## Summary
 
-Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. Infrastructure credentials are in place; core database package is built; CMS and UI layers are next.
+Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. Infrastructure credentials are in place; `@repo/db` and `@repo/cms` are built; Tailwind + Radix on web. **Next:** public Home and Sermons pages.
 
 ---
 
@@ -31,11 +31,11 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 
 | Path | Status | Description |
 |------|--------|-------------|
-| `apps/web` | 🟡 Starter | Next.js 16 (Turborepo default); no Tailwind yet; `@repo/db` linked |
+| `apps/web` | 🟡 In progress | Next.js 16; Tailwind + LSC tokens; Inter font; Radix Dialog/Slot; `@repo/db` + `@repo/cms` |
 | `apps/mobile` | 🟡 Starter | Expo 54 + Expo Router tabs template |
 | `apps/docs` | ⚪ Unused | Turborepo default; may remove later |
 | `packages/db` | ✅ Complete | Typed client, 14 tables, 7 query modules |
-| `packages/cms` | ⏳ Not started | Sanity client, schemas, GROQ queries |
+| `packages/cms` | ✅ Complete | Sanity read/write clients, 7 schemas, 4 query modules |
 | `packages/ui` | 🟡 Starter | Turborepo `@repo/ui`; needs `web/` + `native/` split per spec |
 | `packages/config` | ⏳ Empty dir | Shared tailwind/tsconfig/eslint |
 | `.cursorrules` | ✅ Present | Full architecture blueprint |
@@ -57,6 +57,34 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 - [x] `queries/expenses.ts` — `getExpenses`, `createExpense`, `getExpenseTotals`
 - [x] `queries/blog.ts` — `getBlogPosts`, `getBlogPostBySlug`
 - [x] Typecheck passes (`pnpm --filter @repo/db check-types`)
+
+---
+
+## packages/cms (complete)
+
+- [x] `client.ts` — `createSanityReadClient()`, `createSanityWriteClient()`, singletons
+- [x] `schemas/` — sermon, sermonSeries, event, blogPost, staffBio, page, siteConfig
+- [x] `queries/sermons.ts` — `getSermons`, `getSermonBySlug`, `getSeriesList`, `getSermonsBySeries`
+- [x] `queries/events.ts` — `getEvents`, `getEventById`
+- [x] `queries/blog.ts` — `getBlogPosts`, `getBlogPostBySlug`
+- [x] `queries/pages.ts` — `getPage`, `getSiteConfig`, `getAllStaffBios`
+- [x] Typecheck passes (`pnpm --filter @repo/cms check-types`)
+- [x] `activeTheme` on siteConfig schema
+- [ ] Deploy schemas to Sanity Studio (run studio config — next step)
+
+---
+
+## apps/web design system
+
+- [x] Tailwind CSS 3 + PostCSS — semantic tokens mapped to CSS variables
+- [x] **3 themes:** default, advent, easter (`data-theme`)
+- [x] **3 modes:** light, dark, reading (`data-mode`) — reading uses Georgia 18px / 1.85 line-height
+- [x] `packages/ui/web/tokens/themes.css` — all 9 theme×mode combinations
+- [x] `ThemeSwitcher` — floating control, localStorage, system dark preference, Radix Popover
+- [x] `ThemeScript` — inline bootstrap prevents flash on load
+- [x] `siteConfig.activeTheme` in Sanity — CMS default for new visitors
+- [x] Inter via `next/font/google`
+- [x] Radix UI: Popover, Dialog, Slot
 
 ---
 
@@ -103,8 +131,8 @@ https://github.com/lake-shore-church/lsc-platform/compare/main...feat/platform-s
 
 ## Immediate next steps
 
-1. Merge or continue on `feat/platform-scaffold-db-mobile`
-2. Build `packages/cms` (Sanity)
-3. Add Tailwind + design tokens to `apps/web`
-4. Wire homepage to `@repo/db` (`getEvents`, `getSermons`)
+1. **Push schemas to Sanity** — configure `apps/web` Studio route or `sanity deploy`
+2. **Build `(public)/` Home** — `getSiteConfig`, `getEvents`, `getSermons` from `@repo/cms` / `@repo/db`
+3. **Build `(public)/sermons`** — list + detail by slug
+4. Commit + push branch; open PR to `main`
 5. Fill Cloudflare R2 credentials when media upload is needed

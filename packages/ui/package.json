@@ -3,7 +3,10 @@
   "version": "0.0.0",
   "private": true,
   "exports": {
-    "./*": "./src/*.tsx"
+    "./*": "./src/*.tsx",
+    "./web/ThemeSwitcher": "./web/ThemeSwitcher.tsx",
+    "./web/ThemeScript": "./web/ThemeScript.tsx",
+    "./web/tokens/themes.css": "./web/tokens/themes.css"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",
@@ -20,7 +23,10 @@
     "typescript": "5.9.2"
   },
   "dependencies": {
+    "@radix-ui/react-popover": "^1.1.14",
+    "clsx": "^2.1.1",
     "react": "^19.2.0",
-    "react-dom": "^19.2.0"
+    "react-dom": "^19.2.0",
+    "tailwind-merge": "^3.3.1"
   }
 }

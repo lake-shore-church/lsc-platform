@@ -16,8 +16,8 @@ Phases align with `.cursorrules` and the Lake Shore Church build blueprint.
 | Supabase schema (14 tables + RLS) | ✅ |
 | `@repo/db` package | ✅ |
 | Expo mobile scaffold | ✅ |
-| Sanity `packages/cms` | ⏳ |
-| Tailwind + Radix design system | ⏳ |
+| Sanity `packages/cms` | ✅ |
+| Tailwind + Radix design system | ✅ |
 | Public routes: Home, Sermons, Events, Give, Prayer, Blog, About, Visit, Contact | ⏳ |
 | Magic link auth (member) | ⏳ |
 | Zeffy embed on `/give` | ⏳ |

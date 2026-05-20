@@ -11,8 +11,8 @@
 | **Last updated** | 2026-05-20 |
 | **Active branch** | `feat/platform-scaffold-db-mobile` |
 | **Current phase** | Phase 1 — Foundation |
-| **Just completed** | `@repo/db`, living `docs/`, `/platform` page, A11y-style agent docs |
-| **Next up** | `packages/cms`, Tailwind on web, public homepage with real data |
+| **Just completed** | Full theme system (3×3), ThemeSwitcher, FOUT fix, `activeTheme` in CMS |
+| **Next up** | `(public)/` Home + Sermons pages using theme tokens |
 | **Blocked** | None |
 | **PR** | Not opened — compare [main...feat/platform-scaffold-db-mobile](https://github.com/lake-shore-church/lsc-platform/compare/main...feat/platform-scaffold-db-mobile) |
 
