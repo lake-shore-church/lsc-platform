@@ -1,0 +1,22 @@
+---
+description: Update docs/ changelog and project status on every meaningful change
+alwaysApply: true
+---
+
+# Project documentation (LSC Platform)
+
+At session start (architecture or multi-file work): read **`docs/specs/ai-agent-preflight.md`** and recap §1–§6 for the human.
+
+Before finishing any task that adds, changes, or removes features, infrastructure, or packages:
+
+1. Read **`docs/PROJECT_STATUS.md`** and **`docs/ai/CONTEXT.md`** (session snapshot) for current state.
+2. Update **`docs/CHANGELOG.md`** — new dated entry at the top (What / Why / Impact).
+3. Update **`docs/PROJECT_STATUS.md`** — checkboxes, dates, next steps.
+4. If roadmap phase changed, update **`docs/ROADMAP.md`**.
+5. For non-trivial work, add one paragraph to **`docs/ai/MAINTAINER-NOTES.md`**.
+
+**Source of truth:** `docs/*.md` in git. The public page **`/platform`** renders these files — do not duplicate content only in React components.
+
+**Do not** put secrets in any `docs/` file. Reference env var names only.
+
+Architecture details remain in **`.cursorrules`**, not duplicated into changelog prose.

@@ -1,50 +1,132 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-.imgDark {
-  display: none;
-}
-
-@media (prefers-color-scheme: dark) {
+@layer base {
+  /* 100% = browser/user default (WCAG-friendly; respects accessibility font settings) */
   html {
+    font-size: 100%;
+    color-scheme: light;
+  }
+
+  html[data-mode="dark"] {
     color-scheme: dark;
   }
 
-  .imgLight {
-    display: none;
+  body {
+    @apply bg-background text-foreground-primary font-body antialiased;
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
+    transition:
+      background-color var(--transition-speed) ease,
+      color var(--transition-speed) ease;
   }
-  .imgDark {
-    display: unset;
+
+  h1,
+  h2,
+  h3 {
+    line-height: var(--line-height-heading);
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+    line-height: var(--line-height-heading);
+  }
+
+  .text-h1 {
+    font-size: var(--font-size-h1);
+    line-height: var(--line-height-heading);
+  }
+
+  .text-h2 {
+    font-size: var(--font-size-h2);
+    line-height: 1.25;
+  }
+
+  .text-h3 {
+    font-size: var(--font-size-h3);
+    line-height: 1.3;
+  }
+
+  .leading-heading {
+    line-height: var(--line-height-heading);
+  }
+
+  .leading-snug {
+    line-height: 1.4;
+  }
+
+  /* Section labels — no uppercase (a11y) */
+  .text-label {
+    font-size: var(--font-size-base);
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-label);
+    color: var(--color-text-muted);
+  }
+
+  .section-pad {
+    padding-block: var(--section-padding);
+  }
+
+  .rounded-card {
+    border-radius: var(--card-radius);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .hero-overlay {
+    background: var(--hero-overlay);
+  }
+
+  .link-hover {
+    @apply hover:underline underline-offset-2;
+  }
+
+  /* Ministry cards — distinct tints per theme variables */
+  .ministry-card[data-ministry="connect"] {
+    background: color-mix(in srgb, var(--color-primary) 12%, var(--color-background));
+    border-color: color-mix(in srgb, var(--color-primary) 35%, var(--color-border));
+  }
+  .ministry-card[data-ministry="connect"] .ministry-icon-wrap {
+    background: color-mix(in srgb, var(--color-primary) 20%, var(--color-surface));
+    color: var(--color-primary);
+  }
+  .ministry-card[data-ministry="connect"] .ministry-link {
+    color: var(--color-primary);
+  }
+
+  .ministry-card[data-ministry="serve"] {
+    background: color-mix(in srgb, var(--color-accent) 14%, var(--color-background));
+    border-color: color-mix(in srgb, var(--color-accent) 40%, var(--color-border));
+  }
+  .ministry-card[data-ministry="serve"] .ministry-icon-wrap {
+    background: color-mix(in srgb, var(--color-accent) 22%, var(--color-surface));
+    color: var(--color-accent);
+  }
+  .ministry-card[data-ministry="serve"] .ministry-link {
+    color: var(--color-accent);
+  }
+
+  .ministry-card[data-ministry="give"] {
+    background: color-mix(in srgb, var(--color-primary-hover) 10%, var(--color-surface));
+    border-color: color-mix(in srgb, var(--color-border-strong) 80%, var(--color-border));
+  }
+  .ministry-card[data-ministry="give"] .ministry-icon-wrap {
+    background: color-mix(in srgb, var(--color-accent) 18%, var(--color-surface-2));
+    color: var(--color-primary-hover);
+  }
+  .ministry-card[data-ministry="give"] .ministry-link {
+    color: var(--color-primary-hover);
+  }
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
   }
 }

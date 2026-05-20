@@ -1,0 +1,312 @@
+/**
+ * LSC Platform — 4 design personalities × 3 modes
+ * bold | warm | advent | easter
+ */
+
+:root {
+  --font-size-base: 1rem;
+  --line-height-base: 1.65;
+  --line-height-heading: 1.15;
+  --font-body: var(--font-source), "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-fraunces), "Libre Baskerville", Georgia, serif;
+  /* rem = scales with user/browser root size (typically medium ≈ 16px) */
+  --font-size-h1: clamp(1.75rem, 4vw + 1rem, 3rem);
+  --font-size-h2: clamp(1.375rem, 2vw + 1rem, 2rem);
+  --font-size-h3: clamp(1.125rem, 1vw + 1rem, 1.5rem);
+  --font-weight-display: 700;
+  --letter-spacing-label: 0.02em;
+  --hero-overlay: rgba(0, 0, 0, 0.5);
+  --card-radius: 8px;
+  --section-padding: 4rem;
+  --shadow-card: 0 2px 12px rgba(0, 0, 0, 0.08);
+  --transition-speed: 0.3s;
+}
+
+/* ─── BOLD — Light (inverted: clean sermon-first marketing) ─── */
+[data-theme="bold"][data-mode="light"] {
+  --color-primary: #1a1a2e;
+  --color-primary-hover: #16213e;
+  --color-accent: #e94560;
+  --color-background: #ffffff;
+  --color-surface: #f4f4f8;
+  --color-surface-2: #e8e8f0;
+  --color-text-primary: #1a1a2e;
+  --color-text-secondary: #3d3d52;
+  --color-text-muted: #6b6b80;
+  --color-border: #d8d8e8;
+  --color-border-strong: #b8b8cc;
+  --hero-overlay: rgba(26, 26, 46, 0.72);
+  --card-radius: 4px;
+  --section-padding: 5rem;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source), system-ui, sans-serif;
+  --line-height-base: 1.65;
+  --line-height-heading: 1.1;
+  --font-size-h1: clamp(2.5rem, 6vw, 5rem);
+  --font-size-h2: clamp(1.75rem, 4vw, 2.75rem);
+  --font-weight-display: 800;
+  --letter-spacing-label: 0.15em;
+  --shadow-card: 0 4px 24px rgba(26, 26, 46, 0.12);
+  --transition-speed: 0.2s;
+}
+
+/* ─── BOLD — Dark (default personality: powerful, sermon-first) ─── */
+[data-theme="bold"][data-mode="dark"],
+[data-theme="bold"][data-mode="reading"] {
+  --color-primary: #eaeaea;
+  --color-primary-hover: #ffffff;
+  --color-accent: #e94560;
+  --color-background: #0f0f23;
+  --color-surface: #1a1a2e;
+  --color-surface-2: #16213e;
+  --color-text-primary: #eaeaea;
+  --color-text-secondary: #a0a0b0;
+  --color-text-muted: #6b6b80;
+  --color-border: #2a2a4a;
+  --color-border-strong: #3d3d5c;
+  --hero-overlay: rgba(0, 0, 0, 0.65);
+  --card-radius: 4px;
+  --section-padding: 5rem;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source), system-ui, sans-serif;
+  --line-height-base: 1.65;
+  --line-height-heading: 1.1;
+  --font-size-h1: clamp(2.5rem, 6vw, 5rem);
+  --font-size-h2: clamp(1.75rem, 4vw, 2.75rem);
+  --font-weight-display: 800;
+  --letter-spacing-label: 0.15em;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
+  --transition-speed: 0.2s;
+}
+
+[data-theme="bold"][data-mode="reading"] {
+  --font-body: Georgia, "Times New Roman", serif;
+  --font-size-base: 18px;
+  --line-height-base: 1.85;
+}
+
+/* ─── WARM — Light ─── */
+[data-theme="warm"][data-mode="light"] {
+  --color-primary: #2d4a22;
+  --color-primary-hover: #3a5e2c;
+  --color-accent: #c8860a;
+  --color-background: #fdfaf5;
+  --color-surface: #f5efe4;
+  --color-surface-2: #ede3d0;
+  --color-text-primary: #1c1208;
+  --color-text-secondary: #3d2e10;
+  --color-text-muted: #7a6540;
+  --color-border: #ddd0b8;
+  --color-border-strong: #c4b49a;
+  --hero-overlay: rgba(20, 30, 15, 0.55);
+  --card-radius: 12px;
+  --section-padding: 4.5rem;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: "Segoe UI", system-ui, sans-serif;
+  --font-size-h1: clamp(2rem, 5vw, 4rem);
+  --font-size-h2: clamp(1.5rem, 3.5vw, 2.5rem);
+  --font-weight-display: 700;
+  --letter-spacing-label: 0.1em;
+  --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.08);
+  --transition-speed: 0.35s;
+}
+
+[data-theme="warm"][data-mode="dark"] {
+  --color-primary: #c8e6c0;
+  --color-primary-hover: #dce8d8;
+  --color-accent: #e8b84a;
+  --color-background: #141a10;
+  --color-surface: #1e2818;
+  --color-surface-2: #2a3620;
+  --color-text-primary: #f5f0e8;
+  --color-text-secondary: #d4c4a8;
+  --color-text-muted: #9a8a6a;
+  --color-border: #3a4a30;
+  --color-border-strong: #4a5c3a;
+  --hero-overlay: rgba(10, 15, 8, 0.7);
+  --card-radius: 12px;
+  --section-padding: 4.5rem;
+  --font-display: Georgia, serif;
+  --font-body: "Segoe UI", system-ui, sans-serif;
+  --font-size-h1: clamp(2rem, 5vw, 4rem);
+  --font-size-h2: clamp(1.5rem, 3.5vw, 2.5rem);
+  --font-weight-display: 700;
+  --letter-spacing-label: 0.1em;
+  --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.25);
+  --transition-speed: 0.35s;
+}
+
+[data-theme="warm"][data-mode="reading"] {
+  --color-primary: #2d4a22;
+  --color-primary-hover: #3a5e2c;
+  --color-accent: #c8860a;
+  --color-background: #fefcf8;
+  --color-surface: #f9f4ee;
+  --color-surface-2: #ede3d0;
+  --color-text-primary: #1c1208;
+  --color-text-secondary: #3d2e10;
+  --color-text-muted: #7a6540;
+  --color-border: #ddd0b8;
+  --color-border-strong: #c4b49a;
+  --hero-overlay: rgba(20, 30, 15, 0.55);
+  --card-radius: 12px;
+  --section-padding: 4rem;
+  --font-display: Georgia, serif;
+  --font-body: var(--font-fraunces), Georgia, serif;
+  --line-height-base: 1.75;
+  --line-height-heading: 1.18;
+  --font-size-base: 18px;
+  --line-height-base: 1.85;
+  --font-size-h1: clamp(2rem, 5vw, 3.75rem);
+  --font-weight-display: 700;
+  --letter-spacing-label: 0.1em;
+  --shadow-card: 0 2px 16px rgba(0, 0, 0, 0.06);
+}
+
+/* ─── ADVENT — Light ─── */
+[data-theme="advent"][data-mode="light"] {
+  --color-primary: #6b1a1a;
+  --color-primary-hover: #8b2222;
+  --color-accent: #c4922a;
+  --color-background: #fdfbf7;
+  --color-surface: #f9f2e8;
+  --color-surface-2: #f0e4cc;
+  --color-text-primary: #1a0a00;
+  --color-text-secondary: #3d2000;
+  --color-text-muted: #8b5e3c;
+  --color-border: #e8d4a8;
+  --color-border-strong: #d4bc88;
+  --hero-overlay: rgba(30, 5, 5, 0.65);
+  --card-radius: 8px;
+  --section-padding: 4rem;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source), system-ui, sans-serif;
+  --line-height-base: 1.7;
+  --line-height-heading: 1.15;
+  --font-size-h1: clamp(2rem, 5vw, 4.5rem);
+  --font-size-h2: clamp(1.5rem, 3.5vw, 2.5rem);
+  --font-weight-display: 700;
+  --letter-spacing-label: 0.12em;
+  --shadow-card: 0 2px 20px rgba(100, 30, 0, 0.12);
+  --transition-speed: 0.3s;
+}
+
+[data-theme="advent"][data-mode="dark"] {
+  --color-primary: #f0c8c8;
+  --color-primary-hover: #fce8e8;
+  --color-accent: #e8c060;
+  --color-background: #1a0808;
+  --color-surface: #2a1010;
+  --color-surface-2: #3a1818;
+  --color-text-primary: #fdf8f0;
+  --color-text-secondary: #e8d0b0;
+  --color-text-muted: #b89070;
+  --color-border: #4a2820;
+  --color-border-strong: #5c3830;
+  --hero-overlay: rgba(20, 0, 0, 0.75);
+  --card-radius: 8px;
+  --section-padding: 4rem;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source), system-ui, sans-serif;
+  --line-height-base: 1.7;
+  --line-height-heading: 1.15;
+  --font-size-h1: clamp(2rem, 5vw, 4.5rem);
+  --font-weight-display: 700;
+  --letter-spacing-label: 0.12em;
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
+}
+
+[data-theme="advent"][data-mode="reading"] {
+  --color-primary: #6b1a1a;
+  --color-primary-hover: #8b2222;
+  --color-accent: #c4922a;
+  --color-background: #fdfbf7;
+  --color-surface: #f9f2e8;
+  --color-surface-2: #f0e4cc;
+  --color-text-primary: #1a0a00;
+  --color-text-secondary: #3d2000;
+  --color-text-muted: #8b5e3c;
+  --color-border: #e8d4a8;
+  --font-body: var(--font-fraunces), Georgia, serif;
+  --line-height-base: 1.75;
+  --line-height-heading: 1.18;
+  --font-size-base: 18px;
+  --line-height-base: 1.85;
+  --hero-overlay: rgba(30, 5, 5, 0.65);
+  --card-radius: 8px;
+  --shadow-card: 0 2px 20px rgba(100, 30, 0, 0.1);
+}
+
+/* ─── EASTER — Light ─── */
+[data-theme="easter"][data-mode="light"] {
+  --color-primary: #1b5e3b;
+  --color-primary-hover: #236b47;
+  --color-accent: #e8a020;
+  --color-background: #fafffe;
+  --color-surface: #f0fbf4;
+  --color-surface-2: #dcf4e4;
+  --color-text-primary: #0a1f14;
+  --color-text-secondary: #1b3d26;
+  --color-text-muted: #4a7a5a;
+  --color-border: #b8e8c8;
+  --color-border-strong: #98d8b0;
+  --hero-overlay: rgba(5, 30, 15, 0.5);
+  --card-radius: 16px;
+  --section-padding: 4.5rem;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source), system-ui, sans-serif;
+  --line-height-base: 1.65;
+  --line-height-heading: 1.1;
+  --font-size-h1: clamp(2rem, 5vw, 4.5rem);
+  --font-size-h2: clamp(1.5rem, 3.5vw, 2.5rem);
+  --font-weight-display: 700;
+  --letter-spacing-label: 0.1em;
+  --shadow-card: 0 2px 16px rgba(0, 80, 30, 0.1);
+  --transition-speed: 0.25s;
+}
+
+[data-theme="easter"][data-mode="dark"] {
+  --color-primary: #8ae8b0;
+  --color-primary-hover: #b0f0c8;
+  --color-accent: #f0c050;
+  --color-background: #081810;
+  --color-surface: #102820;
+  --color-surface-2: #183828;
+  --color-text-primary: #f0fdf4;
+  --color-text-secondary: #c8e8d0;
+  --color-text-muted: #88b898;
+  --color-border: #284838;
+  --color-border-strong: #385848;
+  --hero-overlay: rgba(0, 20, 10, 0.65);
+  --card-radius: 16px;
+  --section-padding: 4.5rem;
+  --font-size-h1: clamp(2rem, 5vw, 4.5rem);
+  --shadow-card: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+[data-theme="easter"][data-mode="reading"] {
+  --color-primary: #1b5e3b;
+  --color-primary-hover: #236b47;
+  --color-accent: #e8a020;
+  --color-background: #fafffe;
+  --color-surface: #f0fbf4;
+  --color-surface-2: #dcf4e4;
+  --color-text-primary: #0a1f14;
+  --color-text-secondary: #1b3d26;
+  --color-text-muted: #4a7a5a;
+  --color-border: #b8e8c8;
+  --font-body: var(--font-fraunces), Georgia, serif;
+  --line-height-base: 1.75;
+  --line-height-heading: 1.18;
+  --font-size-base: 18px;
+  --line-height-base: 1.85;
+  --hero-overlay: rgba(5, 30, 15, 0.5);
+  --card-radius: 16px;
+  --shadow-card: 0 2px 16px rgba(0, 80, 30, 0.08);
+}
+
+html {
+  transition:
+    background-color var(--transition-speed) ease,
+    color var(--transition-speed) ease;
+}

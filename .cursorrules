@@ -1,0 +1,171 @@
+# Lake Shore Church — West Loop
+# .cursorrules — read this before every task
+
+## Project overview
+Full-stack church ministry platform. Monorepo with Next.js web app and Expo React Native mobile app sharing business logic through shared packages.
+
+## Monorepo structure
+```
+lsc-platform/
+├── apps/
+│   ├── web/          ← Next.js 14 App Router (public site + portals)
+│   └── mobile/       ← Expo + React Native (iOS + Android)
+├── packages/
+│   ├── ui/           ← Shared design system
+│   │   ├── web/      ← Radix UI + Tailwind components
+│   │   ├── native/   ← React Native equivalents
+│   │   └── tokens.ts ← Shared design tokens
+│   ├── db/           ← Supabase client + all typed queries
+│   │   ├── client.ts
+│   │   ├── types.ts  ← Auto-generated from Supabase
+│   │   └── queries/  ← sermons, prayers, events, members, giving, expenses
+│   ├── cms/          ← Sanity client + GROQ queries + schemas
+│   │   ├── client.ts
+│   │   ├── schemas/
+│   │   └── queries/
+│   └── config/       ← Shared tailwind, tsconfig, eslint
+└── turbo.json
+```
+
+## Services and credentials
+- Supabase URL: https://zstnygokvxrrszvkfejs.supabase.co
+- Supabase anon key: stored in NEXT_PUBLIC_SUPABASE_ANON_KEY env var
+- Sanity Project ID: 7hl877lg
+- Sanity Dataset: production
+- GitHub: https://github.com/lake-shore-church/lsc-platform
+
+## Tech stack
+- Web: Next.js 14 App Router, TypeScript, Tailwind CSS, Radix UI
+- Mobile: Expo SDK 51, React Native, Expo Router
+- Database: Supabase (Postgres + Auth + Edge Functions + Realtime)
+- CMS: Sanity.io (content editable by church staff without developer)
+- Hosting: Vercel (web) + EAS Build (mobile)
+- CDN + DNS + Storage: Cloudflare (R2 for media)
+- Email: Resend + React Email
+- Push notifications: OneSignal
+- Giving: Zeffy (embed) + PayPal Giving Fund (future, when 501c3)
+- PDF generation: @react-pdf/renderer (server-side, free)
+- Transcription: OpenAI Whisper API
+- Translation: DeepL API (Phase 3)
+- i18n: next-intl (/es /fr /pt /zh routes)
+- Package manager: pnpm
+
+## Auth roles (Supabase RLS enforced at Postgres level)
+- public: anonymous, no login — can read published content, submit public prayers, RSVP
+- member: magic link login — own giving history, private prayers, member resources
+- staff: church team — all prayers, events admin, sermon upload, financial dashboard
+- admin: Director of Technology (you) — full access, role management, Supabase Studio
+
+## Database tables (14 total)
+profiles, sermons, sermon_series, prayer_requests, events, rsvps,
+blog_posts, email_subscribers, members, small_groups, giving_records,
+expenses, notification_prefs, translations
+
+## Key architectural rules
+1. Business logic lives in packages/db and packages/cms — never duplicated in apps
+2. Both apps import from packages/* — never from each other
+3. Server Components (RSC) for all data fetching in Next.js — no useEffect for data
+4. Supabase client in packages/db/client.ts — one instance, used by both apps
+5. All Sanity GROQ queries in packages/cms/queries/ — never inline in components
+6. RLS enforced in Postgres — middleware is a second layer, not the only layer
+7. All media files go to Cloudflare R2 — never Supabase Storage
+8. PDF generation runs server-side via Next.js API routes — never client-side
+9. Environment variables: NEXT_PUBLIC_ prefix for client-safe vars only
+
+## Next.js app route groups
+- (public)/ — Home, Sermons, Events, Give, Prayer, Blog, About, Beliefs, Visit, Contact, Resources, Live
+- (member)/ — Dashboard, Groups, Resources (auth-gated: role=member)
+- (staff)/ — Prayer, Sermons, Events, Blog, Financials, Members (auth-gated: role=staff)
+- [locale]/ — /es /fr /pt /zh multilingual routes
+- studio/ — Sanity Studio embedded
+- api/ — tithing-statement, financial-report, webhooks, revalidate
+
+## Mobile app tabs (Expo Router)
+- (tabs)/home — Service times, Watch Live, events strip, latest sermon
+- (tabs)/sermons — Archive, search, player, offline download
+- (tabs)/give — Zeffy webview, giving history (member)
+- (tabs)/prayer — Submit request, own requests (member), triage (staff)
+- (tabs)/more — Events, Blog, Resources, Notifications, Account
+
+## Giving system
+- Primary: Zeffy iframe embed on /give page — 0% fees, church keeps 100%
+- Zeffy API (read-only) syncs giving data to Supabase giving_records table nightly
+- Future: PayPal Giving Fund button activates via Sanity CMS config toggle (no code change)
+
+## Financial features
+- Individual tithing statements: PDF generated via @react-pdf/renderer
+  - Member downloads own from portal anytime
+  - Staff generates for any member on demand
+  - Pastor triggers bulk email to all members at year end
+  - API route: GET /api/tithing-statement?year=YYYY&memberId=xxx
+- Church financial dashboard: /staff/financials (staff + admin only)
+  - Income: auto-populated from Zeffy sync (giving_records table)
+  - Expenses: manually entered by pastor or treasurer via simple form
+  - Annual report PDF: GET /api/financial-report?year=YYYY
+  - PDF stored in Cloudflare R2 bucket: lsc-financials
+
+## Cloudflare R2 buckets
+- lsc-media: sermon audio, thumbnails, staff photos, event images
+- lsc-docs: PDFs, books, study materials
+- lsc-captions: .vtt and .srt caption files per sermon
+- lsc-financials: tithing statement PDFs, annual report PDFs, expense receipts
+- Custom domain: media.lschurch.com
+
+## AI pipeline (Whisper transcription)
+1. Pastor uploads video → Cloudflare R2
+2. Supabase Edge Function (whisper-transcribe) triggers on sermon INSERT
+3. Fetches audio from R2 → sends to OpenAI Whisper API
+4. Stores timestamped JSON transcript in sermons.transcript
+5. Generates .vtt captions → uploads to lsc-captions R2 bucket
+6. Calls Vercel ISR revalidation → sermon page rebuilds with transcript
+7. Phase 3: deepl-translate Edge Function sends to DeepL for multilingual subtitles
+
+## SEO requirements
+- generateMetadata() on every route — unique titles and descriptions
+- Schema.org/Church in root layout
+- Schema.org/VideoObject on every sermon page
+- Schema.org/Event on every event page
+- Schema.org/FAQPage on Home and Plan a Visit
+- next-sitemap auto-generates XML sitemap on every build
+- @vercel/og generates Open Graph images per sermon/event/blog post
+- hreflang tags on all multilingual routes (Phase 3)
+
+## Design system
+- Tailwind CSS with custom design tokens
+- Primary: #1B4F8A (blue), #0F7B6C (teal), #B45309 (amber)
+- Body font: Inter (web), System font stack (mobile)
+- Radix UI for all interactive components (dialogs, menus, dropdowns)
+- 44x44px minimum tap targets on all interactive elements
+
+## Living documentation (update every session)
+- **Entry:** `AGENTS.md` → `docs/ai/CONTEXT.md` (session snapshot) → `docs/specs/ai-agent-preflight.md`
+- **`docs/PROJECT_STATUS.md`** — current state (source of truth)
+- **`docs/ROADMAP.md`** — phased plan · **`docs/CHANGELOG.md`** — dated changes
+- **`docs/TESTING.md`** · **`docs/SDLC_STACK.md`** · **`docs/prompts/copy-paste.md`**
+- **`docs/ai/MAINTAINER-NOTES.md`** — internal session log · **`docs/ai/ADR-*.md`** — architecture decisions
+- **Website:** `/platform` renders `docs/*.md` at build time (church brand UI)
+- **Rules:** `.cursor/rules/project-documentation.mdc`, `feature-branches.mdc`
+- **Verify before PR:** `pnpm run verify`
+
+## Prompt pattern for agents
+Always specify:
+1. Exact file path (e.g. apps/web/app/(staff)/financials/page.tsx)
+2. Whether it's RSC or client component
+3. Which existing query/utility to use from packages/
+4. Which UI component to import from packages/ui/
+5. Any metadata or schema requirements
+
+## Environment variables needed
+NEXT_PUBLIC_SUPABASE_URL=https://zstnygokvxrrszvkfejs.supabase.co
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+NEXT_PUBLIC_SANITY_PROJECT_ID=7hl877lg
+NEXT_PUBLIC_SANITY_DATASET=production
+SANITY_API_TOKEN=
+CLOUDFLARE_R2_ACCESS_KEY_ID=
+CLOUDFLARE_R2_SECRET_ACCESS_KEY=
+CLOUDFLARE_R2_ENDPOINT=
+RESEND_API_KEY=
+OPENAI_API_KEY=
+ONESIGNAL_APP_ID=
+ONESIGNAL_REST_API_KEY=
