@@ -6,6 +6,10 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ## [Unreleased] — feat/platform-scaffold-db-mobile
 
+### Changed
+
+- **Homepage polish** — Removed duplicate quick-info strip and footer CTA; visit/address lives in “We'd love to meet you”; blog hidden when empty. Faith-focused Unsplash imagery (church interior + Bible composite hero). Typography: Fraunces headings + Source Sans 3 body, improved line heights.
+
 ### Added
 
 - **Homepage redesign** — 8 sections (full-viewport hero, quick-info cards, latest sermon, new here, ministry grid, events, blog teaser, footer CTA); Unsplash placeholders via `@repo/ui/web/images`.

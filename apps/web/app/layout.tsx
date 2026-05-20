@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { Fraunces, Source_Sans_3 } from "next/font/google";
 import { getSiteConfig, buildChurchJsonLd, type ThemeId } from "@repo/cms";
 import { ThemeScript } from "@repo/ui/web/ThemeScript";
 import { ThemeSwitcher } from "@repo/ui/web/ThemeSwitcher";
@@ -8,9 +8,15 @@ import { SITE_URL } from "@/lib/site";
 import "@repo/ui/web/tokens/themes.css";
 import "./globals.css";
 
-const inter = Inter({
+const fraunces = Fraunces({
   subsets: ["latin"],
-  variable: "--font-inter",
+  variable: "--font-fraunces",
+  display: "swap",
+});
+
+const sourceSans = Source_Sans_3({
+  subsets: ["latin"],
+  variable: "--font-source",
   display: "swap",
 });
 
@@ -51,7 +57,7 @@ export default async function RootLayout({
       data-theme={cmsTheme}
       data-mode="dark"
       suppressHydrationWarning
-      className={inter.variable}
+      className={`${fraunces.variable} ${sourceSans.variable}`}
     >
       <head>
         <ThemeScript />

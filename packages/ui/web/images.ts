@@ -1,18 +1,33 @@
-/** Free Unsplash images (commercial use) — placeholders until congregation photos. */
+/**
+ * Faith-focused Unsplash placeholders (free commercial use).
+ * Hero uses a composite of church interior + Scripture warmth.
+ */
 export const IMAGES = {
-  hero: "https://images.unsplash.com/photo-1438232992991-995b7058bbb3?w=1920&q=80",
+  /** Church interior — primary hero layer */
+  heroBase:
+    "https://images.unsplash.com/photo-1519494026892-80bbd122d51a?w=1920&q=85",
+  /** Open Bible, warm light — blended over hero */
+  heroAccent:
+    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=1920&q=80",
+  /** Alias for single-layer fallbacks */
+  hero:
+    "https://images.unsplash.com/photo-1519494026892-80bbd122d51a?w=1920&q=85",
+  /** Worship gathering */
   community:
-    "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80",
+    "https://images.unsplash.com/photo-1516450360352-4a2f227cad72?w=800&q=80",
+  /** Bible study / small group */
   smallGroup:
-    "https://images.unsplash.com/photo-1511988617509-a57c8a288659?w=800&q=80",
-  serve: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80",
-  give: "https://images.unsplash.com/photo-1532629345422-7515f3d16bb6?w=800&q=80",
-  worship:
-    "https://images.unsplash.com/photo-1478147427282-58a87a702b70?w=800&q=80",
-  chicago:
-    "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&q=80",
-  bible:
     "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800&q=80",
+  /** Serving others */
+  serve:
+    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80",
+  /** Worship — giving as gratitude */
+  give:
+    "https://images.unsplash.com/photo-1478147427282-58a87a702b70?w=800&q=80",
+  worship:
+    "https://images.unsplash.com/photo-1507692041950-59827f5c9479?w=800&q=80",
   prayer:
     "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80",
+  bible:
+    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800&q=80",
 } as const;

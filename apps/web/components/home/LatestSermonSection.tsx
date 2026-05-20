@@ -14,8 +14,8 @@ export function LatestSermonSection({ sermon }: { sermon: Sermon | null }) {
     <section className="section-pad bg-brand-primary text-white">
       <Container>
         <p className="text-label text-white/70">Sunday&apos;s message</p>
-        <h2 className="mt-2 font-display text-h2 text-white">{title}</h2>
-        <p className="mt-2 text-lg text-white/85">
+        <h2 className="mt-2 font-display text-h2 leading-heading text-white">{title}</h2>
+        <p className="mt-3 text-lg leading-relaxed text-white/85">
           {pastor}
           {scripture ? ` · ${scripture}` : null}
         </p>

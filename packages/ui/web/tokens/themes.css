@@ -4,11 +4,11 @@
  */
 
 :root {
-  --font-inter: "Inter", system-ui, sans-serif;
-  --font-size-base: 16px;
-  --line-height-base: 1.5;
-  --font-body: var(--font-inter), system-ui, sans-serif;
-  --font-display: var(--font-inter), system-ui, sans-serif;
+  --font-size-base: 17px;
+  --line-height-base: 1.65;
+  --line-height-heading: 1.12;
+  --font-body: var(--font-source), "Segoe UI", system-ui, sans-serif;
+  --font-display: var(--font-fraunces), "Libre Baskerville", Georgia, serif;
   --font-size-h1: clamp(2rem, 5vw, 3.5rem);
   --font-size-h2: clamp(1.5rem, 3vw, 2.25rem);
   --font-weight-display: 700;
@@ -36,8 +36,10 @@
   --hero-overlay: rgba(26, 26, 46, 0.72);
   --card-radius: 4px;
   --section-padding: 5rem;
-  --font-display: var(--font-inter), system-ui, sans-serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source), system-ui, sans-serif;
+  --line-height-base: 1.65;
+  --line-height-heading: 1.1;
   --font-size-h1: clamp(2.5rem, 6vw, 5rem);
   --font-size-h2: clamp(1.75rem, 4vw, 2.75rem);
   --font-weight-display: 800;
@@ -63,8 +65,10 @@
   --hero-overlay: rgba(0, 0, 0, 0.65);
   --card-radius: 4px;
   --section-padding: 5rem;
-  --font-display: var(--font-inter), system-ui, sans-serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source), system-ui, sans-serif;
+  --line-height-base: 1.65;
+  --line-height-heading: 1.1;
   --font-size-h1: clamp(2.5rem, 6vw, 5rem);
   --font-size-h2: clamp(1.75rem, 4vw, 2.75rem);
   --font-weight-display: 800;
@@ -146,7 +150,9 @@
   --card-radius: 12px;
   --section-padding: 4rem;
   --font-display: Georgia, serif;
-  --font-body: Georgia, serif;
+  --font-body: var(--font-fraunces), Georgia, serif;
+  --line-height-base: 1.75;
+  --line-height-heading: 1.18;
   --font-size-base: 18px;
   --line-height-base: 1.85;
   --font-size-h1: clamp(2rem, 5vw, 3.75rem);
@@ -171,8 +177,10 @@
   --hero-overlay: rgba(30, 5, 5, 0.65);
   --card-radius: 8px;
   --section-padding: 4rem;
-  --font-display: Georgia, serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source), system-ui, sans-serif;
+  --line-height-base: 1.7;
+  --line-height-heading: 1.15;
   --font-size-h1: clamp(2rem, 5vw, 4.5rem);
   --font-size-h2: clamp(1.5rem, 3.5vw, 2.5rem);
   --font-weight-display: 700;
@@ -196,8 +204,10 @@
   --hero-overlay: rgba(20, 0, 0, 0.75);
   --card-radius: 8px;
   --section-padding: 4rem;
-  --font-display: Georgia, serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source), system-ui, sans-serif;
+  --line-height-base: 1.7;
+  --line-height-heading: 1.15;
   --font-size-h1: clamp(2rem, 5vw, 4.5rem);
   --font-weight-display: 700;
   --letter-spacing-label: 0.12em;
@@ -215,7 +225,9 @@
   --color-text-secondary: #3d2000;
   --color-text-muted: #8b5e3c;
   --color-border: #e8d4a8;
-  --font-body: Georgia, serif;
+  --font-body: var(--font-fraunces), Georgia, serif;
+  --line-height-base: 1.75;
+  --line-height-heading: 1.18;
   --font-size-base: 18px;
   --line-height-base: 1.85;
   --hero-overlay: rgba(30, 5, 5, 0.65);
@@ -239,8 +251,10 @@
   --hero-overlay: rgba(5, 30, 15, 0.5);
   --card-radius: 16px;
   --section-padding: 4.5rem;
-  --font-display: var(--font-inter), system-ui, sans-serif;
-  --font-body: var(--font-inter), system-ui, sans-serif;
+  --font-display: var(--font-fraunces), Georgia, serif;
+  --font-body: var(--font-source), system-ui, sans-serif;
+  --line-height-base: 1.65;
+  --line-height-heading: 1.1;
   --font-size-h1: clamp(2rem, 5vw, 4.5rem);
   --font-size-h2: clamp(1.5rem, 3.5vw, 2.5rem);
   --font-weight-display: 700;
@@ -279,7 +293,9 @@
   --color-text-secondary: #1b3d26;
   --color-text-muted: #4a7a5a;
   --color-border: #b8e8c8;
-  --font-body: Georgia, serif;
+  --font-body: var(--font-fraunces), Georgia, serif;
+  --line-height-base: 1.75;
+  --line-height-heading: 1.18;
   --font-size-base: 18px;
   --line-height-base: 1.85;
   --hero-overlay: rgba(5, 30, 15, 0.5);

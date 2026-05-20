@@ -12,10 +12,17 @@
   }
 
   body {
-    @apply bg-background text-foreground-primary font-body text-base leading-base antialiased;
+    @apply bg-background text-foreground-primary font-body text-base antialiased;
+    line-height: var(--line-height-base);
     transition:
       background-color var(--transition-speed) ease,
       color var(--transition-speed) ease;
+  }
+
+  h1,
+  h2,
+  h3 {
+    line-height: var(--line-height-heading);
   }
 }
 
@@ -23,16 +30,25 @@
   .font-display {
     font-family: var(--font-display);
     font-weight: var(--font-weight-display);
+    line-height: var(--line-height-heading);
   }
 
   .text-h1 {
     font-size: var(--font-size-h1);
-    line-height: 1.1;
+    line-height: var(--line-height-heading);
   }
 
   .text-h2 {
     font-size: var(--font-size-h2);
     line-height: 1.2;
+  }
+
+  .leading-heading {
+    line-height: var(--line-height-heading);
+  }
+
+  .leading-snug {
+    line-height: 1.35;
   }
 
   .text-label {
