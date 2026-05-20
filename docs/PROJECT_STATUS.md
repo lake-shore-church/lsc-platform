@@ -1,7 +1,7 @@
 # LSC Platform — Project Status
 
 **Last updated:** 2026-05-20  
-**Active branch:** `feat/platform-scaffold-db-mobile` (ahead of `main`)  
+**Active branch:** `main`  
 **Repository:** https://github.com/lake-shore-church/lsc-platform
 
 ---
@@ -118,11 +118,7 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 
 | Branch | Contains |
 |--------|----------|
-| `main` | Turborepo initial commit only |
-| `feat/platform-scaffold-db-mobile` | db package, mobile scaffold, migration SQL, `.cursorrules`, docs (pending merge) |
-
-**PR:** Not opened yet — compare at  
-https://github.com/lake-shore-church/lsc-platform/compare/main...feat/platform-scaffold-db-mobile
+| `main` | Full platform — public site, Studio, portals, docs (merged 2026-05-20) |
 
 ---
 
