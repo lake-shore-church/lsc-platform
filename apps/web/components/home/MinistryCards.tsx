@@ -7,7 +7,7 @@ const cards = [
   {
     title: "Connect",
     body: "Small groups and gatherings to grow in faith together.",
-    image: IMAGES.smallGroup,
+    image: IMAGES.connect,
     href: "/events",
     cta: "Find a group",
   },
@@ -40,7 +40,13 @@ export function MinistryCards() {
               <div className="relative aspect-[4/3]">
                 <Image
                   src={card.image}
-                  alt=""
+                  alt={
+                    card.title === "Connect"
+                      ? "People talking together in a small group"
+                      : card.title === "Serve"
+                        ? "Volunteers serving in the community"
+                        : "Hands open in generous giving"
+                  }
                   fill
                   className="object-cover"
                   sizes="33vw"

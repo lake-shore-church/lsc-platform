@@ -8,10 +8,10 @@ export function HeroSection({ serviceTimesLine }: { serviceTimesLine: string }) 
     <section className="relative flex min-h-[88svh] items-center">
       <Image
         src={IMAGES.heroBase}
-        alt=""
+        alt="White dove representing peace and the Holy Spirit"
         fill
         priority
-        className="object-cover"
+        className="object-cover object-center"
         sizes="100vw"
       />
       <Image
@@ -19,12 +19,12 @@ export function HeroSection({ serviceTimesLine }: { serviceTimesLine: string }) 
         alt=""
         fill
         priority
-        className="object-cover mix-blend-soft-light opacity-35"
+        className="object-cover object-center mix-blend-overlay opacity-30"
         sizes="100vw"
         aria-hidden
       />
       <div
-        className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/75"
+        className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/45 to-black/70"
         aria-hidden
       />
       <Container className="relative z-10 py-16 sm:py-20">
