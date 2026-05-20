@@ -6,7 +6,7 @@ import { requireStaffPortal } from "@/lib/auth/session";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function updatePrayerStatus(formData: FormData) {
-  await requireStaffPortal();
+  const session = await requireStaffPortal();
   const supabase = await createSupabaseServerClient();
 
   const id = formData.get("id");
@@ -22,6 +22,26 @@ export async function updatePrayerStatus(formData: FormData) {
       updates: {
         status: status as PrayerStatus,
         responded_at: status === "prayed" ? new Date().toISOString() : null,
+      },
+    },
+    supabase,
+  );
+
+  revalidatePath("/staff/prayers");
+}
+
+export async function assignPrayerToMe(formData: FormData) {
+  const session = await requireStaffPortal();
+  const supabase = await createSupabaseServerClient();
+  const id = formData.get("id");
+  if (typeof id !== "string") return;
+
+  await updatePrayer(
+    {
+      id,
+      updates: {
+        status: "assigned",
+        assigned_to: session.userId,
       },
     },
     supabase,

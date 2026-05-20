@@ -96,9 +96,11 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 |-------------|--------|
 | `(public)/` — Home, About, Beliefs, Visit, Contact, Sermons, Blog, Live, Give, Prayer, Events, Resources | ✅ |
 | `api/` — prayer, subscribe, contact, rsvp | ✅ |
-| `/member/*` — Dashboard, Groups, Resources | ✅ (magic link) |
-| `/staff/*` — Prayers, Sermons, Events, Financials, Members | ✅ (baseline) |
+| `/member/*` — Dashboard, Giving, Prayers, Groups, Resources, Notifications | ✅ |
+| `/staff/*` — Prayer kanban, Events CRUD, Financials+charts, Members, Blog, Sermons | ✅ |
 | `/login` — Magic link sign-in | ✅ |
+| `/api/tithing-statement`, `/api/financial-report` | ✅ PDF |
+| `/api/send-reminder` | ✅ |
 | `[locale]/` — /es /fr /pt /zh | ⏳ Phase 3 |
 | `studio/` — Sanity Studio embed | ✅ |
 | `api/` — sermons RSS, tithing-statement, webhooks, revalidate | ⏳ |

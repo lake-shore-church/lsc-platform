@@ -39,6 +39,7 @@ export async function submitPrayer(
 export type GetPrayersOptions = {
   status?: PrayerStatus;
   includePrivate?: boolean;
+  submitterId?: string;
   limit?: number;
 };
 
@@ -60,6 +61,10 @@ export async function getPrayers(
 
   if (options?.includePrivate === false) {
     query = query.eq("is_private", false);
+  }
+
+  if (options?.submitterId) {
+    query = query.eq("submitter_id", options.submitterId);
   }
 
   if (options?.limit) {

@@ -96,3 +96,23 @@ export { subscribeEmail, type SubscribeInput } from "./queries/subscribers";
 export { getActiveSmallGroups } from "./queries/smallGroups";
 
 export { getAllMembers, getDirectoryProfiles } from "./queries/staff";
+
+export {
+  getNotificationPrefs,
+  upsertNotificationPrefs,
+} from "./queries/notifications";
+
+export {
+  createEvent,
+  updateEvent,
+  deleteEvent,
+  getRsvpsForEvent,
+} from "./queries/eventsAdmin";
+
+export {
+  getAllBlogPostsForStaff,
+  setBlogEmailSent,
+  unpublishBlogPost,
+} from "./queries/blogAdmin";
+
+export { getAllGivingForYear, createGivingAdminClient } from "./queries/givingAdmin";

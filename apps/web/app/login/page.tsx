@@ -3,7 +3,7 @@ import { LoginForm } from "@/components/auth/LoginForm";
 import { Container } from "@/components/ui/Container";
 
 export const metadata: Metadata = {
-  title: "Sign in",
+  title: "Sign In",
   description: "Member and staff sign-in for Lake Shore Church.",
   robots: { index: false, follow: false },
 };

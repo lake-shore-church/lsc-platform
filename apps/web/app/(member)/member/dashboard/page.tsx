@@ -1,11 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  getGivingHistory,
-  getMemberRecord,
-  getPrayers,
-} from "@repo/db";
-import { PortalShell } from "@/components/layout/PortalShell";
+import { getGivingTotals, getMemberRecord } from "@repo/db";
 import { requireMemberPortal } from "@/lib/auth/session";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -14,106 +9,90 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const NAV = [
-  { href: "/member/dashboard", label: "Dashboard" },
-  { href: "/member/groups", label: "Groups" },
-  { href: "/member/resources", label: "Resources" },
-];
+const year = new Date().getFullYear();
 
 export default async function MemberDashboardPage() {
   const session = await requireMemberPortal();
   const supabase = await createSupabaseServerClient();
 
-  const [member, prayers, giving] = await Promise.all([
+  const [member, givingTotals] = await Promise.all([
     getMemberRecord(session.userId, supabase),
-    getPrayers({ limit: 5 }, supabase).catch(() => []),
-    getGivingHistory({ memberId: session.userId, limit: 5 }, supabase).catch(
-      () => [],
-    ),
+    getGivingTotals({ memberId: session.userId, year }, supabase).catch(() => ({
+      total: 0,
+      byFund: { general: 0, building: 0, missions: 0, other: 0 },
+      count: 0,
+    })),
   ]);
 
+  const name = session.profile.full_name ?? "friend";
+
   return (
-    <PortalShell title="Member portal" role={session.profile.role} nav={NAV}>
-      <h1 className="font-display text-h2 text-brand-primary">
-        Welcome{session.profile.full_name ? `, ${session.profile.full_name}` : ""}
-      </h1>
-      <p className="mt-2 text-foreground-secondary">
-        Email: {session.profile.email ?? session.email}
-      </p>
+    <>
+      <h1 className="font-display text-h2 text-brand-primary">Welcome back, {name}</h1>
 
-      <div className="mt-10 grid gap-8 lg:grid-cols-2">
+      <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         <section className="rounded-card border border-default bg-surface p-6">
-          <h2 className="font-display text-h3 text-foreground">Quick links</h2>
-          <ul className="mt-4 space-y-2 text-base">
-            <li>
-              <Link href="/prayer" className="link-hover text-brand-primary">
-                Submit a prayer request
-              </Link>
-            </li>
-            <li>
-              <Link href="/give" className="link-hover text-brand-primary">
-                Give online
-              </Link>
-            </li>
-            <li>
-              <Link href="/events" className="link-hover text-brand-primary">
-                Upcoming events
-              </Link>
-            </li>
-          </ul>
+          <p className="text-sm text-foreground-muted">Giving in {year}</p>
+          <p className="font-display text-h2 text-brand-primary">
+            ${givingTotals.total.toFixed(2)}
+          </p>
+          <p className="mt-1 text-sm text-foreground-secondary">
+            {givingTotals.count} gift{givingTotals.count === 1 ? "" : "s"}
+          </p>
         </section>
 
-        <section className="rounded-card border border-default bg-surface p-6">
-          <h2 className="font-display text-h3 text-foreground">Your group</h2>
-          {member?.small_group ? (
-            <p className="mt-2 text-foreground-secondary">
-              {member.small_group.name}
-              {member.small_group.schedule
-                ? ` — ${member.small_group.schedule}`
-                : ""}
-            </p>
-          ) : (
-            <p className="mt-2 text-foreground-muted">
-              No small group on file yet. Contact the church office.
-            </p>
-          )}
-        </section>
-
-        <section className="rounded-card border border-default bg-surface p-6">
-          <h2 className="font-display text-h3 text-foreground">Recent prayers</h2>
-          {prayers.length === 0 ? (
-            <p className="mt-2 text-foreground-muted">No requests yet.</p>
-          ) : (
-            <ul className="mt-3 space-y-3">
-              {prayers.map((p) => (
-                <li key={p.id} className="text-sm text-foreground-secondary">
-                  <span className="font-semibold capitalize">{p.status}</span>
-                  {p.is_private ? " · private" : ""} — {p.content.slice(0, 80)}
-                  …
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
-
-        <section className="rounded-card border border-default bg-surface p-6">
-          <h2 className="font-display text-h3 text-foreground">Giving history</h2>
-          {giving.length === 0 ? (
-            <p className="mt-2 text-foreground-muted">
-              No synced giving records yet. Online gifts through Zeffy will appear
-              here when configured.
-            </p>
-          ) : (
-            <ul className="mt-3 space-y-2 text-sm">
-              {giving.map((g) => (
-                <li key={g.id} className="text-foreground-secondary">
-                  {g.date} — ${Number(g.amount).toFixed(2)} ({g.fund})
-                </li>
-              ))}
-            </ul>
-          )}
-        </section>
+        {member?.small_group ? (
+          <section className="rounded-card border border-default bg-surface p-6">
+            <p className="text-sm text-foreground-muted">Your group</p>
+            <p className="font-semibold text-foreground">{member.small_group.name}</p>
+          </section>
+        ) : null}
       </div>
-    </PortalShell>
+
+      <section className="mt-10">
+        <h2 className="font-display text-h3 text-foreground">Quick links</h2>
+        <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+          <li>
+            <Link href="/member/giving" className="link-hover text-brand-primary">
+              Giving history
+            </Link>
+          </li>
+          <li>
+            <Link href="/member/prayers" className="link-hover text-brand-primary">
+              Prayer requests
+            </Link>
+          </li>
+          <li>
+            <Link href="/member/groups" className="link-hover text-brand-primary">
+              Small groups
+            </Link>
+          </li>
+          <li>
+            <Link href="/member/resources" className="link-hover text-brand-primary">
+              Resources
+            </Link>
+          </li>
+          <li>
+            <Link href="/member/notifications" className="link-hover text-brand-primary">
+              Notification settings
+            </Link>
+          </li>
+          <li>
+            <Link href="/give" className="link-hover text-brand-primary">
+              Give online
+            </Link>
+          </li>
+        </ul>
+      </section>
+
+      <div className="mt-10">
+        <a
+          href={`/api/tithing-statement?year=${year}`}
+          className="inline-flex min-h-[44px] items-center rounded-md bg-brand-primary px-6 font-semibold text-white hover:opacity-90"
+        >
+          Download {year} tithing statement
+        </a>
+      </div>
+    </>
   );
 }

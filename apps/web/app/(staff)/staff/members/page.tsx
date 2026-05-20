@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import { getAllMembers, getDirectoryProfiles } from "@repo/db";
-import { PortalShell } from "@/components/layout/PortalShell";
+import { getDirectoryProfiles, getGivingTotals } from "@repo/db";
+import { promoteToStaff } from "./actions";
 import { requireStaffPortal } from "@/lib/auth/session";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -9,65 +9,70 @@ export const metadata: Metadata = {
   robots: { index: false, follow: false },
 };
 
-const NAV = [
-  { href: "/staff/prayers", label: "Prayers" },
-  { href: "/staff/sermons", label: "Sermons" },
-  { href: "/staff/events", label: "Events" },
-  { href: "/staff/financials", label: "Financials" },
-  { href: "/staff/members", label: "Members" },
-];
+const year = new Date().getFullYear();
 
 export default async function StaffMembersPage() {
   const session = await requireStaffPortal();
   const supabase = await createSupabaseServerClient();
 
-  const [members, profiles] = await Promise.all([
-    getAllMembers(supabase).catch(() => []),
-    getDirectoryProfiles(supabase).catch(() => []),
-  ]);
+  const profiles = await getDirectoryProfiles(supabase).catch(() => []);
+
+  const givingByUser = await Promise.all(
+    profiles.map(async (p) => {
+      const totals = await getGivingTotals({ memberId: p.id, year }, supabase).catch(
+        () => ({ total: 0, byFund: { general: 0, building: 0, missions: 0, other: 0 }, count: 0 }),
+      );
+      return { id: p.id, total: totals.total };
+    }),
+  );
+  const givingMap = Object.fromEntries(givingByUser.map((g) => [g.id, g.total]));
 
   return (
-    <PortalShell title="Staff portal" role={session.profile.role} nav={NAV}>
+    <>
       <h1 className="font-display text-h2 text-brand-primary">Members</h1>
       <p className="mt-2 text-foreground-secondary">
-        Member records and portal roles. To grant access, set{" "}
-        <code className="text-sm">role</code> to <strong>member</strong> or{" "}
-        <strong>staff</strong> in Supabase → profiles (admin).
+        Directory and giving totals for {year}. Promote to staff (admin only).
       </p>
 
-      <h2 className="mt-10 font-display text-h3">Directory ({profiles.length})</h2>
-      <ul className="mt-4 divide-y divide-default rounded-card border border-default bg-surface">
-        {profiles.map((p) => (
-          <li key={p.id} className="flex flex-wrap justify-between gap-2 px-4 py-3 text-sm">
-            <span>
-              {p.full_name ?? "—"} · {p.email ?? "no email"}
-            </span>
-            <span className="font-semibold capitalize text-brand-secondary">{p.role}</span>
-          </li>
-        ))}
-      </ul>
-      {profiles.length === 0 ? (
-        <p className="mt-4 text-foreground-muted">
-          No member/staff profiles yet. New sign-ins default to role{" "}
-          <code className="text-sm">public</code> until promoted.
-        </p>
-      ) : null}
-
-      <h2 className="mt-10 font-display text-h3">Member records ({members.length})</h2>
-      <ul className="mt-4 space-y-3">
-        {members.map((m) => (
-          <li
-            key={m.id}
-            className="rounded-card border border-default bg-surface px-4 py-3 text-sm"
-          >
-            {m.profile?.full_name ?? m.id} — joined{" "}
-            {m.joined_at
-              ? new Date(m.joined_at).toLocaleDateString()
-              : "unknown"}
-            {m.small_group?.name ? ` · ${m.small_group.name}` : ""}
-          </li>
-        ))}
-      </ul>
-    </PortalShell>
+      <div className="mt-6 overflow-x-auto rounded-card border border-default">
+        <table className="w-full text-left text-sm">
+          <thead className="bg-surface-2">
+            <tr>
+              <th className="px-4 py-3">Name</th>
+              <th className="px-4 py-3">Email</th>
+              <th className="px-4 py-3">Role</th>
+              <th className="px-4 py-3">Giving {year}</th>
+              <th className="px-4 py-3">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            {profiles.map((p) => (
+              <tr key={p.id} className="border-t border-default">
+                <td className="px-4 py-3">{p.full_name ?? "—"}</td>
+                <td className="px-4 py-3">{p.email ?? "—"}</td>
+                <td className="px-4 py-3 capitalize">{p.role}</td>
+                <td className="px-4 py-3">${(givingMap[p.id] ?? 0).toFixed(2)}</td>
+                <td className="px-4 py-3">
+                  <a
+                    href={`/api/tithing-statement?year=${year}&memberId=${p.id}`}
+                    className="mr-3 text-brand-primary"
+                  >
+                    Statement
+                  </a>
+                  {session.profile.role === "admin" && p.role === "member" ? (
+                    <form action={promoteToStaff} className="inline">
+                      <input type="hidden" name="userId" value={p.id} />
+                      <button type="submit" className="text-brand-secondary">
+                        Promote to staff
+                      </button>
+                    </form>
+                  ) : null}
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+    </>
   );
 }

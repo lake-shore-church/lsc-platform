@@ -6,6 +6,14 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ## [Unreleased] — main
 
+### Added
+
+- **Member portal (full)** — Giving history + PDF statement, prayer list, notification prefs, shared layout nav.
+- **Staff portal (full)** — Prayer kanban, events admin + RSVP reminders, financial dashboard (recharts), members directory, blog list, sermon Studio link.
+- **PDF APIs** — `GET /api/tithing-statement`, `GET /api/financial-report` via `@react-pdf/renderer`.
+- **APIs** — `POST /api/send-reminder`, `POST /api/send-newsletter`.
+- **Auth middleware** — Session refresh on all routes; staff role enforced on `/staff/*`.
+
 ### Changed
 
 - **Repository** — PR #1 merged; `main` is the default branch on GitHub (feature branch removed).

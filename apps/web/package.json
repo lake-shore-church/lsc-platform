@@ -14,6 +14,7 @@
     "@radix-ui/react-dialog": "^1.1.14",
     "@radix-ui/react-popover": "^1.1.14",
     "@radix-ui/react-slot": "^1.2.3",
+    "@react-pdf/renderer": "^4.5.1",
     "@repo/cms": "workspace:*",
     "@repo/db": "workspace:*",
     "@repo/ui": "workspace:*",
@@ -26,6 +27,7 @@
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-qr-code": "^2.0.15",
+    "recharts": "^3.8.1",
     "resend": "^4.5.1",
     "sanity": "^3.88.2",
     "tailwind-merge": "^3.3.1"
