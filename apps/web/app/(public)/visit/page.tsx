@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { getPage, getSiteConfig } from "@repo/cms";
+import { getPage, getSiteConfig, formatSiteAddress } from "@repo/cms";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { PortableText } from "@/components/content/PortableText";
@@ -15,10 +15,13 @@ export const metadata: Metadata = {
 export default async function VisitPage() {
   const [page, config] = await Promise.all([
     getPage("visit").catch(() => null),
-    getSiteConfig().catch(() => null),
+    getSiteConfig(),
   ]);
 
-  const mapQuery = encodeURIComponent(config?.address ?? "Lake Shore Church Chicago West Loop");
+  const address = formatSiteAddress(config);
+  const mapQuery = encodeURIComponent(
+    `${config.addressLine2 ?? ""} ${config.cityStateZip ?? "Chicago IL 60607"}`.trim(),
+  );
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -43,13 +46,12 @@ export default async function VisitPage() {
       <Container className="py-12 grid gap-10 lg:grid-cols-2">
         <div>
           <h2 className="text-xl font-semibold text-brand-primary">Service times</h2>
-          <ul className="mt-4 space-y-2">
-            {config?.serviceTimes?.map((st, i) => (
-              <li key={i} className="text-foreground-secondary">
-                <strong>{st.day}</strong> — {st.time}
-                {st.note ? <span className="text-foreground-muted"> ({st.note})</span> : null}
-              </li>
-            )) ?? <li>Check back for service times.</li>}
+          <ul className="mt-4 space-y-2 text-foreground-secondary">
+            <li>
+              <strong>{config.serviceDay}</strong> — {config.serviceTime}
+            </li>
+            <li className="whitespace-pre-line text-sm text-foreground-muted">{address}</li>
+            {config.phone ? <li>Call or text: {config.phone}</li> : null}
           </ul>
           <h2 className="mt-8 text-xl font-semibold text-brand-primary">What to expect</h2>
           <ol className="mt-4 list-decimal space-y-2 pl-5 text-foreground-secondary">
@@ -65,9 +67,7 @@ export default async function VisitPage() {
         </div>
         <div>
           <h2 className="text-xl font-semibold text-brand-primary">Location</h2>
-          {config?.address ? (
-            <p className="mt-2 text-foreground-secondary">{config.address}</p>
-          ) : null}
+          <p className="mt-2 whitespace-pre-line text-foreground-secondary">{address}</p>
           <div className="mt-4 aspect-video overflow-hidden rounded-xl border border-default">
             <iframe
               title="Church location"

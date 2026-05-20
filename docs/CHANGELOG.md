@@ -8,6 +8,9 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
+- **Real church content from [lschurch.com](https://lschurch.com/)** — `siteConfig` schema fields (tagline, subTagline, structured address, service day/time, pastor); defaults + `pnpm seed:site-config`; home hero H1/H2/body from CMS; service-times strip below nav; Church JSON-LD in root layout.
+- **Navigation** — Home, Sermons, Events, Give, Prayer, About, Beliefs, Plan a Visit, Contact (no cart/blog in header).
+
 - **Public site (`apps/web/app/(public)/`)** — 11 pages: Home, About, Beliefs, Visit, Contact, Sermons (+ detail), Blog (+ detail), Live, Give, Prayer, Events, Resources. Server Components fetch from `@repo/cms` and `@repo/db`; theme CSS variables; `generateMetadata()` on every route; JSON-LD where specified.
 - **API routes** — `POST /api/prayer`, `/api/subscribe`, `/api/contact`, `/api/rsvp` (Supabase + Resend).
 - **Shared web UI** — `PublicHeader`/`PublicFooter`, `PortableText`, `SermonCard`/`SermonArchiveClient`/`SermonPlayer`, forms (Prayer, Contact, Subscribe), `EventsClient`, `GiveQr`.

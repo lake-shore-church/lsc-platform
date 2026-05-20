@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import { getSiteConfig, type ThemeId } from "@repo/cms";
+import { getSiteConfig, buildChurchJsonLd, type ThemeId } from "@repo/cms";
 import { ThemeScript } from "@repo/ui/web/ThemeScript";
 import { ThemeSwitcher } from "@repo/ui/web/ThemeSwitcher";
+import { JsonLd } from "@/components/seo/JsonLd";
+import { SITE_URL } from "@/lib/site";
 import "@repo/ui/web/tokens/themes.css";
 import "./globals.css";
 
@@ -18,7 +20,7 @@ export const metadata: Metadata = {
     template: "%s | Lake Shore Church",
   },
   description:
-    "Lake Shore Church West Loop — worship, community, and ministry in Chicago.",
+    "Lake Shore Church meets every Sunday at 10 AM in Chicago's West Loop. Join Pastor Brian for scripture-based teaching, community, and hope.",
 };
 
 function resolveCmsTheme(activeTheme?: string): ThemeId {
@@ -31,13 +33,9 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-  let cmsTheme: ThemeId = "default";
-  try {
-    const config = await getSiteConfig();
-    cmsTheme = resolveCmsTheme(config?.activeTheme);
-  } catch {
-    /* Sanity unreachable — fall back to default */
-  }
+  const config = await getSiteConfig();
+  const cmsTheme = resolveCmsTheme(config.activeTheme);
+  const churchJsonLd = buildChurchJsonLd(config, SITE_URL);
 
   return (
     <html
@@ -49,6 +47,7 @@ export default async function RootLayout({
     >
       <head>
         <ThemeScript />
+        <JsonLd data={churchJsonLd} />
       </head>
       <body>
         {children}

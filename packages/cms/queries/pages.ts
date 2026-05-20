@@ -1,6 +1,7 @@
 import groq from "groq";
 import type { SanityClient } from "@sanity/client";
 import { getSanityReadClient } from "../client";
+import { mergeSiteConfig } from "../lib/siteConfig";
 import type { Page, SiteConfig, StaffBio } from "../types";
 
 function client(cms?: SanityClient) {
@@ -26,24 +27,37 @@ export async function getPage(
   return client(cms).fetch<Page | null>(query, { slug });
 }
 
-/** Site-wide singleton config (first document). */
-export async function getSiteConfig(cms?: SanityClient): Promise<SiteConfig | null> {
+/** Site-wide singleton config (merged with lschurch.com defaults). */
+export async function getSiteConfig(cms?: SanityClient): Promise<SiteConfig> {
   const query = groq`*[_type == "siteConfig"][0] {
     _id,
     _type,
     activeTheme,
     churchName,
     tagline,
+    subTagline,
+    heroBody,
+    addressLine1,
+    addressLine2,
+    cityStateZip,
     address,
     phone,
     email,
+    serviceDay,
+    serviceTime,
+    pastorName,
     serviceTimes,
     socialLinks,
     paypalGivingEnabled,
     zeffyEmbedUrl
   }`;
 
-  return client(cms).fetch<SiteConfig | null>(query);
+  try {
+    const doc = await client(cms).fetch<SiteConfig | null>(query);
+    return mergeSiteConfig(doc);
+  } catch {
+    return mergeSiteConfig(null);
+  }
 }
 
 /** All staff bios for leadership / about pages. */

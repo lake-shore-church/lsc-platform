@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 };
 
 export default async function LivePage() {
-  const config = await getSiteConfig().catch(() => null);
+  const config = await getSiteConfig();
   const liveChannelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
   const embedSrc = liveChannelId
     ? `https://www.youtube.com/embed/live_stream?channel=${liveChannelId}`
@@ -53,11 +53,9 @@ export default async function LivePage() {
               </Link>
               .
             </p>
-            {config?.churchName ? (
-              <p className="mt-4 text-sm text-foreground-muted">
-                {config.churchName} — {config.tagline}
-              </p>
-            ) : null}
+            <p className="mt-4 text-sm text-foreground-muted">
+              {config.churchName}
+            </p>
           </div>
         </section>
       </Container>

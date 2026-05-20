@@ -17,8 +17,8 @@ const funds = [
 ];
 
 export default async function GivePage() {
-  const config = await getSiteConfig().catch(() => null);
-  const zeffyUrl = config?.zeffyEmbedUrl ?? "https://www.zeffy.com";
+  const config = await getSiteConfig();
+  const zeffyUrl = config.zeffyEmbedUrl?.trim();
 
   return (
     <>
@@ -33,14 +33,20 @@ export default async function GivePage() {
           ))}
         </div>
 
-        <div className="mt-10 overflow-hidden rounded-xl border border-default">
-          <iframe
-            title="Give via Zeffy"
-            src={zeffyUrl}
-            className="min-h-[600px] w-full"
-            loading="lazy"
-          />
-        </div>
+        {zeffyUrl ? (
+          <div className="mt-10 overflow-hidden rounded-xl border border-default">
+            <iframe
+              title="Give via Zeffy"
+              src={zeffyUrl}
+              className="min-h-[600px] w-full"
+              loading="lazy"
+            />
+          </div>
+        ) : (
+          <p className="mt-10 rounded-xl border border-default bg-surface p-6 text-foreground-secondary">
+            Online giving via Zeffy will be available soon. Use the QR code below or contact the church office.
+          </p>
+        )}
 
         <div className="mt-10 flex flex-col items-start gap-6 sm:flex-row sm:items-center">
           <GiveQr url={`${SITE_URL}/give`} />

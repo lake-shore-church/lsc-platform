@@ -4,9 +4,11 @@ import { Container } from "@/components/ui/Container";
 export function PublicFooter({
   churchName,
   address,
+  phone,
 }: {
   churchName: string;
   address?: string;
+  phone?: string;
 }) {
   return (
     <footer className="mt-auto border-t border-default bg-surface py-10">
@@ -14,7 +16,14 @@ export function PublicFooter({
         <div>
           <p className="font-semibold text-brand-primary">{churchName}</p>
           {address ? (
-            <p className="mt-2 text-sm text-foreground-muted">{address}</p>
+            <p className="mt-2 whitespace-pre-line text-sm text-foreground-muted">{address}</p>
+          ) : null}
+          {phone ? (
+            <p className="mt-2 text-sm text-foreground-muted">
+              <a href={`tel:${phone.replace(/\D/g, "")}`} className="hover:text-brand-primary">
+                {phone}
+              </a>
+            </p>
           ) : null}
         </div>
         <div>

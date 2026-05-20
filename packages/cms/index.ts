@@ -52,3 +52,12 @@ export {
 } from "./queries/blog";
 
 export { getPage, getSiteConfig, getAllStaffBios } from "./queries/pages";
+
+export { DEFAULT_SITE_CONFIG } from "./defaults/siteConfig";
+export {
+  mergeSiteConfig,
+  formatSiteAddress,
+  formatServiceStrip,
+  buildChurchJsonLd,
+} from "./lib/siteConfig";
+export { seedSiteConfig } from "./seed/siteConfig";

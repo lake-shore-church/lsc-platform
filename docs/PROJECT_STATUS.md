@@ -8,7 +8,7 @@
 
 ## Summary
 
-Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. Infrastructure credentials are in place; `@repo/db` and `@repo/cms` are built; **all 11 public pages and 4 API routes** are implemented on `apps/web`. **Next:** member/staff portals, Sanity Studio deploy, content seeding.
+Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. **siteConfig** is seeded with real content from [lschurch.com](https://lschurch.com/); home hero, service strip, nav, and JSON-LD match the live church site. **Next:** member/staff portals, sermon/blog content in Sanity, Zeffy embed URL.
 
 ---
 
@@ -70,6 +70,7 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 - [x] `queries/pages.ts` — `getPage`, `getSiteConfig`, `getAllStaffBios`
 - [x] Typecheck passes (`pnpm --filter @repo/cms check-types`)
 - [x] `activeTheme` on siteConfig schema
+- [x] `siteConfig` seeded with lschurch.com content (`pnpm seed:site-config`)
 - [ ] Deploy schemas to Sanity Studio (run studio config — next step)
 
 ---

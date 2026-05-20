@@ -10,14 +10,73 @@ export const siteConfigType = defineType({
       title: "Church name",
       type: "string",
       validation: (r) => r.required(),
+      initialValue: "Lake Shore Church — West Loop",
     }),
-    defineField({ name: "tagline", title: "Tagline", type: "string" }),
-    defineField({ name: "address", title: "Address", type: "text", rows: 3 }),
+    defineField({
+      name: "tagline",
+      title: "Hero tagline (H1)",
+      type: "text",
+      rows: 2,
+      description: "Primary headline on the home page.",
+    }),
+    defineField({
+      name: "subTagline",
+      title: "Hero sub-tagline (H2)",
+      type: "text",
+      rows: 2,
+    }),
+    defineField({
+      name: "heroBody",
+      title: "Hero body copy",
+      type: "string",
+      initialValue: "Our church can help you follow Jesus.",
+    }),
+    defineField({
+      name: "addressLine1",
+      title: "Address line 1",
+      type: "string",
+      description: "Building or venue name.",
+    }),
+    defineField({
+      name: "addressLine2",
+      title: "Address line 2",
+      type: "string",
+      description: "Street address.",
+    }),
+    defineField({
+      name: "cityStateZip",
+      title: "City, state, ZIP",
+      type: "string",
+    }),
+    defineField({
+      name: "address",
+      title: "Full address (legacy)",
+      type: "text",
+      rows: 3,
+      description: "Optional; structured lines above are preferred.",
+    }),
     defineField({ name: "phone", title: "Phone", type: "string" }),
     defineField({ name: "email", title: "Email", type: "string" }),
     defineField({
+      name: "serviceDay",
+      title: "Service day",
+      type: "string",
+      initialValue: "Sunday",
+    }),
+    defineField({
+      name: "serviceTime",
+      title: "Service time",
+      type: "string",
+      initialValue: "10:00 AM",
+    }),
+    defineField({
+      name: "pastorName",
+      title: "Lead pastor name",
+      type: "string",
+    }),
+    defineField({
       name: "serviceTimes",
-      title: "Service times",
+      title: "Service times (legacy list)",
       type: "array",
       of: [
         {
@@ -61,7 +120,7 @@ export const siteConfigType = defineType({
     }),
     defineField({
       name: "paypalGivingEnabled",
-      title: "PayPal Giving Fund enabled",
+      title: "PayPal Giving Fund active",
       description: "Toggle when 501(c)(3) approved — no code change required",
       type: "boolean",
       initialValue: false,
@@ -69,7 +128,8 @@ export const siteConfigType = defineType({
     defineField({
       name: "zeffyEmbedUrl",
       title: "Zeffy embed URL",
-      type: "url",
+      type: "string",
+      description: "Leave empty until Zeffy account is ready.",
     }),
   ],
   preview: {

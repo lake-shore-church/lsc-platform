@@ -6,65 +6,51 @@ import { getSermons, getSeriesList, getSiteConfig } from "@repo/cms";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { SermonCard } from "@/components/sermons/SermonCard";
-import { JsonLd } from "@/components/seo/JsonLd";
 import { formatDateTime } from "@/lib/format";
-import { SITE_URL } from "@/lib/site";
 import { urlFor } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title: "Lake Shore Church — West Loop Chicago",
   description:
-    "Join Lake Shore Church in Chicago's West Loop for worship, community, and gospel-centered ministry.",
+    "Lake Shore Church meets every Sunday at 10 AM in Chicago's West Loop. Join Pastor Brian for scripture-based teaching, community, and hope.",
 };
 
 export default async function HomePage() {
   const [config, seriesList, sermons, events] = await Promise.all([
-    getSiteConfig().catch(() => null),
+    getSiteConfig(),
     getSeriesList().catch(() => []),
     getSermons({ limit: 1 }).catch(() => []),
     getEvents({ upcomingFrom: new Date().toISOString(), limit: 3 }).catch(() => []),
   ]);
 
-  const churchName = config?.churchName ?? "Lake Shore Church";
   const currentSeries = seriesList[0];
   const latestSermon = sermons[0];
   const heroImage = currentSeries?.artwork
     ? urlFor(currentSeries.artwork).width(1200).height(600).url()
     : null;
 
-  const churchJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Church",
-    name: churchName,
-    url: SITE_URL,
-    address: config?.address,
-    telephone: config?.phone,
-    email: config?.email,
-  };
-
   return (
     <>
-      <JsonLd data={churchJsonLd} />
       <section className="relative overflow-hidden bg-brand-primary text-white">
         <Container className="grid gap-8 py-14 lg:grid-cols-2 lg:items-center lg:py-20">
           <div>
-            <p className="text-sm font-semibold uppercase tracking-wide text-white/80">
-              {config?.tagline ?? "West Loop · Chicago"}
-            </p>
-            <h1 className="mt-2 text-4xl font-bold tracking-tight sm:text-5xl">
-              {churchName}
+            <h1 className="text-3xl font-bold tracking-tight sm:text-4xl lg:text-5xl">
+              {config.tagline}
             </h1>
-            {currentSeries ? (
-              <p className="mt-4 text-lg text-white/90">
-                Current series: <strong>{currentSeries.title}</strong>
-              </p>
+            {config.subTagline ? (
+              <h2 className="mt-4 text-xl font-medium text-white/90 sm:text-2xl">
+                {config.subTagline}
+              </h2>
+            ) : null}
+            {config.heroBody ? (
+              <p className="mt-6 text-lg text-white/85">{config.heroBody}</p>
             ) : null}
             <div className="mt-8 flex flex-wrap gap-3">
-              <Button href="/live" className="!bg-white !text-brand-primary hover:!bg-surface">
-                Watch Live
-              </Button>
-              <Button href="/visit" variant="secondary" className="!border-white/40 !text-white">
+              <Button href="/visit" className="!bg-white !text-brand-primary hover:!bg-surface">
                 Plan a Visit
+              </Button>
+              <Button href="/live" variant="secondary" className="!border-white/40 !text-white">
+                Watch Live
               </Button>
               <Button href="/give" variant="ghost" className="!text-white hover:!bg-white/10">
                 Give
@@ -73,26 +59,18 @@ export default async function HomePage() {
           </div>
           {heroImage ? (
             <div className="relative aspect-[16/10] overflow-hidden rounded-xl">
-              <Image src={heroImage} alt="" fill className="object-cover" priority sizes="(max-width:1024px) 100vw, 50vw" />
+              <Image
+                src={heroImage}
+                alt={currentSeries?.title ? `${currentSeries.title} series artwork` : ""}
+                fill
+                className="object-cover"
+                priority
+                sizes="(max-width:1024px) 100vw, 50vw"
+              />
             </div>
           ) : null}
         </Container>
       </section>
-
-      {config?.serviceTimes?.length ? (
-        <section className="border-b border-default bg-surface py-6">
-          <Container className="flex flex-wrap items-center justify-center gap-6 text-center text-sm sm:text-base">
-            {config.serviceTimes.map((st, i) => (
-              <div key={i}>
-                <span className="font-semibold text-brand-primary">{st.day}</span>
-                <span className="mx-2 text-foreground-muted">·</span>
-                <span className="text-foreground-secondary">{st.time}</span>
-                {st.note ? <span className="block text-xs text-foreground-muted">{st.note}</span> : null}
-              </div>
-            ))}
-          </Container>
-        </section>
-      ) : null}
 
       <section className="py-12">
         <Container>

@@ -1,28 +1,25 @@
-import { getSiteConfig } from "@repo/cms";
+import { getSiteConfig, formatSiteAddress } from "@repo/cms";
 import { PublicFooter } from "@/components/layout/PublicFooter";
 import { PublicHeader } from "@/components/layout/PublicHeader";
+import { ServiceTimesStrip } from "@/components/layout/ServiceTimesStrip";
 
 export default async function PublicLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  let churchName = "Lake Shore Church";
-  let address: string | undefined;
-
-  try {
-    const config = await getSiteConfig();
-    if (config?.churchName) churchName = config.churchName;
-    address = config?.address ?? undefined;
-  } catch {
-    /* use defaults */
-  }
+  const config = await getSiteConfig();
 
   return (
     <div className="flex min-h-screen flex-col bg-background">
-      <PublicHeader churchName={churchName} />
+      <PublicHeader churchName={config.churchName} />
+      <ServiceTimesStrip config={config} />
       <main className="flex-1">{children}</main>
-      <PublicFooter churchName={churchName} address={address} />
+      <PublicFooter
+        churchName={config.churchName}
+        address={formatSiteAddress(config)}
+        phone={config.phone}
+      />
     </div>
   );
 }

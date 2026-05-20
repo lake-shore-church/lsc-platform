@@ -7,10 +7,12 @@
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
-    "verify": "turbo run check-types lint"
+    "verify": "turbo run check-types lint",
+    "seed:site-config": "tsx scripts/seed-site-config.ts"
   },
   "devDependencies": {
     "prettier": "^3.7.4",
+    "tsx": "^4.22.3",
     "turbo": "^2.9.14",
     "typescript": "5.9.2"
   },

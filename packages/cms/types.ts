@@ -111,9 +111,17 @@ export type SiteConfig = {
   activeTheme?: ThemeId;
   churchName: string;
   tagline?: string;
+  subTagline?: string;
+  heroBody?: string;
+  addressLine1?: string;
+  addressLine2?: string;
+  cityStateZip?: string;
   address?: string;
   phone?: string;
   email?: string;
+  serviceDay?: string;
+  serviceTime?: string;
+  pastorName?: string;
   serviceTimes?: ServiceTime[];
   socialLinks?: SocialLink[];
   paypalGivingEnabled?: boolean;
