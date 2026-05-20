@@ -46,3 +46,11 @@ export async function getBlogPostBySlug(
 
   return client(cms).fetch<BlogPost | null>(query, { slug });
 }
+
+/** All published blog slugs for static generation. */
+export async function getAllBlogSlugs(
+  cms?: SanityClient,
+): Promise<{ slug: string }[]> {
+  const query = groq`*[_type == "blogPost" && defined(slug.current) && defined(publishedAt) && publishedAt <= now()] { "slug": slug.current }`;
+  return client(cms).fetch<{ slug: string }[]>(query);
+}

@@ -40,10 +40,15 @@ export {
   getSermonBySlug,
   getSeriesList,
   getSermonsBySeries,
+  getAllSermonSlugs,
 } from "./queries/sermons";
 
 export { getEvents, getEventById } from "./queries/events";
 
-export { getBlogPosts, getBlogPostBySlug } from "./queries/blog";
+export {
+  getBlogPosts,
+  getBlogPostBySlug,
+  getAllBlogSlugs,
+} from "./queries/blog";
 
 export { getPage, getSiteConfig, getAllStaffBios } from "./queries/pages";

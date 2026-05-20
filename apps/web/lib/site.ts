@@ -1,0 +1,6 @@
+export const SITE_URL =
+  process.env.NEXT_PUBLIC_APP_URL ?? "http://localhost:3000";
+
+export const SITE_NAME = "Lake Shore Church";
+
+export const CHURCH_ADDRESS = "Lake Shore Church, West Loop, Chicago, IL";

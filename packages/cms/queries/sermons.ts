@@ -88,3 +88,11 @@ export async function getSermonsBySeries(
 
   return client(cms).fetch<Sermon[]>(query, { seriesSlug });
 }
+
+/** All published sermon slugs for static generation. */
+export async function getAllSermonSlugs(
+  cms?: SanityClient,
+): Promise<{ slug: string }[]> {
+  const query = groq`*[_type == "sermon" && defined(slug.current) && defined(publishedAt) && publishedAt <= now()] { "slug": slug.current }`;
+  return client(cms).fetch<{ slug: string }[]>(query);
+}

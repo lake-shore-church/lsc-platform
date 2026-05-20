@@ -1,14 +1,14 @@
 # LSC Platform — Project Status
 
 **Last updated:** 2026-05-20  
-**Active branch:** `feat/platform-scaffold-db-mobile` (ahead of `main`; cms + Tailwind local)  
+**Active branch:** `feat/platform-scaffold-db-mobile` (ahead of `main`)  
 **Repository:** https://github.com/lake-shore-church/lsc-platform
 
 ---
 
 ## Summary
 
-Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. Infrastructure credentials are in place; `@repo/db` and `@repo/cms` are built; Tailwind + Radix on web. **Next:** public Home and Sermons pages.
+Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. Infrastructure credentials are in place; `@repo/db` and `@repo/cms` are built; **all 11 public pages and 4 API routes** are implemented on `apps/web`. **Next:** member/staff portals, Sanity Studio deploy, content seeding.
 
 ---
 
@@ -31,7 +31,7 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 
 | Path | Status | Description |
 |------|--------|-------------|
-| `apps/web` | 🟡 In progress | Next.js 16; Tailwind + LSC tokens; Inter font; Radix Dialog/Slot; `@repo/db` + `@repo/cms` |
+| `apps/web` | 🟡 Public site done | Next.js 16; 11 `(public)/` pages + 4 API routes; Tailwind + LSC tokens; `@repo/db` + `@repo/cms` |
 | `apps/mobile` | 🟡 Starter | Expo 54 + Expo Router tabs template |
 | `apps/docs` | ⚪ Unused | Turborepo default; may remove later |
 | `packages/db` | ✅ Complete | Typed client, 14 tables, 7 query modules |
@@ -88,16 +88,17 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 
 ---
 
-## Next.js routes (planned — not built)
+## Next.js routes
 
 | Route group | Status |
 |-------------|--------|
-| `(public)/` — Home, Sermons, Events, Give, Prayer, Blog, About… | ⏳ |
+| `(public)/` — Home, About, Beliefs, Visit, Contact, Sermons, Blog, Live, Give, Prayer, Events, Resources | ✅ |
+| `api/` — prayer, subscribe, contact, rsvp | ✅ |
 | `(member)/` — Dashboard, Groups, Resources | ⏳ |
 | `(staff)/` — Prayer, Sermons, Events, Financials… | ⏳ |
 | `[locale]/` — /es /fr /pt /zh | ⏳ Phase 3 |
 | `studio/` — Sanity Studio embed | ⏳ |
-| `api/` — tithing-statement, webhooks, revalidate | ⏳ |
+| `api/` — sermons RSS, tithing-statement, webhooks, revalidate | ⏳ |
 | `/platform` — **Living status page** (reads `docs/*.md`) | ✅ |
 
 ---
@@ -131,8 +132,9 @@ https://github.com/lake-shore-church/lsc-platform/compare/main...feat/platform-s
 
 ## Immediate next steps
 
-1. **Push schemas to Sanity** — configure `apps/web` Studio route or `sanity deploy`
-2. **Build `(public)/` Home** — `getSiteConfig`, `getEvents`, `getSermons` from `@repo/cms` / `@repo/db`
-3. **Build `(public)/sermons`** — list + detail by slug
-4. Commit + push branch; open PR to `main`
-5. Fill Cloudflare R2 credentials when media upload is needed
+1. **Deploy Sanity schemas** — Studio route or `sanity deploy`; seed sermons, pages, siteConfig
+2. **Seed Supabase** — sample events for `/events` page
+3. **Configure Resend** — production `RESEND_API_KEY` for form acknowledgements
+4. Open PR `feat/platform-scaffold-db-mobile` → `main`
+5. Build `(member)/` and `(staff)/` route groups
+6. Fill Cloudflare R2 credentials when media upload is needed

@@ -90,3 +90,5 @@ export {
   getBlogPostBySlug,
   type BlogPostWithAuthor,
 } from "./queries/blog";
+
+export { subscribeEmail, type SubscribeInput } from "./queries/subscribers";

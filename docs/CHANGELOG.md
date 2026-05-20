@@ -8,6 +8,11 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
+- **Public site (`apps/web/app/(public)/`)** — 11 pages: Home, About, Beliefs, Visit, Contact, Sermons (+ detail), Blog (+ detail), Live, Give, Prayer, Events, Resources. Server Components fetch from `@repo/cms` and `@repo/db`; theme CSS variables; `generateMetadata()` on every route; JSON-LD where specified.
+- **API routes** — `POST /api/prayer`, `/api/subscribe`, `/api/contact`, `/api/rsvp` (Supabase + Resend).
+- **Shared web UI** — `PublicHeader`/`PublicFooter`, `PortableText`, `SermonCard`/`SermonArchiveClient`/`SermonPlayer`, forms (Prayer, Contact, Subscribe), `EventsClient`, `GiveQr`.
+- **Dependencies** — `@sanity/image-url`, `resend`, `react-qr-code` on `apps/web`.
+
 - **Theme system** — 3 seasonal themes × 3 modes (light/dark/reading) via `packages/ui/web/tokens/themes.css`; `ThemeSwitcher` (Radix Popover, localStorage, 44px targets); `ThemeScript` FOUT prevention; Tailwind semantic tokens (`bg-background`, `text-brand-primary`, etc.).
 - **`siteConfig.activeTheme`** — Sanity field for staff default theme (default/advent/easter).
 - **`packages/cms`** — `@sanity/client` read/write clients; schemas (sermon, sermonSeries, event, blogPost, staffBio, page, siteConfig); typed GROQ queries for sermons, events, blog, pages.
