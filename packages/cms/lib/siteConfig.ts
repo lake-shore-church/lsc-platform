@@ -26,7 +26,12 @@ export function mergeSiteConfig(
     serviceDay: doc.serviceDay || DEFAULT_SITE_CONFIG.serviceDay,
     serviceTime: doc.serviceTime || DEFAULT_SITE_CONFIG.serviceTime,
     pastorName: doc.pastorName || DEFAULT_SITE_CONFIG.pastorName,
-    activeTheme: doc.activeTheme || DEFAULT_SITE_CONFIG.activeTheme,
+    activeTheme: (() => {
+      const t = doc.activeTheme as string | undefined;
+      if (t === "default" || !t) return DEFAULT_SITE_CONFIG.activeTheme;
+      if (t === "bold" || t === "warm" || t === "advent" || t === "easter") return t;
+      return DEFAULT_SITE_CONFIG.activeTheme;
+    })(),
     paypalGivingEnabled:
       doc.paypalGivingEnabled ?? DEFAULT_SITE_CONFIG.paypalGivingEnabled,
     zeffyEmbedUrl:

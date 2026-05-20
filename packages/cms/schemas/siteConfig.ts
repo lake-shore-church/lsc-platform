@@ -111,13 +111,13 @@ export const siteConfigType = defineType({
       type: "string",
       options: {
         list: [
-          { title: "Default (year-round)", value: "default" },
-          { title: "Advent", value: "advent" },
-          { title: "Easter", value: "easter" },
+          { title: "Bold (everyday — sermon-first)", value: "bold" },
           { title: "Warm (welcoming & community)", value: "warm" },
+          { title: "Advent (Christmas season)", value: "advent" },
+          { title: "Easter (spring & resurrection)", value: "easter" },
         ],
       },
-      initialValue: "default",
+      initialValue: "bold",
     }),
     defineField({
       name: "paypalGivingEnabled",

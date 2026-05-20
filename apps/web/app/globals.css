@@ -14,8 +14,48 @@
   body {
     @apply bg-background text-foreground-primary font-body text-base leading-base antialiased;
     transition:
-      background-color 0.3s ease,
-      color 0.3s ease;
+      background-color var(--transition-speed) ease,
+      color var(--transition-speed) ease;
+  }
+}
+
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+    font-weight: var(--font-weight-display);
+  }
+
+  .text-h1 {
+    font-size: var(--font-size-h1);
+    line-height: 1.1;
+  }
+
+  .text-h2 {
+    font-size: var(--font-size-h2);
+    line-height: 1.2;
+  }
+
+  .text-label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: var(--letter-spacing-label);
+    text-transform: uppercase;
+  }
+
+  .section-pad {
+    padding-block: var(--section-padding);
+  }
+
+  .rounded-card {
+    border-radius: var(--card-radius);
+  }
+
+  .shadow-card {
+    box-shadow: var(--shadow-card);
+  }
+
+  .hero-overlay {
+    background: var(--hero-overlay);
   }
 }
 

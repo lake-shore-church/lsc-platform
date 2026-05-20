@@ -23,7 +23,7 @@ export async function seedSiteConfig(): Promise<string> {
     pastorName: DEFAULT_SITE_CONFIG.pastorName,
     zeffyEmbedUrl: DEFAULT_SITE_CONFIG.zeffyEmbedUrl,
     paypalGivingEnabled: DEFAULT_SITE_CONFIG.paypalGivingEnabled,
-    activeTheme: DEFAULT_SITE_CONFIG.activeTheme,
+    activeTheme: "bold",
   };
 
   const result = await client.createOrReplace(doc);

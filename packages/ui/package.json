@@ -6,7 +6,8 @@
     "./*": "./src/*.tsx",
     "./web/ThemeSwitcher": "./web/ThemeSwitcher.tsx",
     "./web/ThemeScript": "./web/ThemeScript.tsx",
-    "./web/tokens/themes.css": "./web/tokens/themes.css"
+    "./web/tokens/themes.css": "./web/tokens/themes.css",
+    "./web/images": "./web/images.ts"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

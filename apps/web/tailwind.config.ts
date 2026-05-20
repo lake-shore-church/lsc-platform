@@ -32,13 +32,25 @@ const config: Config = {
       },
       fontFamily: {
         sans: ["var(--font-inter)", "system-ui", "sans-serif"],
+        display: ["var(--font-display)", "Georgia", "serif"],
         body: ["var(--font-body)", "Georgia", "serif"],
       },
       fontSize: {
         base: "var(--font-size-base)",
+        h1: "var(--font-size-h1)",
+        h2: "var(--font-size-h2)",
       },
       lineHeight: {
         base: "var(--line-height-base)",
+      },
+      borderRadius: {
+        card: "var(--card-radius)",
+      },
+      boxShadow: {
+        card: "var(--shadow-card)",
+      },
+      transitionDuration: {
+        theme: "var(--transition-speed)",
       },
     },
   },

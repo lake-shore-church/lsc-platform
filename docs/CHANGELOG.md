@@ -8,7 +8,11 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
-- **Warm theme (4th)** — Bloom-inspired `data-theme="warm"` with light, dark, and reading modes; brown swatch in ThemeSwitcher; Sanity `activeTheme` option `warm`.
+- **Homepage redesign** — 8 sections (full-viewport hero, quick-info cards, latest sermon, new here, ministry grid, events, blog teaser, footer CTA); Unsplash placeholders via `@repo/ui/web/images`.
+- **Design personalities** — Themes renamed/rebuilt: **Bold** (Elevation-inspired), **Warm** (Cornerstone-inspired), **Advent**, **Easter** — each sets typography, spacing, radius, shadows, and hero overlay (not colours only).
+- **Cornerstone-style navigation** — Grouped dropdowns (Watch, Connect, Grow, Serve, About); mobile full-screen menu; service times in header bar.
+
+- **Warm theme (4th)** — superseded by personality system above; `default` theme migrated to `bold`. — Bloom-inspired `data-theme="warm"` with light, dark, and reading modes; brown swatch in ThemeSwitcher; Sanity `activeTheme` option `warm`.
 
 - **Real church content from [lschurch.com](https://lschurch.com/)** — `siteConfig` schema fields (tagline, subTagline, structured address, service day/time, pastor); defaults + `pnpm seed:site-config`; home hero H1/H2/body from CMS; service-times strip below nav; Church JSON-LD in root layout.
 - **Navigation** — Home, Sermons, Events, Give, Prayer, About, Beliefs, Plan a Visit, Contact (no cart/blog in header).

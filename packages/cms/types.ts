@@ -103,7 +103,7 @@ export type Page = {
   seoDescription?: string;
 };
 
-export type ThemeId = "default" | "advent" | "easter" | "warm";
+export type ThemeId = "bold" | "warm" | "advent" | "easter";
 
 export type SiteConfig = {
   _id: string;

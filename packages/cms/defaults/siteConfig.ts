@@ -17,5 +17,5 @@ export const DEFAULT_SITE_CONFIG: Omit<SiteConfig, "_id" | "_type"> = {
   pastorName: "Pastor Brian",
   zeffyEmbedUrl: "",
   paypalGivingEnabled: false,
-  activeTheme: "default",
+  activeTheme: "bold",
 };

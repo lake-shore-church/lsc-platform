@@ -24,14 +24,16 @@ export const metadata: Metadata = {
 };
 
 function resolveCmsTheme(activeTheme?: string): ThemeId {
+  if (activeTheme === "default") return "bold";
   if (
+    activeTheme === "bold" ||
     activeTheme === "advent" ||
     activeTheme === "easter" ||
     activeTheme === "warm"
   ) {
     return activeTheme;
   }
-  return "default";
+  return "bold";
 }
 
 export default async function RootLayout({
@@ -47,7 +49,7 @@ export default async function RootLayout({
     <html
       lang="en"
       data-theme={cmsTheme}
-      data-mode="light"
+      data-mode="dark"
       suppressHydrationWarning
       className={inter.variable}
     >
