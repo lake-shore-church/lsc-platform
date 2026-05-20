@@ -2,7 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 
 const links = [
-  { href: "/visit", label: "Plan a Visit" },
+  { href: "/visit", label: "Plan a visit" },
   { href: "/sermons", label: "Sermons" },
   { href: "/events", label: "Events" },
   { href: "/prayer", label: "Prayer" },
@@ -23,33 +23,36 @@ export function PublicFooter({
     <footer className="mt-auto border-t border-default bg-surface py-10">
       <Container className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div className="max-w-sm">
-          <p className="font-display text-lg text-brand-primary">{churchName}</p>
+          <p className="font-display text-h3 text-brand-primary">{churchName}</p>
           {address ? (
-            <p className="mt-2 whitespace-pre-line text-sm leading-relaxed text-foreground-muted">
+            <p className="mt-2 whitespace-pre-line text-base leading-relaxed text-foreground-muted">
               {address}
             </p>
           ) : null}
           {phone ? (
-            <p className="mt-2 text-sm text-foreground-muted">
-              <a href={`tel:${phone.replace(/\D/g, "")}`} className="hover:text-brand-primary">
+            <p className="mt-2 text-base text-foreground-muted">
+              <a
+                href={`tel:${phone.replace(/\D/g, "")}`}
+                className="link-hover text-brand-primary"
+              >
                 {phone}
               </a>
             </p>
           ) : null}
         </div>
-        <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-2">
+        <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-3">
           {links.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm text-foreground-secondary hover:text-brand-primary"
+              className="link-hover text-base text-foreground-secondary"
             >
               {item.label}
             </Link>
           ))}
         </nav>
       </Container>
-      <Container className="mt-8 border-t border-default pt-6 text-center text-xs text-foreground-muted">
+      <Container className="mt-8 border-t border-default pt-6 text-center text-base text-foreground-muted">
         © {new Date().getFullYear()} {churchName}
       </Container>
     </footer>

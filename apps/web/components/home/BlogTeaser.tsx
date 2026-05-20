@@ -12,7 +12,7 @@ export function BlogTeaser({ posts }: { posts: BlogPost[] }) {
       <Container>
         <div className="flex items-end justify-between gap-4">
           <h2 className="font-display text-h2 text-brand-primary">From the blog</h2>
-          <Link href="/blog" className="text-sm font-semibold text-brand-primary hover:underline">
+          <Link href="/blog" className="link-hover text-base font-semibold text-brand-primary">
             Read all posts →
           </Link>
         </div>
@@ -22,7 +22,7 @@ export function BlogTeaser({ posts }: { posts: BlogPost[] }) {
           <ul className="mt-8 grid gap-8 md:grid-cols-2">
             {display.map((post) => (
               <li key={post._id} className="rounded-card border border-default bg-background p-6 shadow-card">
-                <p className="text-xs text-foreground-muted">{formatDate(post.publishedAt)}</p>
+                <p className="text-base text-foreground-muted">{formatDate(post.publishedAt)}</p>
                 <h3 className="mt-2 text-xl font-semibold text-foreground-primary">
                   <Link href={`/blog/${slugValue(post.slug)}`} className="hover:text-brand-primary">
                     {post.title}
@@ -33,7 +33,7 @@ export function BlogTeaser({ posts }: { posts: BlogPost[] }) {
                 ) : null}
                 <Link
                   href={`/blog/${slugValue(post.slug)}`}
-                  className="mt-4 inline-block text-sm font-semibold text-brand-accent hover:underline"
+                  className="link-hover mt-4 inline-block text-base font-semibold text-brand-accent"
                 >
                   Read more →
                 </Link>

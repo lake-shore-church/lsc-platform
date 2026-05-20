@@ -1,27 +1,31 @@
 import Link from "next/link";
 import type { Sermon } from "@repo/cms";
-import { IMAGES } from "@repo/ui/web/images";
 import { Container } from "@/components/ui/Container";
 import { youtubeEmbedUrl } from "@/lib/format";
 
 export function LatestSermonSection({ sermon }: { sermon: Sermon | null }) {
-  const embed = sermon ? youtubeEmbedUrl(sermon.videoUrl) : null;
-  const title = sermon?.title ?? "Watch our latest message";
-  const pastor = sermon?.pastor?.name ?? "Pastor Brian";
-  const scripture = sermon?.scripture ?? "Scripture-based teaching every Sunday";
+  if (!sermon) {
+    return null;
+  }
+
+  const embed = youtubeEmbedUrl(sermon.videoUrl);
+  const title = sermon.title;
+  const pastor = sermon.pastor?.name;
+  const scripture = sermon.scripture;
 
   return (
     <section className="section-pad bg-brand-primary text-white">
       <Container>
-        <p className="text-label text-white/70">Sunday&apos;s message</p>
+        <p className="text-label text-white/80">Sunday&apos;s message</p>
         <h2 className="mt-2 font-display text-h2 leading-heading text-white">{title}</h2>
-        <p className="mt-3 text-lg leading-relaxed text-white/85">
-          {pastor}
-          {scripture ? ` · ${scripture}` : null}
-        </p>
+        {(pastor || scripture) && (
+          <p className="mt-3 text-base leading-relaxed text-white/85">
+            {[pastor, scripture].filter(Boolean).join(" · ")}
+          </p>
+        )}
 
-        <div className="mt-8 aspect-video overflow-hidden rounded-card shadow-card">
-          {embed ? (
+        {embed ? (
+          <div className="mt-8 aspect-video overflow-hidden rounded-card shadow-card">
             <iframe
               title={title}
               src={embed}
@@ -29,26 +33,14 @@ export function LatestSermonSection({ sermon }: { sermon: Sermon | null }) {
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             />
-          ) : (
-            <div
-              className="flex h-full w-full items-center justify-center bg-surface-2 bg-cover bg-center"
-              style={{ backgroundImage: `url(${IMAGES.worship})` }}
-            >
-              <Link
-                href="/sermons"
-                className="rounded-card bg-brand-accent px-6 py-3 font-semibold text-white hover:opacity-90"
-              >
-                Browse sermons
-              </Link>
-            </div>
-          )}
-        </div>
+          </div>
+        ) : null}
 
         <Link
           href="/sermons"
-          className="mt-6 inline-block text-sm font-semibold text-brand-accent hover:underline"
+          className="link-hover mt-6 inline-block text-base font-semibold text-brand-accent"
         >
-          View all sermons →
+          View all sermons
         </Link>
       </Container>
     </section>

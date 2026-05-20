@@ -20,13 +20,13 @@ export function NewHereSection({ config }: { config: SiteConfig }) {
             Chicago&apos;s West Loop. Everyone is welcome — wherever you are on your
             journey.
           </p>
-          <p className="mt-4 whitespace-pre-line text-sm leading-relaxed text-foreground-muted">
+          <p className="mt-4 whitespace-pre-line text-base leading-relaxed text-foreground-muted">
             {address}
             {config.phone ? `\n${config.phone}` : ""}
           </p>
           <Link
             href="/visit"
-            className="mt-8 inline-flex min-h-[48px] items-center rounded-card bg-brand-primary px-8 text-sm font-semibold text-white hover:bg-brand-primary-hover"
+            className="mt-8 inline-flex min-h-[48px] items-center rounded-card bg-brand-primary px-8 text-base font-semibold text-white hover:bg-brand-primary-hover"
           >
             Plan a Visit
           </Link>

@@ -1,33 +1,25 @@
 /**
- * Faith-focused Unsplash placeholders (free commercial use).
- * Hero uses a composite of church interior + Scripture warmth.
+ * Faith-focused Unsplash placeholders (auto=format for reliable delivery).
  */
 export const IMAGES = {
-  /** Church interior — primary hero layer */
   heroBase:
-    "https://images.unsplash.com/photo-1519494026892-80bbd122d51a?w=1920&q=85",
-  /** Open Bible, warm light — blended over hero */
+    "https://images.unsplash.com/photo-1438032880930-188b76185421?auto=format&fit=crop&w=1920&q=80",
   heroAccent:
-    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=1920&q=80",
-  /** Alias for single-layer fallbacks */
+    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1920&q=80",
   hero:
-    "https://images.unsplash.com/photo-1519494026892-80bbd122d51a?w=1920&q=85",
-  /** Worship gathering */
+    "https://images.unsplash.com/photo-1438032880930-188b76185421?auto=format&fit=crop&w=1920&q=80",
   community:
-    "https://images.unsplash.com/photo-1516450360352-4a2f227cad72?w=800&q=80",
-  /** Bible study / small group */
+    "https://images.unsplash.com/photo-1529070538777-6315e9771a21?auto=format&fit=crop&w=800&q=80",
   smallGroup:
-    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800&q=80",
-  /** Serving others */
+    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=800&q=80",
   serve:
-    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=800&q=80",
-  /** Worship — giving as gratitude */
+    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=800&q=80",
   give:
-    "https://images.unsplash.com/photo-1478147427282-58a87a702b70?w=800&q=80",
+    "https://images.unsplash.com/photo-1478147427282-58a87a702b70?auto=format&fit=crop&w=800&q=80",
   worship:
-    "https://images.unsplash.com/photo-1507692041950-59827f5c9479?w=800&q=80",
+    "https://images.unsplash.com/photo-1478147427282-58a87a702b70?auto=format&fit=crop&w=800&q=80",
   prayer:
-    "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&q=80",
+    "https://images.unsplash.com/photo-1576105448873-747a2a9510f2?auto=format&fit=crop&w=800&q=80",
   bible:
-    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800&q=80",
+    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=800&q=80",
 } as const;

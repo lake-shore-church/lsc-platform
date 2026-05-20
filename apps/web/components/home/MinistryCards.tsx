@@ -55,7 +55,7 @@ export function MinistryCards() {
                 </p>
                 <Link
                   href={card.href}
-                  className="mt-4 inline-block text-sm font-semibold text-brand-accent hover:underline"
+                  className="link-hover mt-4 inline-block text-base font-semibold text-brand-accent"
                 >
                   {card.cta} →
                 </Link>

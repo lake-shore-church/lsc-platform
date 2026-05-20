@@ -4,6 +4,7 @@
 
 @layer base {
   html {
+    font-size: 16px;
     color-scheme: light;
   }
 
@@ -12,7 +13,8 @@
   }
 
   body {
-    @apply bg-background text-foreground-primary font-body text-base antialiased;
+    @apply bg-background text-foreground-primary font-body antialiased;
+    font-size: var(--font-size-base);
     line-height: var(--line-height-base);
     transition:
       background-color var(--transition-speed) ease,
@@ -40,7 +42,12 @@
 
   .text-h2 {
     font-size: var(--font-size-h2);
-    line-height: 1.2;
+    line-height: 1.25;
+  }
+
+  .text-h3 {
+    font-size: var(--font-size-h3);
+    line-height: 1.3;
   }
 
   .leading-heading {
@@ -48,14 +55,15 @@
   }
 
   .leading-snug {
-    line-height: 1.35;
+    line-height: 1.4;
   }
 
+  /* Section labels — no uppercase (a11y) */
   .text-label {
-    font-size: 0.75rem;
+    font-size: var(--font-size-base);
     font-weight: 600;
     letter-spacing: var(--letter-spacing-label);
-    text-transform: uppercase;
+    color: var(--color-text-muted);
   }
 
   .section-pad {
@@ -72,6 +80,10 @@
 
   .hero-overlay {
     background: var(--hero-overlay);
+  }
+
+  .link-hover {
+    @apply hover:underline underline-offset-2;
   }
 }
 

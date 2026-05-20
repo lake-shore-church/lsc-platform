@@ -43,6 +43,7 @@ const config: Config = {
         base: "var(--font-size-base)",
         h1: "var(--font-size-h1)",
         h2: "var(--font-size-h2)",
+        h3: "var(--font-size-h3)",
       },
       borderRadius: {
         card: "var(--card-radius)",

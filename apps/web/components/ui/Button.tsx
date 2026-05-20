@@ -29,7 +29,7 @@ export function Button({
   disabled,
 }: ButtonProps) {
   const classes = cn(
-    "inline-flex min-h-[44px] items-center justify-center rounded-lg border px-5 py-2.5 text-sm font-semibold transition-colors duration-300",
+    "inline-flex min-h-[44px] items-center justify-center rounded-lg border px-5 py-2.5 text-base font-semibold transition-colors duration-300",
     variants[variant],
     disabled && "pointer-events-none opacity-50",
     className,
