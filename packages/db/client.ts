@@ -1,0 +1,56 @@
+import { createClient, type SupabaseClient } from "@supabase/supabase-js";
+import type { Database } from "./types";
+
+export type TypedSupabaseClient = SupabaseClient<Database>;
+
+function getSupabaseUrl(): string {
+  const url =
+    process.env.NEXT_PUBLIC_SUPABASE_URL ??
+    process.env.EXPO_PUBLIC_SUPABASE_URL;
+
+  if (!url) {
+    throw new Error(
+      "Missing Supabase URL. Set NEXT_PUBLIC_SUPABASE_URL (web) or EXPO_PUBLIC_SUPABASE_URL (mobile).",
+    );
+  }
+
+  return url;
+}
+
+function getSupabaseAnonKey(): string {
+  const key =
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ??
+    process.env.EXPO_PUBLIC_SUPABASE_ANON_KEY;
+
+  if (!key) {
+    throw new Error(
+      "Missing Supabase anon key. Set NEXT_PUBLIC_SUPABASE_ANON_KEY (web) or EXPO_PUBLIC_SUPABASE_ANON_KEY (mobile).",
+    );
+  }
+
+  return key;
+}
+
+/** Create a new typed Supabase client (useful for tests or per-request instances). */
+export function createSupabaseClient(): TypedSupabaseClient {
+  return createClient<Database>(getSupabaseUrl(), getSupabaseAnonKey(), {
+    auth: {
+      persistSession: typeof window !== "undefined",
+      autoRefreshToken: true,
+      detectSessionInUrl: typeof window !== "undefined",
+    },
+  });
+}
+
+let supabaseInstance: TypedSupabaseClient | null = null;
+
+/** Singleton typed Supabase client for app usage. */
+export function getSupabase(): TypedSupabaseClient {
+  if (!supabaseInstance) {
+    supabaseInstance = createSupabaseClient();
+  }
+  return supabaseInstance;
+}
+
+/** Typed Supabase client singleton. */
+export const supabase = getSupabase();
