@@ -8,7 +8,7 @@
 
 ## Summary
 
-Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. **Public site is content-ready:** Sanity Studio at `/studio`, seeded sermon/pages/blog/siteConfig, Supabase sample events + prayer request, Vercel config at repo root, `pnpm build` passes. **Next:** polish portals (event CRUD, R2 upload); Vercel production deploy.
+Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. **Public site uses real church content:** 10 sermons, 2 series, 4 devotionals, Pastor Brian’s book resource, homepage redesign (9 sections + Facebook feed), podcast RSS at `/podcast.xml`, staff YouTube sermon import. **Mobile app** has five tabs wired to web APIs + WebView for give/sermons. **Next:** R2 media upload, Zeffy live URL, production Vercel env sync.
 
 ---
 
@@ -32,7 +32,7 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 | Path | Status | Description |
 |------|--------|-------------|
 | `apps/web` | 🟡 Public site done | Next.js 16; 11 `(public)/` pages + 4 API routes; Tailwind + LSC tokens; `@repo/db` + `@repo/cms` |
-| `apps/mobile` | 🟡 Starter | Expo 54 + Expo Router tabs template |
+| `apps/mobile` | 🟡 Functional | Home, Sermons, Prayer, Give, More tabs; sermon detail; `EXPO_PUBLIC_APP_URL` → web APIs |
 | `apps/docs` | ⚪ Unused | Turborepo default; may remove later |
 | `packages/db` | ✅ Complete | Typed client, 14 tables, 7 query modules |
 | `packages/cms` | ✅ Complete | Sanity read/write clients, 7 schemas, 4 query modules |
@@ -63,7 +63,8 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 ## packages/cms (complete)
 
 - [x] `client.ts` — `createSanityReadClient()`, `createSanityWriteClient()`, singletons
-- [x] `schemas/` — sermon, sermonSeries, event, blogPost, staffBio, page, siteConfig
+- [x] `schemas/` — sermon, sermonSeries, event, blogPost, staffBio, page, siteConfig, resource
+- [x] Real content seed — 10 sermons, 2 series, 4 devotionals, Know book, siteConfig (lschurch.com data)
 - [x] `queries/sermons.ts` — `getSermons`, `getSermonBySlug`, `getSeriesList`, `getSermonsBySeries`
 - [x] `queries/events.ts` — `getEvents`, `getEventById`
 - [x] `queries/blog.ts` — `getBlogPosts`, `getBlogPostBySlug`

@@ -1,4 +1,5 @@
 export {
+  createSupabaseAdminClient,
   createSupabaseClient,
   getSupabase,
   supabase,

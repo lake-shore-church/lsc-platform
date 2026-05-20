@@ -105,6 +105,17 @@ export type Page = {
 
 export type ThemeId = "bold" | "warm" | "advent" | "easter";
 
+export type Resource = {
+  _id: string;
+  _type: "resource";
+  title: string;
+  slug?: SanitySlug;
+  description?: string;
+  type?: "book" | "pdf" | "link";
+  externalUrl?: string;
+  isPublic?: boolean;
+};
+
 export type SiteConfig = {
   _id: string;
   _type: "siteConfig";

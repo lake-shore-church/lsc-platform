@@ -1,12 +1,12 @@
 import type { Metadata } from "next";
-import { getPage } from "@repo/cms";
+import Link from "next/link";
+import { getResources } from "@repo/cms";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
-import { PortableText } from "@/components/content/PortableText";
 
 export const metadata: Metadata = {
   title: "Resources",
-  description: "Documents, guides, and resources from Lake Shore Church.",
+  description: "Books, guides, and resources from Lake Shore Church.",
 };
 
 const publicDocs = [
@@ -15,32 +15,43 @@ const publicDocs = [
 ];
 
 export default async function ResourcesPage() {
-  const page = await getPage("resources").catch(() => null);
+  const resources = await getResources({ publicOnly: true }).catch(() => []);
 
   return (
     <>
       <PageHeader title="Resources" description="Helpful documents for your journey." />
       <Container className="py-12">
-        <PortableText value={page?.body} />
-        <div className="mt-8 grid gap-4 sm:grid-cols-2">
-          {publicDocs.map((doc) => (
+        <div className="grid gap-4 sm:grid-cols-2">
+          {resources.map((resource) => (
             <a
+              key={resource._id}
+              href={resource.externalUrl ?? "#"}
+              target={resource.externalUrl ? "_blank" : undefined}
+              rel={resource.externalUrl ? "noopener noreferrer" : undefined}
+              className="rounded-xl border border-default bg-surface p-5 transition-shadow hover:shadow-md"
+            >
+              <span className="text-xs font-semibold uppercase text-brand-accent">
+                {resource.type ?? "Resource"}
+              </span>
+              <h2 className="mt-2 text-lg font-semibold text-foreground-primary">
+                {resource.title}
+              </h2>
+              {resource.description ? (
+                <p className="mt-2 text-sm text-foreground-secondary">{resource.description}</p>
+              ) : null}
+            </a>
+          ))}
+          {publicDocs.map((doc) => (
+            <Link
               key={doc.href}
               href={doc.href}
               className="rounded-xl border border-default bg-surface p-5 transition-shadow hover:shadow-md"
             >
-              <span className="text-xs font-semibold uppercase text-brand-accent">
-                {doc.memberOnly ? "Members" : "Public"}
-              </span>
-              <h2 className="mt-2 text-lg font-semibold text-foreground-primary">
-                {doc.title}
-              </h2>
-            </a>
+              <span className="text-xs font-semibold uppercase text-brand-accent">Public</span>
+              <h2 className="mt-2 text-lg font-semibold text-foreground-primary">{doc.title}</h2>
+            </Link>
           ))}
         </div>
-        <p className="mt-8 text-sm text-foreground-muted">
-          Member-only PDFs and study materials will appear here after sign-in is enabled.
-        </p>
       </Container>
     </>
   );

@@ -3,17 +3,23 @@ import { createClient, type SanityClient } from "@sanity/client";
 const API_VERSION = "2024-01-01";
 
 function getProjectId(): string {
-  const id = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID;
+  const id =
+    process.env.NEXT_PUBLIC_SANITY_PROJECT_ID ??
+    process.env.EXPO_PUBLIC_SANITY_PROJECT_ID;
   if (!id) {
     throw new Error(
-      "Missing NEXT_PUBLIC_SANITY_PROJECT_ID. Set it in apps/web/.env.local.",
+      "Missing NEXT_PUBLIC_SANITY_PROJECT_ID (web) or EXPO_PUBLIC_SANITY_PROJECT_ID (mobile).",
     );
   }
   return id;
 }
 
 function getDataset(): string {
-  return process.env.NEXT_PUBLIC_SANITY_DATASET ?? "production";
+  return (
+    process.env.NEXT_PUBLIC_SANITY_DATASET ??
+    process.env.EXPO_PUBLIC_SANITY_DATASET ??
+    "production"
+  );
 }
 
 function getWriteToken(): string {

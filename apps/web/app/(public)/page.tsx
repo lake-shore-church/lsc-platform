@@ -1,14 +1,15 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import { getEvents } from "@repo/db";
 import { getBlogPosts, getSermons, getSiteConfig } from "@repo/cms";
 import { HeroSection } from "@/components/home/HeroSection";
-import { LatestSermonSection } from "@/components/home/LatestSermonSection";
+import { ServiceInfoStrip } from "@/components/home/ServiceInfoStrip";
+import { FeaturedSeriesSection } from "@/components/home/FeaturedSeriesSection";
 import { NewHereSection } from "@/components/home/NewHereSection";
 import { MinistryCards } from "@/components/home/MinistryCards";
 import { UpcomingEventsSection } from "@/components/home/UpcomingEventsSection";
-import { BlogTeaser } from "@/components/home/BlogTeaser";
-import { Container } from "@/components/ui/Container";
+import { TestimonialsSection } from "@/components/home/TestimonialsSection";
+import { StayConnectedSection } from "@/components/home/StayConnectedSection";
+import { FooterCtaBanner } from "@/components/home/FooterCtaBanner";
 
 export const metadata: Metadata = {
   title: "Lake Shore Church — West Loop Chicago",
@@ -24,26 +25,23 @@ export default async function HomePage() {
     getBlogPosts({ limit: 2 }).catch(() => []),
   ]);
 
-  const serviceTimesLine = `Sundays ${config.serviceTime ?? "10:00 AM"} · West Loop Chicago`;
   const latestSermon = sermons[0] ?? null;
 
   return (
     <>
-      <HeroSection serviceTimesLine={serviceTimesLine} />
-      <LatestSermonSection sermon={latestSermon} />
-      {!latestSermon ? (
-        <section className="border-b border-default bg-surface py-6">
-          <Container className="text-center text-base text-foreground-secondary">
-            <Link href="/sermons" className="link-hover font-semibold text-brand-primary">
-              Watch recent sermon messages
-            </Link>
-          </Container>
-        </section>
-      ) : null}
+      <HeroSection
+        tagline={config.tagline}
+        subTagline={config.subTagline}
+        heroBody={config.heroBody}
+      />
+      <ServiceInfoStrip />
+      <FeaturedSeriesSection latestSermon={latestSermon} />
       <NewHereSection config={config} />
       <MinistryCards />
       <UpcomingEventsSection events={events} />
-      {posts.length > 0 ? <BlogTeaser posts={posts} /> : null}
+      <TestimonialsSection />
+      <StayConnectedSection posts={posts} />
+      <FooterCtaBanner />
     </>
   );
 }

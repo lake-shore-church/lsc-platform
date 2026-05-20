@@ -21,12 +21,20 @@ export default async function StaffSermonsPage() {
         Publish sermons in Sanity Studio. Video upload to Cloudflare R2 will connect here
         in a later phase — use Studio for titles, scripture, and video URLs today.
       </p>
-      <Link
-        href="/studio"
-        className="mt-6 inline-flex min-h-[44px] items-center rounded-md bg-brand-primary px-6 font-semibold text-white"
-      >
-        Open Sanity Studio
-      </Link>
+      <div className="mt-6 flex flex-wrap gap-3">
+        <Link
+          href="/staff/sermons/import"
+          className="inline-flex min-h-[44px] items-center rounded-md bg-brand-accent px-6 font-semibold text-white"
+        >
+          Import from YouTube
+        </Link>
+        <Link
+          href="/studio"
+          className="inline-flex min-h-[44px] items-center rounded-md border border-default px-6 font-semibold text-brand-primary"
+        >
+          Open Sanity Studio
+        </Link>
+      </div>
 
       {sermons.length > 0 ? (
         <section className="mt-10">

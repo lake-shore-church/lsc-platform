@@ -45,7 +45,7 @@ export async function seedSupabaseSample(): Promise<void> {
       id: EVENT_IDS.sunday,
       title: "Sunday Worship Service",
       description:
-        "Join us every Sunday for scripture-based teaching, worship, and community.",
+        "Join us every Sunday for scripture-based teaching from Pastor Brian, worship, and community. Everyone is welcome.",
       starts_at: sundayStart.toISOString(),
       ends_at: sundayEnd.toISOString(),
       location:

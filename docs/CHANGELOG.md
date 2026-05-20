@@ -6,9 +6,21 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ## [Unreleased] — main
 
+### Added
+
+- **Real content seed** — 10 sermons (Sunday + Sheer Goodness series), 4 weekly devotionals, Pastor Brian book resource, updated siteConfig; Supabase events (Sunday, Men’s Bible Study, Welcome Lunch).
+- **Homepage redesign** — Full-viewport Chicago hero, service info strip, featured series, ministry pillars, testimonials, Facebook feed + email subscribe, footer CTA.
+- **About & Beliefs** — Static pages with real Assemblies of God copy and FAQ JSON-LD.
+- **Podcast RSS** — `/podcast.xml` iTunes-compatible feed from Sanity sermons.
+- **Staff sermon import** — `/staff/sermons/import` YouTube URL → Sanity document.
+- **Mobile app** — Five tabs (Home, Sermons, Prayer, Give, More), sermon detail with WebView, mobile API routes, `react-native-webview`.
+- **FacebookFeed** — `@repo/ui/web/FacebookFeed` with iframe + fallback link.
+- **Public prayer wall API** — `GET /api/prayers` for mobile and community display.
+
 ### Fixed
 
-- **Magic link login** — `signInWithOtp` runs via server action so Supabase env vars load reliably (fixes client `fetch` "Invalid value" in monorepo).
+- **Magic link login** — Auth callback sets session cookies on redirect; supports email confirmation `token_hash` links.
+- **Magic link login (env)** — `signInWithOtp` runs via server action so Supabase env vars load reliably (fixes client `fetch` "Invalid value" in monorepo).
 
 ### Added
 

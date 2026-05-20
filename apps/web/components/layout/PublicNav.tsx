@@ -8,13 +8,15 @@ const NAV_GROUPS = [
     label: "Watch",
     links: [
       { href: "/sermons", label: "Sermons" },
-      { href: "/live", label: "Live stream" },
+      { href: "/live", label: "Live Stream" },
+      { href: "/podcast.xml", label: "Podcast" },
     ],
   },
   {
     label: "Connect",
     links: [
-      { href: "/visit", label: "Plan a visit" },
+      { href: "/visit", label: "Plan a Visit" },
+      { href: "/events", label: "Small Groups" },
       { href: "/prayer", label: "Prayer" },
     ],
   },
@@ -27,26 +29,38 @@ const NAV_GROUPS = [
     ],
   },
   {
-    label: "Serve",
+    label: "Give",
     links: [
-      { href: "/events", label: "Events" },
       { href: "/give", label: "Give" },
+      { href: "/give", label: "About Giving" },
     ],
   },
   {
     label: "About",
     links: [
-      { href: "/about", label: "About us" },
+      { href: "/about", label: "About Us" },
+      { href: "/about#pastor", label: "Pastor Brian" },
       { href: "/contact", label: "Contact" },
     ],
   },
 ] as const;
 
-export function PublicNav({ churchName }: { churchName: string }) {
+export function PublicNav({
+  churchName,
+  serviceTimesLine,
+}: {
+  churchName: string;
+  serviceTimesLine: string;
+}) {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
     <>
+      <div className="border-b border-default bg-brand-primary/5">
+        <p className="py-2 text-center text-sm font-semibold text-brand-primary">
+          {serviceTimesLine}
+        </p>
+      </div>
       <div className="border-b border-default bg-background shadow-sm">
         <div className="mx-auto flex max-w-7xl min-h-[64px] items-center justify-between gap-4 px-4 sm:px-6 lg:px-8">
           <Link

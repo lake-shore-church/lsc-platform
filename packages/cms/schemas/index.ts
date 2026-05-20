@@ -1,6 +1,7 @@
 import { blogPostType } from "./blogPost";
 import { eventType } from "./event";
 import { pageType } from "./page";
+import { resourceType } from "./resource";
 import { sermonType } from "./sermon";
 import { sermonSeriesType } from "./sermonSeries";
 import { siteConfigType } from "./siteConfig";
@@ -15,12 +16,14 @@ export const schemaTypes = [
   blogPostType,
   staffBioType,
   pageType,
+  resourceType,
 ];
 
 export {
   blogPostType,
   eventType,
   pageType,
+  resourceType,
   sermonType,
   sermonSeriesType,
   siteConfigType,

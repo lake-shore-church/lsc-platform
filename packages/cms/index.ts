@@ -13,6 +13,7 @@ export {
   blogPostType,
   eventType,
   pageType,
+  resourceType,
   sermonType,
   sermonSeriesType,
   siteConfigType,
@@ -24,6 +25,7 @@ export type {
   BlogPost,
   Event,
   Page,
+  Resource,
   PortableTextBlock,
   SanityImage,
   SanitySlug,
@@ -52,6 +54,7 @@ export {
 } from "./queries/blog";
 
 export { getPage, getSiteConfig, getAllStaffBios } from "./queries/pages";
+export { getResources } from "./queries/resources";
 
 export { DEFAULT_SITE_CONFIG } from "./defaults/siteConfig";
 export {

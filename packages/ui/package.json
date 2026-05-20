@@ -7,7 +7,8 @@
     "./web/ThemeSwitcher": "./web/ThemeSwitcher.tsx",
     "./web/ThemeScript": "./web/ThemeScript.tsx",
     "./web/tokens/themes.css": "./web/tokens/themes.css",
-    "./web/images": "./web/images.ts"
+    "./web/images": "./web/images.ts",
+    "./web/FacebookFeed": "./web/FacebookFeed.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

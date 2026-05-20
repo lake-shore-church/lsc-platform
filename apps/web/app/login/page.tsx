@@ -14,6 +14,8 @@ const MESSAGES: Record<string, string> = {
     "Your account is signed in but not yet approved for the member portal. Contact the church office.",
   "staff-only": "This area is for church staff. Sign in with a staff account.",
   "check-email": "Check your email for a sign-in link.",
+  "auth-error":
+    "That sign-in link expired or was already used. Enter your email below to get a new link.",
 };
 
 export default async function LoginPage({
