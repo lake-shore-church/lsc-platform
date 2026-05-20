@@ -4,16 +4,47 @@ import * as Popover from "@radix-ui/react-popover";
 import { useCallback, useEffect, useState } from "react";
 import { cn } from "./lib/cn";
 
-export type ThemeId = "default" | "advent" | "easter";
+export type ThemeId = "default" | "advent" | "easter" | "warm";
 export type ModeId = "light" | "dark" | "reading";
 
 const THEME_KEY = "lsc-theme";
 const MODE_KEY = "lsc-mode";
 
-const THEMES: { id: ThemeId; label: string; swatch: string }[] = [
-  { id: "default", label: "Default", swatch: "#1B4F8A" },
-  { id: "advent", label: "Advent", swatch: "#7C1D1D" },
-  { id: "easter", label: "Easter", swatch: "#166534" },
+const THEMES: {
+  id: ThemeId;
+  label: string;
+  swatch: string;
+  tooltip: string;
+  description: string;
+}[] = [
+  {
+    id: "default",
+    label: "Default",
+    swatch: "#1B4F8A",
+    tooltip: "Everyday",
+    description: "Default (deep blue) — Everyday",
+  },
+  {
+    id: "advent",
+    label: "Advent",
+    swatch: "#7C1D1D",
+    tooltip: "Christmas & Advent",
+    description: "Advent (burgundy) — Christmas & Advent",
+  },
+  {
+    id: "easter",
+    label: "Easter",
+    swatch: "#166534",
+    tooltip: "Easter & Spring",
+    description: "Easter (green) — Easter & Spring",
+  },
+  {
+    id: "warm",
+    label: "Warm",
+    swatch: "#5C4033",
+    tooltip: "Warm & Welcoming",
+    description: "Warm (brown) — Welcoming & Community",
+  },
 ];
 
 const MODES: { id: ModeId; label: string; icon: string }[] = [
@@ -21,6 +52,8 @@ const MODES: { id: ModeId; label: string; icon: string }[] = [
   { id: "dark", label: "Dark", icon: "🌙" },
   { id: "reading", label: "Reading", icon: "📖" },
 ];
+
+const VALID_THEMES = new Set<ThemeId>(["default", "advent", "easter", "warm"]);
 
 function getSystemMode(): ModeId {
   if (typeof window === "undefined") return "light";
@@ -37,8 +70,8 @@ function applyTheme(theme: ThemeId, mode: ModeId) {
 
 function readStoredTheme(fallback: ThemeId): ThemeId {
   const stored = localStorage.getItem(THEME_KEY);
-  if (stored === "default" || stored === "advent" || stored === "easter") {
-    return stored;
+  if (stored && VALID_THEMES.has(stored as ThemeId)) {
+    return stored as ThemeId;
   }
   return fallback;
 }
@@ -82,17 +115,23 @@ export function ThemeSwitcher({ cmsDefaultTheme = "default" }: ThemeSwitcherProp
     return () => mq.removeEventListener("change", onChange);
   }, [cmsDefaultTheme]);
 
-  const setThemeAndStore = useCallback((next: ThemeId) => {
-    setTheme(next);
-    localStorage.setItem(THEME_KEY, next);
-    applyTheme(next, mode);
-  }, [mode]);
+  const setThemeAndStore = useCallback(
+    (next: ThemeId) => {
+      setTheme(next);
+      localStorage.setItem(THEME_KEY, next);
+      applyTheme(next, mode);
+    },
+    [mode],
+  );
 
-  const setModeAndStore = useCallback((next: ModeId) => {
-    setMode(next);
-    localStorage.setItem(MODE_KEY, next);
-    applyTheme(theme, next);
-  }, [theme]);
+  const setModeAndStore = useCallback(
+    (next: ModeId) => {
+      setMode(next);
+      localStorage.setItem(MODE_KEY, next);
+      applyTheme(theme, next);
+    },
+    [theme],
+  );
 
   if (!mounted) {
     return null;
@@ -125,7 +164,7 @@ export function ThemeSwitcher({ cmsDefaultTheme = "default" }: ThemeSwitcherProp
           align="end"
           sideOffset={12}
           className={cn(
-            "z-50 w-64 rounded-lg border border-default bg-surface p-4 shadow-xl",
+            "z-50 w-72 rounded-lg border border-default bg-surface p-4 shadow-xl",
             "max-sm:mb-2",
           )}
           aria-label="Appearance settings"
@@ -158,20 +197,21 @@ export function ThemeSwitcher({ cmsDefaultTheme = "default" }: ThemeSwitcherProp
           <p className="mb-2 text-xs font-semibold uppercase tracking-wide text-foreground-muted">
             Theme
           </p>
-          <div className="grid grid-cols-3 gap-2" role="group" aria-label="Seasonal theme">
+          <div className="grid grid-cols-4 gap-2" role="group" aria-label="Seasonal theme">
             {THEMES.map((t) => (
               <button
                 key={t.id}
                 type="button"
+                title={t.tooltip}
                 onClick={() => setThemeAndStore(t.id)}
                 className={cn(
-                  "flex min-h-[44px] flex-col items-center justify-center gap-1.5 rounded-md border px-2 py-2 text-xs",
+                  "flex min-h-[44px] flex-col items-center justify-center gap-1 rounded-md border px-1 py-2 text-xs",
                   "transition-colors duration-300",
                   theme === t.id
                     ? "border-brand-primary bg-surface-2 text-brand-primary"
                     : "border-default bg-background text-foreground-secondary hover:bg-surface",
                 )}
-                aria-label={`${t.label} theme`}
+                aria-label={`${t.label} theme — ${t.tooltip}`}
                 aria-pressed={theme === t.id}
               >
                 <span
@@ -183,6 +223,19 @@ export function ThemeSwitcher({ cmsDefaultTheme = "default" }: ThemeSwitcherProp
               </button>
             ))}
           </div>
+
+          <ul className="mt-3 space-y-1 border-t border-default pt-3 text-xs text-foreground-muted">
+            {THEMES.map((t) => (
+              <li key={t.id} className="flex gap-1.5">
+                <span
+                  className="mt-0.5 inline-block h-2 w-2 shrink-0 rounded-full"
+                  style={{ backgroundColor: t.swatch }}
+                  aria-hidden
+                />
+                <span>{t.description}</span>
+              </li>
+            ))}
+          </ul>
 
           <Popover.Arrow className="fill-surface" />
         </Popover.Content>

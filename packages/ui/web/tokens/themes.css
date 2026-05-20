@@ -1,5 +1,5 @@
 /**
- * LSC Platform — 3 themes × 3 modes (light, dark, reading)
+ * LSC Platform — 4 themes × 3 modes (light, dark, reading)
  * Applied via data-theme + data-mode on <html>
  */
 
@@ -168,6 +168,63 @@
   --color-text-muted: #6b7280;
   --color-border: #bbf7d0;
   --color-border-strong: #86efac;
+  --font-body: Georgia, "Times New Roman", serif;
+  --font-size-base: 18px;
+  --line-height-base: 1.85;
+}
+
+/* ─── THEME 4: Warm — Light (Bloom-inspired) ─── */
+[data-theme="warm"][data-mode="light"] {
+  --color-primary: #5c4033;
+  --color-primary-hover: #6d4c41;
+  --color-accent: #8d6e63;
+  --color-background: #fdfaf7;
+  --color-surface: #f5efe9;
+  --color-surface-2: #ede3da;
+  --color-text-primary: #2c1810;
+  --color-text-secondary: #4e342e;
+  --color-text-muted: #795548;
+  --color-border: #d7ccc8;
+  --color-border-strong: #bcaaa4;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: "Segoe UI", system-ui, sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+}
+
+/* ─── THEME 4: Warm — Dark ─── */
+[data-theme="warm"][data-mode="dark"] {
+  --color-primary: #ffccbc;
+  --color-primary-hover: #ffab91;
+  --color-accent: #d7ccc8;
+  --color-background: #1a0f0a;
+  --color-surface: #2c1810;
+  --color-surface-2: #3e2723;
+  --color-text-primary: #fbe9e7;
+  --color-text-secondary: #ffccbc;
+  --color-text-muted: #ffab91;
+  --color-border: #3e2723;
+  --color-border-strong: #5c4033;
+  --font-display: Georgia, "Times New Roman", serif;
+  --font-body: "Segoe UI", system-ui, sans-serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.5;
+}
+
+/* ─── THEME 4: Warm — Reading ─── */
+[data-theme="warm"][data-mode="reading"] {
+  --color-primary: #5c4033;
+  --color-primary-hover: #6d4c41;
+  --color-accent: #8d6e63;
+  --color-background: #fefcf8;
+  --color-surface: #f9f4ee;
+  --color-surface-2: #ede3da;
+  --color-text-primary: #2c1810;
+  --color-text-secondary: #4e342e;
+  --color-text-muted: #795548;
+  --color-border: #d7ccc8;
+  --color-border-strong: #bcaaa4;
+  --font-display: Georgia, "Times New Roman", serif;
   --font-body: Georgia, "Times New Roman", serif;
   --font-size-base: 18px;
   --line-height-base: 1.85;

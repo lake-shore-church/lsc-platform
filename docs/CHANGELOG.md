@@ -8,6 +8,8 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
+- **Warm theme (4th)** — Bloom-inspired `data-theme="warm"` with light, dark, and reading modes; brown swatch in ThemeSwitcher; Sanity `activeTheme` option `warm`.
+
 - **Real church content from [lschurch.com](https://lschurch.com/)** — `siteConfig` schema fields (tagline, subTagline, structured address, service day/time, pastor); defaults + `pnpm seed:site-config`; home hero H1/H2/body from CMS; service-times strip below nav; Church JSON-LD in root layout.
 - **Navigation** — Home, Sermons, Events, Give, Prayer, About, Beliefs, Plan a Visit, Contact (no cart/blog in header).
 
@@ -16,8 +18,8 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 - **Shared web UI** — `PublicHeader`/`PublicFooter`, `PortableText`, `SermonCard`/`SermonArchiveClient`/`SermonPlayer`, forms (Prayer, Contact, Subscribe), `EventsClient`, `GiveQr`.
 - **Dependencies** — `@sanity/image-url`, `resend`, `react-qr-code` on `apps/web`.
 
-- **Theme system** — 3 seasonal themes × 3 modes (light/dark/reading) via `packages/ui/web/tokens/themes.css`; `ThemeSwitcher` (Radix Popover, localStorage, 44px targets); `ThemeScript` FOUT prevention; Tailwind semantic tokens (`bg-background`, `text-brand-primary`, etc.).
-- **`siteConfig.activeTheme`** — Sanity field for staff default theme (default/advent/easter).
+- **Theme system** — 4 seasonal themes × 3 modes (light/dark/reading) via `packages/ui/web/tokens/themes.css`; `ThemeSwitcher` (Radix Popover, localStorage, 44px targets); `ThemeScript` FOUT prevention; Tailwind semantic tokens (`bg-background`, `text-brand-primary`, etc.).
+- **`siteConfig.activeTheme`** — Sanity field for staff default theme (default/advent/easter/warm).
 - **`packages/cms`** — `@sanity/client` read/write clients; schemas (sermon, sermonSeries, event, blogPost, staffBio, page, siteConfig); typed GROQ queries for sermons, events, blog, pages.
 - **Tailwind on `apps/web`** — CSS variable–driven design tokens, Inter font, Radix Popover/Dialog/Slot.
 

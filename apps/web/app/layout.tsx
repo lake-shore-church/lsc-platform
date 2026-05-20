@@ -24,7 +24,13 @@ export const metadata: Metadata = {
 };
 
 function resolveCmsTheme(activeTheme?: string): ThemeId {
-  if (activeTheme === "advent" || activeTheme === "easter") return activeTheme;
+  if (
+    activeTheme === "advent" ||
+    activeTheme === "easter" ||
+    activeTheme === "warm"
+  ) {
+    return activeTheme;
+  }
   return "default";
 }
 

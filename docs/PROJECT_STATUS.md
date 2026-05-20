@@ -78,7 +78,7 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 ## apps/web design system
 
 - [x] Tailwind CSS 3 + PostCSS — semantic tokens mapped to CSS variables
-- [x] **3 themes:** default, advent, easter (`data-theme`)
+- [x] **4 themes:** default, advent, easter, warm (`data-theme`)
 - [x] **3 modes:** light, dark, reading (`data-mode`) — reading uses Georgia 18px / 1.85 line-height
 - [x] `packages/ui/web/tokens/themes.css` — all 9 theme×mode combinations
 - [x] `ThemeSwitcher` — floating control, localStorage, system dark preference, Radix Popover

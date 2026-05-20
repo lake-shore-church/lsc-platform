@@ -114,6 +114,7 @@ export const siteConfigType = defineType({
           { title: "Default (year-round)", value: "default" },
           { title: "Advent", value: "advent" },
           { title: "Easter", value: "easter" },
+          { title: "Warm (welcoming & community)", value: "warm" },
         ],
       },
       initialValue: "default",

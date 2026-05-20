@@ -15,7 +15,7 @@ export function ThemeScript() {
     if (!mode) {
       mode = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
     }
-    if (theme !== 'default' && theme !== 'advent' && theme !== 'easter') theme = 'default';
+    if (theme !== 'default' && theme !== 'advent' && theme !== 'easter' && theme !== 'warm') theme = 'default';
     if (mode !== 'light' && mode !== 'dark' && mode !== 'reading') mode = 'light';
     root.setAttribute('data-theme', theme);
     root.setAttribute('data-mode', mode);
