@@ -49,6 +49,10 @@ export default async function PlatformStatusPage() {
             <a href="#changelog" className={styles.navLink}>
               Changelog
             </a>
+            <p className={styles.navHeading}>For church tech</p>
+            <a href="/platform/tech" className={styles.navLink}>
+              Tech team guide
+            </a>
             <p className={styles.navHeading}>For agents</p>
             <a
               href="https://github.com/lake-shore-church/lsc-platform/blob/feat/platform-scaffold-db-mobile/AGENTS.md"

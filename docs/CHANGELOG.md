@@ -8,6 +8,8 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
+- **Member & staff portals** — Magic link `/login`; `/member/dashboard`, groups, resources; `/staff/prayers` (triage), sermons → Studio, events list, financials + expenses, members directory. Supabase SSR auth + middleware.
+- **Tech team guide** — `docs/TECH-TEAM-GUIDE.md` + `/platform/tech` (deploy, Studio, accounts, troubleshooting in plain language).
 - **Sanity Studio** — `/studio` route with `next-sanity`, `@sanity/vision`, schemas from `@repo/cms`.
 - **Content seed** — `pnpm seed:content` seeds sermon, about/beliefs pages, blog post, siteConfig, staff/series; Supabase sample events + prayer request.
 - **Vercel deploy config** — Root `vercel.json`, `apps/web/.env.production.example`, extra `next/image` domains (Sanity CDN, media.lschurch.com).

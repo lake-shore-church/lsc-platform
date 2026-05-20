@@ -25,3 +25,13 @@ export async function getPlatformPageContent(): Promise<{
 
   return { status, roadmap, changelog, lastUpdated };
 }
+
+export async function getTechTeamGuideContent(): Promise<{
+  guide: string;
+  lastUpdated: string;
+}> {
+  const guide = await readProjectDoc("TECH-TEAM-GUIDE.md");
+  const dateMatch = guide.match(/\*\*Last updated:\*\*\s*(\S+)/);
+  const lastUpdated = dateMatch?.[1] ?? "unknown";
+  return { guide, lastUpdated };
+}

@@ -52,8 +52,23 @@ export function PublicFooter({
           ))}
         </nav>
       </Container>
-      <Container className="mt-8 border-t border-default pt-6 text-center text-base text-foreground-muted">
-        © {new Date().getFullYear()} {churchName}
+      <Container className="mt-8 flex flex-col items-center gap-2 border-t border-default pt-6 text-center text-base text-foreground-muted sm:flex-row sm:justify-center sm:gap-4">
+        <p>© {new Date().getFullYear()} {churchName}</p>
+        <span className="hidden text-foreground-muted sm:inline" aria-hidden>
+          ·
+        </span>
+        <Link href="/login" className="link-hover text-sm text-foreground-muted">
+          Sign in
+        </Link>
+        <span className="hidden text-foreground-muted sm:inline" aria-hidden>
+          ·
+        </span>
+        <Link
+          href="/platform/tech"
+          className="link-hover text-sm text-foreground-muted"
+        >
+          Tech team guide
+        </Link>
       </Container>
     </footer>
   );

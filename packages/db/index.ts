@@ -92,3 +92,7 @@ export {
 } from "./queries/blog";
 
 export { subscribeEmail, type SubscribeInput } from "./queries/subscribers";
+
+export { getActiveSmallGroups } from "./queries/smallGroups";
+
+export { getAllMembers, getDirectoryProfiles } from "./queries/staff";

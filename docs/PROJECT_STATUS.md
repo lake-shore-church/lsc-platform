@@ -8,7 +8,7 @@
 
 ## Summary
 
-Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. **Public site is content-ready:** Sanity Studio at `/studio`, seeded sermon/pages/blog/siteConfig, Supabase sample events + prayer request, Vercel config at repo root, `pnpm build` passes. **Next:** member auth + `(member)/` portal; staff `(staff)/` portal (prayer triage, sermon upload).
+Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. **Public site is content-ready:** Sanity Studio at `/studio`, seeded sermon/pages/blog/siteConfig, Supabase sample events + prayer request, Vercel config at repo root, `pnpm build` passes. **Next:** polish portals (event CRUD, R2 upload); Vercel production deploy.
 
 ---
 
@@ -96,8 +96,9 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 |-------------|--------|
 | `(public)/` — Home, About, Beliefs, Visit, Contact, Sermons, Blog, Live, Give, Prayer, Events, Resources | ✅ |
 | `api/` — prayer, subscribe, contact, rsvp | ✅ |
-| `(member)/` — Dashboard, Groups, Resources | ⏳ |
-| `(staff)/` — Prayer, Sermons, Events, Financials… | ⏳ |
+| `/member/*` — Dashboard, Groups, Resources | ✅ (magic link) |
+| `/staff/*` — Prayers, Sermons, Events, Financials, Members | ✅ (baseline) |
+| `/login` — Magic link sign-in | ✅ |
 | `[locale]/` — /es /fr /pt /zh | ⏳ Phase 3 |
 | `studio/` — Sanity Studio embed | ✅ |
 | `api/` — sermons RSS, tithing-statement, webhooks, revalidate | ⏳ |
@@ -135,7 +136,8 @@ https://github.com/lake-shore-church/lsc-platform/compare/main...feat/platform-s
 ## Immediate next steps
 
 1. **Merge PR** → `main` and deploy on Vercel (env vars from `apps/web/.env.production.example`)
-2. **Member auth** — magic link + `(member)/` portal
-3. **Staff portal** — `(staff)/` prayer triage, sermon upload, financials
+2. **Supabase Auth redirect URLs** — add production URL to Auth settings + CORS for Studio
+3. **Promote users** — set `profiles.role` to `member` or `staff` after first sign-in
+4. **Event CRUD UI** + R2 sermon upload (Phase 2 remainder)
 4. **Configure Resend** — production `RESEND_API_KEY` for form acknowledgements
 5. Fill Cloudflare R2 credentials when media upload is needed

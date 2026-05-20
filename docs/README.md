@@ -6,6 +6,7 @@
 
 | Role | Read first |
 |------|------------|
+| **Church tech volunteer** | [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md) → [/platform/tech](http://localhost:3000/platform/tech) |
 | **Human maintainer** | [PROJECT_STATUS.md](./PROJECT_STATUS.md) → [ROADMAP.md](./ROADMAP.md) |
 | **AI agent** | [AGENTS.md](../AGENTS.md) → [ai/CONTEXT.md](./ai/CONTEXT.md) → [specs/ai-agent-preflight.md](./specs/ai-agent-preflight.md) |
 | **New contributor** | [CONTRIBUTING.md](../CONTRIBUTING.md) |
@@ -19,6 +20,7 @@
 | [CHANGELOG.md](./CHANGELOG.md) | Dated changes |
 | [SDLC_STACK.md](./SDLC_STACK.md) | Services and hosting |
 | [TESTING.md](./TESTING.md) | How to verify locally |
+| [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md) | Deploy, Studio, accounts — plain language for church tech |
 
 ## AI & process
 
@@ -46,7 +48,8 @@
 
 ## Website mirror
 
-**`/platform`** — `noindex`; renders PROJECT_STATUS, ROADMAP, CHANGELOG from this folder.
+**`/platform`** — `noindex`; renders PROJECT_STATUS, ROADMAP, CHANGELOG from this folder.  
+**`/platform/tech`** — `noindex`; renders TECH-TEAM-GUIDE.md for church tech volunteers.
 
 ## Update rule
 
