@@ -4,7 +4,13 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ---
 
-## [Unreleased] — feat/platform-scaffold-db-mobile
+## [Unreleased] — main
+
+### Changed
+
+- **Repository** — PR #1 merged; `main` is the default branch on GitHub (feature branch removed).
+
+## [2026-05-20] — feat/platform-scaffold-db-mobile (merged to main)
 
 ### Added
 
