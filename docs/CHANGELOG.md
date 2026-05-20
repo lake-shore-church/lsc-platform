@@ -6,6 +6,10 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ## [Unreleased] — main
 
+### Fixed
+
+- **Magic link login** — `signInWithOtp` runs via server action so Supabase env vars load reliably (fixes client `fetch` "Invalid value" in monorepo).
+
 ### Added
 
 - **Member portal (full)** — Giving history + PDF statement, prayer list, notification prefs, shared layout nav.
