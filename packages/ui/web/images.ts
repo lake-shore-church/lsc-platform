@@ -1,25 +1,27 @@
 /**
- * Faith-focused Unsplash placeholders (auto=format for reliable delivery).
+ * Unsplash placeholders — URLs verified HTTP 200 (images.unsplash.com).
+ * Replace with congregation photos in Sanity when ready.
  */
+const q = (id: string, w: number) =>
+  `https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=${w}&q=80`;
+
 export const IMAGES = {
-  heroBase:
-    "https://images.unsplash.com/photo-1438032880930-188b76185421?auto=format&fit=crop&w=1920&q=80",
-  heroAccent:
-    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=1920&q=80",
-  hero:
-    "https://images.unsplash.com/photo-1438032880930-188b76185421?auto=format&fit=crop&w=1920&q=80",
-  community:
-    "https://images.unsplash.com/photo-1529070538777-6315e9771a21?auto=format&fit=crop&w=800&q=80",
-  smallGroup:
-    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=800&q=80",
-  serve:
-    "https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=800&q=80",
-  give:
-    "https://images.unsplash.com/photo-1478147427282-58a87a702b70?auto=format&fit=crop&w=800&q=80",
-  worship:
-    "https://images.unsplash.com/photo-1478147427282-58a87a702b70?auto=format&fit=crop&w=800&q=80",
-  prayer:
-    "https://images.unsplash.com/photo-1576105448873-747a2a9510f2?auto=format&fit=crop&w=800&q=80",
-  bible:
-    "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?auto=format&fit=crop&w=800&q=80",
+  /** Outdoor worship / community gathering */
+  heroBase: q("1511632765486-a01980e01a18", 1920),
+  /** Open Bible, warm light — blended over hero */
+  heroAccent: q("1504052434569-70ad5836ab65", 1920),
+  hero: q("1511632765486-a01980e01a18", 1920),
+  /** Diverse group in fellowship */
+  community: q("1529156069898-49953e39b3ac", 800),
+  /** Friends in circle — small group */
+  smallGroup: q("1511988617509-a57c8a288659", 800),
+  /** Volunteering / serving */
+  serve: q("1559027615-cd4628902d4a", 800),
+  /** Hands open — generous giving */
+  give: q("1532629345422-7515f3d16bb6", 800),
+  /** Worship gathering */
+  worship: q("1511632765486-a01980e01a18", 800),
+  /** Prayer */
+  prayer: q("1544027993-37dbfe43562a", 800),
+  bible: q("1504052434569-70ad5836ab65", 800),
 } as const;

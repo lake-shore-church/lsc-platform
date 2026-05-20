@@ -3,8 +3,9 @@
 @tailwind utilities;
 
 @layer base {
+  /* 100% = browser/user default (WCAG-friendly; respects accessibility font settings) */
   html {
-    font-size: 16px;
+    font-size: 100%;
     color-scheme: light;
   }
 
