@@ -137,6 +137,16 @@ expenses, notification_prefs, translations
 - Radix UI for all interactive components (dialogs, menus, dropdowns)
 - 44x44px minimum tap targets on all interactive elements
 
+## Living documentation (update every session)
+- **Entry:** `AGENTS.md` → `docs/ai/CONTEXT.md` (session snapshot) → `docs/specs/ai-agent-preflight.md`
+- **`docs/PROJECT_STATUS.md`** — current state (source of truth)
+- **`docs/ROADMAP.md`** — phased plan · **`docs/CHANGELOG.md`** — dated changes
+- **`docs/TESTING.md`** · **`docs/SDLC_STACK.md`** · **`docs/prompts/copy-paste.md`**
+- **`docs/ai/MAINTAINER-NOTES.md`** — internal session log · **`docs/ai/ADR-*.md`** — architecture decisions
+- **Website:** `/platform` renders `docs/*.md` at build time (church brand UI)
+- **Rules:** `.cursor/rules/project-documentation.mdc`, `feature-branches.mdc`
+- **Verify before PR:** `pnpm run verify`
+
 ## Prompt pattern for agents
 Always specify:
 1. Exact file path (e.g. apps/web/app/(staff)/financials/page.tsx)

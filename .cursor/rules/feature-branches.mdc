@@ -1,0 +1,14 @@
+---
+description: Planned work uses feature branches off main; merge via PR
+alwaysApply: true
+---
+
+**Branches:** Use **`feature/<topic>`** from **`main`** for planned work — packages, routes, auth, CMS, not direct commits to **`main`**.
+
+Open PRs against **`main`**. Examples: `feature/cms-package`, `feature/public-homepage`, `feature/auth-magic-link`.
+
+**Before starting:** `git checkout main && git pull`, then `git checkout -b feature/<topic>`.
+
+**Before push:** `pnpm run verify`. See **[docs/prompts/copy-paste.md](../../docs/prompts/copy-paste.md)**.
+
+**Agents:** When the human starts work on `main` without a branch, briefly suggest this workflow.
