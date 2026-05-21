@@ -6,8 +6,8 @@ import { serializeMobileBlogPost, serializeMobileSermon } from "@/lib/mobile-ser
 export async function GET() {
   const [sermons, events, posts, resources] = await Promise.all([
     getSermons({ limit: 1 }).catch(() => []),
-    getEvents({ upcomingFrom: new Date().toISOString(), limit: 2 }).catch(() => []),
-    getBlogPosts({ limit: 3 }).catch(() => []),
+    getEvents({ upcomingFrom: new Date().toISOString(), limit: 3 }).catch(() => []),
+    getBlogPosts({ limit: 2 }).catch(() => []),
     getResources({ publicOnly: true, limit: 1 }).catch(() => []),
   ]);
 

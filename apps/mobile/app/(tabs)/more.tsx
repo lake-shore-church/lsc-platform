@@ -2,7 +2,7 @@ import { Ionicons } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
 import { type Href, useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
   Pressable,
@@ -14,8 +14,9 @@ import {
 import { WebView } from "react-native-webview";
 import { EventCard } from "@/components/EventCard";
 import { SectionHeader } from "@/components/SectionHeader";
+import { ThemePicker } from "@/components/ThemePicker";
 import { CHURCH } from "@/constants/church";
-import { colors } from "@/constants/tokens";
+import { useTheme } from "@/lib/ThemeContext";
 import { fetchJson, type MobileBlogPost, type MobileEvent } from "@/lib/api";
 import { useAuth } from "@/lib/AuthContext";
 import { getI18n, localeOptions, setMobileLocale, t } from "@/lib/i18n";
@@ -37,6 +38,8 @@ function initials(name?: string | null, email?: string | null): string {
 
 export default function MoreScreen() {
   const router = useRouter();
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const { profile, signOut } = useAuth();
   const [events, setEvents] = useState<MobileEvent[]>([]);
   const [posts, setPosts] = useState<MobileBlogPost[]>([]);
@@ -92,6 +95,8 @@ export default function MoreScreen() {
           </Pressable>
         </View>
       )}
+
+      <ThemePicker />
 
       <SectionHeader title="Upcoming events" />
       {loading ? <ActivityIndicator color={colors.primary} /> : null}
@@ -216,7 +221,8 @@ export default function MoreScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ReturnType<typeof useTheme>["colors"]) {
+  return StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.surface },
   content: { paddingBottom: 32 },
   memberCard: {
@@ -376,4 +382,5 @@ const styles = StyleSheet.create({
   },
   closeBar: { padding: 12, backgroundColor: colors.primary },
   closeText: { color: "#fff", fontWeight: "600" },
-});
+  });
+}
