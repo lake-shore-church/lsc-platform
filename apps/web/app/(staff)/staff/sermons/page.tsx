@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getSiteConfig, getSermons } from "@repo/cms";
+import { getSiteConfig } from "@repo/cms";
 import { getSermons as getSupabaseSermons } from "@repo/db";
 import { LivestreamControl } from "@/components/staff/LivestreamControl";
 import { requireStaffPortal } from "@/lib/auth/session";

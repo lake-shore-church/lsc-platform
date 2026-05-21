@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { MarkdownContent } from "../../components/MarkdownContent";
 import { getPlatformPageContent } from "../../lib/project-docs";
 import styles from "./platform.module.css";
@@ -50,12 +51,12 @@ export default async function PlatformStatusPage() {
               Changelog
             </a>
             <p className={styles.navHeading}>For church tech</p>
-            <a href="/platform/tech" className={styles.navLink}>
+            <Link href="/platform/tech" className={styles.navLink}>
               Tech team guide
-            </a>
-            <a href="/dedication" className={styles.navLink}>
+            </Link>
+            <Link href="/dedication" className={styles.navLink}>
               Dedication (Holy Spirit, Director of Technology)
-            </a>
+            </Link>
             <p className={styles.navHeading}>For agents</p>
             <a
               href="https://github.com/lake-shore-church/lsc-platform/blob/main/AGENTS.md"

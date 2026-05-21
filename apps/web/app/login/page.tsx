@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { LoginForm } from "@/components/auth/LoginForm";
 import { Container } from "@/components/ui/Container";
 
@@ -42,9 +43,9 @@ export default async function LoginPage({
         <LoginForm redirectTo={params.redirect ?? "/member/dashboard"} />
         <p className="mt-8 text-sm text-foreground-muted">
           Church members and staff receive access by email. If you need help,{" "}
-          <a href="/contact" className="link-hover text-brand-primary">
+          <Link href="/contact" className="link-hover text-brand-primary">
             contact us
-          </a>
+          </Link>
           .
         </p>
       </Container>

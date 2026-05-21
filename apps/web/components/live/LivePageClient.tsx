@@ -1,6 +1,6 @@
 "use client";
 
-import Link from "next/link";
+import { Link } from "@/i18n/navigation";
 import type { LiveStatusResponse, Sermon } from "@repo/cms";
 import { LiveCountdown } from "@repo/ui/web/LiveCountdown";
 import { PrayerForm } from "@/components/forms/PrayerForm";

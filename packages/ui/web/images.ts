@@ -1,2 +1,16 @@
-/** @deprecated Import from `@repo/media` instead */
-export { IMAGES, homeImages, type ImageKey } from "@repo/media";
+/**
+ * @deprecated Import from `@repo/media` instead (`homeImages`, `IMAGES`).
+ * This stub avoids pulling image modules into @repo/ui typecheck.
+ */
+export type ImageKey =
+  | "hero"
+  | "community"
+  | "worship"
+  | "bible"
+  | "serve"
+  | "prayer"
+  | "give"
+  | "connect"
+  | "smallGroup"
+  | "heroBase"
+  | "heroAccent";

@@ -7,7 +7,6 @@
     "./web/ThemeSwitcher": "./web/ThemeSwitcher.tsx",
     "./web/ThemeScript": "./web/ThemeScript.tsx",
     "./web/tokens/themes.css": "./web/tokens/themes.css",
-    "./web/images": "./web/images.ts",
     "./web/FacebookFeed": "./web/FacebookFeed.tsx",
     "./web/LanguageSwitcher": "./web/LanguageSwitcher.tsx",
     "./web/LiveCountdown": "./web/LiveCountdown.tsx"
@@ -27,7 +26,6 @@
     "typescript": "5.9.2"
   },
   "dependencies": {
-    "@repo/media": "workspace:*",
     "@radix-ui/react-popover": "^1.1.14",
     "clsx": "^2.1.1",
     "react": "^19.2.0",

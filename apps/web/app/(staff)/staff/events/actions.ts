@@ -1,11 +1,7 @@
 "use server";
 
 import { revalidatePath } from "next/cache";
-import {
-  createEvent,
-  updateEvent,
-  deleteEvent,
-} from "@repo/db";
+import { createEvent, deleteEvent } from "@repo/db";
 import { requireStaffPortal } from "@/lib/auth/session";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 

@@ -11,6 +11,8 @@ Use this checklist when configuring church credentials. **Never commit real keys
 | Auth, prayers, RSVP, profile | **Supabase** in the app (`EXPO_PUBLIC_SUPABASE_*`) |
 | Styling | **NativeWind** + shared tokens in `packages/config/tailwind.config.js` |
 | Languages | **8 locales:** en, es, zh, ja, ta, tl, hi, fr (not Nagamese) |
+| Livestream | **`/api/live-status`** — Sermons → **Live** tab; home live banner |
+| Presenter (staff) | **`/presenter`** — see [PRESENTER_MODE.md](./PRESENTER_MODE.md) (requires Supabase SQL) |
 
 We do **not** bundle Sanity GROQ in the app yet — fewer secrets on device, one API surface.
 

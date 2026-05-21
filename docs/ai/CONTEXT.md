@@ -10,11 +10,11 @@
 |-------|-------|
 | **Last updated** | 2026-05-21 |
 | **Active branch** | `main` |
-| **Current phase** | Phase 2 — polish & production hardening |
-| **Just completed** | [PR #2](https://github.com/lake-shore-church/lsc-platform/pull/2) mobile auth + MOBILE_SETUP; docs sync |
-| **Next up** | Pastor credentials (MOBILE_SETUP), EAS init, R2, Zeffy |
+| **Current phase** | Phase 2 — production polish |
+| **Just completed** | Livestream system; Pastor Brian site copy (all locales); presenter mode merged to `main`; `@repo/ui` typecheck fix |
+| **Next up** | Supabase `presentation_state` SQL + Realtime; Sanity Site Config refresh; OneSignal optional |
 | **Blocked** | None |
-| **PRs** | [#1](https://github.com/lake-shore-church/lsc-platform/pull/1), [#2](https://github.com/lake-shore-church/lsc-platform/pull/2) merged — work on `main` |
+| **PRs** | Work lands on `main`; open PR only when large feature needs review |
 
 ---
 
@@ -23,16 +23,25 @@
 - **Name:** lsc-platform (Lake Shore Church West Loop, Chicago)
 - **Repo:** https://github.com/lake-shore-church/lsc-platform
 - **Workspace:** `/Users/usha/Documents/LSAG Church/lsc-platform`
-- **Blueprint:** `.cursorrules` + parent folder HTML/PDF blueprint
+- **Production web:** https://lsc-platform-kappa.vercel.app
 
 ## Read order
 
 1. [ai-agent-preflight.md](../specs/ai-agent-preflight.md)
-2. This file (session snapshot)
+2. This file
 3. [PROJECT_STATUS.md](../PROJECT_STATUS.md)
 4. [.cursorrules](../../.cursorrules)
 
 Entry point: [AGENTS.md](../../AGENTS.md).
+
+## Key docs (current features)
+
+| Topic | Doc |
+|-------|-----|
+| Livestream | [LIVESTREAM_SETUP.md](../LIVESTREAM_SETUP.md) |
+| Presenter / projector | [PRESENTER_MODE.md](../PRESENTER_MODE.md) |
+| Mobile + auth | [MOBILE_SETUP.md](../MOBILE_SETUP.md), [AUTH_TROUBLESHOOTING.md](../AUTH_TROUBLESHOOTING.md) |
+| Changelog | [CHANGELOG.md](../CHANGELOG.md) |
 
 ## Services (names only — no secrets)
 
@@ -40,22 +49,16 @@ Entry point: [AGENTS.md](../../AGENTS.md).
 |---------|-----------|
 | Supabase | `zstnygokvxrrszvkfejs` |
 | Sanity | `7hl877lg` / `production` |
-| Secrets file | `apps/web/.env.local` (gitignored) |
+| Secrets | `apps/web/.env.local`, `apps/mobile/.env` (gitignored) |
 
 ## Package conventions
 
 - DB: `packages/db` only
-- CMS: `packages/cms`
-- Mobile CMS data: `/api/mobile/*` (not direct Sanity in app)
-- UI: `packages/ui/web` + `native`
-- Web: RSC + `@repo/db`
-- Media: Cloudflare R2 only
+- CMS: `packages/cms` (livestream helpers in `lib/livestream.ts`)
+- Mobile data: `/api/mobile/*` and `/api/live-status`
+- Images: `@repo/media` (`packages/media/images/home/`)
+- Web: RSC + `@repo/db`; public pages under `app/[locale]/(public)/`
 
 ## Documentation workflow
 
-[UPDATE-WORKFLOW.md](./UPDATE-WORKFLOW.md) · Rule: `.cursor/rules/project-documentation.mdc`
-
-## Living status
-
-- Git: `docs/*.md`
-- Web: http://localhost:3000/platform
+[UPDATE-WORKFLOW.md](./UPDATE-WORKFLOW.md)

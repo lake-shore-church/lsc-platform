@@ -6,16 +6,24 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ## [Unreleased] — main
 
-### Changed
+_Nothing pending._
 
-- **Church voice (lschurch.com)** — Resurrection-centred hero (H1/H2/body/CTA), Pastor Brian's distinctives on About and Beliefs, exact Sunday service copy on Visit and nav strip, mobile quote card; removed "Authentic Christianity Together" site-wide; CMS `siteConfig` fields `heroCtaText`, `distinctives`, `serviceInvitation`; all 8 locales updated.
+---
+
+## 2026-05-21 — Livestream, church voice, presenter mode
 
 ### Added
 
-- **Presenter Mode (mobile)** — `/presenter` landscape slide controller for staff/admin: swipe + volume buttons, haptics, thumbnail strip, YouTube fullscreen, Supabase Realtime sync; `presentation_state` migration; Sanity sermon `slides`; web `PresentationSync` on sermon pages for online viewers.
-- **Livestream system** — Sanity `isLiveNow` / `liveVideoId` site config; `GET /api/live-status` (60s cache); staff **Go live** / **End stream** on `/staff/sermons`; redesigned `/live` (player, chat, prayer, countdown, multi-platform cards); site-wide live banner + nav badge; mobile **Sermons → Live** tab + home live banner; optional OneSignal on go-live; `docs/LIVESTREAM_SETUP.md`.
+- **Presenter mode** — Mobile `/presenter` (staff/admin): landscape slides, swipe + volume navigation, haptics, thumbnails, YouTube modal; `presentation_state` + Realtime; web `PresentationSync`; `docs/PRESENTER_MODE.md`.
+- **Livestream** — Sanity live toggle, `/api/live-status`, staff go-live, `/live` page, nav badge, mobile Live tab; `docs/LIVESTREAM_SETUP.md`.
 
 ### Changed
+
+- **Church voice (lschurch.com)** — Resurrection hero, distinctives, exact Sunday service copy; removed "Authentic Christianity Together"; all 8 locales; mobile quote card.
+- **`@repo/ui`** — Fix typecheck (decouple from `@repo/media` image imports).
+- **Docs** — PROJECT_STATUS, CONTEXT, ROADMAP, README synced; `feature/presenter-mode` merged to `main`.
+
+### Changed (earlier 2026-05-21)
 
 - **Repo hygiene** — [PR #1](https://github.com/lake-shore-church/lsc-platform/pull/1) and [PR #2](https://github.com/lake-shore-church/lsc-platform/pull/2) merged; remote has only `main`.
 - **Documentation audit** — ROADMAP, PROJECT_STATUS, TECH-TEAM-GUIDE, specs synced with `main`.

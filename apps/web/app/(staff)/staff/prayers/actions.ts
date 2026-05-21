@@ -6,7 +6,7 @@ import { requireStaffPortal } from "@/lib/auth/session";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export async function updatePrayerStatus(formData: FormData) {
-  const session = await requireStaffPortal();
+  await requireStaffPortal();
   const supabase = await createSupabaseServerClient();
 
   const id = formData.get("id");

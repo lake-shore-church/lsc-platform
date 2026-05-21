@@ -30,18 +30,21 @@ Phases align with `.cursorrules` and the Lake Shore Church build blueprint.
 | Item | Status |
 |------|--------|
 | 8-locale i18n (en, es, zh, ja, ta, tl, hi, fr) | ✅ |
+| Pastor Brian site copy (lschurch.com voice, all locales) | ✅ |
 | Full beliefs + dedication pages | ✅ |
 | Staff translation dashboard | ✅ |
-| Mobile: 5 tabs + API data | ✅ |
+| Mobile: 5 tabs + Live/Archive sermons + API data | ✅ |
 | Mobile: Supabase auth + `lschurch://` deep link | ✅ |
-| Mobile: NativeWind + `packages/config` tokens | ✅ |
+| Livestream (Sanity toggle, `/live`, staff go-live) | ✅ |
+| Presenter mode (mobile slides + web Realtime sync) | ✅ (Supabase SQL required) |
+| Shared `@repo/media` homepage images | ✅ |
 | `docs/MOBILE_SETUP.md` + `eas.json` | ✅ |
 | Cloudflare R2 media | ⏳ |
 | Zeffy live URL in Sanity | ⏳ |
 | Resend production email | ⏳ |
 | EAS project ID + TestFlight | ⏳ |
 | Mobile: expo-av player + offline download | ⏳ |
-| OneSignal push | ⏳ |
+| OneSignal push (go-live) | ⏳ env keys |
 | Whisper transcription | ⏳ |
 
 ---

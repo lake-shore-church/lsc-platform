@@ -1,17 +1,23 @@
 # LSC Platform — Project Status
 
-**Last updated:** 2026-05-21  
-**Active branch:** `main` (only branch)  
+**Last updated:** 2026-05-21 (end of day)  
+**Active branch:** `main` (single branch; feature branches merged and deleted)  
 **Repository:** https://github.com/lake-shore-church/lsc-platform  
-**Merged PRs:** [#1](https://github.com/lake-shore-church/lsc-platform/pull/1) (platform scaffold), [#2](https://github.com/lake-shore-church/lsc-platform/pull/2) (mobile native foundation)
+**Production (web):** https://lsc-platform-kappa.vercel.app  
 
 ---
 
 ## Summary
 
-Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, es, zh, ja, ta, tl, hi, fr), member/staff portals, Expo mobile app, Supabase, Sanity CMS. **Web:** full [lschurch.com/beliefs](https://lschurch.com/beliefs), `/dedication` (Holy Spirit as Director of Technology + salvation prayer), stable language switching. **Mobile:** five tabs, web API data, Supabase magic-link auth (`lschurch://`). See **[MOBILE_SETUP.md](./MOBILE_SETUP.md)** for pastor meeting credentials.
+Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, es, zh, ja, ta, tl, hi, fr), member/staff portals, Expo mobile app, Supabase, Sanity CMS.
 
-**Next:** Vercel production env, Supabase mobile redirect URLs, EAS `eas init`, R2 + Zeffy, translate beliefs/dedication per locale.
+**Voice & content:** Pastor Brian’s words from [lschurch.com](https://lschurch.com/) — resurrection-centred hero, distinctives on About/Beliefs, exact Sunday service copy (`Begins at 10 A.M.`, Merit School of Music). No “Authentic Christianity Together” on the site.
+
+**Livestream:** Manual Sanity toggle + staff **Go live** on `/staff/sermons`; `/live` page; mobile **Sermons → Live** tab; site-wide live banner. See [LIVESTREAM_SETUP.md](./LIVESTREAM_SETUP.md).
+
+**Presenter mode:** Staff/admin mobile `/presenter` — slide control + Realtime sync for web viewers. Requires Supabase migration — see [PRESENTER_MODE.md](./PRESENTER_MODE.md).
+
+**Mobile:** Five tabs, shared API, Supabase magic-link auth. See [MOBILE_SETUP.md](./MOBILE_SETUP.md).
 
 ---
 
@@ -19,13 +25,15 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 
 | Service | Status | Notes |
 |---------|--------|-------|
-| GitHub | ✅ | `lake-shore-church/lsc-platform`; only `main` branch |
-| Supabase | ✅ | `zstnygokvxrrszvkfejs`; migration applied |
-| Sanity | ✅ | `7hl877lg` / `production` |
-| Vercel (web) | 🟡 | Deploy from `main`; see TECH-TEAM-GUIDE |
-| EAS (mobile) | 🟡 | `eas.json` ready; run `eas init` for project ID |
-| Cloudflare R2 | ⏳ | Keys not in `.env.local` |
-| Resend / OpenAI / OneSignal | ⏳ | Phase 2+ |
+| GitHub | ✅ | `lake-shore-church/lsc-platform`; `main` only |
+| Supabase | ✅ | `zstnygokvxrrszvkfejs`; core migration applied |
+| Supabase `presentation_state` | 🟡 | Run `supabase/migrations/20260521_presentation_state.sql` + Realtime |
+| Sanity | ✅ | `7hl877lg` / `production`; refresh Site Config for new hero fields |
+| Vercel (web) | ✅ | Auto-deploy from `main` |
+| EAS (mobile) | 🟡 | `eas.json` ready; `eas init` for store builds |
+| Cloudflare R2 | ⏳ | Phase 2 — audio hosting |
+| OneSignal | ⏳ | Optional; env keys for go-live push |
+| Resend / OpenAI | ⏳ | Phase 2 |
 
 ---
 
@@ -33,25 +41,26 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 
 | Path | Status | Description |
 |------|--------|-------------|
-| `apps/web` | ✅ | Next.js 16; localized public site; member/staff portals; Studio; APIs |
-| `apps/mobile` | 🟡 | Expo 54; 5 tabs; auth; NativeWind wired; API + Supabase |
-| `packages/db` | ✅ | Typed Supabase client + queries |
-| `packages/cms` | ✅ | Sanity schemas, seed, GROQ |
-| `packages/config` | ✅ | Shared `tailwind.config.js` (web + mobile) |
-| `packages/ui` | 🟡 | Web components; mobile uses local `components/ui` |
-| `docs/` + `AGENTS.md` | ✅ | Living docs + MOBILE_SETUP |
+| `apps/web` | ✅ | Next.js 16; localized site; livestream; presenter web sync |
+| `apps/mobile` | ✅ | Expo 54; Live/Archive sermons; presenter mode; live banner |
+| `packages/db` | ✅ | Supabase types + queries (`presentation_state` typed) |
+| `packages/cms` | ✅ | Sanity schemas, livestream + sermon slides |
+| `packages/media` | ✅ | Shared homepage images (web + mobile) |
+| `packages/ui` | ✅ | Web components (`LiveCountdown`, themes, etc.) |
+| `docs/` | ✅ | Living docs — see [README.md](./README.md) |
 
 ---
 
-## Next.js routes (high level)
+## Web features (high level)
 
 | Area | Status |
 |------|--------|
-| `[locale]/(public)/` — all main pages + dedication | ✅ |
-| `/member/*`, `/staff/*`, `/login`, `/studio` | ✅ |
-| `/api/mobile/*`, `/api/prayers`, `/api/translate*` | ✅ |
-| `/podcast.xml` | ✅ |
-| `/platform`, `/platform/tech` | ✅ |
+| Public pages (home, about, beliefs, visit, sermons, live, …) | ✅ |
+| 8-locale i18n + CMS hero (English) | ✅ |
+| Member / staff portals, Studio, APIs | ✅ |
+| Livestream (`/live`, `/api/live-status`, staff go-live) | ✅ |
+| Presenter sync on sermon detail pages | ✅ (after Supabase migration) |
+| `/podcast.xml`, `/dedication`, `/platform` | ✅ |
 
 ---
 
@@ -59,28 +68,42 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 
 | Feature | Status |
 |---------|--------|
-| Home, Sermons, Give, Prayer, More tabs | ✅ styled UI, shared components, sermon images via API |
-| Sermon detail (WebView) | ✅ |
-| Language picker (8 locales) | ✅ |
-| Magic-link auth + profile on More | ✅ [MOBILE_SETUP.md](./MOBILE_SETUP.md) |
-| Brand tokens + shared components (`SermonCard`, `EventCard`) | ✅ StyleSheet + `constants/tokens` |
-| Offline audio / push notifications | ⏳ Phase 2 |
+| Home (quote card, live banner, latest sermon) | ✅ |
+| Sermons — **Live** + **Archive** tabs | ✅ |
+| Give (web), Prayer, More | ✅ |
+| Presenter Mode (staff/admin) | ✅ |
+| Magic-link auth | ✅ [AUTH_TROUBLESHOOTING.md](./AUTH_TROUBLESHOOTING.md) |
+| Push notifications (go-live) | ⏳ OneSignal keys |
 
 ---
 
-## Git
+## Git hygiene
 
-| Branch | Notes |
-|--------|-------|
-| `main` | Single branch; feature branches deleted after merge |
+| Item | Status |
+|------|--------|
+| `main` up to date with production features | ✅ |
+| `feature/presenter-mode` merged | ✅ |
+| Working tree clean | ✅ (after final doc commit) |
 
 ---
 
-## Immediate next steps
+## Immediate next steps (pastor / ops)
 
-1. **Pastor meeting** — follow [MOBILE_SETUP.md](./MOBILE_SETUP.md) (env + Supabase redirects)
-2. **Vercel** — production deploy from `main`
-3. **`pnpm promote:member <email> member|staff`** after first sign-in
-4. **EAS** — `cd apps/mobile && npx eas init`
-5. **R2 + Zeffy** — live giving embed
-6. **Translate** beliefs + dedication for non-English locales
+1. **Sanity Studio** — Site Config: confirm hero copy + `Begins at 10 A.M.` (or `pnpm seed:site-config` with token).
+2. **Supabase** — Run presenter migration SQL; enable Realtime on `presentation_state`.
+3. **Supabase Auth** — Redirect URLs for mobile (`lschurch://`); see [MOBILE_SETUP.md](./MOBILE_SETUP.md).
+4. **Test livestream** — Staff `/staff/sermons` → Go live with test YouTube ID; check `/live` + mobile Live tab.
+5. **EAS** — `cd apps/mobile && npx eas init` when ready for TestFlight.
+
+---
+
+## Verification
+
+```bash
+pnpm install
+pnpm --filter web check-types
+pnpm --filter mobile check-types
+pnpm run verify   # full monorepo lint + typecheck
+```
+
+Local web: `pnpm --filter web dev` → http://localhost:3000

@@ -1,6 +1,6 @@
 "use client";
 
-import { useLocale, useTranslations } from "next-intl";
+import { useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useMemo, useState } from "react";
 import { LiveNavLink } from "@/components/live/LiveNavLink";
@@ -14,7 +14,6 @@ export function PublicNav({
   churchName: string;
   serviceTimesLine: string;
 }) {
-  const locale = useLocale();
   const t = useTranslations("nav");
   const [mobileOpen, setMobileOpen] = useState(false);
   const { status: liveStatus } = useLiveStatus();
@@ -59,7 +58,7 @@ export function PublicNav({
         { href: "/contact", label: t("contact") },
       ],
     },
-  ], [t, locale]);
+  ], [t]);
 
   return (
     <>
