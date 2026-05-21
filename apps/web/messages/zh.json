@@ -19,7 +19,9 @@
     "about_us": "关于我们",
     "pastor": "Brian 牧师",
     "contact": "联系",
-    "service_times": "每周日 {time} · 芝加哥 West Loop"
+    "service_times": "每周日 {time} · 芝加哥 West Loop",
+    "menu": "菜单",
+    "close": "关闭"
   },
   "home": {
     "hero_h1": "神使耶稣从死里复活。",

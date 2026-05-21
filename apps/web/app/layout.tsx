@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
-import { NextIntlClientProvider } from "next-intl";
-import { getLocale, getMessages } from "next-intl/server";
+import { getLocale } from "next-intl/server";
 import { getSiteConfig, buildChurchJsonLd, type ThemeId } from "@repo/cms";
 import { ThemeScript } from "@repo/ui/web/ThemeScript";
 import { ThemeSwitcher } from "@repo/ui/web/ThemeSwitcher";
@@ -54,7 +53,6 @@ export default async function RootLayout({
   children: React.ReactNode;
 }>) {
   const locale = (await getLocale()) as AppLocale;
-  const messages = await getMessages();
   const config = await getSiteConfig();
   const cmsTheme = resolveCmsTheme(config.activeTheme);
   const churchJsonLd = buildChurchJsonLd(config, SITE_URL);
@@ -73,9 +71,7 @@ export default async function RootLayout({
         <JsonLd data={churchJsonLd} />
       </head>
       <body>
-        <NextIntlClientProvider locale={locale} messages={messages}>
-          {children}
-        </NextIntlClientProvider>
+        {children}
         <ThemeSwitcher cmsDefaultTheme={cmsTheme} />
       </body>
     </html>

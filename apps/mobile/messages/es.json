@@ -19,7 +19,9 @@
     "about_us": "Quiénes somos",
     "pastor": "Pastor Brian",
     "contact": "Contacto",
-    "service_times": "Domingos {time} · West Loop, Chicago"
+    "service_times": "Domingos {time} · West Loop, Chicago",
+    "menu": "Menú",
+    "close": "Cerrar"
   },
   "home": {
     "hero_h1": "Dios resucitó a Jesús de entre los muertos.",

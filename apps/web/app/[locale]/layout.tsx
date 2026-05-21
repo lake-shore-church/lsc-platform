@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
+import { NextIntlClientProvider } from "next-intl";
 import { hasLocale } from "next-intl";
-import { setRequestLocale } from "next-intl/server";
+import { getMessages, setRequestLocale } from "next-intl/server";
 import { routing } from "@/i18n/routing";
 
 export function generateStaticParams() {
@@ -20,5 +21,11 @@ export default async function LocaleLayout({
   }
 
   setRequestLocale(locale);
-  return children;
+  const messages = await getMessages();
+
+  return (
+    <NextIntlClientProvider key={locale} locale={locale} messages={messages}>
+      {children}
+    </NextIntlClientProvider>
+  );
 }

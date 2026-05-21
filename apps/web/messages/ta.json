@@ -19,7 +19,9 @@
     "about_us": "எங்களைப் பற்றி",
     "pastor": "பாஸ்டர் பிரையன்",
     "contact": "தொடர்பு",
-    "service_times": "ஞாயிறு {time} · சிகாகோ West Loop"
+    "service_times": "ஞாயிறு {time} · சிகாகோ West Loop",
+    "menu": "மெனு",
+    "close": "மூடு"
   },
   "home": {
     "hero_h1": "தேவன் இயேசுவை மரித்தோரிலிருந்து உயிர்ப்பித்தார்.",

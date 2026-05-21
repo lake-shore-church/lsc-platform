@@ -26,6 +26,7 @@ export function LocaleLanguageSwitcher({ className }: { className?: string }) {
       onSelect={(code) => {
         localStorage.setItem(STORAGE_KEY, code);
         router.replace(pathname, { locale: code as AppLocale });
+        router.refresh();
       }}
     />
   );

@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { getTranslations } from "next-intl/server";
+import { getLocale, getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 
@@ -16,6 +16,8 @@ export async function HeroSection({
   heroBody?: string;
 }) {
   const t = await getTranslations("home");
+  const locale = await getLocale();
+  const useCmsHero = locale === "en";
 
   return (
     <section className="relative flex min-h-[100svh] items-center">
@@ -30,13 +32,13 @@ export async function HeroSection({
       <div className="absolute inset-0 bg-black/60" aria-hidden />
       <Container className="relative z-10 py-20 text-center">
         <h1 className="font-display text-h1 text-balance leading-heading text-white">
-          {tagline ?? t("hero_h1")}
+          {useCmsHero && tagline ? tagline : t("hero_h1")}
         </h1>
         <h2 className="mx-auto mt-5 max-w-2xl font-display text-h2 font-normal leading-snug text-white/90">
-          {subTagline ?? t("hero_h2")}
+          {useCmsHero && subTagline ? subTagline : t("hero_h2")}
         </h2>
         <p className="mt-4 text-lg font-semibold text-white/85">
-          {heroBody ?? t("tagline")}
+          {useCmsHero && heroBody ? heroBody : t("tagline")}
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link

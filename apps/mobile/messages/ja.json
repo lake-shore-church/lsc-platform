@@ -19,7 +19,9 @@
     "about_us": "教会について",
     "pastor": "ブライアン牧師",
     "contact": "お問い合わせ",
-    "service_times": "日曜 {time} · シカゴ・ウェストループ"
+    "service_times": "日曜 {time} · シカゴ・ウェストループ",
+    "menu": "メニュー",
+    "close": "閉じる"
   },
   "home": {
     "hero_h1": "神はイエスを死者の中から復活させられました。",

@@ -1,8 +1,8 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 
 export function PublicNav({
   churchName,
@@ -11,10 +11,11 @@ export function PublicNav({
   churchName: string;
   serviceTimesLine: string;
 }) {
+  const locale = useLocale();
   const t = useTranslations("nav");
   const [mobileOpen, setMobileOpen] = useState(false);
 
-  const NAV_GROUPS = [
+  const NAV_GROUPS = useMemo(() => [
     {
       label: t("watch"),
       links: [
@@ -54,7 +55,7 @@ export function PublicNav({
         { href: "/contact", label: t("contact") },
       ],
     },
-  ] as const;
+  ], [t, locale]);
 
   return (
     <>
@@ -107,7 +108,7 @@ export function PublicNav({
             aria-controls="mobile-nav"
             onClick={() => setMobileOpen((o) => !o)}
           >
-            {mobileOpen ? "Close" : "Menu"}
+            {mobileOpen ? t("close") : t("menu")}
           </button>
         </div>
       </div>
@@ -129,7 +130,7 @@ export function PublicNav({
               className="min-h-[44px] rounded-md border border-default px-4 text-base font-semibold"
               onClick={() => setMobileOpen(false)}
             >
-              Close
+              {t("close")}
             </button>
           </div>
           <nav className="flex-1 overflow-y-auto bg-background px-4 py-6" aria-label="Mobile">

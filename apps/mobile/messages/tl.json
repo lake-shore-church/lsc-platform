@@ -19,7 +19,9 @@
     "about_us": "Tungkol sa Amin",
     "pastor": "Pastor Brian",
     "contact": "Makipag-ugnayan",
-    "service_times": "Linggo {time} · West Loop Chicago"
+    "service_times": "Linggo {time} · West Loop Chicago",
+    "menu": "Menu",
+    "close": "Isara"
   },
   "home": {
     "hero_h1": "Binuhay ng Diyos si Jesus mula sa mga patay.",

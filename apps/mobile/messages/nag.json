@@ -19,7 +19,9 @@
     "about_us": "About Us",
     "pastor": "Pastor Brian",
     "contact": "Contact",
-    "service_times": "Sundays {time} · West Loop Chicago"
+    "service_times": "Sundays {time} · West Loop Chicago",
+    "menu": "Menu",
+    "close": "Close"
   },
   "home": {
     "hero_h1": "God raised Jesus from the dead.",
