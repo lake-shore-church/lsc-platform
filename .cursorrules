@@ -54,7 +54,7 @@ lsc-platform/
 - public: anonymous, no login — can read published content, submit public prayers, RSVP
 - member: magic link login — own giving history, private prayers, member resources
 - staff: church team — all prayers, events admin, sermon upload, financial dashboard
-- admin: Director of Technology (you) — full access, role management, Supabase Studio
+- admin: Technology administrator (human steward) — operational access under the conviction that the Holy Spirit is Director of Technology; full access, role management, Supabase Studio. See docs/ai/THEOLOGY-OF-TECH.md and public /dedication page.
 
 ## Database tables (14 total)
 profiles, sermons, sermon_series, prayer_requests, events, rsvps,

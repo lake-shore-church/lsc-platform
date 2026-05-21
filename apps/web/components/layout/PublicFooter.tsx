@@ -1,16 +1,8 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 
-const links = [
-  { href: "/visit", label: "Plan a visit" },
-  { href: "/sermons", label: "Sermons" },
-  { href: "/events", label: "Events" },
-  { href: "/prayer", label: "Prayer" },
-  { href: "/give", label: "Give" },
-  { href: "/contact", label: "Contact" },
-] as const;
-
-export function PublicFooter({
+export async function PublicFooter({
   churchName,
   address,
   phone,
@@ -19,6 +11,17 @@ export function PublicFooter({
   address?: string;
   phone?: string;
 }) {
+  const t = await getTranslations("footer");
+
+  const links = [
+    { href: "/visit" as const, label: t("link_visit") },
+    { href: "/sermons" as const, label: t("link_sermons") },
+    { href: "/events" as const, label: t("link_events") },
+    { href: "/prayer" as const, label: t("link_prayer") },
+    { href: "/give" as const, label: t("link_give") },
+    { href: "/contact" as const, label: t("link_contact") },
+  ];
+
   return (
     <footer className="mt-auto border-t border-default bg-surface py-10">
       <Container className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
@@ -53,21 +56,26 @@ export function PublicFooter({
         </nav>
       </Container>
       <Container className="mt-8 flex flex-col items-center gap-2 border-t border-default pt-6 text-center text-base text-foreground-muted sm:flex-row sm:justify-center sm:gap-4">
-        <p>© {new Date().getFullYear()} {churchName}</p>
+        <p>
+          © {new Date().getFullYear()} {churchName}
+        </p>
         <span className="hidden text-foreground-muted sm:inline" aria-hidden>
           ·
         </span>
-        <Link href="/login" className="link-hover text-sm text-foreground-muted">
-          Sign in
+        <Link href="/dedication" className="link-hover text-sm text-foreground-muted">
+          {t("dedication")}
         </Link>
         <span className="hidden text-foreground-muted sm:inline" aria-hidden>
           ·
         </span>
-        <Link
-          href="/platform/tech"
-          className="link-hover text-sm text-foreground-muted"
-        >
-          Tech team guide
+        <Link href="/login" className="link-hover text-sm text-foreground-muted">
+          {t("sign_in")}
+        </Link>
+        <span className="hidden text-foreground-muted sm:inline" aria-hidden>
+          ·
+        </span>
+        <Link href="/platform/tech" className="link-hover text-sm text-foreground-muted">
+          {t("tech_guide")}
         </Link>
       </Container>
     </footer>

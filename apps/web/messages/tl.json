@@ -128,7 +128,16 @@
   },
   "footer": {
     "rights": "Lahat ng karapatan ay nakalaan.",
-    "denomination": "Assemblies of God"
+    "denomination": "Assemblies of God",
+    "dedication": "Dedication",
+    "link_visit": "Plan a visit",
+    "link_sermons": "Sermons",
+    "link_events": "Events",
+    "link_prayer": "Prayer",
+    "link_give": "Give",
+    "link_contact": "Contact",
+    "sign_in": "Sign in",
+    "tech_guide": "Tech team guide"
   },
   "language": {
     "choose": "Wika",
@@ -211,5 +220,24 @@
     "page_desc": "Mga dokumento.",
     "meta_desc": "Resources.",
     "public": "Pampubliko"
+  },
+  "dedication": {
+    "page_title": "Dedication",
+    "page_desc": "This platform is offered to the glory of God.",
+    "meta_desc": "Dedication of the Lake Shore Church digital platform to Jesus Christ, under the direction of the Holy Spirit.",
+    "to_jesus_title": "To Jesus Christ",
+    "opening": "This website and mobile application are dedicated to the Lord Jesus Christ — to make His gospel known, to serve His church in Chicago's West Loop, and to welcome every nation and tongue. Whatever is true, honorable, and built with excellence here is for Him; whatever falls short is ours to repent of and improve.",
+    "holy_spirit_heading": "The Holy Spirit: Director of Technology",
+    "holy_spirit_body": "Lake Shore Church affirms that the living God — Father, Son, and Holy Spirit — is sovereign over all creation, including every digital system we steward. In a deliberate and professional sense, we name the Holy Spirit as Director of Technology: God Himself guiding wisdom, conscience, security, accessibility, and purpose as we build tools for worship, discipleship, prayer, giving, and outreach. Software does not replace the preached Word, pastoral care, or the gathered congregation; technology serves at the Spirit's direction for the good of the body of Christ and the world He loves.",
+    "steward_heading": "Human technology stewardship",
+    "steward_body": "A designated technology steward maintains this platform operationally — accounts, deployments, databases, and member access — as a servant of the church, accountable to church leadership and to Christ. This role is administrative, not ultimate: the Holy Spirit remains Director; we are coworkers with God (1 Corinthians 3:9). Permissions labeled admin in our systems refer to this human stewardship, not to any claim that a person replaces God's authority.",
+    "built_heading": "Built for His church",
+    "built_body": "Sermons, events, prayer requests, multilingual pages, and member resources exist so that people may hear that God raised Jesus from the dead and that there is hope for all who follow Him. We pray this work strengthens Lake Shore Church and honors the Assemblies of God commitment to Scripture, the Spirit, and the Great Commission.",
+    "scripture_heading": "Scripture",
+    "scripture_1": "Unless the LORD builds the house, those who build it labor in vain. — Psalm 127:1",
+    "scripture_2": "Whatever you do, work heartily, as for the Lord and not for men. — Colossians 3:23",
+    "scripture_3": "And they were all filled with the Holy Spirit and spoke the word of God with boldness. — Acts 4:31",
+    "closing": "Soli Deo gloria — To God alone be the glory.",
+    "platform_note": "Lake Shore Church · West Loop · Chicago"
   }
 }

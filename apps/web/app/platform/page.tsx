@@ -53,6 +53,9 @@ export default async function PlatformStatusPage() {
             <a href="/platform/tech" className={styles.navLink}>
               Tech team guide
             </a>
+            <a href="/dedication" className={styles.navLink}>
+              Dedication (Holy Spirit, Director of Technology)
+            </a>
             <p className={styles.navHeading}>For agents</p>
             <a
               href="https://github.com/lake-shore-church/lsc-platform/blob/feat/platform-scaffold-db-mobile/AGENTS.md"

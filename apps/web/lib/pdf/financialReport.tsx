@@ -89,7 +89,9 @@ export function FinancialReportPdf({
         <Text style={styles.total}>
           Net balance: ${(incomeTotal - expenseTotal).toFixed(2)}
         </Text>
-        <Text style={styles.footer}>Prepared by Director of Technology</Text>
+        <Text style={styles.footer}>
+          Lake Shore Church · Holy Spirit, Director of Technology · Human technology steward
+        </Text>
       </Page>
     </Document>
   );
