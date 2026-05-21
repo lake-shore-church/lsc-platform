@@ -603,6 +603,43 @@ export interface Database {
           },
         ];
       };
+      presentation_state: {
+        Row: {
+          id: string;
+          sermon_id: string | null;
+          current_slide: number | null;
+          total_slides: number | null;
+          is_active: boolean | null;
+          updated_at: string | null;
+          updated_by: string | null;
+        };
+        Insert: {
+          id?: string;
+          sermon_id?: string | null;
+          current_slide?: number | null;
+          total_slides?: number | null;
+          is_active?: boolean | null;
+          updated_at?: string | null;
+          updated_by?: string | null;
+        };
+        Update: {
+          id?: string;
+          sermon_id?: string | null;
+          current_slide?: number | null;
+          total_slides?: number | null;
+          is_active?: boolean | null;
+          updated_at?: string | null;
+          updated_by?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "presentation_state_updated_by_fkey";
+            columns: ["updated_by"];
+            referencedRelation: "profiles";
+            referencedColumns: ["id"];
+          },
+        ];
+      };
       notification_prefs: {
         Row: {
           id: string;
@@ -693,6 +730,7 @@ export type SmallGroup = Tables<"small_groups">;
 export type GivingRecord = Tables<"giving_records">;
 export type Expense = Tables<"expenses">;
 export type NotificationPrefs = Tables<"notification_prefs">;
+export type PresentationState = Tables<"presentation_state">;
 
 export type SermonWithSeries = Sermon & {
   sermon_series: SermonSeries | null;

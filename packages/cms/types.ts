@@ -62,6 +62,7 @@ export type Sermon = {
   videoUrl?: string;
   audioUrl?: string;
   featuredImage?: SanityImage;
+  slides?: SanityImage[];
   series?: SermonSeries | null;
   pastor?: StaffBio | null;
   translations?: ContentTranslation[];

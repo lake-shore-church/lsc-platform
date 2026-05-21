@@ -21,6 +21,14 @@ export const sermonType = defineType({
     defineField({ name: "audioUrl", title: "Audio URL", type: "url" }),
     defineField({ name: "featuredImage", title: "Featured image", type: "image", options: { hotspot: true } }),
     defineField({
+      name: "slides",
+      title: "Presentation slides",
+      description:
+        "Images for Presenter Mode (projector). Order matches slide sequence.",
+      type: "array",
+      of: [defineArrayMember({ type: "image", options: { hotspot: true } })],
+    }),
+    defineField({
       name: "series",
       title: "Series",
       type: "reference",

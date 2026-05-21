@@ -23,6 +23,7 @@ export type {
   Member,
   MemberWithProfile,
   NotificationPrefs,
+  PresentationState,
   PrayerRequest,
   PrayerStatus,
   Profile,

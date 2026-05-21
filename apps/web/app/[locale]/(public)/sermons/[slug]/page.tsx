@@ -8,8 +8,10 @@ import {
 } from "@repo/cms";
 import { routing, type AppLocale } from "@/i18n/routing";
 import { Container } from "@/components/ui/Container";
+import { PresentationSync } from "@/components/sermons/PresentationSync";
 import { SermonPlayer } from "@/components/sermons/SermonPlayer";
 import { SermonCard } from "@/components/sermons/SermonCard";
+import { getSermonSlideUrls } from "@/lib/sermon-slides";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { formatDate, youtubeEmbedUrl } from "@/lib/format";
 import { localizeSermon } from "@/lib/i18n/sermon";
@@ -49,6 +51,7 @@ export default async function SermonDetailPage({ params }: Props) {
     ? await getSermonsBySeries(seriesSlug, { limit: 4 }).catch(() => [])
     : [];
 
+  const slideUrls = getSermonSlideUrls(sermon);
   const videoEmbed = youtubeEmbedUrl(sermon.videoUrl);
   const mediaBase = process.env.NEXT_PUBLIC_MEDIA_URL ?? "";
   const captionsUrl = mediaBase ? `${mediaBase}/captions/${slug}.vtt` : null;
@@ -66,6 +69,7 @@ export default async function SermonDetailPage({ params }: Props) {
   return (
     <>
       <JsonLd data={videoJsonLd} />
+      <PresentationSync sermonSlug={slug} slideUrls={slideUrls} />
       <Container className="py-10">
         <p className="text-sm text-foreground-muted">{formatDate(sermon.publishedAt)}</p>
         <h1 className="mt-2 text-3xl font-bold text-brand-primary sm:text-4xl">{view.title}</h1>
