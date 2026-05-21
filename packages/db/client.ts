@@ -52,8 +52,16 @@ export function getSupabase(): TypedSupabaseClient {
   return supabaseInstance;
 }
 
-/** Typed Supabase client singleton. */
-export const supabase = getSupabase();
+/** Lazy singleton for imports before env is loaded (e.g. `pnpm promote:member`). */
+export const supabase: TypedSupabaseClient = new Proxy({} as TypedSupabaseClient, {
+  get(_target, prop) {
+    const client = getSupabase();
+    const value = Reflect.get(client, prop, client);
+    return typeof value === "function"
+      ? (value as (...args: unknown[]) => unknown).bind(client)
+      : value;
+  },
+});
 
 /** Service-role client for trusted server routes only. */
 export function createSupabaseAdminClient(): TypedSupabaseClient {
