@@ -1,7 +1,7 @@
 import { defineRouting } from "next-intl/routing";
 
 /** Active locales — English has no URL prefix (localePrefix: as-needed). */
-export const locales = ["en", "es", "zh", "ja", "ta", "tl", "nag"] as const;
+export const locales = ["en", "es", "zh", "ja", "ta", "tl", "hi", "fr"] as const;
 export type AppLocale = (typeof locales)[number];
 
 /** Scaffolded for Phase 3 — not routed until content is ready. */
@@ -11,7 +11,9 @@ export const routing = defineRouting({
   locales: [...locales],
   defaultLocale: "en",
   localePrefix: "as-needed",
+  /** Prefer explicit user choice (cookie) over browser language alone. */
   localeDetection: true,
+  localeCookie: true,
 });
 
 export const localeLabels: Record<
@@ -24,12 +26,12 @@ export const localeLabels: Record<
   ja: { label: "日本語", flag: "🇯🇵", htmlLang: "ja" },
   ta: { label: "தமிழ்", flag: "🇮🇳", htmlLang: "ta" },
   tl: { label: "Filipino", flag: "🇵🇭", htmlLang: "tl" },
-  nag: { label: "Nagamese", flag: "🇮🇳", htmlLang: "en" },
+  hi: { label: "हिन्दी", flag: "🇮🇳", htmlLang: "hi" },
+  fr: { label: "Français", flag: "🇫🇷", htmlLang: "fr" },
 };
 
-/** CMS / DeepL locale codes (nag is manual-only). */
-/** DeepL-supported targets (Tagalog/Filipino is not on DeepL — use Studio/manual). */
-export const deeplLocales = new Set<AppLocale>(["es", "zh", "ja"]);
-export const googleTranslateLocales = new Set<AppLocale>(["ta", "tl"]);
-/** Human translation only — no AI API. */
-export const manualOnlyLocales = new Set<AppLocale>(["nag"]);
+/** DeepL-supported targets (Tagalog/Filipino uses Google). */
+export const deeplLocales = new Set<AppLocale>(["es", "zh", "ja", "fr"]);
+export const googleTranslateLocales = new Set<AppLocale>(["ta", "tl", "hi"]);
+/** No manual-only locales at this time. */
+export const manualOnlyLocales = new Set<AppLocale>();

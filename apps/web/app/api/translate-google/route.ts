@@ -20,7 +20,7 @@ export async function POST(request: Request) {
   const target = body.targetLanguage;
   if (!target || !googleTranslateLocales.has(target)) {
     return NextResponse.json(
-      { error: "Supported targetLanguage: ta, tl" },
+      { error: "Supported targetLanguage: ta, tl, hi" },
       { status: 400 },
     );
   }

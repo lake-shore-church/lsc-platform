@@ -1,34 +1,33 @@
 {
-  "_meta": "Nagaland (Nagamese) — requires human translator from the congregation. English shown as fallback until updated in Sanity or this file.",
   "nav": {
-    "watch": "Watch",
+    "watch": "Regarder",
     "sermons": "Sermons",
-    "live": "Live Stream",
+    "live": "Direct",
     "podcast": "Podcast",
-    "connect": "Connect",
-    "visit": "Plan a Visit",
-    "groups": "Small Groups",
-    "prayer": "Prayer",
-    "grow": "Grow",
+    "connect": "Se connecter",
+    "visit": "Planifier une visite",
+    "groups": "Petits groupes",
+    "prayer": "Prière",
+    "grow": "Grandir",
     "blog": "Blog",
-    "resources": "Resources",
-    "beliefs": "Beliefs",
-    "give": "Give",
-    "about_giving": "About Giving",
-    "about": "About",
-    "about_us": "About Us",
-    "pastor": "Pastor Brian",
+    "resources": "Ressources",
+    "beliefs": "Croyances",
+    "give": "Donner",
+    "about_giving": "À propos des dons",
+    "about": "À propos",
+    "about_us": "Qui sommes-nous",
+    "pastor": "Pasteur Brian",
     "contact": "Contact",
-    "service_times": "Sundays {time} · West Loop Chicago",
+    "service_times": "Dimanches {time} · West Loop, Chicago",
     "menu": "Menu",
-    "close": "Close"
+    "close": "Fermer"
   },
   "home": {
-    "hero_h1": "God raised Jesus from the dead.",
-    "hero_h2": "There is hope for all who follow him.",
-    "tagline": "Authentic Christianity Together",
-    "join_sunday": "Join Us Sunday",
-    "watch_sermon": "Watch a Sermon",
+    "hero_h1": "Dieu a ressuscité Jésus d'entre les morts.",
+    "hero_h2": "Il y a de l'espoir pour tous ceux qui le suivent.",
+    "tagline": "Le christianisme authentique ensemble",
+    "join_sunday": "Rejoignez-nous dimanche",
+    "watch_sermon": "Écouter un sermon",
     "where_we_meet": "Where We Meet",
     "service_time": "Service Time",
     "watch_online": "Watch Online",
@@ -36,7 +35,7 @@
     "every_sunday": "Every Sunday",
     "doors_open": "Doors open 9:30 AM",
     "get_directions": "Get directions →",
-    "plan_visit": "Plan a Visit",
+    "plan_visit": "Planifier votre visite →",
     "watch_now": "Watch now →",
     "request_prayer": "Request prayer →",
     "miss_service": "Miss a service?",
@@ -63,19 +62,19 @@
     "recent_devotionals": "Recent devotionals",
     "ready_next_step": "Ready to take your next step?",
     "join_this_sunday": "Join us this Sunday at 10:00 AM. Everyone is welcome.",
-    "contact_us": "Contact Us"
+    "contact_us": "Nous contacter"
   },
   "worship": {
-    "title": "Worship",
-    "body": "God planned your life for His glory and pleasure."
+    "title": "Adoration",
+    "body": "Dieu a planifié votre vie pour Sa gloire et Son plaisir."
   },
   "grow": {
-    "title": "Grow",
-    "body": "God created you to become a devoted disciple of Jesus Christ."
+    "title": "Grandir",
+    "body": "Dieu vous a créé pour devenir un disciple dévoué de Jésus-Christ."
   },
   "serve": {
-    "title": "Serve",
-    "body": "God gifted you to serve Him in His church and our city."
+    "title": "Servir",
+    "body": "Dieu vous a donné des dons pour Le servir dans Son Église et notre ville."
   },
   "give": {
     "title": "Give to Lake Shore Church",
@@ -131,30 +130,30 @@
     "denomination": "Assemblies of God"
   },
   "language": {
-    "choose": "Language",
-    "title_multilingual": "Language / 语言 / 言語 / மொழி / Wika / Nagamese"
+    "choose": "Langue",
+    "title_multilingual": "Langue / Language / 中文 / हिन्दी"
   },
   "about": {
-    "page_title": "About Lake Shore Church",
-    "page_desc": "Authentic Christianity Together",
-    "meta_desc": "Lake Shore Church in Chicago's West Loop. Meet Pastor Brian and our community.",
+    "page_title": "À propos de Lake Shore Church",
+    "page_desc": "Le christianisme authentique ensemble",
+    "meta_desc": "Lake Shore Church dans le West Loop de Chicago.",
     "intro_1": "Lake Shore Church is a community of believers meeting in Chicago's West Loop neighbourhood. We are an Assemblies of God church committed to scripture-based teaching, authentic worship, and genuine community.",
     "intro_2": "We meet every Sunday at 10:00 AM at Merit School of Music, 38 S. Peoria St, 2nd floor, room 210, Chicago IL 60607.",
     "intro_3": "Our pastor is Craig Brian Larson (Pastor Brian), a published author and expository Bible teacher who has served Lake Shore Church for many years.",
-    "pillars_heading": "Our pillars",
-    "pastor_heading": "Pastor Brian",
+    "pillars_heading": "Nos piliers",
+    "pastor_heading": "Pasteur Brian",
     "pastor_name": "Craig Brian Larson",
     "pastor_bio": "Pastor Brian is a scripture teacher, author, and pastor who brings clear expository preaching from God's Word every Sunday. He is the author of Know — Gaining Wisdom from God About Everything and has served the West Loop community for many years.",
-    "book_link": "Get the book on Amazon →"
+    "book_link": "Obtenir le livre sur Amazon →"
   },
   "beliefs": {
-    "page_title": "What We Believe",
-    "page_desc": "Find inerrant truth from Scripture in a world of confusion.",
+    "page_title": "Ce que nous croyons",
+    "page_desc": "La vérité inerrante des Écritures.",
     "meta_desc": "The statement of faith of Lake Shore Church West Loop.",
     "belief_1": "We believe the Bible is the inspired, inerrant Word of God — our ultimate authority for faith and life.",
     "belief_2": "We believe in one God — Father, Son, and Holy Spirit.",
     "belief_3": "We believe Jesus Christ is the Son of God, who died for our sins and rose bodily from the dead.",
-    "belief_4": "God raised Jesus from the dead. There is hope for all who follow him.",
+    "belief_4": "Dieu a ressuscité Jésus. Il y a de l'espoir pour tous ceux qui le suivent.",
     "belief_5": "We believe salvation is by grace alone, through faith alone, in Christ alone.",
     "belief_6": "We believe the church is called to make disciples of all nations, beginning in our own neighbourhood — the West Loop of Chicago.",
     "faq_1_q": "What does Lake Shore Church believe?",
@@ -172,29 +171,29 @@
     "email_sub": "Subscribe to new posts."
   },
   "events": {
-    "page_title": "Events",
+    "page_title": "Événements",
     "page_desc": "Connect, serve, and grow together.",
     "meta_desc": "Upcoming events and gatherings at Lake Shore Church.",
-    "list": "List",
-    "calendar": "Calendar",
-    "all_ministries": "All ministries",
+    "list": "Liste",
+    "calendar": "Calendrier",
+    "all_ministries": "Tous les ministères",
     "rsvp": "RSVP",
-    "add_calendar": "Add to calendar",
+    "add_calendar": "Ajouter au calendrier",
     "rsvp_title": "RSVP: {title}",
     "name": "Name",
     "email": "Email",
     "confirm": "Confirm",
     "cancel": "Cancel",
     "confirmed": "Confirmed!",
-    "no_events": "No upcoming events — check back soon."
+    "no_events": "Aucun événement à venir."
   },
   "contact": {
-    "page_title": "Contact us",
+    "page_title": "Contactez-nous",
     "page_desc": "We would love to hear from you.",
     "meta_desc": "Contact Lake Shore Church — West Loop, Chicago.",
-    "phone": "Phone:",
-    "email": "Email:",
-    "address": "Address:"
+    "phone": "Téléphone :",
+    "email": "E-mail :",
+    "address": "Adresse :"
   },
   "sermons": {
     "page_title": "Sermons",
@@ -202,14 +201,15 @@
     "meta_desc": "Watch and listen to sermons from Lake Shore Church.",
     "podcast_rss": "Subscribe via podcast RSS",
     "podcast_note": "(feed at /podcast.xml)",
-    "search": "Search sermons",
-    "all_series": "All series",
-    "all_speakers": "All speakers"
+    "search": "Rechercher",
+    "all_series": "Toutes les séries",
+    "all_speakers": "Tous les orateurs"
   },
   "resources": {
-    "page_title": "Resources",
+    "page_title": "Ressources",
     "page_desc": "Helpful documents for your journey.",
     "meta_desc": "Documents, guides, and resources from Lake Shore Church.",
     "public": "Public"
-  }
+  },
+  "_meta": "French (français). Keys match en.json."
 }

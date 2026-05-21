@@ -1,11 +1,10 @@
 "use client";
 
 import { useLocale } from "next-intl";
-import { usePathname, useRouter } from "@/i18n/navigation";
+import { getPathname, usePathname } from "@/i18n/navigation";
 import { LanguageSwitcher } from "@repo/ui/web/LanguageSwitcher";
 import { locales, localeLabels, type AppLocale } from "@/i18n/routing";
-
-const STORAGE_KEY = "lsc-lang";
+import { setLocalePreference } from "@/lib/i18n/locale-preference";
 
 const options = locales.map((code) => ({
   code,
@@ -16,7 +15,6 @@ const options = locales.map((code) => ({
 export function LocaleLanguageSwitcher({ className }: { className?: string }) {
   const locale = useLocale() as AppLocale;
   const pathname = usePathname();
-  const router = useRouter();
 
   return (
     <LanguageSwitcher
@@ -24,9 +22,10 @@ export function LocaleLanguageSwitcher({ className }: { className?: string }) {
       options={options}
       className={className}
       onSelect={(code) => {
-        localStorage.setItem(STORAGE_KEY, code);
-        router.replace(pathname, { locale: code as AppLocale });
-        router.refresh();
+        const next = code as AppLocale;
+        setLocalePreference(next);
+        const href = getPathname({ href: pathname, locale: next });
+        window.location.assign(href);
       }}
     />
   );

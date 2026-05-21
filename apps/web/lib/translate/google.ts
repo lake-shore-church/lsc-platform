@@ -3,6 +3,7 @@ import type { AppLocale } from "@/i18n/routing";
 const GOOGLE_TARGET: Partial<Record<AppLocale, string>> = {
   ta: "ta",
   tl: "tl",
+  hi: "hi",
 };
 
 export function googleTargetCode(locale: AppLocale): string | null {

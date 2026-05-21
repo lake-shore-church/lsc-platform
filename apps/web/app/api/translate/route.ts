@@ -6,6 +6,7 @@ const DEEPL_TARGET: Partial<Record<AppLocale, string>> = {
   es: "ES",
   zh: "ZH",
   ja: "JA",
+  fr: "FR",
 };
 
 export async function POST(request: Request) {

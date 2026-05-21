@@ -6,7 +6,8 @@ const LOCALE_OPTIONS = [
   { title: "日本語", value: "ja" },
   { title: "தமிழ்", value: "ta" },
   { title: "Filipino", value: "tl" },
-  { title: "Nagamese", value: "nag" },
+  { title: "हिन्दी", value: "hi" },
+  { title: "Français", value: "fr" },
 ];
 
 /** Reusable translation row for sermons and blog posts (volunteer review workflow). */

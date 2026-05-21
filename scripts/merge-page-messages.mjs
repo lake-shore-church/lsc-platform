@@ -310,10 +310,4 @@ for (const [locale, block] of Object.entries(blocks)) {
   fs.writeFileSync(file, JSON.stringify(data, null, 2) + "\n");
 }
 
-const nag = JSON.parse(fs.readFileSync(path.join(dir, "nag.json"), "utf8"));
-for (const k of ["about", "beliefs", "blog", "events", "contact", "sermons", "resources"]) {
-  nag[k] = en[k];
-}
-fs.writeFileSync(path.join(dir, "nag.json"), JSON.stringify(nag, null, 2) + "\n");
-
-console.log("Merged page messages into es, zh, ja, ta, tl, nag");
+console.log("Merged page messages into es, zh, ja, ta, tl");

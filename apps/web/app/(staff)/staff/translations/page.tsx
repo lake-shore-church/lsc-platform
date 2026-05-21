@@ -48,7 +48,7 @@ export default async function StaffTranslationsPage() {
       <h1 className="font-display text-h2 text-brand-primary">Translation dashboard</h1>
       <p className="mt-3 max-w-prose text-foreground-secondary">
         Review AI drafts (DeepL / Google) and publish volunteer-approved translations in Sanity
-        Studio. Nagamese is manual only.
+        Studio. Hindi uses Google Translate; French uses DeepL.
       </p>
       <p className="mt-4 text-sm font-semibold text-brand-accent">
         Translation coverage: {filled}/{totalCells} languages ({pct}%)

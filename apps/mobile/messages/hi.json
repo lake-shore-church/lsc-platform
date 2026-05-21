@@ -1,33 +1,33 @@
 {
   "nav": {
-    "watch": "Watch",
-    "sermons": "Sermons",
-    "live": "Live Stream",
-    "podcast": "Podcast",
-    "connect": "Connect",
-    "visit": "Plan a Visit",
-    "groups": "Small Groups",
-    "prayer": "Prayer",
-    "grow": "Grow",
-    "blog": "Blog",
-    "resources": "Resources",
-    "beliefs": "Beliefs",
-    "give": "Give",
-    "about_giving": "About Giving",
-    "about": "About",
-    "about_us": "About Us",
-    "pastor": "Pastor Brian",
-    "contact": "Contact",
-    "service_times": "Sundays {time} · West Loop Chicago",
-    "menu": "Menu",
-    "close": "Close"
+    "watch": "देखें",
+    "sermons": "उपदेश",
+    "live": "लाइव स्ट्रीम",
+    "podcast": "पॉडकास्ट",
+    "connect": "जुड़ें",
+    "visit": "आने की योजना बनाएं",
+    "groups": "छोटे समूह",
+    "prayer": "प्रार्थना",
+    "grow": "बढ़ें",
+    "blog": "ब्लॉग",
+    "resources": "संसाधन",
+    "beliefs": "विश्वास",
+    "give": "दान",
+    "about_giving": "दान के बारे में",
+    "about": "हमारे बारे में",
+    "about_us": "हम कौन हैं",
+    "pastor": "पास्टर ब्रायन",
+    "contact": "संपर्क",
+    "service_times": "रविवार {time} · वेस्ट लूप, शिकागो",
+    "menu": "मेनू",
+    "close": "बंद करें"
   },
   "home": {
-    "hero_h1": "God raised Jesus from the dead.",
-    "hero_h2": "There is hope for all who follow him.",
-    "tagline": "Authentic Christianity Together",
-    "join_sunday": "Join Us Sunday",
-    "watch_sermon": "Watch a Sermon",
+    "hero_h1": "परमेश्वर ने यीशु को मृतकों में से जिलाए।",
+    "hero_h2": "जो उसका अनुसरण करते हैं, उन सब के लिए आशा है।",
+    "tagline": "साथ मिलकर प्रामाणिक ईसाई जीवन",
+    "join_sunday": "रविवार को जुड़ें",
+    "watch_sermon": "उपदेश देखें",
     "where_we_meet": "Where We Meet",
     "service_time": "Service Time",
     "watch_online": "Watch Online",
@@ -35,7 +35,7 @@
     "every_sunday": "Every Sunday",
     "doors_open": "Doors open 9:30 AM",
     "get_directions": "Get directions →",
-    "plan_visit": "Plan your visit →",
+    "plan_visit": "अपनी यात्रा की योजना बनाएं →",
     "watch_now": "Watch now →",
     "request_prayer": "Request prayer →",
     "miss_service": "Miss a service?",
@@ -62,20 +62,19 @@
     "recent_devotionals": "Recent devotionals",
     "ready_next_step": "Ready to take your next step?",
     "join_this_sunday": "Join us this Sunday at 10:00 AM. Everyone is welcome.",
-    "plan_visit": "Plan a Visit",
-    "contact_us": "Contact Us"
+    "contact_us": "हमसे संपर्क करें"
   },
   "worship": {
-    "title": "Worship",
-    "body": "God planned your life for His glory and pleasure."
+    "title": "आराधना",
+    "body": "परमेश्वर ने आपके जीवन को अपनी महिमा और आनंद के लिए योजनाबद्ध किया।"
   },
   "grow": {
-    "title": "Grow",
-    "body": "God created you to become a devoted disciple of Jesus Christ."
+    "title": "बढ़ें",
+    "body": "परमेश्वर ने आपको यीशु मसीह का समर्पित शिष्य बनने के लिए बनाया।"
   },
   "serve": {
-    "title": "Serve",
-    "body": "God gifted you to serve Him in His church and our city."
+    "title": "सेवा",
+    "body": "परमेश्वर ने आपको अपनी कलीसिया और हमारे शहर में सेवा के लिए दान दिए।"
   },
   "give": {
     "title": "Give to Lake Shore Church",
@@ -131,30 +130,30 @@
     "denomination": "Assemblies of God"
   },
   "language": {
-    "choose": "Language",
-    "title_multilingual": "Language / 语言 / 言語 / மொழி / Wika / हिन्दी / Français"
+    "choose": "भाषा",
+    "title_multilingual": "भाषा / Language / 语言 / Français"
   },
   "about": {
-    "page_title": "About Lake Shore Church",
-    "page_desc": "Authentic Christianity Together",
-    "meta_desc": "Lake Shore Church in Chicago's West Loop. Meet Pastor Brian and our community.",
-    "intro_1": "Lake Shore Church is a community of believers meeting in Chicago's West Loop neighbourhood. We are an Assemblies of God church committed to scripture-based teaching, authentic worship, and genuine community.",
-    "intro_2": "We meet every Sunday at 10:00 AM at Merit School of Music, 38 S. Peoria St, 2nd floor, room 210, Chicago IL 60607.",
+    "page_title": "लेक शोर चर्च के बारे में",
+    "page_desc": "साथ मिलकर प्रामाणिक ईसाई जीवन",
+    "meta_desc": "शिकागो वेस्ट लूप में लेक शोर चर्च।",
+    "intro_1": "लेक शोर चर्च शिकागो के वेस्ट लूप में इकट्ठा होने वाले विश्वासियों का समुदाय है।",
+    "intro_2": "हम हर रविवार सुबह 10:00 बजे Merit School of Music में मिलते हैं।",
     "intro_3": "Our pastor is Craig Brian Larson (Pastor Brian), a published author and expository Bible teacher who has served Lake Shore Church for many years.",
-    "pillars_heading": "Our pillars",
-    "pastor_heading": "Pastor Brian",
+    "pillars_heading": "हमारे स्तंभ",
+    "pastor_heading": "पास्टर ब्रायन",
     "pastor_name": "Craig Brian Larson",
     "pastor_bio": "Pastor Brian is a scripture teacher, author, and pastor who brings clear expository preaching from God's Word every Sunday. He is the author of Know — Gaining Wisdom from God About Everything and has served the West Loop community for many years.",
-    "book_link": "Get the book on Amazon →"
+    "book_link": "Amazon पर पुस्तक प्राप्त करें →"
   },
   "beliefs": {
-    "page_title": "What We Believe",
-    "page_desc": "Find inerrant truth from Scripture in a world of confusion.",
+    "page_title": "हम क्या मानते हैं",
+    "page_desc": "भ्रम के संसार में शास्त्र से सत्य।",
     "meta_desc": "The statement of faith of Lake Shore Church West Loop.",
-    "belief_1": "We believe the Bible is the inspired, inerrant Word of God — our ultimate authority for faith and life.",
+    "belief_1": "हम मानते हैं कि बाइबिल परमेश्वर का प्रेरित, निर्दोष वचन है।",
     "belief_2": "We believe in one God — Father, Son, and Holy Spirit.",
     "belief_3": "We believe Jesus Christ is the Son of God, who died for our sins and rose bodily from the dead.",
-    "belief_4": "God raised Jesus from the dead. There is hope for all who follow him.",
+    "belief_4": "परमेश्वर ने यीशु को मृतकों में से जिलाए। जो उसका अनुसरण करते हैं उनके लिए आशा है।",
     "belief_5": "We believe salvation is by grace alone, through faith alone, in Christ alone.",
     "belief_6": "We believe the church is called to make disciples of all nations, beginning in our own neighbourhood — the West Loop of Chicago.",
     "faq_1_q": "What does Lake Shore Church believe?",
@@ -172,44 +171,45 @@
     "email_sub": "Subscribe to new posts."
   },
   "events": {
-    "page_title": "Events",
+    "page_title": "कार्यक्रम",
     "page_desc": "Connect, serve, and grow together.",
     "meta_desc": "Upcoming events and gatherings at Lake Shore Church.",
-    "list": "List",
-    "calendar": "Calendar",
-    "all_ministries": "All ministries",
+    "list": "सूची",
+    "calendar": "कैलेंडर",
+    "all_ministries": "सभी मंत्रालय",
     "rsvp": "RSVP",
-    "add_calendar": "Add to calendar",
+    "add_calendar": "कैलेंडर में जोड़ें",
     "rsvp_title": "RSVP: {title}",
     "name": "Name",
     "email": "Email",
     "confirm": "Confirm",
     "cancel": "Cancel",
     "confirmed": "Confirmed!",
-    "no_events": "No upcoming events — check back soon."
+    "no_events": "कोई आगामी कार्यक्रम नहीं।"
   },
   "contact": {
-    "page_title": "Contact us",
+    "page_title": "संपर्क करें",
     "page_desc": "We would love to hear from you.",
     "meta_desc": "Contact Lake Shore Church — West Loop, Chicago.",
-    "phone": "Phone:",
-    "email": "Email:",
-    "address": "Address:"
+    "phone": "फ़ोन:",
+    "email": "ईमेल:",
+    "address": "पता:"
   },
   "sermons": {
-    "page_title": "Sermons",
+    "page_title": "उपदेश",
     "page_desc": "Messages from God's Word.",
     "meta_desc": "Watch and listen to sermons from Lake Shore Church.",
     "podcast_rss": "Subscribe via podcast RSS",
     "podcast_note": "(feed at /podcast.xml)",
-    "search": "Search sermons",
-    "all_series": "All series",
-    "all_speakers": "All speakers"
+    "search": "खोजें",
+    "all_series": "सभी श्रृंखलाएँ",
+    "all_speakers": "सभी वक्ता"
   },
   "resources": {
-    "page_title": "Resources",
+    "page_title": "संसाधन",
     "page_desc": "Helpful documents for your journey.",
     "meta_desc": "Documents, guides, and resources from Lake Shore Church.",
-    "public": "Public"
-  }
+    "public": "सार्वजनिक"
+  },
+  "_meta": "Hindi (हिन्दी). Keys match en.json."
 }
