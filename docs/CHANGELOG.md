@@ -6,6 +6,10 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ## [Unreleased] — main
 
+### Changed
+
+- **Repo hygiene** — [PR #1](https://github.com/lake-shore-church/lsc-platform/pull/1) already merged; remote has only `main`. Docs and `/platform` links updated (removed stale `feat/platform-scaffold-db-mobile` references).
+
 ### Added
 
 - **7-language i18n** — `next-intl` with locales `en`, `es`, `zh`, `ja`, `ta`, `tl`, `nag` (English unprefixed at `/`). Message files in `apps/web/messages/`. Language switcher in header; hreflang alternates in root metadata.

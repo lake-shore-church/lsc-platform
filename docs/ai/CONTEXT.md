@@ -8,13 +8,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-05-20 |
-| **Active branch** | `feat/platform-scaffold-db-mobile` |
-| **Current phase** | Phase 1 — Foundation |
-| **Just completed** | Full theme system (3×3), ThemeSwitcher, FOUT fix, `activeTheme` in CMS |
-| **Next up** | `(public)/` Home + Sermons pages using theme tokens |
+| **Last updated** | 2026-05-21 |
+| **Active branch** | `main` |
+| **Current phase** | Phase 2 — polish & production hardening |
+| **Just completed** | 8-locale i18n, full beliefs (lschurch.com), dedication + salvation prayer, Hindi/French |
+| **Next up** | R2 media, Zeffy live URL, translate beliefs/dedication per locale |
 | **Blocked** | None |
-| **PR** | Not opened — compare [main...feat/platform-scaffold-db-mobile](https://github.com/lake-shore-church/lsc-platform/compare/main...feat/platform-scaffold-db-mobile) |
+| **PR** | [#1 merged](https://github.com/lake-shore-church/lsc-platform/pull/1) — all work on `main` |
 
 ---
 

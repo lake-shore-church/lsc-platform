@@ -33,7 +33,7 @@
 
 ## 2026-05-20 — Platform foundation branch
 
-- Branch **`feat/platform-scaffold-db-mobile`**: `@repo/db` complete, Expo mobile scaffold, `supabase-migration.sql`, `.cursorrules`.
+- Branch **`feat/platform-scaffold-db-mobile`** merged to **`main`** via [PR #1](https://github.com/lake-shore-church/lsc-platform/pull/1) (2026-05-20). Remote has only `main` now.
 - Verified all 14 Supabase tables reachable via anon key.
 - Pushed `main` (turbo starter) and feature branch to GitHub; PR not yet opened.
 

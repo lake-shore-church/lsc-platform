@@ -1,14 +1,14 @@
 # LSC Platform — Project Status
 
-**Last updated:** 2026-05-20  
-**Active branch:** `main`  
+**Last updated:** 2026-05-21  
+**Active branch:** `main` (only branch; [PR #1](https://github.com/lake-shore-church/lsc-platform/pull/1) merged 2026-05-20)  
 **Repository:** https://github.com/lake-shore-church/lsc-platform
 
 ---
 
 ## Summary
 
-Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a Next.js public site + member/staff portals, an Expo mobile app, Supabase for data/auth, and Sanity for staff-editable content. **Public site uses real church content:** 10 sermons, 2 series, 4 devotionals, Pastor Brian’s book resource, homepage redesign (9 sections + Facebook feed), podcast RSS at `/podcast.xml`, staff YouTube sermon import. **Mobile app** has five tabs wired to web APIs + WebView for give/sermons. **Next:** R2 media upload, Zeffy live URL, production Vercel env sync.
+Lake Shore Church West Loop **lsc-platform** — Next.js public site (8 locales: en, es, zh, ja, ta, tl, hi, fr), member/staff portals, Expo mobile app, Supabase, Sanity CMS. **Recent:** full [lschurch.com/beliefs](https://lschurch.com/beliefs) content, `/dedication` page (Holy Spirit as Director of Technology + salvation prayer), auth callback fix, language switcher stabilized. **Mobile** five tabs + i18n. **Next:** R2 media, Zeffy live URL, per-locale beliefs/dedication translations, production env sync.
 
 ---
 
@@ -102,18 +102,19 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 | `/login` — Magic link sign-in | ✅ |
 | `/api/tithing-statement`, `/api/financial-report` | ✅ PDF |
 | `/api/send-reminder` | ✅ |
-| `[locale]/` — /es /fr /pt /zh | ⏳ Phase 3 |
+| `[locale]/` — en, es, zh, ja, ta, tl, hi, fr | ✅ |
+| `/dedication` — platform dedication + gospel next steps | ✅ |
 | `studio/` — Sanity Studio embed | ✅ |
 | `api/` — sermons RSS, tithing-statement, webhooks, revalidate | ⏳ |
 | `/platform` — **Living status page** (reads `docs/*.md`) | ✅ |
 
 ---
 
-## Mobile app (planned tabs — not built)
+## Mobile app
 
 | Tab | Status |
 |-----|--------|
-| home, sermons, give, prayer, more | ⏳ Template only (Expo tabs starter) |
+| home, sermons, give, prayer, more | ✅ Wired to web APIs; language picker on More |
 
 ---
 
@@ -127,16 +128,16 @@ Lake Shore Church West Loop is building **lsc-platform** — a monorepo with a N
 
 ## Blockers / decisions
 
-- None critical. Optional: merge feature branch to `main` when review is done.
-- Version note: spec says Next 14 / Expo 51; scaffold uses Next 16 / Expo 54 — acceptable unless downgrade required.
+- None critical.
+- Version note: spec says Next 14 / Expo 51; repo uses Next 16 / Expo 54 — acceptable unless downgrade required.
 
 ---
 
 ## Immediate next steps
 
-1. **Merge PR** → `main` and deploy on Vercel (env vars from `apps/web/.env.production.example`)
-2. **Supabase Auth redirect URLs** — add production URL to Auth settings + CORS for Studio
-3. **Promote users** — set `profiles.role` to `member` or `staff` after first sign-in
-4. **Event CRUD UI** + R2 sermon upload (Phase 2 remainder)
-4. **Configure Resend** — production `RESEND_API_KEY` for form acknowledgements
-5. Fill Cloudflare R2 credentials when media upload is needed
+1. **Vercel production** — confirm deploy from `main`; env vars from `apps/web/.env.production.example`
+2. **Supabase Auth redirect URLs** — production `/auth/callback` + Studio CORS
+3. **Promote users** — `pnpm promote:member <email> member|staff`
+4. **R2 media upload** + Zeffy live embed URL in Sanity
+5. **Translate** beliefs + dedication sections for es, zh, ja, ta, tl, hi, fr
+6. **Configure Resend** — production `RESEND_API_KEY` for form acknowledgements

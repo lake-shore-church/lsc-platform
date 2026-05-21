@@ -58,7 +58,7 @@ export default async function PlatformStatusPage() {
             </a>
             <p className={styles.navHeading}>For agents</p>
             <a
-              href="https://github.com/lake-shore-church/lsc-platform/blob/feat/platform-scaffold-db-mobile/AGENTS.md"
+              href="https://github.com/lake-shore-church/lsc-platform/blob/main/AGENTS.md"
               className={styles.navLink}
               target="_blank"
               rel="noopener noreferrer"
@@ -66,12 +66,12 @@ export default async function PlatformStatusPage() {
               AGENTS.md
             </a>
             <a
-              href="https://github.com/lake-shore-church/lsc-platform/compare/main...feat/platform-scaffold-db-mobile"
+              href="https://github.com/lake-shore-church/lsc-platform"
               className={styles.navLink}
               target="_blank"
               rel="noopener noreferrer"
             >
-              Open PR compare
+              GitHub repository
             </a>
           </nav>
         </aside>
