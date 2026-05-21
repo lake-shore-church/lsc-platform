@@ -30,6 +30,6 @@ export const localeLabels: Record<
 /** CMS / DeepL locale codes (nag is manual-only). */
 /** DeepL-supported targets (Tagalog/Filipino is not on DeepL — use Studio/manual). */
 export const deeplLocales = new Set<AppLocale>(["es", "zh", "ja"]);
-export const googleTranslateLocales = new Set<AppLocale>(["ta"]);
-/** No reliable DeepL target — use Studio or future Google batch. */
-export const manualOnlyLocales = new Set<AppLocale>(["tl", "nag"]);
+export const googleTranslateLocales = new Set<AppLocale>(["ta", "tl"]);
+/** Human translation only — no AI API. */
+export const manualOnlyLocales = new Set<AppLocale>(["nag"]);

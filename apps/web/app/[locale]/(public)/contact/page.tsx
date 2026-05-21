@@ -1,21 +1,23 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { getSiteConfig, formatSiteAddress } from "@repo/cms";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { ContactForm } from "@/components/forms/ContactForm";
 
-export const metadata: Metadata = {
-  title: "Contact",
-  description: "Contact Lake Shore Church — West Loop, Chicago.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("contact");
+  return { title: t("page_title"), description: t("meta_desc") };
+}
 
 export default async function ContactPage() {
+  const t = await getTranslations("contact");
   const config = await getSiteConfig();
   const address = formatSiteAddress(config);
 
   return (
     <>
-      <PageHeader title="Contact us" description="We would love to hear from you." />
+      <PageHeader title={t("page_title")} description={t("page_desc")} />
       <Container className="py-12 grid gap-10 lg:grid-cols-2">
         <div>
           <ContactForm />
@@ -23,7 +25,7 @@ export default async function ContactPage() {
         <div className="text-foreground-secondary">
           {config.phone ? (
             <p className="mt-2">
-              <strong>Phone:</strong>{" "}
+              <strong>{t("phone")}</strong>{" "}
               <a href={`tel:${config.phone.replace(/\D/g, "")}`} className="text-brand-primary hover:underline">
                 {config.phone}
               </a>
@@ -31,11 +33,11 @@ export default async function ContactPage() {
           ) : null}
           {config.email ? (
             <p className="mt-2">
-              <strong>Email:</strong> {config.email}
+              <strong>{t("email")}</strong> {config.email}
             </p>
           ) : null}
           <p className="mt-2 whitespace-pre-line">
-            <strong>Address:</strong>
+            <strong>{t("address")}</strong>
             <br />
             {address}
           </p>

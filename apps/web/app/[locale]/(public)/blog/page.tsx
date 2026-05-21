@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { getBlogPosts } from "@repo/cms";
+import { Link } from "@/i18n/navigation";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { SubscribeForm } from "@/components/forms/SubscribeForm";
 import { formatDate } from "@/lib/format";
 import { slugValue, urlFor } from "@/lib/sanity";
 
-export const metadata: Metadata = {
-  title: "Blog",
-  description: "Articles and updates from Lake Shore Church West Loop.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("blog");
+  return { title: t("page_title"), description: t("meta_desc") };
+}
 
 export default async function BlogPage() {
+  const t = await getTranslations("blog");
   const posts = await getBlogPosts().catch(() => []);
 
   return (
     <>
-      <PageHeader title="Blog" description="Stories, updates, and reflections." />
+      <PageHeader title={t("page_title")} description={t("page_desc")} />
       <Container className="py-12">
         <div className="mb-10 rounded-xl border border-default bg-surface p-6">
-          <h2 className="font-semibold text-brand-primary">Email updates</h2>
-          <p className="mt-1 text-sm text-foreground-muted">Subscribe to new posts.</p>
+          <h2 className="font-semibold text-brand-primary">{t("email_heading")}</h2>
+          <p className="mt-1 text-sm text-foreground-muted">{t("email_sub")}</p>
           <div className="mt-4">
             <SubscribeForm />
           </div>

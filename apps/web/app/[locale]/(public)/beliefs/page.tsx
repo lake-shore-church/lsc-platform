@@ -1,50 +1,38 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 
-export const metadata: Metadata = {
-  title: "What We Believe",
-  description:
-    "Find inerrant truth from Scripture in a world of confusion — the statement of faith of Lake Shore Church.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("beliefs");
+  return { title: t("page_title"), description: t("meta_desc") };
+}
 
-const BELIEFS = [
-  "We believe the Bible is the inspired, inerrant Word of God — our ultimate authority for faith and life.",
-  "We believe in one God — Father, Son, and Holy Spirit.",
-  "We believe Jesus Christ is the Son of God, who died for our sins and rose bodily from the dead.",
-  "God raised Jesus from the dead. There is hope for all who follow him.",
-  "We believe salvation is by grace alone, through faith alone, in Christ alone.",
-  "We believe the church is called to make disciples of all nations, beginning in our own neighbourhood — the West Loop of Chicago.",
-] as const;
+export default async function BeliefsPage() {
+  const t = await getTranslations("beliefs");
 
-const FAQ = [
-  {
-    question: "What does Lake Shore Church believe?",
-    answer:
-      "We hold to scripture-based, Assemblies of God theology — the Bible as our authority, the Trinity, the bodily resurrection of Jesus, salvation by grace through faith, and the mission of the church to make disciples.",
-  },
-  {
-    question: "Is Lake Shore Church welcoming to newcomers?",
-    answer:
-      "Yes — everyone is welcome wherever they are on their journey of faith.",
-  },
-  {
-    question: "What denomination is Lake Shore Church?",
-    answer: "Lake Shore Church is part of the Assemblies of God.",
-  },
-] as const;
+  const beliefs = [
+    t("belief_1"),
+    t("belief_2"),
+    t("belief_3"),
+    t("belief_4"),
+    t("belief_5"),
+    t("belief_6"),
+  ];
 
-export default function BeliefsPage() {
+  const faq = [
+    { question: t("faq_1_q"), answer: t("faq_1_a") },
+    { question: t("faq_2_q"), answer: t("faq_2_a") },
+    { question: t("faq_3_q"), answer: t("faq_3_a") },
+  ];
+
   return (
     <>
-      <PageHeader
-        title="What We Believe"
-        description="Find inerrant truth from Scripture in a world of confusion."
-      />
+      <PageHeader title={t("page_title")} description={t("page_desc")} />
       <Container className="max-w-3xl py-12">
         <ul className="space-y-4">
-          {BELIEFS.map((belief) => (
+          {beliefs.map((belief) => (
             <li
               key={belief}
               className="border-l-4 border-brand-accent pl-4 text-base leading-relaxed text-foreground-primary"
@@ -58,7 +46,7 @@ export default function BeliefsPage() {
         data={{
           "@context": "https://schema.org",
           "@type": "FAQPage",
-          mainEntity: FAQ.map((item) => ({
+          mainEntity: faq.map((item) => ({
             "@type": "Question",
             name: item.question,
             acceptedAnswer: {

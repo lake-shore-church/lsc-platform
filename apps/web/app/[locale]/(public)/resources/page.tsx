@@ -1,25 +1,28 @@
 import type { Metadata } from "next";
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import { getResources } from "@repo/cms";
+import { Link } from "@/i18n/navigation";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 
-export const metadata: Metadata = {
-  title: "Resources",
-  description: "Books, guides, and resources from Lake Shore Church.",
-};
-
-const publicDocs = [
-  { title: "New here guide", href: "/visit", memberOnly: false },
-  { title: "Statement of faith", href: "/beliefs", memberOnly: false },
-];
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("resources");
+  return { title: t("page_title"), description: t("meta_desc") };
+}
 
 export default async function ResourcesPage() {
+  const t = await getTranslations("resources");
+  const tNav = await getTranslations("nav");
   const resources = await getResources({ publicOnly: true }).catch(() => []);
+
+  const publicDocs = [
+    { title: tNav("visit"), href: "/visit" as const },
+    { title: tNav("beliefs"), href: "/beliefs" as const },
+  ];
 
   return (
     <>
-      <PageHeader title="Resources" description="Helpful documents for your journey." />
+      <PageHeader title={t("page_title")} description={t("page_desc")} />
       <Container className="py-12">
         <div className="grid gap-4 sm:grid-cols-2">
           {resources.map((resource) => (
@@ -47,7 +50,7 @@ export default async function ResourcesPage() {
               href={doc.href}
               className="rounded-xl border border-default bg-surface p-5 transition-shadow hover:shadow-md"
             >
-              <span className="text-xs font-semibold uppercase text-brand-accent">Public</span>
+              <span className="text-xs font-semibold uppercase text-brand-accent">{t("public")}</span>
               <h2 className="mt-2 text-lg font-semibold text-foreground-primary">{doc.title}</h2>
             </Link>
           ))}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useTranslations } from "next-intl";
 import type { Sermon, SermonSeries } from "@repo/cms";
 import { SermonCard } from "./SermonCard";
 import { slugValue } from "@/lib/sanity";
@@ -12,6 +13,7 @@ export function SermonArchiveClient({
   sermons: Sermon[];
   series: SermonSeries[];
 }) {
+  const t = useTranslations("sermons");
   const [query, setQuery] = useState("");
   const [seriesFilter, setSeriesFilter] = useState("");
   const [pastorFilter, setPastorFilter] = useState("");
@@ -41,19 +43,19 @@ export function SermonArchiveClient({
       <div className="mb-6 flex flex-col gap-3 rounded-xl border border-default bg-surface p-4 sm:flex-row sm:flex-wrap">
         <input
           type="search"
-          placeholder="Search sermons…"
+          placeholder={t("search")}
           value={query}
           onChange={(e) => setQuery(e.target.value)}
           className="min-h-[44px] flex-1 rounded-lg border border-default bg-background px-3 text-sm text-foreground-primary"
-          aria-label="Search sermons"
+          aria-label={t("search")}
         />
         <select
           value={seriesFilter}
           onChange={(e) => setSeriesFilter(e.target.value)}
           className="min-h-[44px] rounded-lg border border-default bg-background px-3 text-sm"
-          aria-label="Filter by series"
+          aria-label={t("all_series")}
         >
-          <option value="">All series</option>
+          <option value="">{t("all_series")}</option>
           {series.map((s) => (
             <option key={s._id} value={slugValue(s.slug)}>
               {s.title}
@@ -64,9 +66,9 @@ export function SermonArchiveClient({
           value={pastorFilter}
           onChange={(e) => setPastorFilter(e.target.value)}
           className="min-h-[44px] rounded-lg border border-default bg-background px-3 text-sm"
-          aria-label="Filter by speaker"
+          aria-label={t("all_speakers")}
         >
-          <option value="">All speakers</option>
+          <option value="">{t("all_speakers")}</option>
           {pastors.map((p) => (
             <option key={p} value={p}>
               {p}
@@ -74,17 +76,11 @@ export function SermonArchiveClient({
           ))}
         </select>
       </div>
-      <p className="mb-4 text-sm text-foreground-muted">
-        {filtered.length} sermon{filtered.length === 1 ? "" : "s"}
-      </p>
       <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
         {filtered.map((sermon) => (
           <SermonCard key={sermon._id} sermon={sermon} />
         ))}
       </div>
-      {filtered.length === 0 ? (
-        <p className="text-center text-foreground-muted">No sermons match your filters.</p>
-      ) : null}
     </div>
   );
 }

@@ -34,7 +34,7 @@
     "every_sunday": "Cada domingo",
     "doors_open": "Puertas abren a las 9:30 AM",
     "get_directions": "Cómo llegar →",
-    "plan_visit": "Planifique su visita →",
+    "plan_visit": "Planifique su visita",
     "watch_now": "Ver ahora →",
     "request_prayer": "Pedir oración →",
     "miss_service": "¿Faltó al servicio?",
@@ -61,7 +61,6 @@
     "recent_devotionals": "Devocionales recientes",
     "ready_next_step": "¿Listo para su próximo paso?",
     "join_this_sunday": "Únase este domingo a las 10:00 AM. Todos son bienvenidos.",
-    "plan_visit": "Planifique su visita",
     "contact_us": "Contáctenos"
   },
   "worship": {
@@ -132,5 +131,83 @@
   "language": {
     "choose": "Idioma",
     "title_multilingual": "Language / 语言 / 言語 / மொழி / Wika / Idioma"
+  },
+  "about": {
+    "page_title": "Acerca de Lake Shore Church",
+    "page_desc": "Cristianismo auténtico juntos",
+    "meta_desc": "Lake Shore Church en el West Loop de Chicago.",
+    "intro_1": "Lake Shore Church es una comunidad de creyentes en el West Loop de Chicago. Somos una iglesia de las Asambleas de Dios comprometida con la enseñanza bíblica, la adoración auténtica y la comunidad genuina.",
+    "intro_2": "Nos reunimos cada domingo a las 10:00 AM en Merit School of Music, 38 S. Peoria St, 2do piso, sala 210, Chicago IL 60607.",
+    "intro_3": "Nuestro pastor es Craig Brian Larson (Pastor Brian), autor publicado y maestro bíblico expositivo.",
+    "pillars_heading": "Nuestros pilares",
+    "pastor_heading": "Pastor Brian",
+    "pastor_name": "Craig Brian Larson",
+    "pastor_bio": "El Pastor Brian trae predicación expositiva clara cada domingo. Es autor de Know — Gaining Wisdom from God About Everything.",
+    "book_link": "Obtener el libro en Amazon →"
+  },
+  "beliefs": {
+    "page_title": "Lo que creemos",
+    "page_desc": "Verdad inerrante de la Escritura en un mundo de confusión.",
+    "meta_desc": "Declaración de fe de Lake Shore Church.",
+    "belief_1": "Creemos que la Biblia es la Palabra inspirada e inerrante de Dios — nuestra autoridad suprema.",
+    "belief_2": "Creemos en un solo Dios — Padre, Hijo y Espíritu Santo.",
+    "belief_3": "Creemos que Jesucristo es el Hijo de Dios, murió por nuestros pecados y resucitó corporalmente.",
+    "belief_4": "Dios resucitó a Jesús. Hay esperanza para todos los que le siguen.",
+    "belief_5": "La salvación es solo por gracia, solo por fe, solo en Cristo.",
+    "belief_6": "La iglesia está llamada a hacer discípulos de todas las naciones, comenzando en el West Loop de Chicago.",
+    "faq_1_q": "¿Qué cree Lake Shore Church?",
+    "faq_1_a": "Teología basada en la Escritura, Asambleas de Dios.",
+    "faq_2_q": "¿Son bienvenidos los recién llegados?",
+    "faq_2_a": "Sí — todos son bienvenidos en su camino de fe.",
+    "faq_3_q": "¿Qué denominación?",
+    "faq_3_a": "Parte de las Asambleas de Dios."
+  },
+  "blog": {
+    "page_title": "Blog",
+    "page_desc": "Historias y reflexiones.",
+    "meta_desc": "Artículos de Lake Shore Church.",
+    "email_heading": "Correo semanal",
+    "email_sub": "Suscríbase a nuevas publicaciones."
+  },
+  "events": {
+    "page_title": "Eventos",
+    "page_desc": "Conéctese y crezca juntos.",
+    "meta_desc": "Eventos en Lake Shore Church.",
+    "list": "Lista",
+    "calendar": "Calendario",
+    "all_ministries": "Todos los ministerios",
+    "rsvp": "Confirmar",
+    "add_calendar": "Añadir al calendario",
+    "rsvp_title": "RSVP: {title}",
+    "name": "Nombre",
+    "email": "Correo",
+    "confirm": "Confirmar",
+    "cancel": "Cancelar",
+    "confirmed": "¡Confirmado!",
+    "no_events": "No hay eventos próximos."
+  },
+  "contact": {
+    "page_title": "Contáctenos",
+    "page_desc": "Nos encantaría saber de usted.",
+    "meta_desc": "Contacto — Lake Shore Church.",
+    "phone": "Teléfono:",
+    "email": "Correo:",
+    "address": "Dirección:"
+  },
+  "sermons": {
+    "page_title": "Sermones",
+    "page_desc": "Mensajes de la Palabra de Dios.",
+    "meta_desc": "Sermones de Lake Shore Church.",
+    "podcast_rss": "Podcast RSS",
+    "podcast_note": "(/podcast.xml)",
+    "search": "Buscar",
+    "all_series": "Todas las series",
+    "all_speakers": "Todos los oradores"
+  },
+  "resources": {
+    "page_title": "Recursos",
+    "page_desc": "Documentos útiles.",
+    "meta_desc": "Recursos de Lake Shore Church.",
+    "public": "Público"
   }
 }

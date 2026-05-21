@@ -34,7 +34,7 @@
     "every_sunday": "Tuwing Linggo",
     "doors_open": "Bukas ang pintuan 9:30 AM",
     "get_directions": "Kumuha ng direksyon →",
-    "plan_visit": "Magplano ng pagbisita →",
+    "plan_visit": "Magplano ng Pagbisita",
     "watch_now": "Manood ngayon →",
     "request_prayer": "Humiling ng panalangin →",
     "miss_service": "Namiss ang serbisyo?",
@@ -61,7 +61,6 @@
     "recent_devotionals": "Kamakailang devotionals",
     "ready_next_step": "Handa na para sa susunod na hakbang?",
     "join_this_sunday": "Samahan kami ngayong Linggo 10:00 AM. Malugod na tinatanggap ang lahat.",
-    "plan_visit": "Magplano ng Pagbisita",
     "contact_us": "Makipag-ugnayan"
   },
   "worship": {
@@ -132,5 +131,83 @@
   "language": {
     "choose": "Wika",
     "title_multilingual": "Language / 语言 / 言語 / மொழி / Wika"
+  },
+  "about": {
+    "page_title": "Tungkol sa Lake Shore Church",
+    "page_desc": "Tunay na Kristiyanismo Nang Magkasama",
+    "meta_desc": "West Loop, Chicago.",
+    "intro_1": "Ang Lake Shore Church ay isang komunidad ng mga mananampalataya sa West Loop.",
+    "intro_2": "Tuwing Linggo 10:00 AM kami nagtitipon.",
+    "intro_3": "Ang aming pastor ay Craig Brian Larson (Pastor Brian).",
+    "pillars_heading": "Mga haligi",
+    "pastor_heading": "Pastor Brian",
+    "pastor_name": "Craig Brian Larson",
+    "pastor_bio": "Si Pastor Brian ay nagtuturo ng Kasulatan bawat Linggo.",
+    "book_link": "Kunin ang libro sa Amazon →"
+  },
+  "beliefs": {
+    "page_title": "Ano ang Pinaniniwalaan Namin",
+    "page_desc": "Katotohanan mula sa Kasulatan.",
+    "meta_desc": "Pahayag ng pananampalataya.",
+    "belief_1": "Ang Biblia ay inspiradong Salita ng Diyos.",
+    "belief_2": "Isang Diyos — Ama, Anak, Espiritu Santo.",
+    "belief_3": "Si Jesucristo ay Anak ng Diyos, namatay at muling nabuhay.",
+    "belief_4": "Binuhay ng Diyos si Jesus. May pag-asa.",
+    "belief_5": "Kaligtasan sa biyaya, pananampalataya, kay Cristo lamang.",
+    "belief_6": "Ang simbahan ay tinawag gumawa ng alagad sa lahat ng bansa.",
+    "faq_1_q": "Ano ang paniniwala?",
+    "faq_1_a": "Teolohiyang nakabatay sa Kasulatan, Assemblies of God.",
+    "faq_2_q": "Tinatanggap ba ang mga baguhan?",
+    "faq_2_a": "Oo — lahat ay welcome.",
+    "faq_3_q": "Anong denominasyon?",
+    "faq_3_a": "Assemblies of God."
+  },
+  "blog": {
+    "page_title": "Blog",
+    "page_desc": "Mga kwento at update.",
+    "meta_desc": "Mga artikulo.",
+    "email_heading": "Email updates",
+    "email_sub": "Mag-subscribe sa mga bagong post."
+  },
+  "events": {
+    "page_title": "Mga Kaganapan",
+    "page_desc": "Makipag-ugnayan at lumago.",
+    "meta_desc": "Mga event.",
+    "list": "Listahan",
+    "calendar": "Kalendaryo",
+    "all_ministries": "Lahat ng ministry",
+    "rsvp": "RSVP",
+    "add_calendar": "Idagdag sa calendar",
+    "rsvp_title": "RSVP: {title}",
+    "name": "Pangalan",
+    "email": "Email",
+    "confirm": "Kumpirmahin",
+    "cancel": "Kanselahin",
+    "confirmed": "Kumpirmado!",
+    "no_events": "Walang paparating na kaganapan."
+  },
+  "contact": {
+    "page_title": "Makipag-ugnayan",
+    "page_desc": "Gusto naming marinig kayo.",
+    "meta_desc": "Contact.",
+    "phone": "Telepono:",
+    "email": "Email:",
+    "address": "Address:"
+  },
+  "sermons": {
+    "page_title": "Mga Sermon",
+    "page_desc": "Mensahe mula sa Salita ng Diyos.",
+    "meta_desc": "Mga sermon.",
+    "podcast_rss": "Podcast RSS",
+    "podcast_note": "(/podcast.xml)",
+    "search": "Maghanap",
+    "all_series": "Lahat ng series",
+    "all_speakers": "Lahat ng speaker"
+  },
+  "resources": {
+    "page_title": "Mga Resource",
+    "page_desc": "Mga dokumento.",
+    "meta_desc": "Resources.",
+    "public": "Pampubliko"
   }
 }

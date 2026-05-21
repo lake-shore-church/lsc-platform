@@ -78,12 +78,7 @@ export default async function StaffTranslationsPage() {
                         {cellStatus(sermon.translations, loc)}
                       </span>
                       {slug ? (
-                        <TranslationCellActions
-                          slug={slug}
-                          locale={loc}
-                          title={sermon.title}
-                          excerpt={sermon.summary}
-                        />
+                        <TranslationCellActions slug={slug} locale={loc} />
                       ) : null}
                     </td>
                   ))}

@@ -34,7 +34,7 @@
     "every_sunday": "Every Sunday",
     "doors_open": "Doors open 9:30 AM",
     "get_directions": "Get directions →",
-    "plan_visit": "Plan your visit →",
+    "plan_visit": "Plan a Visit",
     "watch_now": "Watch now →",
     "request_prayer": "Request prayer →",
     "miss_service": "Miss a service?",
@@ -61,7 +61,6 @@
     "recent_devotionals": "Recent devotionals",
     "ready_next_step": "Ready to take your next step?",
     "join_this_sunday": "Join us this Sunday at 10:00 AM. Everyone is welcome.",
-    "plan_visit": "Plan a Visit",
     "contact_us": "Contact Us"
   },
   "worship": {
@@ -132,5 +131,83 @@
   "language": {
     "choose": "Language",
     "title_multilingual": "Language / 语言 / 言語 / மொழி / Wika / Nagamese"
+  },
+  "about": {
+    "page_title": "About Lake Shore Church",
+    "page_desc": "Authentic Christianity Together",
+    "meta_desc": "Lake Shore Church in Chicago's West Loop. Meet Pastor Brian and our community.",
+    "intro_1": "Lake Shore Church is a community of believers meeting in Chicago's West Loop neighbourhood. We are an Assemblies of God church committed to scripture-based teaching, authentic worship, and genuine community.",
+    "intro_2": "We meet every Sunday at 10:00 AM at Merit School of Music, 38 S. Peoria St, 2nd floor, room 210, Chicago IL 60607.",
+    "intro_3": "Our pastor is Craig Brian Larson (Pastor Brian), a published author and expository Bible teacher who has served Lake Shore Church for many years.",
+    "pillars_heading": "Our pillars",
+    "pastor_heading": "Pastor Brian",
+    "pastor_name": "Craig Brian Larson",
+    "pastor_bio": "Pastor Brian is a scripture teacher, author, and pastor who brings clear expository preaching from God's Word every Sunday. He is the author of Know — Gaining Wisdom from God About Everything and has served the West Loop community for many years.",
+    "book_link": "Get the book on Amazon →"
+  },
+  "beliefs": {
+    "page_title": "What We Believe",
+    "page_desc": "Find inerrant truth from Scripture in a world of confusion.",
+    "meta_desc": "The statement of faith of Lake Shore Church West Loop.",
+    "belief_1": "We believe the Bible is the inspired, inerrant Word of God — our ultimate authority for faith and life.",
+    "belief_2": "We believe in one God — Father, Son, and Holy Spirit.",
+    "belief_3": "We believe Jesus Christ is the Son of God, who died for our sins and rose bodily from the dead.",
+    "belief_4": "God raised Jesus from the dead. There is hope for all who follow him.",
+    "belief_5": "We believe salvation is by grace alone, through faith alone, in Christ alone.",
+    "belief_6": "We believe the church is called to make disciples of all nations, beginning in our own neighbourhood — the West Loop of Chicago.",
+    "faq_1_q": "What does Lake Shore Church believe?",
+    "faq_1_a": "We hold to scripture-based, Assemblies of God theology — the Bible as our authority, the Trinity, the bodily resurrection of Jesus, salvation by grace through faith, and the mission of the church to make disciples.",
+    "faq_2_q": "Is Lake Shore Church welcoming to newcomers?",
+    "faq_2_a": "Yes — everyone is welcome wherever they are on their journey of faith.",
+    "faq_3_q": "What denomination is Lake Shore Church?",
+    "faq_3_a": "Lake Shore Church is part of the Assemblies of God."
+  },
+  "blog": {
+    "page_title": "Blog",
+    "page_desc": "Stories, updates, and reflections.",
+    "meta_desc": "Articles and devotionals from Lake Shore Church West Loop.",
+    "email_heading": "Email updates",
+    "email_sub": "Subscribe to new posts."
+  },
+  "events": {
+    "page_title": "Events",
+    "page_desc": "Connect, serve, and grow together.",
+    "meta_desc": "Upcoming events and gatherings at Lake Shore Church.",
+    "list": "List",
+    "calendar": "Calendar",
+    "all_ministries": "All ministries",
+    "rsvp": "RSVP",
+    "add_calendar": "Add to calendar",
+    "rsvp_title": "RSVP: {title}",
+    "name": "Name",
+    "email": "Email",
+    "confirm": "Confirm",
+    "cancel": "Cancel",
+    "confirmed": "Confirmed!",
+    "no_events": "No upcoming events — check back soon."
+  },
+  "contact": {
+    "page_title": "Contact us",
+    "page_desc": "We would love to hear from you.",
+    "meta_desc": "Contact Lake Shore Church — West Loop, Chicago.",
+    "phone": "Phone:",
+    "email": "Email:",
+    "address": "Address:"
+  },
+  "sermons": {
+    "page_title": "Sermons",
+    "page_desc": "Messages from God's Word.",
+    "meta_desc": "Watch and listen to sermons from Lake Shore Church.",
+    "podcast_rss": "Subscribe via podcast RSS",
+    "podcast_note": "(feed at /podcast.xml)",
+    "search": "Search sermons",
+    "all_series": "All series",
+    "all_speakers": "All speakers"
+  },
+  "resources": {
+    "page_title": "Resources",
+    "page_desc": "Helpful documents for your journey.",
+    "meta_desc": "Documents, guides, and resources from Lake Shore Church.",
+    "public": "Public"
   }
 }

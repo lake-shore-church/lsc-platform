@@ -34,7 +34,7 @@
     "every_sunday": "毎週日曜日",
     "doors_open": "開門 9:30",
     "get_directions": "道順を見る →",
-    "plan_visit": "訪問を計画 →",
+    "plan_visit": "訪問を計画",
     "watch_now": "今すぐ視聴 →",
     "request_prayer": "祈りのリクエスト →",
     "miss_service": "礼拝を逃しましたか？",
@@ -61,7 +61,6 @@
     "recent_devotionals": "最近のデボーション",
     "ready_next_step": "次の一歩の準備はできていますか？",
     "join_this_sunday": "今週日曜10:00 AMにお越しください。どなたでも歓迎です。",
-    "plan_visit": "訪問を計画",
     "contact_us": "お問い合わせ"
   },
   "worship": {
@@ -132,5 +131,83 @@
   "language": {
     "choose": "言語",
     "title_multilingual": "Language / 语言 / 言語 / மொழி / Wika"
+  },
+  "about": {
+    "page_title": "Lake Shore Church について",
+    "page_desc": "共に本物のキリスト教を",
+    "meta_desc": "シカゴ・ウェストループの Lake Shore Church。",
+    "intro_1": "レイク・ショア教会はウェストループで集う信徒のコミュニティです。聖書を教え、礼拝と共に歩みます。",
+    "intro_2": "毎週日曜10:00 AMに Merit School of Music で礼拝します。",
+    "intro_3": "牧師はクレイグ・ブライアン・ラーソン（ブライアン牧師）です。",
+    "pillars_heading": "三つの柱",
+    "pastor_heading": "ブライアン牧師",
+    "pastor_name": "Craig Brian Larson",
+    "pastor_bio": "ブライアン牧師は毎週明確な解経説教を行い、Know の著者でもあります。",
+    "book_link": "Amazonで本を入手 →"
+  },
+  "beliefs": {
+    "page_title": "信仰について",
+    "page_desc": "混乱の世の中で聖書の真理を。",
+    "meta_desc": "信仰告白。",
+    "belief_1": "聖書は神の霊感による無谬の言葉であり、信仰と生活の最高権威です。",
+    "belief_2": "独一の神 — 父、子、聖霊。",
+    "belief_3": "イエス・キリストは神の子であり、罪のために死し、肉体の復活を遂げられました。",
+    "belief_4": "神はイエスを復活させました。従う者すべてに希望があります。",
+    "belief_5": "救いは恵みのみ、信仰のみ、キリストのみによって。",
+    "belief_6": "教会は弟子を作るよう召され、シカゴ・ウェストループから始めます。",
+    "faq_1_q": "どのような信仰ですか？",
+    "faq_1_a": "聖書に基づくアッセンブリーズ・オブ・ゴッドの神学です。",
+    "faq_2_q": "初めての方は歓迎されますか？",
+    "faq_2_a": "はい — 信仰の旅のどこにいても歓迎します。",
+    "faq_3_q": "教派は？",
+    "faq_3_a": "アッセンブリーズ・オブ・ゴッドです。"
+  },
+  "blog": {
+    "page_title": "ブログ",
+    "page_desc": "ストーリーと更新。",
+    "meta_desc": "記事一覧。",
+    "email_heading": "メール更新",
+    "email_sub": "新着記事を購読。"
+  },
+  "events": {
+    "page_title": "イベント",
+    "page_desc": "つながり、奉仕、成長。",
+    "meta_desc": "教会のイベント。",
+    "list": "リスト",
+    "calendar": "カレンダー",
+    "all_ministries": "すべてのミニストリー",
+    "rsvp": "参加登録",
+    "add_calendar": "カレンダーに追加",
+    "rsvp_title": "RSVP: {title}",
+    "name": "お名前",
+    "email": "メール",
+    "confirm": "確認",
+    "cancel": "キャンセル",
+    "confirmed": "登録完了！",
+    "no_events": "予定されているイベントはありません。"
+  },
+  "contact": {
+    "page_title": "お問い合わせ",
+    "page_desc": "ご連絡をお待ちしています。",
+    "meta_desc": "連絡先。",
+    "phone": "電話：",
+    "email": "メール：",
+    "address": "住所："
+  },
+  "sermons": {
+    "page_title": "説教",
+    "page_desc": "神の言葉からのメッセージ。",
+    "meta_desc": "説教アーカイブ。",
+    "podcast_rss": "ポッドキャスト RSS",
+    "podcast_note": "(/podcast.xml)",
+    "search": "検索",
+    "all_series": "すべてのシリーズ",
+    "all_speakers": "すべての話者"
+  },
+  "resources": {
+    "page_title": "リソース",
+    "page_desc": "役立つ資料。",
+    "meta_desc": "教会リソース。",
+    "public": "公開"
   }
 }

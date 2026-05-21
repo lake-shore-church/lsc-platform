@@ -1,46 +1,70 @@
 import { NextResponse } from "next/server";
+import { getSanityWriteClient, getSermonBySlug } from "@repo/cms";
+import { googleTranslateLocales, type AppLocale } from "@/i18n/routing";
+import { splitTitleAndExcerpt, translateWithGoogle } from "@/lib/translate/google";
 
-/** Tamil translation via Google Cloud Translation API (v2 REST). */
+/** Tamil and Filipino via Google Cloud Translation — optional Sanity draft save. */
 export async function POST(request: Request) {
-  const apiKey = process.env.GOOGLE_TRANSLATE_API_KEY;
-  if (!apiKey) {
-    return NextResponse.json(
-      { error: "GOOGLE_TRANSLATE_API_KEY is not configured." },
-      { status: 503 },
-    );
-  }
+  let body: {
+    text?: string;
+    slug?: string;
+    targetLanguage?: AppLocale;
+  };
 
-  let body: { text?: string; targetLanguage?: string };
   try {
     body = await request.json();
   } catch {
     return NextResponse.json({ error: "Invalid JSON" }, { status: 400 });
   }
 
-  if (!body.text?.trim()) {
-    return NextResponse.json({ error: "text is required" }, { status: 400 });
+  const target = body.targetLanguage;
+  if (!target || !googleTranslateLocales.has(target)) {
+    return NextResponse.json(
+      { error: "Supported targetLanguage: ta, tl" },
+      { status: 400 },
+    );
   }
 
-  if (body.targetLanguage !== "ta") {
-    return NextResponse.json({ error: "Only targetLanguage ta is supported" }, { status: 400 });
+  let sourceText = body.text?.trim() ?? "";
+
+  if (body.slug) {
+    const sermon = await getSermonBySlug(body.slug).catch(() => null);
+    if (!sermon) {
+      return NextResponse.json({ error: "Sermon not found" }, { status: 404 });
+    }
+    sourceText = [sermon.title, sermon.summary].filter(Boolean).join("\n\n");
   }
 
-  const url = new URL("https://translation.googleapis.com/language/translate/v2");
-  url.searchParams.set("key", apiKey);
-  url.searchParams.set("q", body.text);
-  url.searchParams.set("target", "ta");
-  url.searchParams.set("source", "en");
-
-  const res = await fetch(url.toString(), { method: "POST" });
-  if (!res.ok) {
-    return NextResponse.json({ error: await res.text() }, { status: 502 });
+  if (!sourceText) {
+    return NextResponse.json({ error: "text or slug is required" }, { status: 400 });
   }
 
-  const data = (await res.json()) as {
-    data: { translations: { translatedText: string }[] };
-  };
+  try {
+    const translatedText = await translateWithGoogle(sourceText, target);
+    const { title, excerpt } = splitTitleAndExcerpt(translatedText);
 
-  return NextResponse.json({
-    translatedText: data.data.translations[0]?.translatedText ?? "",
-  });
+    if (body.slug) {
+      const sermon = await getSermonBySlug(body.slug);
+      if (sermon) {
+        const draft = {
+          locale: target,
+          title,
+          excerpt: excerpt || sermon.summary,
+          status: "draft" as const,
+          approved: false,
+        };
+        const existing = sermon.translations?.filter((row) => row.locale !== target) ?? [];
+        const client = getSanityWriteClient();
+        await client
+          .patch(sermon._id)
+          .set({ translations: [...existing, draft] })
+          .commit();
+      }
+    }
+
+    return NextResponse.json({ ok: true, translatedText, title, excerpt });
+  } catch (err) {
+    const message = err instanceof Error ? err.message : "Translation failed";
+    return NextResponse.json({ error: message }, { status: 502 });
+  }
 }

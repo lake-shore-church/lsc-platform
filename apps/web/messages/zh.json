@@ -34,7 +34,7 @@
     "every_sunday": "每周日",
     "doors_open": "门 9:30 开放",
     "get_directions": "获取路线 →",
-    "plan_visit": "计划来访 →",
+    "plan_visit": "计划来访",
     "watch_now": "立即观看 →",
     "request_prayer": "提交祷告 →",
     "miss_service": "错过了聚会？",
@@ -61,7 +61,6 @@
     "recent_devotionals": "近期灵修",
     "ready_next_step": "准备好迈出下一步了吗？",
     "join_this_sunday": "本周日 10:00 AM 加入我们。所有人都受欢迎。",
-    "plan_visit": "计划来访",
     "contact_us": "联系我们"
   },
   "worship": {
@@ -132,5 +131,83 @@
   "language": {
     "choose": "语言",
     "title_multilingual": "Language / 语言 / 言語 / மொழி / Wika"
+  },
+  "about": {
+    "page_title": "关于 Lake Shore Church",
+    "page_desc": "真实的基督徒团契",
+    "meta_desc": "芝加哥 West Loop 的 Lake Shore Church。",
+    "intro_1": "Lake Shore Church 是芝加哥 West Loop 的信徒群体。我们是神召会教会，致力于圣经教导、真实敬拜和真诚团契。",
+    "intro_2": "我们每周日 10:00 AM 在 Merit School of Music 聚会。",
+    "intro_3": "我们的牧师是 Craig Brian Larson（Brian 牧师）。",
+    "pillars_heading": "我们的支柱",
+    "pastor_heading": "Brian 牧师",
+    "pastor_name": "Craig Brian Larson",
+    "pastor_bio": "Brian 牧师每周带来清晰的释经讲道，著有 Know 一书。",
+    "book_link": "在 Amazon 购买书籍 →"
+  },
+  "beliefs": {
+    "page_title": "我们的信仰",
+    "page_desc": "在困惑的世界中从圣经找到真理。",
+    "meta_desc": "Lake Shore Church 信仰声明。",
+    "belief_1": "我们相信圣经是神所默示、无谬的道 — 信仰与生活的最高权威。",
+    "belief_2": "我们相信独一的真神 — 圣父、圣子、圣灵。",
+    "belief_3": "我们相信耶稣基督是神的儿子，为我们的罪而死并从死里复活。",
+    "belief_4": "神使耶稣复活。凡跟随他的人都有盼望。",
+    "belief_5": "救恩唯独出于恩典、信心、基督。",
+    "belief_6": "教会蒙召在各地作门徒，从芝加哥 West Loop 开始。",
+    "faq_1_q": "Lake Shore Church 信仰什么？",
+    "faq_1_a": "基于圣经的神召会神学。",
+    "faq_2_q": "欢迎新朋友吗？",
+    "faq_2_a": "欢迎 — 无论您处于信仰旅程的哪一阶段。",
+    "faq_3_q": "属于哪个宗派？",
+    "faq_3_a": "神召会。"
+  },
+  "blog": {
+    "page_title": "博客",
+    "page_desc": "故事与反思。",
+    "meta_desc": "Lake Shore Church 文章。",
+    "email_heading": "邮件更新",
+    "email_sub": "订阅新文章。"
+  },
+  "events": {
+    "page_title": "活动",
+    "page_desc": "联络、服事、一起成长。",
+    "meta_desc": "Lake Shore Church 活动。",
+    "list": "列表",
+    "calendar": "日历",
+    "all_ministries": "所有事工",
+    "rsvp": "报名",
+    "add_calendar": "加入日历",
+    "rsvp_title": "报名：{title}",
+    "name": "姓名",
+    "email": "邮箱",
+    "confirm": "确认",
+    "cancel": "取消",
+    "confirmed": "已确认！",
+    "no_events": "暂无近期活动。"
+  },
+  "contact": {
+    "page_title": "联系我们",
+    "page_desc": "我们很乐意听到您的消息。",
+    "meta_desc": "联系 Lake Shore Church。",
+    "phone": "电话：",
+    "email": "邮箱：",
+    "address": "地址："
+  },
+  "sermons": {
+    "page_title": "讲道",
+    "page_desc": "神话语的信息。",
+    "meta_desc": "Lake Shore Church 讲道。",
+    "podcast_rss": "播客 RSS 订阅",
+    "podcast_note": "(/podcast.xml)",
+    "search": "搜索讲道",
+    "all_series": "所有系列",
+    "all_speakers": "所有讲员"
+  },
+  "resources": {
+    "page_title": "资源",
+    "page_desc": "对您有帮助的资料。",
+    "meta_desc": "Lake Shore Church 资源。",
+    "public": "公开"
   }
 }

@@ -6,15 +6,11 @@ import { deeplLocales, googleTranslateLocales, manualOnlyLocales, type AppLocale
 export function TranslationCellActions({
   slug,
   locale,
-  title,
-  excerpt,
 }: {
   slug: string;
   locale: AppLocale;
-  title: string;
-  excerpt?: string;
 }) {
-  async function autoTranslate() {
+  async function autoDeepL() {
     const res = await fetch("/api/translate", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -22,27 +18,24 @@ export function TranslationCellActions({
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      alert(data.error ?? "Translation failed");
+      alert(data.error ?? "DeepL translation failed");
       return;
     }
     window.location.reload();
   }
 
-  async function translateTamil() {
+  async function autoGoogle() {
     const res = await fetch("/api/translate-google", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        text: [title, excerpt].filter(Boolean).join("\n\n"),
-        targetLanguage: "ta",
-      }),
+      body: JSON.stringify({ slug, targetLanguage: locale }),
     });
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      alert(data.error ?? "Google Translate failed");
+      alert(data.error ?? "Google translation failed");
       return;
     }
-    alert("Tamil draft returned — paste into Sanity Studio translations tab.");
+    window.location.reload();
   }
 
   if (deeplLocales.has(locale)) {
@@ -50,9 +43,9 @@ export function TranslationCellActions({
       <button
         type="button"
         className="mt-1 text-xs font-semibold text-brand-primary"
-        onClick={() => void autoTranslate()}
+        onClick={() => void autoDeepL()}
       >
-        Auto-translate
+        Auto-translate (DeepL)
       </button>
     );
   }
@@ -62,9 +55,9 @@ export function TranslationCellActions({
       <button
         type="button"
         className="mt-1 text-xs font-semibold text-brand-primary"
-        onClick={() => void translateTamil()}
+        onClick={() => void autoGoogle()}
       >
-        Google (TA)
+        Auto-translate (Google)
       </button>
     );
   }

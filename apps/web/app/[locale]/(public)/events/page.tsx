@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { getEvents } from "@repo/db";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
@@ -6,12 +7,13 @@ import { EventsClient } from "@/components/events/EventsClient";
 import { JsonLd } from "@/components/seo/JsonLd";
 import { SITE_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Events",
-  description: "Upcoming events and gatherings at Lake Shore Church.",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("events");
+  return { title: t("page_title"), description: t("meta_desc") };
+}
 
 export default async function EventsPage() {
+  const t = await getTranslations("events");
   const events = await getEvents({
     upcomingFrom: new Date().toISOString(),
   }).catch(() => []);
@@ -29,7 +31,7 @@ export default async function EventsPage() {
   return (
     <>
       {eventsJsonLd.length ? <JsonLd data={eventsJsonLd} /> : null}
-      <PageHeader title="Events" description="Connect, serve, and grow together." />
+      <PageHeader title={t("page_title")} description={t("page_desc")} />
       <Container className="py-12">
         <EventsClient events={events} />
       </Container>
