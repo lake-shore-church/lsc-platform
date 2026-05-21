@@ -1,9 +1,29 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { Button } from "@/components/ui/Button";
 
-export function PrayerForm() {
+export type PrayerFormLabels = {
+  public: string;
+  private: string;
+  nameOptional: string;
+  share: string;
+  submit: string;
+  success: string;
+};
+
+export function PrayerForm({ labels }: { labels?: PrayerFormLabels }) {
+  const t = useTranslations("prayer");
+  const L = labels ?? {
+    public: t("public"),
+    private: t("private"),
+    nameOptional: t("name_optional"),
+    share: t("share"),
+    submit: t("submit"),
+    success: t("success"),
+  };
+
   const [isPrivate, setIsPrivate] = useState(false);
   const [status, setStatus] = useState<"idle" | "loading" | "success" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -28,7 +48,7 @@ export function PrayerForm() {
       return;
     }
     setStatus("success");
-    setMessage("Your prayer request has been received. Our team is praying with you.");
+    setMessage(L.success);
     e.currentTarget.reset();
   }
 
@@ -45,18 +65,28 @@ export function PrayerForm() {
       <div className="flex gap-4">
         <label className="flex min-h-[44px] cursor-pointer items-center gap-2">
           <input type="radio" checked={!isPrivate} onChange={() => setIsPrivate(false)} />
-          Public
+          {L.public}
         </label>
         <label className="flex min-h-[44px] cursor-pointer items-center gap-2">
           <input type="radio" checked={isPrivate} onChange={() => setIsPrivate(true)} />
-          Private
+          {L.private}
         </label>
       </div>
-      <input name="name" placeholder="Name (optional)" className="w-full min-h-[44px] rounded-lg border border-default bg-background px-3" />
-      <textarea name="content" required rows={5} placeholder="Your prayer request…" className="w-full rounded-lg border border-default bg-background px-3 py-2" />
+      <input
+        name="name"
+        placeholder={L.nameOptional}
+        className="w-full min-h-[44px] rounded-lg border border-default bg-background px-3"
+      />
+      <textarea
+        name="content"
+        required
+        rows={5}
+        placeholder={L.share}
+        className="w-full rounded-lg border border-default bg-background px-3 py-2"
+      />
       {status === "error" ? <p className="text-sm text-red-600">{message}</p> : null}
       <Button type="submit" disabled={status === "loading"}>
-        {status === "loading" ? "Submitting…" : "Submit prayer"}
+        {status === "loading" ? "…" : L.submit}
       </Button>
     </form>
   );

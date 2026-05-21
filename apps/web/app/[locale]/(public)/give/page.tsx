@@ -1,28 +1,30 @@
 import type { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import { getSiteConfig } from "@repo/cms";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { GiveQr } from "@/components/give/GiveQr";
 import { SITE_URL } from "@/lib/site";
 
-export const metadata: Metadata = {
-  title: "Give",
-  description: "Support the ministry of Lake Shore Church through generous giving.",
-};
-
-const funds = [
-  { id: "general", name: "General fund", desc: "Supports day-to-day ministry and operations." },
-  { id: "building", name: "Building fund", desc: "Facility and capital needs." },
-  { id: "missions", name: "Missions", desc: "Local and global gospel partnerships." },
-];
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("give");
+  return { title: t("page_title"), description: t("page_desc") };
+}
 
 export default async function GivePage() {
+  const t = await getTranslations("give");
   const config = await getSiteConfig();
   const zeffyUrl = config.zeffyEmbedUrl?.trim();
 
+  const funds = [
+    { id: "general", name: t("general"), desc: t("general_desc") },
+    { id: "building", name: t("building"), desc: t("building_desc") },
+    { id: "missions", name: t("missions"), desc: t("missions_desc") },
+  ];
+
   return (
     <>
-      <PageHeader title="Give" description="Thank you for your generous support." />
+      <PageHeader title={t("title")} description={t("subtitle")} />
       <Container className="py-12">
         <div className="grid gap-6 sm:grid-cols-3">
           {funds.map((f) => (
@@ -44,7 +46,7 @@ export default async function GivePage() {
           </div>
         ) : (
           <p className="mt-10 rounded-xl border border-default bg-surface p-6 text-foreground-secondary">
-            Online giving via Zeffy will be available soon. Use the QR code below or contact the church office.
+            {t("zeffy_soon")}
           </p>
         )}
 
@@ -57,10 +59,11 @@ export default async function GivePage() {
               target="_blank"
               rel="noopener noreferrer"
             >
-              Give via PayPal Giving Fund
+              {t("paypal")}
             </a>
           ) : null}
         </div>
+        <p className="mt-8 text-sm text-foreground-muted">{t("zero_fees")}</p>
       </Container>
     </>
   );

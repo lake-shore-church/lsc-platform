@@ -10,6 +10,7 @@ import {
 } from "react-native";
 import { WebView } from "react-native-webview";
 import { fetchJson, type MobileBlogPost, type MobileEvent } from "@/lib/api";
+import { getI18n, localeOptions, setMobileLocale, type MobileLocale, t } from "@/lib/i18n";
 
 const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "http://localhost:3000";
 const FACEBOOK = "https://www.facebook.com/lschurchchicago";
@@ -21,6 +22,7 @@ export default function MoreScreen() {
   const [posts, setPosts] = useState<MobileBlogPost[]>([]);
   const [webUrl, setWebUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
+  const [, setLocaleTick] = useState(0);
 
   useEffect(() => {
     fetchJson<{ events: MobileEvent[]; posts: MobileBlogPost[] }>("/api/mobile/home")
@@ -45,6 +47,22 @@ export default function MoreScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <Text style={styles.section}>{t("language", "title_multilingual")}</Text>
+      {localeOptions.map((opt) => (
+        <Pressable
+          key={opt.code}
+          style={styles.langRow}
+          onPress={() => {
+            void setMobileLocale(opt.code).then(() => setLocaleTick((n) => n + 1));
+          }}
+        >
+          <Text style={styles.langText}>
+            {opt.flag} {opt.label}
+            {getI18n().locale === opt.code ? " ✓" : ""}
+          </Text>
+        </Pressable>
+      ))}
+
       <Text style={styles.section}>Events</Text>
       {loading ? <ActivityIndicator color="#1B4F8A" /> : null}
       {events.map((e) => (
@@ -134,4 +152,13 @@ const styles = StyleSheet.create({
   smallButtonText: { color: "#fff", fontWeight: "600", fontSize: 13 },
   closeBar: { padding: 12, backgroundColor: "#1B4F8A" },
   closeText: { color: "#fff", fontWeight: "600" },
+  langRow: {
+    backgroundColor: "#fff",
+    borderRadius: 8,
+    padding: 12,
+    marginBottom: 8,
+    borderWidth: 1,
+    borderColor: "#e2e8f0",
+  },
+  langText: { fontSize: 16, color: "#1B4F8A", fontWeight: "600" },
 });

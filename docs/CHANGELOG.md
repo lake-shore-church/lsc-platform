@@ -8,6 +8,15 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
+- **7-language i18n** — `next-intl` with locales `en`, `es`, `zh`, `ja`, `ta`, `tl`, `nag` (English unprefixed at `/`). Message files in `apps/web/messages/`. Language switcher in header; hreflang alternates in root metadata.
+- **Translated public pages** — Home, nav, Give, Prayer, Plan a Visit use `getTranslations` / `useTranslations`.
+- **Sermon CMS translations** — `translations[]` on sermon + blogPost in Sanity; localized sermon detail with English video + expandable English summary.
+- **Translation APIs** — `POST /api/translate` (DeepL: es, zh, ja), `POST /api/translate-google` (Tamil). Staff dashboard at `/staff/translations`.
+- **Mobile i18n** — `expo-localization` + `i18n-js`, shared message JSON, language picker on More tab.
+- **Future locales scaffold** — `yo`, `tw`, `ms` documented in `i18n/routing.ts` (not active).
+
+### Added
+
 - **Real content seed** — 10 sermons (Sunday + Sheer Goodness series), 4 weekly devotionals, Pastor Brian book resource, updated siteConfig; Supabase events (Sunday, Men’s Bible Study, Welcome Lunch).
 - **Homepage redesign** — Full-viewport Chicago hero, service info strip, featured series, ministry pillars, testimonials, Facebook feed + email subscribe, footer CTA.
 - **About & Beliefs** — Static pages with real Assemblies of God copy and FAQ JSON-LD.

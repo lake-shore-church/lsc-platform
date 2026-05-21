@@ -1,4 +1,5 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import type { BlogPost } from "@repo/cms";
 import { FacebookFeed } from "@repo/ui/web/FacebookFeed";
 import { SubscribeForm } from "@/components/forms/SubscribeForm";
@@ -7,22 +8,19 @@ import { formatDate } from "@/lib/format";
 
 const FACEBOOK_URL = "https://www.facebook.com/lschurchchicago";
 
-export function StayConnectedSection({ posts }: { posts: BlogPost[] }) {
+export async function StayConnectedSection({ posts }: { posts: BlogPost[] }) {
+  const t = await getTranslations("home");
+
   return (
     <section className="section-pad bg-background">
       <Container>
-        <h2 className="font-display text-h2 text-brand-primary">Follow Along Daily</h2>
-        <p className="mt-3 max-w-2xl text-base text-foreground-secondary">
-          Pastor Brian shares a scripture every day. Follow us to stay connected throughout the
-          week.
-        </p>
+        <h2 className="font-display text-h2 text-brand-primary">{t("follow_daily")}</h2>
+        <p className="mt-3 max-w-2xl text-base text-foreground-secondary">{t("pastor_daily")}</p>
         <div className="mt-10 grid gap-10 lg:grid-cols-2">
           <FacebookFeed />
           <div className="space-y-8">
             <div className="rounded-card border border-default bg-surface p-6">
-              <h3 className="font-display text-h3 text-brand-primary">
-                Subscribe to our weekly email
-              </h3>
+              <h3 className="font-display text-h3 text-brand-primary">{t("subscribe_email")}</h3>
               <div className="mt-4">
                 <SubscribeForm />
               </div>
@@ -33,13 +31,15 @@ export function StayConnectedSection({ posts }: { posts: BlogPost[] }) {
                   rel="noopener noreferrer"
                   className="link-hover font-semibold text-brand-primary"
                 >
-                  Join 600+ followers on Facebook →
+                  {t("facebook_followers")}
                 </a>
               </p>
             </div>
             {posts.length > 0 ? (
               <div>
-                <h3 className="font-display text-h3 text-brand-primary">Recent devotionals</h3>
+                <h3 className="font-display text-h3 text-brand-primary">
+                  {t("recent_devotionals")}
+                </h3>
                 <ul className="mt-4 space-y-3">
                   {posts.map((post) => (
                     <li key={post._id}>

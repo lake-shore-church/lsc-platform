@@ -1,49 +1,8 @@
 "use client";
 
-import Link from "next/link";
+import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 import { useState } from "react";
-
-const NAV_GROUPS = [
-  {
-    label: "Watch",
-    links: [
-      { href: "/sermons", label: "Sermons" },
-      { href: "/live", label: "Live Stream" },
-      { href: "/podcast.xml", label: "Podcast" },
-    ],
-  },
-  {
-    label: "Connect",
-    links: [
-      { href: "/visit", label: "Plan a Visit" },
-      { href: "/events", label: "Small Groups" },
-      { href: "/prayer", label: "Prayer" },
-    ],
-  },
-  {
-    label: "Grow",
-    links: [
-      { href: "/blog", label: "Blog" },
-      { href: "/resources", label: "Resources" },
-      { href: "/beliefs", label: "Beliefs" },
-    ],
-  },
-  {
-    label: "Give",
-    links: [
-      { href: "/give", label: "Give" },
-      { href: "/give", label: "About Giving" },
-    ],
-  },
-  {
-    label: "About",
-    links: [
-      { href: "/about", label: "About Us" },
-      { href: "/about#pastor", label: "Pastor Brian" },
-      { href: "/contact", label: "Contact" },
-    ],
-  },
-] as const;
 
 export function PublicNav({
   churchName,
@@ -52,7 +11,50 @@ export function PublicNav({
   churchName: string;
   serviceTimesLine: string;
 }) {
+  const t = useTranslations("nav");
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  const NAV_GROUPS = [
+    {
+      label: t("watch"),
+      links: [
+        { href: "/sermons", label: t("sermons") },
+        { href: "/live", label: t("live") },
+        { href: "/podcast.xml", label: t("podcast") },
+      ],
+    },
+    {
+      label: t("connect"),
+      links: [
+        { href: "/visit", label: t("visit") },
+        { href: "/events", label: t("groups") },
+        { href: "/prayer", label: t("prayer") },
+      ],
+    },
+    {
+      label: t("grow"),
+      links: [
+        { href: "/blog", label: t("blog") },
+        { href: "/resources", label: t("resources") },
+        { href: "/beliefs", label: t("beliefs") },
+      ],
+    },
+    {
+      label: t("give"),
+      links: [
+        { href: "/give", label: t("give") },
+        { href: "/give", label: t("about_giving") },
+      ],
+    },
+    {
+      label: t("about"),
+      links: [
+        { href: "/about", label: t("about_us") },
+        { href: "/about#pastor", label: t("pastor") },
+        { href: "/contact", label: t("contact") },
+      ],
+    },
+  ] as const;
 
   return (
     <>

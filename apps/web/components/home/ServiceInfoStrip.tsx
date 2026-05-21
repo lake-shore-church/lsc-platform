@@ -1,48 +1,51 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 
-const CARDS = [
-  {
-    icon: "📍",
-    label: "Where we meet",
-    lines: [
-      "Merit School of Music",
-      "38 S. Peoria St, 2nd floor",
-      "Chicago, IL 60607",
-    ],
-    href: "https://maps.google.com/?q=Merit+School+of+Music+38+S+Peoria+St+Chicago",
-    linkLabel: "Get directions →",
-    external: true,
-  },
-  {
-    icon: "🕙",
-    label: "Service time",
-    lines: ["Every Sunday", "10:00 AM", "Doors open 9:30 AM"],
-    href: "/visit",
-    linkLabel: "Plan your visit →",
-  },
-  {
-    icon: "📺",
-    label: "Watch online",
-    lines: ["Miss a service?", "Watch our sermon archive"],
-    href: "/sermons",
-    linkLabel: "Watch now →",
-  },
-  {
-    icon: "🙏",
-    label: "Prayer",
-    lines: ["Submit a prayer request.", "We pray for every one."],
-    href: "/prayer",
-    linkLabel: "Request prayer →",
-  },
-] as const;
+export async function ServiceInfoStrip() {
+  const t = await getTranslations("home");
 
-export function ServiceInfoStrip() {
+  const cards = [
+    {
+      icon: "📍",
+      label: t("where_we_meet"),
+      lines: [
+        "Merit School of Music",
+        "38 S. Peoria St, 2nd floor",
+        "Chicago, IL 60607",
+      ],
+      href: "https://maps.google.com/?q=Merit+School+of+Music+38+S+Peoria+St+Chicago",
+      linkLabel: t("get_directions"),
+      external: true,
+    },
+    {
+      icon: "🕙",
+      label: t("service_time"),
+      lines: [t("every_sunday"), "10:00 AM", t("doors_open")],
+      href: "/visit",
+      linkLabel: t("plan_visit"),
+    },
+    {
+      icon: "📺",
+      label: t("watch_online"),
+      lines: [t("miss_service"), t("watch_archive")],
+      href: "/sermons",
+      linkLabel: t("watch_now"),
+    },
+    {
+      icon: "🙏",
+      label: t("prayer_request"),
+      lines: [t("submit_prayer_line1"), t("submit_prayer_line2")],
+      href: "/prayer",
+      linkLabel: t("request_prayer"),
+    },
+  ] as const;
+
   return (
     <section className="border-b border-default bg-surface py-10">
       <Container>
         <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {CARDS.map((card) => (
+          {cards.map((card) => (
             <article
               key={card.label}
               className="rounded-card border border-default bg-background p-5 shadow-card"
@@ -55,15 +58,23 @@ export function ServiceInfoStrip() {
                   <p key={line}>{line}</p>
                 ))}
               </div>
-              <Link
-                href={card.href}
-                className="link-hover mt-4 inline-block text-base font-semibold text-brand-primary"
-                {...("external" in card && card.external
-                  ? { target: "_blank", rel: "noopener noreferrer" }
-                  : {})}
-              >
-                {card.linkLabel}
-              </Link>
+              {"external" in card && card.external ? (
+                <a
+                  href={card.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="link-hover mt-4 inline-block text-base font-semibold text-brand-primary"
+                >
+                  {card.linkLabel}
+                </a>
+              ) : (
+                <Link
+                  href={card.href}
+                  className="link-hover mt-4 inline-block text-base font-semibold text-brand-primary"
+                >
+                  {card.linkLabel}
+                </Link>
+              )}
             </article>
           ))}
         </div>

@@ -1,11 +1,38 @@
+import createIntlMiddleware from "next-intl/middleware";
 import { type NextRequest, NextResponse } from "next/server";
+import { routing } from "./i18n/routing";
 import { createSupabaseMiddlewareClient } from "@/lib/supabase/middleware";
+
+const intlMiddleware = createIntlMiddleware(routing);
 
 const STAFF_ROLES = new Set(["staff", "admin"]);
 
+/** Paths that stay outside locale routing. */
+const NON_LOCALIZED = [
+  "/api",
+  "/auth",
+  "/login",
+  "/member",
+  "/staff",
+  "/studio",
+  "/platform",
+  "/podcast.xml",
+];
+
+function isNonLocalized(pathname: string): boolean {
+  return NON_LOCALIZED.some((prefix) => pathname.startsWith(prefix));
+}
+
+function mergeSupabaseCookies(source: NextResponse, target: NextResponse): NextResponse {
+  source.cookies.getAll().forEach((cookie) => {
+    target.cookies.set(cookie.name, cookie.value);
+  });
+  return target;
+}
+
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
-  const { supabase, response } = createSupabaseMiddlewareClient(request);
+  const { supabase, response: supabaseResponse } = createSupabaseMiddlewareClient(request);
 
   const {
     data: { user },
@@ -32,13 +59,18 @@ export async function middleware(request: NextRequest) {
         return NextResponse.redirect(login);
       }
     }
+
+    return supabaseResponse;
   }
 
-  return response;
+  if (isNonLocalized(pathname)) {
+    return supabaseResponse;
+  }
+
+  const intlResponse = intlMiddleware(request);
+  return mergeSupabaseCookies(supabaseResponse, intlResponse);
 }
 
 export const config = {
-  matcher: [
-    "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
-  ],
+  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"],
 };

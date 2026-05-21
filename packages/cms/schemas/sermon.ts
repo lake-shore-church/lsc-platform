@@ -1,4 +1,5 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
+import { translationEntryFields } from "./translationEntry";
 
 export const sermonType = defineType({
   name: "sermon",
@@ -30,6 +31,13 @@ export const sermonType = defineType({
       title: "Speaker",
       type: "reference",
       to: [{ type: "staffBio" }],
+    }),
+    defineField({
+      name: "translations",
+      title: "Translations",
+      description: "AI drafts and volunteer-reviewed translations per language.",
+      type: "array",
+      of: [defineArrayMember({ type: "object", fields: translationEntryFields })],
     }),
   ],
   preview: {

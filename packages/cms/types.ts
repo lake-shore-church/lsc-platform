@@ -40,6 +40,17 @@ export type SermonSeries = {
   themeColor?: string;
 };
 
+export type TranslationStatus = "draft" | "review" | "published";
+
+export type ContentTranslation = {
+  locale: string;
+  title?: string;
+  excerpt?: string;
+  status?: TranslationStatus;
+  reviewer?: string;
+  approved?: boolean;
+};
+
 export type Sermon = {
   _id: string;
   _type: "sermon";
@@ -53,6 +64,7 @@ export type Sermon = {
   featuredImage?: SanityImage;
   series?: SermonSeries | null;
   pastor?: StaffBio | null;
+  translations?: ContentTranslation[];
 };
 
 export type Event = {
@@ -79,6 +91,7 @@ export type BlogPost = {
   publishedAt?: string;
   featuredImage?: SanityImage;
   author?: StaffBio | null;
+  translations?: ContentTranslation[];
 };
 
 export type StaffBio = {

@@ -1,18 +1,20 @@
-import Link from "next/link";
+import { getTranslations } from "next-intl/server";
+import { Link } from "@/i18n/navigation";
 import type { Event } from "@repo/db";
 import { Container } from "@/components/ui/Container";
 import { formatDateTime } from "@/lib/format";
 
-export function UpcomingEventsSection({ events }: { events: Event[] }) {
+export async function UpcomingEventsSection({ events }: { events: Event[] }) {
+  const t = await getTranslations("home");
   const display = events.slice(0, 3);
 
   return (
     <section className="section-pad bg-background">
       <Container>
         <div className="flex items-end justify-between gap-4">
-          <h2 className="text-label text-brand-accent">Upcoming events</h2>
+          <h2 className="font-display text-h2 text-brand-primary">{t("upcoming_events")}</h2>
           <Link href="/events" className="link-hover text-base font-semibold text-brand-primary">
-            See all events →
+            {t("see_all_events")}
           </Link>
         </div>
         {display.length === 0 ? (
@@ -31,13 +33,13 @@ export function UpcomingEventsSection({ events }: { events: Event[] }) {
                   {formatDateTime(ev.starts_at)}
                 </p>
                 {ev.location ? (
-                  <p className="text-base text-foreground-muted">{ev.location}</p>
+                  <p className="mt-1 text-sm text-foreground-muted">{ev.location}</p>
                 ) : null}
                 <Link
                   href="/events"
-                  className="link-hover mt-auto pt-4 inline-flex min-h-[44px] items-center justify-center rounded-card border border-default bg-background px-4 text-base font-semibold text-brand-primary hover:bg-surface-2"
+                  className="link-hover mt-4 text-sm font-semibold text-brand-primary"
                 >
-                  RSVP
+                  RSVP →
                 </Link>
               </li>
             ))}

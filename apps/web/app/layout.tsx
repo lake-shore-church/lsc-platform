@@ -1,9 +1,13 @@
 import type { Metadata } from "next";
 import { Fraunces, Source_Sans_3 } from "next/font/google";
+import { NextIntlClientProvider } from "next-intl";
+import { getLocale, getMessages } from "next-intl/server";
 import { getSiteConfig, buildChurchJsonLd, type ThemeId } from "@repo/cms";
 import { ThemeScript } from "@repo/ui/web/ThemeScript";
 import { ThemeSwitcher } from "@repo/ui/web/ThemeSwitcher";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { localeLabels, type AppLocale } from "@/i18n/routing";
+import { buildHreflangLanguages } from "@/lib/i18n/metadata";
 import { SITE_URL } from "@/lib/site";
 import "@repo/ui/web/tokens/themes.css";
 import "./globals.css";
@@ -27,6 +31,8 @@ export const metadata: Metadata = {
   },
   description:
     "Lake Shore Church meets every Sunday at 10 AM in Chicago's West Loop. Join Pastor Brian for scripture-based teaching, community, and hope.",
+  alternates: buildHreflangLanguages(),
+  metadataBase: new URL(SITE_URL),
 };
 
 function resolveCmsTheme(activeTheme?: string): ThemeId {
@@ -47,13 +53,16 @@ export default async function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const locale = (await getLocale()) as AppLocale;
+  const messages = await getMessages();
   const config = await getSiteConfig();
   const cmsTheme = resolveCmsTheme(config.activeTheme);
   const churchJsonLd = buildChurchJsonLd(config, SITE_URL);
+  const htmlLang = localeLabels[locale]?.htmlLang ?? "en";
 
   return (
     <html
-      lang="en"
+      lang={htmlLang}
       data-theme={cmsTheme}
       data-mode="dark"
       suppressHydrationWarning
@@ -64,7 +73,9 @@ export default async function RootLayout({
         <JsonLd data={churchJsonLd} />
       </head>
       <body>
-        {children}
+        <NextIntlClientProvider locale={locale} messages={messages}>
+          {children}
+        </NextIntlClientProvider>
         <ThemeSwitcher cmsDefaultTheme={cmsTheme} />
       </body>
     </html>

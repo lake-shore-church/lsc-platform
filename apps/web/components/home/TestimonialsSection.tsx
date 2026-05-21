@@ -1,3 +1,4 @@
+import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 
 const TESTIMONIALS = [
@@ -17,30 +18,30 @@ const TESTIMONIALS = [
   },
 ] as const;
 
-export function TestimonialsSection() {
+export async function TestimonialsSection() {
+  const t = await getTranslations("home");
+
   return (
     <section className="section-pad bg-surface">
       <Container>
-        <h2 className="font-display text-h2 text-brand-primary">What People Say</h2>
-        <p className="mt-2 text-base text-foreground-secondary">
-          5.0 ★ on Google · 4.3 ★ on Facebook
-        </p>
+        <h2 className="font-display text-h2 text-brand-primary">{t("what_people_say")}</h2>
+        <p className="mt-2 text-base text-foreground-secondary">{t("ratings")}</p>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((t) => (
+          {TESTIMONIALS.map((item) => (
             <blockquote
-              key={t.name}
+              key={item.name}
               className="rounded-card border border-default bg-background p-6 shadow-card"
             >
               <p className="text-brand-accent" aria-label="5 stars">
                 ★★★★★
               </p>
               <p className="mt-4 text-base leading-relaxed text-foreground-primary">
-                &ldquo;{t.quote}&rdquo;
+                &ldquo;{item.quote}&rdquo;
               </p>
               <footer className="mt-4">
-                <cite className="not-italic font-semibold text-brand-primary">{t.name}</cite>
-                {"detail" in t && t.detail ? (
-                  <p className="text-sm text-foreground-muted">{t.detail}</p>
+                <cite className="not-italic font-semibold text-brand-primary">{item.name}</cite>
+                {"detail" in item && item.detail ? (
+                  <p className="text-sm text-foreground-muted">{item.detail}</p>
                 ) : null}
               </footer>
             </blockquote>

@@ -1,33 +1,38 @@
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import { Container } from "@/components/ui/Container";
 
-const PILLARS = [
-  {
-    icon: "♪",
-    title: "Worship",
-    body: "God planned your life for His glory and pleasure.",
-    image: "https://images.unsplash.com/photo-1478147427282-58a87a702b70?w=800&q=80",
-  },
-  {
-    icon: "📖",
-    title: "Grow",
-    body: "God created you to become a devoted disciple of Jesus Christ.",
-    image: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800&q=80",
-  },
-  {
-    icon: "🤝",
-    title: "Serve",
-    body: "God gifted you to serve Him in His church and our city.",
-    image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80",
-  },
-] as const;
+export async function MinistryCards() {
+  const tWorship = await getTranslations("worship");
+  const tGrow = await getTranslations("grow");
+  const tServe = await getTranslations("serve");
 
-export function MinistryCards() {
+  const pillars = [
+    {
+      icon: "♪",
+      title: tWorship("title"),
+      body: tWorship("body"),
+      image: "https://images.unsplash.com/photo-1478147427282-58a87a702b70?w=800&q=80",
+    },
+    {
+      icon: "📖",
+      title: tGrow("title"),
+      body: tGrow("body"),
+      image: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800&q=80",
+    },
+    {
+      icon: "🤝",
+      title: tServe("title"),
+      body: tServe("body"),
+      image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80",
+    },
+  ] as const;
+
   return (
     <section className="section-pad bg-surface">
       <Container>
         <div className="grid gap-8 md:grid-cols-3">
-          {PILLARS.map((pillar) => (
+          {pillars.map((pillar) => (
             <article
               key={pillar.title}
               className="overflow-hidden rounded-card border border-default bg-background shadow-card"

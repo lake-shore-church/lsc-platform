@@ -1,4 +1,5 @@
-import { defineField, defineType } from "sanity";
+import { defineArrayMember, defineField, defineType } from "sanity";
+import { translationEntryFields } from "./translationEntry";
 
 export const blogPostType = defineType({
   name: "blogPost",
@@ -22,6 +23,12 @@ export const blogPostType = defineType({
       title: "Author",
       type: "reference",
       to: [{ type: "staffBio" }],
+    }),
+    defineField({
+      name: "translations",
+      title: "Translations",
+      type: "array",
+      of: [defineArrayMember({ type: "object", fields: translationEntryFields })],
     }),
   ],
   preview: {

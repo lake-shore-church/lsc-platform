@@ -36,7 +36,7 @@ export default async function HomePage() {
       />
       <ServiceInfoStrip />
       <FeaturedSeriesSection latestSermon={latestSermon} />
-      <NewHereSection config={config} />
+      <NewHereSection />
       <MinistryCards />
       <UpcomingEventsSection events={events} />
       <TestimonialsSection />

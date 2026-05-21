@@ -9,6 +9,7 @@ import {
   View,
 } from "react-native";
 import { fetchJson, type MobileEvent, type MobileSermon } from "@/lib/api";
+import { t } from "@/lib/i18n";
 
 type HomeData = {
   sermon: MobileSermon | null;
@@ -91,7 +92,7 @@ export default function HomeScreen() {
         <Text style={styles.buttonText}>Give</Text>
       </Pressable>
 
-      <Text style={styles.tagline}>Authentic Christianity Together</Text>
+      <Text style={styles.tagline}>{t("home", "tagline")}</Text>
     </ScrollView>
   );
 }

@@ -36,7 +36,8 @@ const sermonProjection = `{
     slug,
     role,
     photo
-  }
+  },
+  translations
 }`;
 
 /** Published sermons, newest first. */

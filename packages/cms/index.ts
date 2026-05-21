@@ -23,6 +23,7 @@ export {
 export type {
   ThemeId,
   BlogPost,
+  ContentTranslation,
   Event,
   Page,
   Resource,
