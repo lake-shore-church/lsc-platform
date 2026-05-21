@@ -19,6 +19,10 @@ export function mergeSiteConfig(
     tagline: doc.tagline || DEFAULT_SITE_CONFIG.tagline,
     subTagline: doc.subTagline || DEFAULT_SITE_CONFIG.subTagline,
     heroBody: doc.heroBody || DEFAULT_SITE_CONFIG.heroBody,
+    heroCtaText: doc.heroCtaText || DEFAULT_SITE_CONFIG.heroCtaText,
+    distinctives: doc.distinctives || DEFAULT_SITE_CONFIG.distinctives,
+    serviceInvitation:
+      doc.serviceInvitation || DEFAULT_SITE_CONFIG.serviceInvitation,
     addressLine1: doc.addressLine1 || DEFAULT_SITE_CONFIG.addressLine1,
     addressLine2: doc.addressLine2 || DEFAULT_SITE_CONFIG.addressLine2,
     cityStateZip: doc.cityStateZip || DEFAULT_SITE_CONFIG.cityStateZip,

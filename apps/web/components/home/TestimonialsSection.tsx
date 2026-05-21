@@ -24,7 +24,9 @@ export async function TestimonialsSection() {
   return (
     <section className="section-pad bg-surface">
       <Container>
-        <h2 className="font-display text-h2 text-brand-primary">{t("what_people_say")}</h2>
+        <h2 className="font-display text-h2 text-brand-primary">
+          {t("testimonials_intro")}
+        </h2>
         <p className="mt-2 text-base text-foreground-secondary">{t("ratings")}</p>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {TESTIMONIALS.map((item) => (

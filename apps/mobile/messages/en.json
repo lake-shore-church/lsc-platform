@@ -23,9 +23,10 @@
     "close": "Close"
   },
   "home": {
-    "hero_h1": "God raised Jesus from the dead.",
+    "hero_h1": "God raised Jesus from the dead!",
     "hero_h2": "There is hope for all who follow him.",
-    "tagline": "Authentic Christianity Together",
+    "hero_body": "In a world of pain, death, and evil, there is hope in the Son of God.",
+    "hero_cta": "Our church can help you follow Jesus.",
     "join_sunday": "Join Us Sunday",
     "watch_sermon": "Watch a Sermon",
     "where_we_meet": "Where We Meet",
@@ -62,7 +63,9 @@
     "recent_devotionals": "Recent devotionals",
     "ready_next_step": "Ready to take your next step?",
     "join_this_sunday": "Join us this Sunday at 10:00 AM. Everyone is welcome.",
-    "contact_us": "Contact Us"
+    "contact_us": "Contact Us",
+    "hero_body": "In a world of pain, death, and evil, there is hope in the Son of God.",
+    "hero_cta": "Our church can help you follow Jesus."
   },
   "worship": {
     "title": "Worship",
@@ -178,7 +181,7 @@
   },
   "about": {
     "page_title": "About Lake Shore Church",
-    "page_desc": "Authentic Christianity Together",
+    "page_desc": "Our church can help you follow Jesus.",
     "meta_desc": "Lake Shore Church in Chicago's West Loop. Meet Pastor Brian and our community.",
     "intro_1": "Lake Shore Church is a community of believers meeting in Chicago's West Loop neighbourhood. We are an Assemblies of God church committed to scripture-based teaching, authentic worship, and genuine community.",
     "intro_2": "We meet every Sunday at 10:00 AM at Merit School of Music, 38 S. Peoria St, 2nd floor, room 210, Chicago IL 60607.",
@@ -187,7 +190,8 @@
     "pastor_heading": "Pastor Brian",
     "pastor_name": "Craig Brian Larson",
     "pastor_bio": "Pastor Brian is a scripture teacher, author, and pastor who brings clear expository preaching from God's Word every Sunday. He is the author of Know — Gaining Wisdom from God About Everything and has served the West Loop community for many years.",
-    "book_link": "Get the book on Amazon →"
+    "book_link": "Get the book on Amazon →",
+    "distinctives": "Find inerrant truth from Scripture in a world of confusion."
   },
   "beliefs": {
     "page_title": "What We Believe",

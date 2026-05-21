@@ -27,6 +27,9 @@ export async function PublicFooter({
       <Container className="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
         <div className="max-w-sm">
           <p className="font-display text-h3 text-brand-primary">{churchName}</p>
+          <p className="mt-2 text-base leading-relaxed text-foreground-secondary">
+            {t("tagline")}
+          </p>
           {address ? (
             <p className="mt-2 whitespace-pre-line text-base leading-relaxed text-foreground-muted">
               {address}

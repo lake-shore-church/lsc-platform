@@ -65,8 +65,14 @@ export default function HomeScreen() {
       <Pressable style={styles.strip} onPress={() => Linking.openURL(CHURCH.mapsUrl)}>
         <Text style={styles.stripTitle}>{CHURCH.serviceTime}</Text>
         <Text style={styles.stripSub}>{CHURCH.addressLine}</Text>
+        <Text style={styles.stripPhone}>{CHURCH.servicePhone}</Text>
         <Text style={styles.stripLink}>Get directions →</Text>
       </Pressable>
+
+      <View style={styles.quoteCard}>
+        <Text style={styles.quoteH1}>God raised Jesus from the dead!</Text>
+        <Text style={styles.quoteH2}>There is hope for all who follow him.</Text>
+      </View>
 
       {liveStatus?.isLive ? (
         <Pressable
@@ -131,7 +137,7 @@ export default function HomeScreen() {
           ))}
         </View>
 
-        <Text style={styles.tagline}>{t("home", "tagline")}</Text>
+        <Text style={styles.tagline}>{t("home", "hero_cta")}</Text>
       </ScrollView>
     </View>
   );
@@ -158,7 +164,17 @@ const styles = StyleSheet.create({
   },
   stripTitle: { color: "#fff", fontSize: 16, fontWeight: "700" },
   stripSub: { color: "rgba(255,255,255,0.85)", fontSize: 12, marginTop: 2 },
+  stripPhone: { color: "rgba(255,255,255,0.9)", fontSize: 12, marginTop: 4 },
   stripLink: { color: "rgba(255,255,255,0.9)", fontSize: 12, marginTop: 6, fontWeight: "600" },
+  quoteCard: {
+    marginHorizontal: 16,
+    marginTop: 12,
+    backgroundColor: colors.primary,
+    borderRadius: 14,
+    padding: 16,
+  },
+  quoteH1: { color: "#fff", fontWeight: "700", fontSize: 18 },
+  quoteH2: { color: "rgba(255,255,255,0.85)", fontSize: 14, marginTop: 4 },
   liveBanner: {
     flexDirection: "row",
     alignItems: "center",

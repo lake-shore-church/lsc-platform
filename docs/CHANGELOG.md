@@ -6,6 +6,10 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ## [Unreleased] — main
 
+### Changed
+
+- **Church voice (lschurch.com)** — Resurrection-centred hero (H1/H2/body/CTA), Pastor Brian's distinctives on About and Beliefs, exact Sunday service copy on Visit and nav strip, mobile quote card; removed "Authentic Christianity Together" site-wide; CMS `siteConfig` fields `heroCtaText`, `distinctives`, `serviceInvitation`; all 8 locales updated.
+
 ### Added
 
 - **Livestream system** — Sanity `isLiveNow` / `liveVideoId` site config; `GET /api/live-status` (60s cache); staff **Go live** / **End stream** on `/staff/sermons`; redesigned `/live` (player, chat, prayer, countdown, multi-platform cards); site-wide live banner + nav badge; mobile **Sermons → Live** tab + home live banner; optional OneSignal on go-live; `docs/LIVESTREAM_SETUP.md`.

@@ -48,13 +48,17 @@ export default async function VisitPage() {
       <Container className="grid gap-10 py-12 lg:grid-cols-2">
         <div>
           <h2 className="text-xl font-semibold text-brand-primary">{t("service_times")}</h2>
-          <ul className="mt-4 space-y-2 text-foreground-secondary">
-            <li>
-              <strong>{config.serviceDay}</strong> — {config.serviceTime}
-            </li>
-            <li className="whitespace-pre-line text-sm text-foreground-muted">{address}</li>
-            {config.phone ? <li>{t("call", { phone: config.phone })}</li> : null}
-          </ul>
+          <p className="mt-4 whitespace-pre-line text-foreground-secondary">
+            {t("service_info")}
+          </p>
+          {config.phone ? (
+            <p className="mt-2 text-foreground-secondary">
+              {t("call", { phone: config.phone })}
+            </p>
+          ) : null}
+          <p className="mt-6 text-base leading-relaxed text-foreground-secondary">
+            {t("invitation")}
+          </p>
           <h2 className="mt-8 text-xl font-semibold text-brand-primary">{t("what_to_expect")}</h2>
           <ol className="mt-4 list-decimal space-y-2 pl-5 text-foreground-secondary">
             <li>{t("expect_1")}</li>

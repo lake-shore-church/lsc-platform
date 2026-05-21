@@ -8,10 +8,12 @@ export async function HeroSection({
   tagline,
   subTagline,
   heroBody,
+  heroCtaText,
 }: {
   tagline?: string;
   subTagline?: string;
   heroBody?: string;
+  heroCtaText?: string;
 }) {
   const t = await getTranslations("home");
   const locale = await getLocale();
@@ -35,8 +37,8 @@ export async function HeroSection({
         <h2 className="mx-auto mt-5 max-w-2xl font-display text-h2 font-normal leading-snug text-white/90">
           {useCmsHero && subTagline ? subTagline : t("hero_h2")}
         </h2>
-        <p className="mt-4 text-lg font-semibold text-white/85">
-          {useCmsHero && heroBody ? heroBody : t("tagline")}
+        <p className="mx-auto mt-4 max-w-2xl text-lg font-semibold leading-relaxed text-white/85">
+          {useCmsHero && heroBody ? heroBody : t("hero_body")}
         </p>
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
           <Link
@@ -52,6 +54,9 @@ export async function HeroSection({
             {t("watch_sermon")}
           </Link>
         </div>
+        <p className="mt-8 text-base font-semibold text-white/90">
+          {useCmsHero && heroCtaText ? heroCtaText : t("hero_cta")}
+        </p>
       </Container>
     </section>
   );

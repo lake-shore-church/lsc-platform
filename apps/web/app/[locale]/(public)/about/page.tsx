@@ -30,7 +30,7 @@ export default async function AboutPage() {
       <Container className="max-w-3xl py-12">
         <div className="space-y-4 text-base leading-relaxed text-foreground-secondary">
           <p>{t("intro_1")}</p>
-          <p>{t("intro_2")}</p>
+          <p className="font-semibold text-brand-primary">{t("distinctives")}</p>
           <p>{t("intro_3")}</p>
         </div>
 

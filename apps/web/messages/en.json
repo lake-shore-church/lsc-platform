@@ -19,13 +19,15 @@
     "pastor": "Pastor Brian",
     "contact": "Contact",
     "service_times": "Sundays {time} · West Loop Chicago",
+    "service_times_strip": "Sunday Service · Begins at 10 A.M. · Merit School of Music · West Loop Chicago",
     "menu": "Menu",
     "close": "Close"
   },
   "home": {
-    "hero_h1": "God raised Jesus from the dead.",
+    "hero_h1": "God raised Jesus from the dead!",
     "hero_h2": "There is hope for all who follow him.",
-    "tagline": "Authentic Christianity Together",
+    "hero_body": "In a world of pain, death, and evil, there is hope in the Son of God.",
+    "hero_cta": "Our church can help you follow Jesus.",
     "join_sunday": "Join Us Sunday",
     "watch_sermon": "Watch a Sermon",
     "where_we_meet": "Where We Meet",
@@ -54,6 +56,7 @@
     "upcoming_events": "Upcoming Events",
     "see_all_events": "See all events →",
     "what_people_say": "What People Say",
+    "testimonials_intro": "People finding hope at Lake Shore Church",
     "ratings": "5.0 ★ on Google · 4.3 ★ on Facebook",
     "follow_daily": "Follow Along Daily",
     "pastor_daily": "Pastor Brian shares a scripture every day. Follow us to stay connected throughout the week.",
@@ -119,13 +122,16 @@
     "expect_4": "Stay for coffee and conversation — we would love to get to know you.",
     "parking_desc": "Street parking and public transit are available in the West Loop. Plan extra time on Sunday mornings.",
     "ask_question": "Ask a question",
-    "call": "Call or text: {phone}"
+    "call": "Call or text for information: {phone}",
+    "service_info": "Sunday Service\nIn Merit School of Music,\n38 S. Peoria St, 2nd floor, room 210\nChicago, IL 60607\nBegins at 10 A.M.",
+    "invitation": "Our church can help you follow Jesus.\nWe hope to see you there!"
   },
   "sermon": {
     "transcript_english": "Full message in English",
     "watch_english_video": "Video in English"
   },
   "footer": {
+    "tagline": "Helping people follow Jesus in Chicago's West Loop.",
     "rights": "All rights reserved.",
     "denomination": "Assemblies of God",
     "dedication": "Dedication",
@@ -178,10 +184,10 @@
   },
   "about": {
     "page_title": "About Lake Shore Church",
-    "page_desc": "Authentic Christianity Together",
+    "page_desc": "Our church can help you follow Jesus.",
     "meta_desc": "Lake Shore Church in Chicago's West Loop. Meet Pastor Brian and our community.",
-    "intro_1": "Lake Shore Church is a community of believers meeting in Chicago's West Loop neighbourhood. We are an Assemblies of God church committed to scripture-based teaching, authentic worship, and genuine community.",
-    "intro_2": "We meet every Sunday at 10:00 AM at Merit School of Music, 38 S. Peoria St, 2nd floor, room 210, Chicago IL 60607.",
+    "intro_1": "In a world of pain, death, and evil, there is hope in the Son of God. Lake Shore Church exists to help people follow Jesus — through scripture-based teaching, genuine community, and authentic worship.",
+    "distinctives": "Find inerrant truth from Scripture in a world of confusion.",
     "intro_3": "Our pastor is Craig Brian Larson (Pastor Brian), a published author and expository Bible teacher who has served Lake Shore Church for many years.",
     "pillars_heading": "Our pillars",
     "pastor_heading": "Pastor Brian",
@@ -193,6 +199,7 @@
     "page_title": "What We Believe",
     "page_desc": "Core beliefs of Lake Shore Church from the Bible.",
     "meta_desc": "Statement of faith — Lake Shore Church West Loop, Assemblies of God.",
+    "distinctives": "Find inerrant truth from Scripture in a world of confusion.",
     "intro": "The following are the core beliefs of Lake Shore Church based on the foundational truths taught in the Bible.",
     "section_bible_title": "The Bible",
     "section_bible_body": "The Bible is the inspired, inerrant Word of God, the revelation of God to man, the infallible, authoritative rule of faith and conduct.",

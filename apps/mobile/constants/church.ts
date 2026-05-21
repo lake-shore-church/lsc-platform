@@ -4,7 +4,8 @@ export const CHURCH = {
   phoneTel: "+13124641834",
   address: "Merit School of Music\n38 S. Peoria St, 2nd floor\nChicago, IL 60607",
   addressLine: "Merit School of Music · 38 S. Peoria St · West Loop Chicago",
-  serviceTime: "Sunday Service · 10:00 AM",
+  serviceTime: "Sunday Service · Begins at 10 A.M.",
+  servicePhone: "(312) 464-1834 — call or text",
   mapsUrl:
     "https://maps.google.com/?q=Merit+School+of+Music+38+S+Peoria+St+Chicago+IL+60607",
   facebook: "https://www.facebook.com/lschurchchicago",

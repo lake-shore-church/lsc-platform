@@ -28,8 +28,31 @@ export const siteConfigType = defineType({
     defineField({
       name: "heroBody",
       title: "Hero body copy",
+      type: "text",
+      rows: 2,
+      initialValue:
+        "In a world of pain, death, and evil, there is hope in the Son of God.",
+    }),
+    defineField({
+      name: "heroCtaText",
+      title: "Hero CTA line (below buttons)",
       type: "string",
       initialValue: "Our church can help you follow Jesus.",
+    }),
+    defineField({
+      name: "distinctives",
+      title: "Church distinctives",
+      description: "Used on About and Beliefs pages.",
+      type: "text",
+      rows: 2,
+      initialValue:
+        "Find inerrant truth from Scripture in a world of confusion.",
+    }),
+    defineField({
+      name: "serviceInvitation",
+      title: "Visit page invitation",
+      type: "string",
+      initialValue: "We hope to see you there!",
     }),
     defineField({
       name: "addressLine1",

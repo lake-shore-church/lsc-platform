@@ -35,7 +35,7 @@ export default async function BeliefsPage() {
 
   return (
     <>
-      <PageHeader title={t("page_title")} description={t("page_desc")} />
+      <PageHeader title={t("page_title")} description={t("distinctives")} />
       <Container className="max-w-3xl py-12">
         <p className="text-base leading-relaxed text-foreground-secondary">{t("intro")}</p>
 

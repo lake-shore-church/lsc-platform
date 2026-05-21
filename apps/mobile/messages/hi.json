@@ -20,12 +20,12 @@
     "contact": "संपर्क",
     "service_times": "रविवार {time} · वेस्ट लूप, शिकागो",
     "menu": "मेनू",
-    "close": "बंद करें"
+    "close": "बंद करें",
+    "service_times_strip": "रविवार की आराधना · सुबह 10 बजे शुरू · Merit School of Music · वेस्ट लूप, शिकागो"
   },
   "home": {
-    "hero_h1": "परमेश्वर ने यीशु को मृतकों में से जिलाए।",
+    "hero_h1": "परमेश्वर ने यीशु को मृतकों में से जिलाया!",
     "hero_h2": "जो उसका अनुसरण करते हैं, उन सब के लिए आशा है।",
-    "tagline": "साथ मिलकर प्रामाणिक ईसाई जीवन",
     "join_sunday": "रविवार को जुड़ें",
     "watch_sermon": "उपदेश देखें",
     "where_we_meet": "Where We Meet",
@@ -62,7 +62,10 @@
     "recent_devotionals": "Recent devotionals",
     "ready_next_step": "Ready to take your next step?",
     "join_this_sunday": "Join us this Sunday at 10:00 AM. Everyone is welcome.",
-    "contact_us": "हमसे संपर्क करें"
+    "contact_us": "हमसे संपर्क करें",
+    "hero_body": "दुःख, मृत्यु और बुराई के इस संसार में, परमेश्वर के पुत्र में आशा है।",
+    "hero_cta": "हमारा चर्च आपको यीशु का अनुसरण करने में सहायता कर सकता है।",
+    "testimonials_intro": "Lake Shore Church में आशा पाने वाले लोग"
   },
   "worship": {
     "title": "आराधना",
@@ -119,7 +122,9 @@
     "expect_4": "Stay for coffee and conversation — we would love to get to know you.",
     "parking_desc": "Street parking and public transit are available in the West Loop. Plan extra time on Sunday mornings.",
     "ask_question": "Ask a question",
-    "call": "Call or text: {phone}"
+    "call": "जानकारी के लिए कॉल या टेक्स्ट करें: {phone}",
+    "service_info": "रविवार की आराधना\nMerit School of Music\n38 S. Peoria St, 2nd floor, room 210\nChicago, IL 60607\nसुबह 10 बजे शुरू",
+    "invitation": "हमारा चर्च आपको यीशु का अनुसरण करने में सहायता कर सकता है।\nहम आपसे वहाँ मिलने की आशा करते हैं!"
   },
   "sermon": {
     "transcript_english": "Full message in English",
@@ -136,7 +141,8 @@
     "link_give": "Give",
     "link_contact": "Contact",
     "sign_in": "Sign in",
-    "tech_guide": "Tech team guide"
+    "tech_guide": "Tech team guide",
+    "tagline": "शिकागो के वेस्ट लूप में लोगों को यीशु का अनुसरण करने में सहायता करना।"
   },
   "language": {
     "choose": "भाषा",
@@ -144,16 +150,16 @@
   },
   "about": {
     "page_title": "लेक शोर चर्च के बारे में",
-    "page_desc": "साथ मिलकर प्रामाणिक ईसाई जीवन",
+    "page_desc": "हमारा चर्च आपको यीशु का अनुसरण करने में सहायता कर सकता है।",
     "meta_desc": "शिकागो वेस्ट लूप में लेक शोर चर्च।",
-    "intro_1": "लेक शोर चर्च शिकागो के वेस्ट लूप में इकट्ठा होने वाले विश्वासियों का समुदाय है।",
-    "intro_2": "हम हर रविवार सुबह 10:00 बजे Merit School of Music में मिलते हैं।",
+    "intro_1": "दुःख, मृत्यु और बुराई के इस संसार में, परमेश्वर के पुत्र में आशा है। Lake Shore Church लोगों को यीशु का अनुसरण करने में सहायता के लिए है — शास्त्र-आधारित शिक्षा, वास्तविक साझेदारी और प्रामाणिक उपासना के द्वारा।",
     "intro_3": "Our pastor is Craig Brian Larson (Pastor Brian), a published author and expository Bible teacher who has served Lake Shore Church for many years.",
     "pillars_heading": "हमारे स्तंभ",
     "pastor_heading": "पास्टर ब्रायन",
     "pastor_name": "Craig Brian Larson",
     "pastor_bio": "Pastor Brian is a scripture teacher, author, and pastor who brings clear expository preaching from God's Word every Sunday. He is the author of Know — Gaining Wisdom from God About Everything and has served the West Loop community for many years.",
-    "book_link": "Amazon पर पुस्तक प्राप्त करें →"
+    "book_link": "Amazon पर पुस्तक प्राप्त करें →",
+    "distinctives": "भ्रम के संसार में शास्त्र की निर्दोष सत्यता पाएँ।"
   },
   "beliefs": {
     "page_title": "What We Believe",
@@ -187,7 +193,8 @@
     "faq_2_q": "Is Lake Shore Church welcoming to newcomers?",
     "faq_2_a": "Yes — everyone is welcome wherever they are on their journey of faith.",
     "faq_3_q": "What denomination is Lake Shore Church?",
-    "faq_3_a": "Lake Shore Church is part of the Assemblies of God."
+    "faq_3_a": "Lake Shore Church is part of the Assemblies of God.",
+    "distinctives": "भ्रम के संसार में शास्त्र की निर्दोष सत्यता पाएँ।"
   },
   "blog": {
     "page_title": "Blog",

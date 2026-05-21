@@ -50,7 +50,7 @@ export async function GET() {
   <channel>
     <title>Lake Shore Church — Sermons</title>
     <link>${escapeXml(SITE_URL)}</link>
-    <description>Scripture-based teaching from Pastor Brian at Lake Shore Church, West Loop Chicago. Authentic Christianity Together.</description>
+    <description>Scripture-based teaching from Pastor Brian at Lake Shore Church, West Loop Chicago. God raised Jesus from the dead — there is hope for all who follow him.</description>
     <language>en-us</language>
     <copyright>Lake Shore Church</copyright>
     <itunes:author>Pastor Brian · Lake Shore Church</itunes:author>

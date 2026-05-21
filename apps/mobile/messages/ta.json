@@ -21,12 +21,12 @@
     "contact": "தொடர்பு",
     "service_times": "ஞாயிறு {time} · சிகாகோ West Loop",
     "menu": "மெனு",
-    "close": "மூடு"
+    "close": "மூடு",
+    "service_times_strip": "ஞாயிறு ஆராதனை · காலை 10 மணிக்கு தொடங்குகிறது · Merit School of Music · West Loop Chicago"
   },
   "home": {
-    "hero_h1": "தேவன் இயேசுவை மரித்தோரிலிருந்து உயிர்ப்பித்தார்.",
+    "hero_h1": "தேவன் இயேசுவை மரித்தோரிலிருந்து உயிர்ப்பித்தார்!",
     "hero_h2": "அவரைப் பின்பற்றும் அனைவருக்கும் நம்பிக்கை உண்டு.",
-    "tagline": "உண்மையான கிறிஸ்தவம் ஒன்றாக",
     "join_sunday": "ஞாயிறு சேருங்கள்",
     "watch_sermon": "பிரசங்கம் பார்க்க",
     "where_we_meet": "சந்திப்பிடம்",
@@ -63,7 +63,10 @@
     "recent_devotionals": "சமீப தியானங்கள்",
     "ready_next_step": "அடுத்த படிக்குத் தயாரா?",
     "join_this_sunday": "இந்த ஞாயிறு 10:00 AM-க்கு வாருங்கள். அனைவரும் வரவேற்கப்படுகிறீர்கள்.",
-    "contact_us": "தொடர்பு கொள்ளுங்கள்"
+    "contact_us": "தொடர்பு கொள்ளுங்கள்",
+    "hero_body": "வலி, மரணம், தீமை நிறைந்த உலகில், தேவ குமாரனில் நம்பிக்கை உண்டு.",
+    "hero_cta": "இயேசுவைப் பின்பற்ற எங்கள் சபை உங்களுக்கு உதவ முடியும்.",
+    "testimonials_intro": "Lake Shore Church-இல் நம்பிக்கை காணும் மக்கள்"
   },
   "worship": {
     "title": "ஆராதனை",
@@ -120,7 +123,9 @@
     "expect_4": "பேச்சுவார்த்தைக்குத் தங்குங்கள்—உங்களை அறிய விரும்புகிறோம்.",
     "parking_desc": "West Loop-ல் தெரு பார்க்கிங் மற்றும் போக்குவரத்து உள்ளது. ஞாயிறு கூடுதல் நேரம் வையுங்கள்.",
     "ask_question": "கேள்வி கேளுங்கள்",
-    "call": "அழைப்பு அல்லது SMS: {phone}"
+    "call": "தகவலுக்கு அழைக்கவும் அல்லது SMS அனுப்பவும்: {phone}",
+    "service_info": "ஞாயிறு ஆராதனை\nMerit School of Music\n38 S. Peoria St, 2nd floor, room 210\nChicago, IL 60607\nகாலை 10 மணிக்கு தொடங்குகிறது",
+    "invitation": "இயேசுவைப் பின்பற்ற எங்கள் சபை உங்களுக்கு உதவ முடியும்.\nஉங்களை அங்கே சந்திப்போம்!"
   },
   "sermon": {
     "transcript_english": "ஆங்கிலத்தில் முழு செய்தி",
@@ -137,7 +142,8 @@
     "link_give": "Give",
     "link_contact": "Contact",
     "sign_in": "Sign in",
-    "tech_guide": "Tech team guide"
+    "tech_guide": "Tech team guide",
+    "tagline": "சிகாகோ West Loop-இல் இயேசுவைப் பின்பற்ற மக்களுக்கு உதவுகிறோம்."
   },
   "language": {
     "choose": "மொழி",
@@ -145,16 +151,16 @@
   },
   "about": {
     "page_title": "Lake Shore Church பற்றி",
-    "page_desc": "உண்மையான கிறிஸ்தவம் ஒன்றாக",
+    "page_desc": "இயேசுவைப் பின்பற்ற எங்கள் சபை உங்களுக்கு உதவ முடியும்.",
     "meta_desc": "சிகாகோ West Loop.",
-    "intro_1": "லேக் ஷோர் சபை சிகாகோ West Loop-ல் கூடும் விசுவாசிகளின் சமூகம்.",
-    "intro_2": "ஒவ்வொரு ஞாயிறும் காலை 10:00 மணிக்கு கூடுகிறோம்.",
+    "intro_1": "வலி, மரணம், தீமை நிறைந்த உலகில், தேவ குமாரனில் நம்பிக்கை உண்டு. Lake Shore Church இயேசுவைப் பின்பற்ற மக்களுக்கு உதவுகிறது — வேதாகம உபதேசம், உண்மையான சமூகம், உண்மையான ஆராதனை மூலம்.",
     "intro_3": "நமது பாஸ்டர் Craig Brian Larson (பாஸ்டர் பிரையன்).",
     "pillars_heading": "நமது தூண்கள்",
     "pastor_heading": "பாஸ்டர் பிரையன்",
     "pastor_name": "Craig Brian Larson",
     "pastor_bio": "பாஸ்டர் பிரையன் வேதாகம போதகம் செய்கிறார்.",
-    "book_link": "Amazon-ல் புத்தகம் →"
+    "book_link": "Amazon-ல் புத்தகம் →",
+    "distinctives": "குழப்பத்தின் உலகில் வேதாகமத்தின் பிழையற்ற சத்தியத்தைக் கண்டடையுங்கள்."
   },
   "beliefs": {
     "page_title": "What We Believe",
@@ -188,7 +194,8 @@
     "faq_2_q": "Is Lake Shore Church welcoming to newcomers?",
     "faq_2_a": "Yes — everyone is welcome wherever they are on their journey of faith.",
     "faq_3_q": "What denomination is Lake Shore Church?",
-    "faq_3_a": "Lake Shore Church is part of the Assemblies of God."
+    "faq_3_a": "Lake Shore Church is part of the Assemblies of God.",
+    "distinctives": "குழப்பத்தின் உலகில் வேதாகமத்தின் பிழையற்ற சத்தியத்தைக் கண்டடையுங்கள்."
   },
   "blog": {
     "page_title": "வலைப்பதிவு",

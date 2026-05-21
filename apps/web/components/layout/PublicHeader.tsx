@@ -5,9 +5,7 @@ import { PublicNav } from "./PublicNav";
 
 export async function PublicHeader({ config }: { config: SiteConfig }) {
   const t = await getTranslations("nav");
-  const serviceTimesLine = t("service_times", {
-    time: config.serviceTime ?? "10:00 AM",
-  });
+  const serviceTimesLine = t("service_times_strip");
 
   return (
     <header className="sticky top-0 z-50 bg-background">

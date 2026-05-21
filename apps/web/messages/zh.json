@@ -21,12 +21,12 @@
     "contact": "联系",
     "service_times": "每周日 {time} · 芝加哥 West Loop",
     "menu": "菜单",
-    "close": "关闭"
+    "close": "关闭",
+    "service_times_strip": "主日崇拜 · 上午 10 点开始 · Merit School of Music · 芝加哥 West Loop"
   },
   "home": {
-    "hero_h1": "神使耶稣从死里复活。",
+    "hero_h1": "神使耶稣从死里复活！",
     "hero_h2": "凡跟随他的人都有盼望。",
-    "tagline": "真实的基督徒团契",
     "join_sunday": "周日加入我们",
     "watch_sermon": "观看讲道",
     "where_we_meet": "聚会地点",
@@ -63,7 +63,10 @@
     "recent_devotionals": "近期灵修",
     "ready_next_step": "准备好迈出下一步了吗？",
     "join_this_sunday": "本周日 10:00 AM 加入我们。所有人都受欢迎。",
-    "contact_us": "联系我们"
+    "contact_us": "联系我们",
+    "hero_body": "在痛苦、死亡和邪恶的世界中，在神的儿子里有盼望。",
+    "hero_cta": "我们的教会可以帮助您跟随耶稣。",
+    "testimonials_intro": "在 Lake Shore Church 找到盼望的人们"
   },
   "worship": {
     "title": "敬拜",
@@ -120,7 +123,9 @@
     "expect_4": "聚会后交流——我们很乐意认识您。",
     "parking_desc": "West Loop 有街边停车和公共交通。周日请预留额外时间。",
     "ask_question": "提问",
-    "call": "致电或短信：{phone}"
+    "call": "致电或发短信咨询：{phone}",
+    "service_info": "主日崇拜\nMerit School of Music\n38 S. Peoria St, 2nd floor, room 210\nChicago, IL 60607\n上午 10 点开始",
+    "invitation": "我们的教会可以帮助您跟随耶稣。\n盼望在那里见到您！"
   },
   "sermon": {
     "transcript_english": "英文完整内容",
@@ -137,7 +142,8 @@
     "link_give": "Give",
     "link_contact": "Contact",
     "sign_in": "Sign in",
-    "tech_guide": "Tech team guide"
+    "tech_guide": "Tech team guide",
+    "tagline": "在芝加哥 West Loop 帮助人跟随耶稣。"
   },
   "language": {
     "choose": "语言",
@@ -145,16 +151,16 @@
   },
   "about": {
     "page_title": "关于 Lake Shore Church",
-    "page_desc": "真实的基督徒团契",
+    "page_desc": "我们的教会可以帮助您跟随耶稣。",
     "meta_desc": "芝加哥 West Loop 的 Lake Shore Church。",
-    "intro_1": "Lake Shore Church 是芝加哥 West Loop 的信徒群体。我们是神召会教会，致力于圣经教导、真实敬拜和真诚团契。",
-    "intro_2": "我们每周日 10:00 AM 在 Merit School of Music 聚会。",
+    "intro_1": "在痛苦、死亡和邪恶的世界中，在神的儿子里有盼望。Lake Shore Church 致力于帮助人跟随耶稣——通过基于圣经的教导、真实的团契和敬拜。",
     "intro_3": "我们的牧师是 Craig Brian Larson（Brian 牧师）。",
     "pillars_heading": "我们的支柱",
     "pastor_heading": "Brian 牧师",
     "pastor_name": "Craig Brian Larson",
     "pastor_bio": "Brian 牧师每周带来清晰的释经讲道，著有 Know 一书。",
-    "book_link": "在 Amazon 购买书籍 →"
+    "book_link": "在 Amazon 购买书籍 →",
+    "distinctives": "在困惑的世界中找到圣经无误的真理。"
   },
   "beliefs": {
     "page_title": "What We Believe",
@@ -188,7 +194,8 @@
     "faq_2_q": "Is Lake Shore Church welcoming to newcomers?",
     "faq_2_a": "Yes — everyone is welcome wherever they are on their journey of faith.",
     "faq_3_q": "What denomination is Lake Shore Church?",
-    "faq_3_a": "Lake Shore Church is part of the Assemblies of God."
+    "faq_3_a": "Lake Shore Church is part of the Assemblies of God.",
+    "distinctives": "在困惑的世界中找到圣经无误的真理。"
   },
   "blog": {
     "page_title": "博客",

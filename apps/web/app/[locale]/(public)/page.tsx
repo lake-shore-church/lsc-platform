@@ -33,6 +33,7 @@ export default async function HomePage() {
         tagline={config.tagline}
         subTagline={config.subTagline}
         heroBody={config.heroBody}
+        heroCtaText={config.heroCtaText}
       />
       <ServiceInfoStrip />
       <FeaturedSeriesSection latestSermon={latestSermon} />

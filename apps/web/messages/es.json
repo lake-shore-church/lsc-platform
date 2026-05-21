@@ -20,13 +20,15 @@
     "pastor": "Pastor Brian",
     "contact": "Contacto",
     "service_times": "Domingos {time} · West Loop, Chicago",
+    "service_times_strip": "Servicio dominical · Comienza a las 10 A.M. · Merit School of Music · West Loop Chicago",
     "menu": "Menú",
     "close": "Cerrar"
   },
   "home": {
-    "hero_h1": "Dios resucitó a Jesús de entre los muertos.",
+    "hero_h1": "¡Dios resucitó a Jesús de entre los muertos!",
     "hero_h2": "Hay esperanza para todos los que le siguen.",
-    "tagline": "Cristianismo auténtico juntos",
+    "hero_body": "En un mundo de dolor, muerte y mal, hay esperanza en el Hijo de Dios.",
+    "hero_cta": "Nuestra iglesia puede ayudarle a seguir a Jesús.",
     "join_sunday": "Únase el domingo",
     "watch_sermon": "Ver un sermón",
     "where_we_meet": "Dónde nos reunimos",
@@ -55,6 +57,7 @@
     "upcoming_events": "Próximos eventos",
     "see_all_events": "Ver todos los eventos →",
     "what_people_say": "Lo que dicen las personas",
+    "testimonials_intro": "Personas que encuentran esperanza en Lake Shore Church",
     "ratings": "5.0 ★ en Google · 4.3 ★ en Facebook",
     "follow_daily": "Síganos cada día",
     "pastor_daily": "El Pastor Brian comparte una Escritura cada día. Síganos para mantenerse conectados.",
@@ -120,7 +123,9 @@
     "expect_4": "Quédese para conversar — nos encantaría conocerle.",
     "parking_desc": "Hay estacionamiento en la calle y transporte público en el West Loop. Planifique tiempo extra los domingos.",
     "ask_question": "Haga una pregunta",
-    "call": "Llame o envíe mensaje: {phone}"
+    "call": "Llame o envíe mensaje de texto para información: {phone}",
+    "service_info": "Servicio dominical\nEn Merit School of Music,\n38 S. Peoria St, 2do piso, sala 210\nChicago, IL 60607\nComienza a las 10 A.M.",
+    "invitation": "Nuestra iglesia puede ayudarle a seguir a Jesús.\n¡Esperamos verle allí!"
   },
   "sermon": {
     "transcript_english": "Mensaje completo en inglés",
@@ -137,7 +142,8 @@
     "link_give": "Give",
     "link_contact": "Contact",
     "sign_in": "Sign in",
-    "tech_guide": "Tech team guide"
+    "tech_guide": "Tech team guide",
+    "tagline": "Ayudando a las personas a seguir a Jesús en el West Loop de Chicago."
   },
   "language": {
     "choose": "Idioma",
@@ -145,16 +151,16 @@
   },
   "about": {
     "page_title": "Acerca de Lake Shore Church",
-    "page_desc": "Cristianismo auténtico juntos",
+    "page_desc": "Nuestra iglesia puede ayudarle a seguir a Jesús.",
     "meta_desc": "Lake Shore Church en el West Loop de Chicago.",
-    "intro_1": "Lake Shore Church es una comunidad de creyentes en el West Loop de Chicago. Somos una iglesia de las Asambleas de Dios comprometida con la enseñanza bíblica, la adoración auténtica y la comunidad genuina.",
-    "intro_2": "Nos reunimos cada domingo a las 10:00 AM en Merit School of Music, 38 S. Peoria St, 2do piso, sala 210, Chicago IL 60607.",
+    "intro_1": "En un mundo de dolor, muerte y mal, hay esperanza en el Hijo de Dios. Lake Shore Church existe para ayudar a las personas a seguir a Jesús — mediante la enseñanza basada en las Escrituras, la comunidad genuina y la adoración auténtica.",
     "intro_3": "Nuestro pastor es Craig Brian Larson (Pastor Brian), autor publicado y maestro bíblico expositivo.",
     "pillars_heading": "Nuestros pilares",
     "pastor_heading": "Pastor Brian",
     "pastor_name": "Craig Brian Larson",
     "pastor_bio": "El Pastor Brian trae predicación expositiva clara cada domingo. Es autor de Know — Gaining Wisdom from God About Everything.",
-    "book_link": "Obtener el libro en Amazon →"
+    "book_link": "Obtener el libro en Amazon →",
+    "distinctives": "Encuentre la verdad inerrante de las Escrituras en un mundo de confusión."
   },
   "beliefs": {
     "page_title": "What We Believe",
@@ -188,7 +194,8 @@
     "faq_2_q": "Is Lake Shore Church welcoming to newcomers?",
     "faq_2_a": "Yes — everyone is welcome wherever they are on their journey of faith.",
     "faq_3_q": "What denomination is Lake Shore Church?",
-    "faq_3_a": "Lake Shore Church is part of the Assemblies of God."
+    "faq_3_a": "Lake Shore Church is part of the Assemblies of God.",
+    "distinctives": "Encuentre la verdad inerrante de las Escrituras en un mundo de confusión."
   },
   "blog": {
     "page_title": "Blog",

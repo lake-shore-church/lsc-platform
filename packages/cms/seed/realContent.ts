@@ -6,14 +6,19 @@ export const REAL_SITE_CONFIG = {
   churchName: "Lake Shore Church — West Loop",
   tagline: "God raised Jesus from the dead.",
   subTagline: "There is hope for all who follow him.",
-  heroBody: "Authentic Christianity Together",
+  heroBody:
+    "In a world of pain, death, and evil, there is hope in the Son of God.",
+  heroCtaText: "Our church can help you follow Jesus.",
+  distinctives:
+    "Find inerrant truth from Scripture in a world of confusion.",
+  serviceInvitation: "We hope to see you there!",
   addressLine1: "Merit School of Music",
   addressLine2: "38 S. Peoria St, 2nd floor, room 210",
   cityStateZip: "Chicago, IL 60607",
   phone: "(312) 464-1834",
   email: "blarson0220@yahoo.com",
   serviceDay: "Sunday",
-  serviceTime: "10:00 AM",
+  serviceTime: "Begins at 10 A.M.",
   pastorName: "Pastor Brian",
   serviceTimes: [{ day: "Sunday", time: "10:00 AM", note: "Doors open 9:30 AM" }],
   socialLinks: [

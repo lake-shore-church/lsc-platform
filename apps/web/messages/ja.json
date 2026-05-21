@@ -21,12 +21,12 @@
     "contact": "お問い合わせ",
     "service_times": "日曜 {time} · シカゴ・ウェストループ",
     "menu": "メニュー",
-    "close": "閉じる"
+    "close": "閉じる",
+    "service_times_strip": "日曜礼拝 · 午前10時開始 · Merit School of Music · シカゴ・ウェストループ"
   },
   "home": {
-    "hero_h1": "神はイエスを死者の中から復活させられました。",
+    "hero_h1": "神はイエスを死者の中から復活させられました！",
     "hero_h2": "イエスに従うすべての人に希望があります。",
-    "tagline": "共に本物のキリスト教を",
     "join_sunday": "日曜日にお越しください",
     "watch_sermon": "説教を視聴",
     "where_we_meet": "集会場所",
@@ -63,7 +63,10 @@
     "recent_devotionals": "最近のデボーション",
     "ready_next_step": "次の一歩の準備はできていますか？",
     "join_this_sunday": "今週日曜10:00 AMにお越しください。どなたでも歓迎です。",
-    "contact_us": "お問い合わせ"
+    "contact_us": "お問い合わせ",
+    "hero_body": "痛み、死、悪のある世界に、神の子に望みがあります。",
+    "hero_cta": "私たちの教会はあなたがイエスに従うのを助けます。",
+    "testimonials_intro": "Lake Shore Church で希望を見いだす人々"
   },
   "worship": {
     "title": "礼拝",
@@ -120,7 +123,9 @@
     "expect_4": "礼拝後にお話しください—ぜひお知り合いになりたいです。",
     "parking_desc": "ウェストループでは路上駐車と公共交通機関が利用できます。日曜は余裕を持ってお越しください。",
     "ask_question": "質問する",
-    "call": "お電話・SMS：{phone}"
+    "call": "お問い合わせはお電話またはSMSで：{phone}",
+    "service_info": "日曜礼拝\nMerit School of Music\n38 S. Peoria St, 2nd floor, room 210\nChicago, IL 60607\n午前10時開始",
+    "invitation": "私たちの教会はあなたがイエスに従うのを助けます。\nお会いできることを楽しみにしています！"
   },
   "sermon": {
     "transcript_english": "英語の全文",
@@ -137,7 +142,8 @@
     "link_give": "Give",
     "link_contact": "Contact",
     "sign_in": "Sign in",
-    "tech_guide": "Tech team guide"
+    "tech_guide": "Tech team guide",
+    "tagline": "シカゴ・ウェストループでイエスに従うことを助けます。"
   },
   "language": {
     "choose": "言語",
@@ -145,16 +151,16 @@
   },
   "about": {
     "page_title": "Lake Shore Church について",
-    "page_desc": "共に本物のキリスト教を",
+    "page_desc": "私たちの教会はあなたがイエスに従うのを助けます。",
     "meta_desc": "シカゴ・ウェストループの Lake Shore Church。",
-    "intro_1": "レイク・ショア教会はウェストループで集う信徒のコミュニティです。聖書を教え、礼拝と共に歩みます。",
-    "intro_2": "毎週日曜10:00 AMに Merit School of Music で礼拝します。",
+    "intro_1": "痛み、死、悪のある世界に、神の子に望みがあります。Lake Shore Church は、聖書に基づく教え、真の交わり、敬虔な礼拝を通して、人々がイエスに従うのを助けるためにあります。",
     "intro_3": "牧師はクレイグ・ブライアン・ラーソン（ブライアン牧師）です。",
     "pillars_heading": "三つの柱",
     "pastor_heading": "ブライアン牧師",
     "pastor_name": "Craig Brian Larson",
     "pastor_bio": "ブライアン牧師は毎週明確な解経説教を行い、Know の著者でもあります。",
-    "book_link": "Amazonで本を入手 →"
+    "book_link": "Amazonで本を入手 →",
+    "distinctives": "混乱の世の中で、聖書の無謬の真理を見いだしてください。"
   },
   "beliefs": {
     "page_title": "What We Believe",
@@ -188,7 +194,8 @@
     "faq_2_q": "Is Lake Shore Church welcoming to newcomers?",
     "faq_2_a": "Yes — everyone is welcome wherever they are on their journey of faith.",
     "faq_3_q": "What denomination is Lake Shore Church?",
-    "faq_3_a": "Lake Shore Church is part of the Assemblies of God."
+    "faq_3_a": "Lake Shore Church is part of the Assemblies of God.",
+    "distinctives": "混乱の世の中で、聖書の無謬の真理を見いだしてください。"
   },
   "blog": {
     "page_title": "ブログ",

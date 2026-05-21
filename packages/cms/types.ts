@@ -137,6 +137,9 @@ export type SiteConfig = {
   tagline?: string;
   subTagline?: string;
   heroBody?: string;
+  heroCtaText?: string;
+  distinctives?: string;
+  serviceInvitation?: string;
   addressLine1?: string;
   addressLine2?: string;
   cityStateZip?: string;

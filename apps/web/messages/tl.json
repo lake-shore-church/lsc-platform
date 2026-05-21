@@ -21,12 +21,12 @@
     "contact": "Makipag-ugnayan",
     "service_times": "Linggo {time} · West Loop Chicago",
     "menu": "Menu",
-    "close": "Isara"
+    "close": "Isara",
+    "service_times_strip": "Sunday Service · Nagsisimula 10 A.M. · Merit School of Music · West Loop Chicago"
   },
   "home": {
-    "hero_h1": "Binuhay ng Diyos si Jesus mula sa mga patay.",
+    "hero_h1": "Binuhay ng Diyos si Jesus mula sa mga patay!",
     "hero_h2": "May pag-asa para sa lahat na sumusunod sa kanya.",
-    "tagline": "Tunay na Kristiyanismo Nang Magkasama",
     "join_sunday": "Samahan Kami sa Linggo",
     "watch_sermon": "Manood ng Sermon",
     "where_we_meet": "Saan Kami Nagtitipon",
@@ -63,7 +63,10 @@
     "recent_devotionals": "Kamakailang devotionals",
     "ready_next_step": "Handa na para sa susunod na hakbang?",
     "join_this_sunday": "Samahan kami ngayong Linggo 10:00 AM. Malugod na tinatanggap ang lahat.",
-    "contact_us": "Makipag-ugnayan"
+    "contact_us": "Makipag-ugnayan",
+    "hero_body": "Sa mundong puno ng sakit, kamatayan, at kasamaan, may pag-asa sa Anak ng Diyos.",
+    "hero_cta": "Matutulungan ka ng aming simbahan na sumunod kay Jesus.",
+    "testimonials_intro": "Mga taong nakakahanap ng pag-asa sa Lake Shore Church"
   },
   "worship": {
     "title": "Pagsamba",
@@ -120,7 +123,9 @@
     "expect_4": "Manatili para makipag-usap—gusto naming makilala kayo.",
     "parking_desc": "May street parking at pampublikong transportasyon sa West Loop. Maglaan ng dagdag na oras tuwing Linggo.",
     "ask_question": "Magtanong",
-    "call": "Tawag o text: {phone}"
+    "call": "Tumawag o mag-text para sa impormasyon: {phone}",
+    "service_info": "Sunday Service\nSa Merit School of Music,\n38 S. Peoria St, 2nd floor, room 210\nChicago, IL 60607\nNagsisimula 10 A.M.",
+    "invitation": "Matutulungan ka ng aming simbahan na sumunod kay Jesus.\nInaasahan naming makita kayo roon!"
   },
   "sermon": {
     "transcript_english": "Buong mensahe sa Ingles",
@@ -137,7 +142,8 @@
     "link_give": "Give",
     "link_contact": "Contact",
     "sign_in": "Sign in",
-    "tech_guide": "Tech team guide"
+    "tech_guide": "Tech team guide",
+    "tagline": "Tumutulong sa mga tao na sumunod kay Jesus sa West Loop ng Chicago."
   },
   "language": {
     "choose": "Wika",
@@ -145,16 +151,16 @@
   },
   "about": {
     "page_title": "Tungkol sa Lake Shore Church",
-    "page_desc": "Tunay na Kristiyanismo Nang Magkasama",
+    "page_desc": "Matutulungan ka ng aming simbahan na sumunod kay Jesus.",
     "meta_desc": "West Loop, Chicago.",
-    "intro_1": "Ang Lake Shore Church ay isang komunidad ng mga mananampalataya sa West Loop.",
-    "intro_2": "Tuwing Linggo 10:00 AM kami nagtitipon.",
+    "intro_1": "Sa mundong puno ng sakit, kamatayan, at kasamaan, may pag-asa sa Anak ng Diyos. Ang Lake Shore Church ay narito upang tulungan ang mga tao na sumunod kay Jesus — sa pamamagitan ng pagtuturo mula sa Kasulatan, tunay na komunidad, at tapat na pagsamba.",
     "intro_3": "Ang aming pastor ay Craig Brian Larson (Pastor Brian).",
     "pillars_heading": "Mga haligi",
     "pastor_heading": "Pastor Brian",
     "pastor_name": "Craig Brian Larson",
     "pastor_bio": "Si Pastor Brian ay nagtuturo ng Kasulatan bawat Linggo.",
-    "book_link": "Kunin ang libro sa Amazon →"
+    "book_link": "Kunin ang libro sa Amazon →",
+    "distinctives": "Hanapin ang di-magkakamaling katotohanan mula sa Kasulatan sa mundong puno ng pagkalito."
   },
   "beliefs": {
     "page_title": "What We Believe",
@@ -188,7 +194,8 @@
     "faq_2_q": "Is Lake Shore Church welcoming to newcomers?",
     "faq_2_a": "Yes — everyone is welcome wherever they are on their journey of faith.",
     "faq_3_q": "What denomination is Lake Shore Church?",
-    "faq_3_a": "Lake Shore Church is part of the Assemblies of God."
+    "faq_3_a": "Lake Shore Church is part of the Assemblies of God.",
+    "distinctives": "Hanapin ang di-magkakamaling katotohanan mula sa Kasulatan sa mundong puno ng pagkalito."
   },
   "blog": {
     "page_title": "Blog",

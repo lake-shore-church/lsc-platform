@@ -67,7 +67,7 @@ export default function AuthScreen() {
       >
         <View style={styles.hero}>
           <Text style={styles.churchName}>Lake Shore Church</Text>
-          <Text style={styles.tagline}>{t("home", "tagline")}</Text>
+          <Text style={styles.tagline}>{t("home", "hero_cta")}</Text>
           <Text style={styles.location}>West Loop · Chicago</Text>
         </View>
 
