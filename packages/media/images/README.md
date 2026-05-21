@@ -10,7 +10,7 @@
 | `home/plan_a_visit.webp` | “New here” / plan a visit section | — |
 | `home/worship.jpg` | Worship card | — |
 | `home/flipping_bible.webp` | Grow / Bible card | — |
-| `home/serve.png` | Serve card | — |
+| `home/serve.jpg` | Serve card | — |
 
 **Suggested sizes:** hero 1920×1080; others ~1200×750 (16:10) or 1200×900 (community).
 
