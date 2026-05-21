@@ -1,28 +1,29 @@
 {
   "expo": {
-    "name": "mobile",
-    "slug": "mobile",
+    "name": "Lake Shore Church",
+    "slug": "lake-shore-church",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
-    "scheme": "mobile",
-    "userInterfaceStyle": "automatic",
+    "scheme": "lschurch",
+    "userInterfaceStyle": "light",
     "newArchEnabled": true,
     "splash": {
       "image": "./assets/images/splash-icon.png",
       "resizeMode": "contain",
-      "backgroundColor": "#ffffff"
+      "backgroundColor": "#1B4F8A"
     },
     "ios": {
+      "bundleIdentifier": "com.lakeshorechurch.westloop",
       "supportsTablet": true
     },
     "android": {
+      "package": "com.lakeshorechurch.westloop",
       "adaptiveIcon": {
         "foregroundImage": "./assets/images/adaptive-icon.png",
-        "backgroundColor": "#ffffff"
+        "backgroundColor": "#1B4F8A"
       },
-      "edgeToEdgeEnabled": true,
-      "predictiveBackGestureEnabled": false
+      "edgeToEdgeEnabled": true
     },
     "web": {
       "bundler": "metro",
@@ -30,10 +31,17 @@
       "favicon": "./assets/images/favicon.png"
     },
     "plugins": [
-      "expo-router"
+      "expo-router",
+      "expo-localization",
+      "expo-secure-store"
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "eas": {
+        "projectId": "to-be-filled-run-eas-init"
+      }
     }
   }
 }
