@@ -114,7 +114,11 @@ Lake Shore Church West Loop **lsc-platform** — Next.js public site (8 locales:
 
 | Tab | Status |
 |-----|--------|
-| home, sermons, give, prayer, more | ✅ Wired to web APIs; language picker on More |
+| home, sermons, give, prayer, more | ✅ Wired to web APIs; language picker (8 locales) |
+| Auth (magic link) | ✅ `lschurch://` + Supabase; see [MOBILE_SETUP.md](./MOBILE_SETUP.md) |
+| NativeWind + shared tokens | ✅ `packages/config/tailwind.config.js` |
+| EAS build config | ✅ `eas.json` — run `eas init` for project ID |
+| Offline audio / push | ⏳ Phase 2 |
 
 ---
 

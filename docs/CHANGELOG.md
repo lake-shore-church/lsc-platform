@@ -10,6 +10,14 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 - **Repo hygiene** — [PR #1](https://github.com/lake-shore-church/lsc-platform/pull/1) already merged; remote has only `main`. Docs and `/platform` links updated (removed stale `feat/platform-scaffold-db-mobile` references).
 
+### Added (mobile — Phase 1 native foundation)
+
+- **MOBILE_SETUP.md** — credential checklist for pastor/tech meeting (Supabase redirect URLs, EAS, env vars).
+- **Shared Tailwind tokens** — `packages/config/tailwind.config.js` for web + NativeWind.
+- **Supabase auth in app** — `AuthProvider`, `/auth` magic link, `lschurch://auth/callback`, sign-in on More tab.
+- **App identity** — `app.json` bundle IDs, `lschurch` URL scheme, `eas.json`.
+- **Ionicons tab bar** — Home, Sermons, Prayer, Give, More.
+
 ### Added
 
 - **7-language i18n** — `next-intl` with locales `en`, `es`, `zh`, `ja`, `ta`, `tl`, `nag` (English unprefixed at `/`). Message files in `apps/web/messages/`. Language switcher in header; hreflang alternates in root metadata.

@@ -1,4 +1,5 @@
 import * as Linking from "expo-linking";
+import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -10,7 +11,8 @@ import {
 } from "react-native";
 import { WebView } from "react-native-webview";
 import { fetchJson, type MobileBlogPost, type MobileEvent } from "@/lib/api";
-import { getI18n, localeOptions, setMobileLocale, type MobileLocale, t } from "@/lib/i18n";
+import { useAuth } from "@/lib/AuthContext";
+import { getI18n, localeOptions, setMobileLocale, t } from "@/lib/i18n";
 
 const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "http://localhost:3000";
 const FACEBOOK = "https://www.facebook.com/lschurchchicago";
@@ -18,6 +20,8 @@ const BOOK_URL = "https://www.amazon.com/s?k=Craig+Brian+Larson+Know";
 const ADDRESS = "Merit School of Music, 38 S. Peoria St, Chicago IL 60607";
 
 export default function MoreScreen() {
+  const router = useRouter();
+  const { profile, signOut } = useAuth();
   const [events, setEvents] = useState<MobileEvent[]>([]);
   const [posts, setPosts] = useState<MobileBlogPost[]>([]);
   const [webUrl, setWebUrl] = useState<string | null>(null);
@@ -47,6 +51,27 @@ export default function MoreScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      {profile ? (
+        <View style={styles.memberCard}>
+          <Text style={styles.memberName}>{profile.full_name ?? profile.email}</Text>
+          <Text style={styles.memberMeta}>{profile.email}</Text>
+          <Text style={styles.memberRole}>{profile.role}</Text>
+          <Pressable style={styles.signOutBtn} onPress={() => void signOut()}>
+            <Text style={styles.signOutText}>Sign out</Text>
+          </Pressable>
+        </View>
+      ) : (
+        <View style={styles.card}>
+          <Text style={styles.cardTitle}>Sign in</Text>
+          <Text style={styles.cardMeta}>
+            Access giving history, private prayers, and member features.
+          </Text>
+          <Pressable style={styles.smallButton} onPress={() => router.push("/auth")}>
+            <Text style={styles.smallButtonText}>Sign in with email</Text>
+          </Pressable>
+        </View>
+      )}
+
       <Text style={styles.section}>{t("language", "title_multilingual")}</Text>
       {localeOptions.map((opt) => (
         <Pressable
@@ -161,4 +186,26 @@ const styles = StyleSheet.create({
     borderColor: "#e2e8f0",
   },
   langText: { fontSize: 16, color: "#1B4F8A", fontWeight: "600" },
+  memberCard: {
+    backgroundColor: "#1B4F8A",
+    borderRadius: 12,
+    padding: 16,
+    marginBottom: 8,
+  },
+  memberName: { color: "#fff", fontSize: 18, fontWeight: "700" },
+  memberMeta: { color: "rgba(255,255,255,0.85)", fontSize: 14, marginTop: 4 },
+  memberRole: {
+    color: "#fff",
+    fontSize: 11,
+    fontWeight: "600",
+    marginTop: 8,
+    alignSelf: "flex-start",
+    backgroundColor: "rgba(255,255,255,0.2)",
+    paddingHorizontal: 8,
+    paddingVertical: 4,
+    borderRadius: 6,
+    overflow: "hidden",
+  },
+  signOutBtn: { marginTop: 12, alignSelf: "flex-start" },
+  signOutText: { color: "#fff", fontWeight: "600", fontSize: 14 },
 });
