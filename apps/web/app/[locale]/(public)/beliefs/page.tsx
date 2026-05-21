@@ -4,6 +4,21 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
 
+const AOG_BELIEFS_URL = "https://ag.org/Beliefs";
+
+const SECTION_KEYS = [
+  "section_bible",
+  "section_god",
+  "section_jesus",
+  "section_holy_spirit",
+  "section_salvation",
+  "section_church",
+  "section_baptism",
+  "section_communion",
+  "section_second_coming",
+  "section_eternal_life",
+] as const;
+
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("beliefs");
   return { title: t("page_title"), description: t("meta_desc") };
@@ -11,15 +26,6 @@ export async function generateMetadata(): Promise<Metadata> {
 
 export default async function BeliefsPage() {
   const t = await getTranslations("beliefs");
-
-  const beliefs = [
-    t("belief_1"),
-    t("belief_2"),
-    t("belief_3"),
-    t("belief_4"),
-    t("belief_5"),
-    t("belief_6"),
-  ];
 
   const faq = [
     { question: t("faq_1_q"), answer: t("faq_1_a") },
@@ -31,16 +37,33 @@ export default async function BeliefsPage() {
     <>
       <PageHeader title={t("page_title")} description={t("page_desc")} />
       <Container className="max-w-3xl py-12">
-        <ul className="space-y-4">
-          {beliefs.map((belief) => (
-            <li
-              key={belief}
-              className="border-l-4 border-brand-accent pl-4 text-base leading-relaxed text-foreground-primary"
-            >
-              {belief}
-            </li>
+        <p className="text-base leading-relaxed text-foreground-secondary">{t("intro")}</p>
+
+        <div className="mt-10 space-y-10">
+          {SECTION_KEYS.map((key) => (
+            <section key={key}>
+              <h2 className="font-display text-h3 text-brand-primary">
+                {t(`${key}_title`)}
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-foreground-primary">
+                {t(`${key}_body`)}
+              </p>
+            </section>
           ))}
-        </ul>
+        </div>
+
+        <p className="mt-12 text-base leading-relaxed text-foreground-secondary">
+          {t("aog_intro")}{" "}
+          <a
+            href={AOG_BELIEFS_URL}
+            className="font-semibold text-brand-primary hover:underline"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            {t("aog_link")}
+          </a>
+          .
+        </p>
       </Container>
       <JsonLd
         data={{
