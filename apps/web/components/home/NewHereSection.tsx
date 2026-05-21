@@ -1,10 +1,8 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { homeImages } from "@repo/media";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
-
-const COMMUNITY_IMAGE =
-  "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80";
 
 export async function NewHereSection() {
   const t = await getTranslations("home");
@@ -27,8 +25,8 @@ export async function NewHereSection() {
           </div>
           <div className="relative aspect-[4/3] overflow-hidden rounded-card shadow-card">
             <Image
-              src={COMMUNITY_IMAGE}
-              alt=""
+              src={homeImages.community}
+              alt="Plan a visit — Lake Shore Church"
               fill
               className="object-cover"
               sizes="(max-width: 1024px) 100vw, 50vw"

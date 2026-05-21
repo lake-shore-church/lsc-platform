@@ -16,21 +16,29 @@ const MESSAGES: Record<string, string> = {
   "check-email": "Check your email for a sign-in link.",
   "auth-error":
     "That sign-in link expired or was already used. Enter your email below to get a new link.",
+  "invalid-header":
+    "Your browser had a broken sign-in cookie. We cleared it — enter your email again to get a new link.",
 };
 
 export default async function LoginPage({
   searchParams,
 }: {
-  searchParams: Promise<{ message?: string; redirect?: string }>;
+  searchParams: Promise<{ message?: string; redirect?: string; detail?: string }>;
 }) {
   const params = await searchParams;
   const message = params.message ? MESSAGES[params.message] : MESSAGES["sign-in"];
+  const detail = params.detail?.trim();
 
   return (
     <main className="min-h-screen bg-background py-16">
       <Container className="mx-auto max-w-md">
         <h1 className="font-display text-h1 text-brand-primary">Sign in</h1>
         <p className="mt-3 text-base text-foreground-secondary">{message}</p>
+        {detail ? (
+          <p className="mt-2 text-sm text-red-600" role="alert">
+            {detail}
+          </p>
+        ) : null}
         <LoginForm redirectTo={params.redirect ?? "/member/dashboard"} />
         <p className="mt-8 text-sm text-foreground-muted">
           Church members and staff receive access by email. If you need help,{" "}

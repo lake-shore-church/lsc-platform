@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
+import { homeImages } from "@repo/media";
 import { Container } from "@/components/ui/Container";
 
 export async function MinistryCards() {
@@ -12,19 +13,19 @@ export async function MinistryCards() {
       icon: "♪",
       title: tWorship("title"),
       body: tWorship("body"),
-      image: "https://images.unsplash.com/photo-1478147427282-58a87a702b70?w=800&q=80",
+      image: homeImages.worship,
     },
     {
       icon: "📖",
       title: tGrow("title"),
       body: tGrow("body"),
-      image: "https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800&q=80",
+      image: homeImages.bible,
     },
     {
       icon: "🤝",
       title: tServe("title"),
       body: tServe("body"),
-      image: "https://images.unsplash.com/photo-1469571486292-0ba58a3f068b?w=800&q=80",
+      image: homeImages.serve,
     },
   ] as const;
 
@@ -40,7 +41,7 @@ export async function MinistryCards() {
               <div className="relative aspect-[16/10]">
                 <Image
                   src={pillar.image}
-                  alt=""
+                  alt={pillar.title}
                   fill
                   className="object-cover"
                   sizes="(max-width: 768px) 100vw, 33vw"

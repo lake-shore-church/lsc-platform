@@ -26,6 +26,7 @@
     "typescript": "5.9.2"
   },
   "dependencies": {
+    "@repo/media": "workspace:*",
     "@radix-ui/react-popover": "^1.1.14",
     "clsx": "^2.1.1",
     "react": "^19.2.0",

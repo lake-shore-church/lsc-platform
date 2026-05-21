@@ -12,6 +12,7 @@ import {
   View,
 } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
+import { getMobileAuthRedirectUrl } from "@/lib/authRedirect";
 import { getMobileSupabase } from "@/lib/supabase";
 import { t } from "@/lib/i18n";
 
@@ -28,13 +29,26 @@ export default function AuthScreen() {
     setLoading(true);
     setError(null);
     try {
-      const redirectTo = Linking.createURL("auth/callback");
-      const { error: signInError } = await getMobileSupabase().auth.signInWithOtp({
+      const redirectTo = getMobileAuthRedirectUrl();
+      const supabase = getMobileSupabase();
+      await supabase.auth.signOut();
+      const { error: signInError } = await supabase.auth.signInWithOtp({
         email: trimmed,
         options: { emailRedirectTo: redirectTo },
       });
       if (signInError) {
-        setError(signInError.message);
+        const lower = signInError.message.toLowerCase();
+        if (lower.includes("rate limit") || lower.includes("too many")) {
+          setError(
+            "Too many sign-in emails sent. Wait about 1 hour and try again, or use another email. (Supabase rate limit.)",
+          );
+          return;
+        }
+        const hint =
+          lower.includes("redirect") || lower.includes("url")
+            ? ` Add this URL in Supabase → Auth → Redirect URLs: ${redirectTo}`
+            : "";
+        setError(signInError.message + hint);
         return;
       }
       setSent(true);

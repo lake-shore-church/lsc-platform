@@ -18,6 +18,7 @@ export default function TabLayout() {
         headerTintColor: "#fff",
       }}
     >
+      <Tabs.Screen name="index" options={{ href: null }} />
       <Tabs.Screen
         name="home"
         options={{

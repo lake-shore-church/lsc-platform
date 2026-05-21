@@ -25,6 +25,8 @@ function safeRedirectPath(value: string | null): string {
 
 export async function GET(request: Request) {
   const { searchParams, origin } = new URL(request.url);
+  const authError = searchParams.get("error");
+  const authErrorDescription = searchParams.get("error_description");
   const code = searchParams.get("code");
   const token_hash = searchParams.get("token_hash");
   const typeParam = searchParams.get("type");
@@ -32,6 +34,16 @@ export async function GET(request: Request) {
   const redirect = safeRedirectPath(
     searchParams.get("redirect") ?? searchParams.get("next"),
   );
+
+  if (authError) {
+    const login = new URL("/login", origin);
+    login.searchParams.set("message", "auth-error");
+    login.searchParams.set("redirect", redirect);
+    if (authErrorDescription) {
+      login.searchParams.set("detail", authErrorDescription.slice(0, 200));
+    }
+    return NextResponse.redirect(login);
+  }
 
   if (!code && !(token_hash && type)) {
     return NextResponse.redirect(`${origin}/login?message=sign-in`);

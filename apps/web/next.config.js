@@ -11,16 +11,12 @@ const nextConfig = {
   turbopack: {
     root: path.join(__dirname, "../.."),
   },
-  transpilePackages: ["@repo/ui", "@repo/cms", "@repo/db"],
+  transpilePackages: ["@repo/ui", "@repo/cms", "@repo/db", "@repo/media"],
   images: {
     remotePatterns: [
       {
         protocol: "https",
         hostname: "cdn.sanity.io",
-      },
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
       },
       {
         protocol: "https",

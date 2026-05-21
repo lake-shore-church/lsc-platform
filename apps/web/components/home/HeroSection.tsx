@@ -1,10 +1,8 @@
 import Image from "next/image";
 import { getLocale, getTranslations } from "next-intl/server";
+import { homeImages } from "@repo/media";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
-
-const HERO_IMAGE =
-  "https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?w=1920&q=80";
 
 export async function HeroSection({
   tagline,
@@ -22,8 +20,8 @@ export async function HeroSection({
   return (
     <section className="relative flex min-h-[100svh] items-center">
       <Image
-        src={HERO_IMAGE}
-        alt="Chicago skyline"
+        src={homeImages.hero}
+        alt="Chicago skyline — Lake Shore Church"
         fill
         priority
         className="object-cover object-center"

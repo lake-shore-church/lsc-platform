@@ -6,6 +6,7 @@ Use this checklist when configuring church credentials. **Never commit real keys
 
 | Layer | Approach |
 |-------|----------|
+| Shared photos (hero, ministry cards) | **`packages/media`** — same files as web (`import { homeImages } from "@repo/media"`) |
 | Sermons, blog, resources | **Next.js API** (`EXPO_PUBLIC_APP_URL/api/mobile/*`) — same data as web |
 | Auth, prayers, RSVP, profile | **Supabase** in the app (`EXPO_PUBLIC_SUPABASE_*`) |
 | Styling | **NativeWind** + shared tokens in `packages/config/tailwind.config.js` |
@@ -38,11 +39,15 @@ cp apps/web/.env.local apps/mobile/.env
 
 In [Supabase Auth → URL Configuration](https://supabase.com/dashboard/project/zstnygokvxrrszvkfejs/auth/url-configuration):
 
-**Redirect URLs** (add all):
+**Redirect URLs** (add all — wildcards cover changing LAN IPs):
 
+- `http://localhost:3000/auth/callback`
+- `https://lsc-platform-kappa.vercel.app/auth/callback`
 - `lschurch://auth/callback`
-- `exp://127.0.0.1:8081/--/auth/callback` (Expo Go dev)
-- `http://localhost:3000/auth/callback` (web — already needed)
+- `lschurch://**`
+- `exp://**` (Expo Go — replaces per-IP URLs like `exp://192.168.x.x:8081/--/auth/callback`)
+
+If magic link still fails, see **[AUTH_TROUBLESHOOTING.md](./AUTH_TROUBLESHOOTING.md)**.
 
 **Site URL:** your production web URL.
 

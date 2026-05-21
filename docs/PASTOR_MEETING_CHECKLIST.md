@@ -18,7 +18,7 @@
   - `http://localhost:3000/auth/callback`
   - `https://lsc-platform-kappa.vercel.app/auth/callback`
   - `lschurch://auth/callback`
-  - `exp://127.0.0.1:8081/--/auth/callback` (Expo Go — IP may vary; add the URL Expo prints if login fails)
+  - `exp://**` and `lschurch://**` (Expo Go / app deep links — see [AUTH_TROUBLESHOOTING.md](./AUTH_TROUBLESHOOTING.md))
 - [ ] **`apps/mobile/.env` created** (real file — **not** `.env.example`). Copy from `apps/web/.env.local` and use `EXPO_PUBLIC_*` names. See [MOBILE_SETUP.md](./MOBILE_SETUP.md).
 - [ ] **Web running for mobile test:** `pnpm --filter web dev` + `pnpm --filter mobile start`
 - [ ] **Magic link tested** on iOS Simulator (More → Sign in → open link → returns to app)

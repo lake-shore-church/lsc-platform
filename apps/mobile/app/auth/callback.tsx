@@ -3,17 +3,7 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
 import * as Linking from "expo-linking";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { getMobileSupabase } from "@/lib/supabase";
-
-function parseAuthParams(url: string) {
-  const parsed = Linking.parse(url);
-  const q = parsed.queryParams ?? {};
-  return {
-    code: typeof q.code === "string" ? q.code : undefined,
-    token_hash: typeof q.token_hash === "string" ? q.token_hash : undefined,
-    type: typeof q.type === "string" ? q.type : undefined,
-  };
-}
+import { completeAuthFromUrl } from "@/lib/completeAuthFromUrl";
 
 export default function AuthCallbackScreen() {
   const router = useRouter();
@@ -22,29 +12,19 @@ export default function AuthCallbackScreen() {
   useEffect(() => {
     async function handleUrl(url: string | null) {
       if (!url) {
-        setMessage("No sign-in link received.");
+        setMessage("No sign-in link received. Request a new magic link from More → Sign in.");
         return;
       }
 
-      const { code, token_hash, type } = parseAuthParams(url);
-      const supabase = getMobileSupabase();
-
-      const { error } = code
-        ? await supabase.auth.exchangeCodeForSession(code)
-        : token_hash && type
-          ? await supabase.auth.verifyOtp({
-              token_hash,
-              type: type as "email" | "magiclink",
-            })
-          : { error: new Error("Invalid auth link") };
+      const { error } = await completeAuthFromUrl(url);
 
       if (error) {
         setMessage(error.message);
-        setTimeout(() => router.replace("/auth"), 2500);
+        setTimeout(() => router.replace("/auth"), 3000);
         return;
       }
 
-      router.replace("/(tabs)/home");
+      router.replace("/home");
     }
 
     void Linking.getInitialURL().then(handleUrl);
