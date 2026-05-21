@@ -22,8 +22,8 @@
 | Push | OneSignal | Mobile notifications |
 | Giving | Zeffy embed | 0% fees; nightly sync → `giving_records` |
 | Transcription | OpenAI Whisper | Edge Function on sermon upload |
-| Translation (Phase 3) | DeepL | Subtitles / `translations` table |
-| i18n (Phase 3) | next-intl | `/es` `/fr` `/pt` `/zh` |
+| Translation | DeepL + Google Translate | DeepL: es, zh, ja, fr; Google: ta, tl, hi |
+| i18n | next-intl | 8 locales: en, es, zh, ja, ta, tl, hi, fr |
 
 ---
 

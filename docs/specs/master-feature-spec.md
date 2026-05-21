@@ -15,9 +15,9 @@ This file is the **agent index** so you do not guess scope.
 | Package | Responsibility |
 |---------|----------------|
 | `@repo/db` | Supabase client, types, queries ✅ |
-| `@repo/cms` | Sanity client, schemas, GROQ ⏳ |
-| `@repo/ui` | Design system web + native ⏳ |
-| `@repo/config` | Shared eslint/tsconfig/tailwind ⏳ |
+| `@repo/cms` | Sanity client, schemas, GROQ ✅ |
+| `@repo/ui` | Design system web + native 🟡 |
+| `@repo/config` | Shared tailwind tokens (web + mobile) ✅ |
 
 ---
 
@@ -28,7 +28,7 @@ This file is the **agent index** so you do not guess scope.
 | `(public)/` | Home, Sermons, Events, Give, Prayer, Blog, About, Beliefs, Visit, Contact, Resources, Live | None |
 | `(member)/` | Dashboard, Groups, Resources | `member` |
 | `(staff)/` | Prayer, Sermons, Events, Blog, Financials, Members | `staff` |
-| `[locale]/` | `/es` `/fr` `/pt` `/zh` | Phase 3 |
+| `[locale]/` | `en` (unprefixed), `es`, `zh`, `ja`, `ta`, `tl`, `hi`, `fr` | ✅ |
 | `studio/` | Sanity Studio embed | `staff` |
 | `api/` | tithing-statement, financial-report, webhooks, revalidate | Server |
 

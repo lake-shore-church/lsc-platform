@@ -40,11 +40,21 @@ pnpm --filter web dev
 
 ## Mobile app
 
+Requires web API running:
+
 ```bash
-pnpm --filter mobile start
+pnpm --filter web dev    # terminal 1
+pnpm --filter mobile start   # terminal 2
 ```
 
-Expo Go or simulator — tabs template smoke test.
+| Check | Notes |
+|-------|-------|
+| Five tabs load | Home, Sermons, Prayer, Give, More |
+| Sermon list | From `/api/mobile/sermons` |
+| Language picker | 8 locales on More |
+| Magic link auth | `lschurch://auth/callback` in Supabase redirects — see [MOBILE_SETUP.md](./MOBILE_SETUP.md) |
+
+Copy `apps/mobile/.env.example` → `apps/mobile/.env` (never commit real keys).
 
 ## Manual RLS checks (when auth ships)
 

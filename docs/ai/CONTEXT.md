@@ -11,10 +11,10 @@
 | **Last updated** | 2026-05-21 |
 | **Active branch** | `main` |
 | **Current phase** | Phase 2 — polish & production hardening |
-| **Just completed** | 8-locale i18n, full beliefs (lschurch.com), dedication + salvation prayer, Hindi/French |
-| **Next up** | R2 media, Zeffy live URL, translate beliefs/dedication per locale |
+| **Just completed** | [PR #2](https://github.com/lake-shore-church/lsc-platform/pull/2) mobile auth + MOBILE_SETUP; docs sync |
+| **Next up** | Pastor credentials (MOBILE_SETUP), EAS init, R2, Zeffy |
 | **Blocked** | None |
-| **PR** | [#1 merged](https://github.com/lake-shore-church/lsc-platform/pull/1) — all work on `main` |
+| **PRs** | [#1](https://github.com/lake-shore-church/lsc-platform/pull/1), [#2](https://github.com/lake-shore-church/lsc-platform/pull/2) merged — work on `main` |
 
 ---
 
@@ -45,7 +45,8 @@ Entry point: [AGENTS.md](../../AGENTS.md).
 ## Package conventions
 
 - DB: `packages/db` only
-- CMS: `packages/cms` (planned)
+- CMS: `packages/cms`
+- Mobile CMS data: `/api/mobile/*` (not direct Sanity in app)
 - UI: `packages/ui/web` + `native`
 - Web: RSC + `@repo/db`
 - Media: Cloudflare R2 only

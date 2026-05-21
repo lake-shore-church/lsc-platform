@@ -37,3 +37,4 @@ Never commit `.env.local` or paste keys in chat. Reference env var **names** onl
 - Feature scope: **[docs/specs/master-feature-spec.md](docs/specs/master-feature-spec.md)** (summary + link to blueprint)
 - Deploy: **[docs/specs/release-checklist.md](docs/specs/release-checklist.md)**
 - Stack: **[docs/SDLC_STACK.md](docs/SDLC_STACK.md)**
+- Mobile setup: **[docs/MOBILE_SETUP.md](docs/MOBILE_SETUP.md)**

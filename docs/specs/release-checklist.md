@@ -23,9 +23,11 @@ Use before merging to **`main`** or deploying to production.
 
 ## Before EAS build (mobile)
 
-- [ ] `EXPO_PUBLIC_SUPABASE_*` in EAS secrets
-- [ ] App icons / bundle IDs configured in `app.json`
-- [ ] Test on iOS + Android simulators
+- [ ] Follow [MOBILE_SETUP.md](../MOBILE_SETUP.md) — env, Supabase redirect `lschurch://auth/callback`
+- [ ] `EXPO_PUBLIC_SUPABASE_*` + `EXPO_PUBLIC_API_URL` in EAS secrets
+- [ ] `eas.json` + bundle IDs in `app.json` (`com.lschurch.app`)
+- [ ] `npx eas init` for project ID
+- [ ] Test on iOS + Android simulators with web dev server reachable
 
 ## After merge to main
 

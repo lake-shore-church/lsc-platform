@@ -1,159 +1,61 @@
-# Turborepo starter
+# Lake Shore Church — lsc-platform
 
-This Turborepo starter is maintained by the Turborepo core team.
+Monorepo for the Lake Shore Church West Loop digital platform: **Next.js** public site (8 locales), member/staff portals, **Expo** mobile app, **Supabase**, **Sanity CMS**.
 
-## Using this example
+**Repository:** https://github.com/lake-shore-church/lsc-platform  
+**Docs:** [docs/README.md](docs/README.md) · **Agents:** [AGENTS.md](AGENTS.md) · **Status:** [docs/PROJECT_STATUS.md](docs/PROJECT_STATUS.md)
 
-Run the following command:
+---
 
-```sh
-npx create-turbo@latest
+## Quick start
+
+```bash
+pnpm install
+pnpm --filter web dev          # http://localhost:3000
 ```
 
-## What's inside?
+Copy `apps/web/.env.local.example` → `apps/web/.env.local` (see [TECH-TEAM-GUIDE](docs/TECH-TEAM-GUIDE.md)).
 
-This Turborepo includes the following packages/apps:
+**Mobile:** [docs/MOBILE_SETUP.md](docs/MOBILE_SETUP.md) — requires web dev server for `/api/mobile/*`.
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo build
+```bash
+pnpm --filter mobile start
 ```
 
-Without global `turbo`, use your package manager:
+**Verify before push:**
 
-```sh
-cd my-turborepo
-npx turbo build
-pnpm dlx turbo build
-pnpm exec turbo build
+```bash
+pnpm run verify
 ```
 
-You can build a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
+---
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
+## Apps & packages
 
-```sh
-turbo build --filter=docs
-```
+| Path | Description |
+|------|-------------|
+| `apps/web` | Next.js 16 — public site, `/studio`, `/member`, `/staff` |
+| `apps/mobile` | Expo 54 — five tabs, Supabase auth |
+| `packages/db` | Supabase client + queries |
+| `packages/cms` | Sanity schemas + seed |
+| `packages/config` | Shared Tailwind tokens |
+| `packages/ui` | Web (and growing native) components |
 
-Without global `turbo`:
+---
 
-```sh
-npx turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-pnpm exec turbo build --filter=docs
-```
+## Common commands
 
-### Develop
+| Command | Purpose |
+|---------|---------|
+| `pnpm seed:content` | Seed Sanity + sample Supabase events |
+| `pnpm promote:member <email> member\|staff` | Promote profile role after first login |
+| `pnpm --filter web build` | Production web build |
 
-To develop all apps and packages, run the following command:
+---
 
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
+## Merged work
 
-```sh
-cd my-turborepo
-turbo dev
-```
+- [PR #1](https://github.com/lake-shore-church/lsc-platform/pull/1) — platform scaffold, portals, Studio
+- [PR #2](https://github.com/lake-shore-church/lsc-platform/pull/2) — mobile native foundation (auth, MOBILE_SETUP)
 
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo dev
-pnpm exec turbo dev
-pnpm exec turbo dev
-```
-
-You can develop a specific package by using a [filter](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters):
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo dev --filter=web
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-pnpm exec turbo dev --filter=web
-```
-
-### Remote Caching
-
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
-
-Turborepo can use a technique known as [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed (recommended):
-
-```sh
-cd my-turborepo
-turbo login
-```
-
-Without global `turbo`, use your package manager:
-
-```sh
-cd my-turborepo
-npx turbo login
-pnpm exec turbo login
-pnpm exec turbo login
-```
-
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
-
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
-
-With [global `turbo`](https://turborepo.dev/docs/getting-started/installation#global-installation) installed:
-
-```sh
-turbo link
-```
-
-Without global `turbo`:
-
-```sh
-npx turbo link
-pnpm exec turbo link
-pnpm exec turbo link
-```
-
-## Useful Links
-
-Learn more about the power of Turborepo:
-
-- [Tasks](https://turborepo.dev/docs/crafting-your-repository/running-tasks)
-- [Caching](https://turborepo.dev/docs/crafting-your-repository/caching)
-- [Remote Caching](https://turborepo.dev/docs/core-concepts/remote-caching)
-- [Filtering](https://turborepo.dev/docs/crafting-your-repository/running-tasks#using-filters)
-- [Configuration Options](https://turborepo.dev/docs/reference/configuration)
-- [CLI Usage](https://turborepo.dev/docs/reference/command-line-reference)
+Active branch: **`main`** only.

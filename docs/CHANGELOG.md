@@ -8,23 +8,18 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Changed
 
-- **Repo hygiene** — [PR #1](https://github.com/lake-shore-church/lsc-platform/pull/1) already merged; remote has only `main`. Docs and `/platform` links updated (removed stale `feat/platform-scaffold-db-mobile` references).
-
-### Added (mobile — Phase 1 native foundation)
-
-- **MOBILE_SETUP.md** — credential checklist for pastor/tech meeting (Supabase redirect URLs, EAS, env vars).
-- **Shared Tailwind tokens** — `packages/config/tailwind.config.js` for web + NativeWind.
-- **Supabase auth in app** — `AuthProvider`, `/auth` magic link, `lschurch://auth/callback`, sign-in on More tab.
-- **App identity** — `app.json` bundle IDs, `lschurch` URL scheme, `eas.json`.
-- **Ionicons tab bar** — Home, Sermons, Prayer, Give, More.
+- **Repo hygiene** — [PR #1](https://github.com/lake-shore-church/lsc-platform/pull/1) and [PR #2](https://github.com/lake-shore-church/lsc-platform/pull/2) merged; remote has only `main`.
+- **Documentation audit** — ROADMAP, PROJECT_STATUS, TECH-TEAM-GUIDE, specs synced with `main`.
 
 ### Added
 
-- **7-language i18n** — `next-intl` with locales `en`, `es`, `zh`, `ja`, `ta`, `tl`, `nag` (English unprefixed at `/`). Message files in `apps/web/messages/`. Language switcher in header; hreflang alternates in root metadata.
+- **8-locale i18n** — `en`, `es`, `zh`, `ja`, `ta`, `tl`, `hi`, `fr` via `next-intl`; language switcher + `NEXT_LOCALE` cookie; CMS hero only when `locale === "en"`.
 - **Translated public pages** — Home, nav, Give, Prayer, Plan a Visit use `getTranslations` / `useTranslations`.
 - **Sermon CMS translations** — `translations[]` on sermon + blogPost in Sanity; localized sermon detail with English video + expandable English summary.
-- **Translation APIs** — `POST /api/translate` (DeepL: es, zh, ja), `POST /api/translate-google` (Tamil). Staff dashboard at `/staff/translations`.
-- **Mobile i18n** — `expo-localization` + `i18n-js`, shared message JSON, language picker on More tab.
+- **Translation APIs** — `POST /api/translate` (DeepL: es, zh, ja, fr), `POST /api/translate-google` (ta, tl, hi). Staff dashboard at `/staff/translations`.
+- **Beliefs page** — Full [lschurch.com/beliefs](https://lschurch.com/beliefs) content (10 sections + A/G link).
+- **Dedication page** — `/dedication` — Holy Spirit as Director of Technology; salvation prayer; next steps.
+- **Mobile Phase 1** ([PR #2](https://github.com/lake-shore-church/lsc-platform/pull/2)) — `MOBILE_SETUP.md`, shared Tailwind tokens, Supabase auth (`lschurch://`), `eas.json`, Ionicons tabs, language picker on More.
 - **Future locales scaffold** — `yo`, `tw`, `ms` documented in `i18n/routing.ts` (not active).
 
 ### Added
@@ -113,7 +108,7 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 - Supabase project live; migration applied; admin role set.
 - Sanity API token configured in local `.env.local`.
-- GitHub remote `lake-shore-church/lsc-platform`; branches `main` and `feat/platform-scaffold-db-mobile` pushed.
+- GitHub remote `lake-shore-church/lsc-platform`; `main` only after PR #1 and PR #2 merges.
 
 ---
 

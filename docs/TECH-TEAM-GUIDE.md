@@ -1,7 +1,7 @@
 # Lake Shore Church — Tech Team Guide
 
 **Audience:** Church volunteers or staff who help with computers, the website, or “making it live” — not necessarily professional developers.  
-**Last updated:** 2026-05-20  
+**Last updated:** 2026-05-21  
 **Website mirror:** [/platform/tech](http://localhost:3000/platform/tech) (internal, not linked from the public site)
 
 ---
@@ -64,7 +64,9 @@ The public church site does **not** require tech skills day to day. Tech work is
 | **Staff bio** | Pastor & leaders |
 | **Sermon series** | Grouping sermons (e.g. Resurrection) |
 
-**Events and prayer requests** are stored in **Supabase**, not Sanity. Staff will manage those in the **staff portal** (coming in a later phase). For now, sample events were seeded for testing.
+**Events and prayer requests** are stored in **Supabase**, not Sanity. Staff manage them in the **staff portal** at `/staff` (prayers, events, members, financials). Sign in at `/login` with a magic link; promote roles with `pnpm promote:member <email> staff`.
+
+**Mobile app** — See **[MOBILE_SETUP.md](./MOBILE_SETUP.md)** for env vars, Supabase redirect `lschurch://auth/callback`, and EAS. The app reads CMS data from the web API (`/api/mobile/*`); run `pnpm --filter web dev` when testing mobile locally.
 
 ---
 

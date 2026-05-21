@@ -21,7 +21,7 @@ Update when domains, repos, or service IDs change.
 | Surface | Path / app | Status |
 |---------|------------|--------|
 | Public website | `apps/web` | Scaffold |
-| Mobile app | `apps/mobile` | Expo scaffold |
+| Mobile app | `apps/mobile` | Expo 54; 5 tabs; API + Supabase auth; see MOBILE_SETUP.md |
 | Staff Sanity Studio | `/studio` (planned) | ⏳ |
 | Dev status page | `/platform` | ✅ |
 | Member portal | `(member)/` (planned) | ⏳ |

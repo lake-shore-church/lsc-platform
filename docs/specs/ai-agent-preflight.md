@@ -56,7 +56,7 @@
 | Sanity | `7hl877lg` / `production` |
 | GitHub | `lake-shore-church/lsc-platform` |
 | Web hosting | Vercel (planned) |
-| Mobile builds | EAS (planned) |
+| Mobile builds | EAS (`eas.json`; run `eas init`) — see [MOBILE_SETUP.md](../MOBILE_SETUP.md) |
 | Media CDN | Cloudflare R2 + `media.lschurch.com` |
 
 Confirm credentials exist in local `.env.local` before testing integrations.
@@ -68,12 +68,12 @@ Confirm credentials exist in local `.env.local` before testing integrations.
 Checkboxes live in **[PROJECT_STATUS.md](../PROJECT_STATUS.md)** and **[ROADMAP.md](../ROADMAP.md)**.
 
 1. **Foundation** — monorepo, Supabase migration, `@repo/db` ✅
-2. **`packages/cms`** — Sanity schemas + GROQ queries
-3. **Web shell** — Tailwind, design tokens, `(public)/` routes
-4. **Auth** — Supabase magic link, middleware, member/staff route groups
-5. **Staff tools** — prayers, sermons upload, financials, expenses
-6. **Mobile tabs** — home, sermons, give, prayer, more
-7. **Phase 3** — i18n, Whisper pipeline, DeepL
+2. **`packages/cms`** — Sanity schemas + GROQ ✅
+3. **Web shell** — public routes, 8 locales, beliefs, dedication ✅
+4. **Auth** — web + mobile magic link ✅
+5. **Staff tools** — prayers, events, financials, translations ✅
+6. **Mobile** — tabs + API + auth ✅; offline audio, push ⏳
+7. **Phase 2+** — R2, Zeffy live, Whisper, per-locale beliefs copy
 
 ---
 
