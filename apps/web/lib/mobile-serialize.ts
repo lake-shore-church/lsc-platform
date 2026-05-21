@@ -5,9 +5,23 @@ import { getSanityReadClient } from "@repo/cms";
 
 const builder = imageUrlBuilder(getSanityReadClient());
 
-function imageUrl(source?: SanityImageSource | null, w = 640, h = 360): string | undefined {
+function imageUrl(
+  source?: SanityImageSource | null,
+  w = 640,
+  h = 360,
+): string | undefined {
   if (!source) return undefined;
   return builder.image(source).width(w).height(h).fit("crop").url();
+}
+
+function slideUrls(sermon: Sermon): string[] {
+  const fromSlides =
+    sermon.slides
+      ?.map((s) => imageUrl(s, 1920, 1080))
+      .filter((u): u is string => Boolean(u)) ?? [];
+  if (fromSlides.length) return fromSlides;
+  const fallback = imageUrl(sermon.featuredImage ?? sermon.series?.artwork, 1920, 1080);
+  return fallback ? [fallback] : [];
 }
 
 /** JSON-safe sermon payload for /api/mobile/* */
@@ -25,6 +39,7 @@ export function serializeMobileSermon(sermon: Sermon) {
       : null,
     pastor: sermon.pastor ? { name: sermon.pastor.name } : null,
     imageUrl: imageUrl(sermon.featuredImage ?? sermon.series?.artwork),
+    slideUrls: slideUrls(sermon),
   };
 }
 

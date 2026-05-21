@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as Linking from "expo-linking";
-import { useRouter } from "expo-router";
+import { type Href, useRouter } from "expo-router";
 import * as WebBrowser from "expo-web-browser";
 import { useEffect, useState } from "react";
 import {
@@ -141,6 +141,20 @@ export default function MoreScreen() {
         </View>
       </Pressable>
 
+      {profile && (profile.role === "staff" || profile.role === "admin") ? (
+        <Pressable
+          style={styles.presenterCard}
+          onPress={() => router.push("/presenter" as Href)}
+        >
+          <Ionicons name="tv-outline" size={28} color={colors.primary} />
+          <View style={styles.presenterBody}>
+            <Text style={styles.presenterTitle}>Presenter Mode</Text>
+            <Text style={styles.presenterSub}>Control slides on the projector</Text>
+          </View>
+          <Ionicons name="chevron-forward" size={22} color={colors.textMuted} />
+        </Pressable>
+      ) : null}
+
       <SectionHeader title="About" />
       <View style={styles.aboutCard}>
         <Pressable style={styles.aboutRow} onPress={() => Linking.openURL(CHURCH.mapsUrl)}>
@@ -268,6 +282,20 @@ const styles = StyleSheet.create({
   postTitle: { fontSize: 16, fontWeight: "600", color: colors.textPrimary },
   postExcerpt: { marginTop: 6, fontSize: 13, color: colors.textMuted },
   readMore: { marginTop: 8, fontSize: 13, fontWeight: "600", color: colors.primary },
+  presenterCard: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginHorizontal: 16,
+    marginBottom: 8,
+    backgroundColor: colors.background,
+    borderRadius: 12,
+    padding: 14,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  presenterBody: { flex: 1, marginLeft: 12 },
+  presenterTitle: { fontSize: 16, fontWeight: "700", color: colors.textPrimary },
+  presenterSub: { fontSize: 13, color: colors.textMuted, marginTop: 2 },
   bookCard: {
     flexDirection: "row",
     alignItems: "center",

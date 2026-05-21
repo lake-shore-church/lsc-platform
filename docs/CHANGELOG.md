@@ -8,6 +8,7 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
+- **Presenter Mode (mobile)** — `/presenter` landscape slide controller for staff/admin: swipe + volume buttons, haptics, thumbnail strip, YouTube fullscreen, Supabase Realtime sync; `presentation_state` migration; Sanity sermon `slides`; web `PresentationSync` on sermon pages for online viewers.
 - **Livestream system** — Sanity `isLiveNow` / `liveVideoId` site config; `GET /api/live-status` (60s cache); staff **Go live** / **End stream** on `/staff/sermons`; redesigned `/live` (player, chat, prayer, countdown, multi-platform cards); site-wide live banner + nav badge; mobile **Sermons → Live** tab + home live banner; optional OneSignal on go-live; `docs/LIVESTREAM_SETUP.md`.
 
 ### Changed

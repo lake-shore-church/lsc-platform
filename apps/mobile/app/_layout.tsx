@@ -65,6 +65,10 @@ function RootLayoutNav() {
         <Stack.Screen name="auth/index" options={{ headerShown: false }} />
         <Stack.Screen name="auth/callback" options={{ headerShown: false }} />
         <Stack.Screen name="sermon/[slug]" options={{ title: "Sermon" }} />
+        <Stack.Screen
+          name="presenter"
+          options={{ headerShown: false, orientation: "landscape" }}
+        />
         <Stack.Screen name="modal" options={{ presentation: "modal" }} />
       </Stack>
     </ThemeProvider>

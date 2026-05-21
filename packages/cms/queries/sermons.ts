@@ -18,6 +18,7 @@ const sermonProjection = `{
   videoUrl,
   audioUrl,
   featuredImage,
+  slides,
   "series": series->{
     _id,
     _type,
