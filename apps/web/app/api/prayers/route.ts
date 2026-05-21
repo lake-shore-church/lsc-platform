@@ -7,7 +7,7 @@ export async function GET() {
     const supabase = createSupabaseAdminClient();
     const { data, error } = await supabase
       .from("prayer_requests")
-      .select("id, content, created_at")
+      .select("id, content, created_at, status")
       .eq("is_private", false)
       .order("created_at", { ascending: false })
       .limit(30);

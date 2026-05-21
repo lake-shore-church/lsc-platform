@@ -6,6 +6,10 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ## [Unreleased] — main
 
+### Added
+
+- **Livestream system** — Sanity `isLiveNow` / `liveVideoId` site config; `GET /api/live-status` (60s cache); staff **Go live** / **End stream** on `/staff/sermons`; redesigned `/live` (player, chat, prayer, countdown, multi-platform cards); site-wide live banner + nav badge; mobile **Sermons → Live** tab + home live banner; optional OneSignal on go-live; `docs/LIVESTREAM_SETUP.md`.
+
 ### Changed
 
 - **Repo hygiene** — [PR #1](https://github.com/lake-shore-church/lsc-platform/pull/1) and [PR #2](https://github.com/lake-shore-church/lsc-platform/pull/2) merged; remote has only `main`.

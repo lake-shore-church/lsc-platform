@@ -1,7 +1,9 @@
-import { useRouter } from "expo-router";
+import { Ionicons } from "@expo/vector-icons";
+import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
+  FlatList,
   Pressable,
   ScrollView,
   StyleSheet,
@@ -9,15 +11,27 @@ import {
   TextInput,
   View,
 } from "react-native";
+import { LiveTabContent } from "@/components/LiveTabContent";
+import { SermonCard } from "@/components/SermonCard";
+import { colors } from "@/constants/tokens";
+import { useLiveStatus } from "@/hooks/useLiveStatus";
 import { fetchJson, type MobileSermon } from "@/lib/api";
 
-const SERIES_ORDER = ["The Sheer Goodness of Jesus", "Sunday Sermons"];
+type TabId = "live" | "archive";
 
 export default function SermonsScreen() {
   const router = useRouter();
+  const { tab } = useLocalSearchParams<{ tab?: string }>();
+  const [activeTab, setActiveTab] = useState<TabId>("archive");
   const [sermons, setSermons] = useState<MobileSermon[]>([]);
   const [query, setQuery] = useState("");
+  const [seriesFilter, setSeriesFilter] = useState("All");
   const [loading, setLoading] = useState(true);
+  const { status: liveStatus, loading: liveLoading } = useLiveStatus();
+
+  useEffect(() => {
+    if (tab === "live") setActiveTab("live");
+  }, [tab]);
 
   useEffect(() => {
     fetchJson<{ sermons: MobileSermon[] }>("/api/mobile/sermons")
@@ -26,105 +40,180 @@ export default function SermonsScreen() {
       .finally(() => setLoading(false));
   }, []);
 
+  const seriesOptions = useMemo(() => {
+    const names = new Set<string>();
+    for (const s of sermons) {
+      if (s.series?.title) names.add(s.series.title);
+    }
+    return ["All", ...Array.from(names).sort()];
+  }, [sermons]);
+
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return sermons;
-    return sermons.filter(
-      (s) =>
+    return sermons.filter((s) => {
+      const matchesSeries =
+        seriesFilter === "All" || s.series?.title === seriesFilter;
+      if (!matchesSeries) return false;
+      if (!q) return true;
+      return (
         s.title.toLowerCase().includes(q) ||
-        (s.scripture?.toLowerCase().includes(q) ?? false),
-    );
-  }, [sermons, query]);
+        (s.scripture?.toLowerCase().includes(q) ?? false) ||
+        (s.pastor?.name?.toLowerCase().includes(q) ?? false)
+      );
+    });
+  }, [sermons, query, seriesFilter]);
 
-  const grouped = useMemo(() => {
-    const map = new Map<string, MobileSermon[]>();
-    for (const sermon of filtered) {
-      const key = sermon.series?.title ?? "Sunday Sermons";
-      if (!map.has(key)) map.set(key, []);
-      map.get(key)!.push(sermon);
-    }
-    return SERIES_ORDER.filter((name) => map.has(name)).map((name) => ({
-      name,
-      items: map.get(name) ?? [],
-    }));
-  }, [filtered]);
-
-  if (loading) {
-    return (
-      <View style={styles.centered}>
-        <ActivityIndicator size="large" color="#1B4F8A" />
-      </View>
-    );
-  }
+  const latestSermon = sermons[0] ?? null;
 
   return (
     <View style={styles.container}>
-      <TextInput
-        placeholder="Search by title or scripture"
-        value={query}
-        onChangeText={setQuery}
-        style={styles.search}
-        placeholderTextColor="#94a3b8"
-      />
-      <ScrollView contentContainerStyle={styles.list}>
-        {grouped.map((group) => (
-          <View key={group.name} style={styles.group}>
-            <Text style={styles.groupTitle}>{group.name}</Text>
-            {group.items.map((sermon) => (
-              <Pressable
-                key={sermon._id}
-                style={styles.row}
-                onPress={() => router.push(`/sermon/${sermon.slug.current}`)}
-              >
-                <View style={styles.rowBody}>
-                  <Text style={styles.rowTitle}>{sermon.title}</Text>
-                  {sermon.scripture ? (
-                    <Text style={styles.rowMeta}>{sermon.scripture}</Text>
-                  ) : null}
-                  {sermon.publishedAt ? (
-                    <Text style={styles.rowMeta}>
-                      {new Date(sermon.publishedAt).toLocaleDateString()}
-                    </Text>
-                  ) : null}
-                </View>
-                <Text style={styles.play}>▶</Text>
-              </Pressable>
-            ))}
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>Sermons</Text>
+        <View style={styles.tabRow}>
+          <Pressable
+            style={[styles.tab, activeTab === "live" && styles.tabActive]}
+            onPress={() => setActiveTab("live")}
+          >
+            <Text style={[styles.tabText, activeTab === "live" && styles.tabTextActive]}>
+              Live
+            </Text>
+          </Pressable>
+          <Pressable
+            style={[styles.tab, activeTab === "archive" && styles.tabActive]}
+            onPress={() => setActiveTab("archive")}
+          >
+            <Text style={[styles.tabText, activeTab === "archive" && styles.tabTextActive]}>
+              Archive
+            </Text>
+          </Pressable>
+        </View>
+      </View>
+
+      {activeTab === "live" ? (
+        <ScrollView>
+          <LiveTabContent
+            status={liveStatus}
+            loading={liveLoading}
+            latestSermon={latestSermon}
+          />
+        </ScrollView>
+      ) : loading ? (
+        <View style={styles.centered}>
+          <ActivityIndicator size="large" color={colors.primary} />
+        </View>
+      ) : (
+        <>
+          <View style={styles.archiveTools}>
+            <View style={styles.searchWrap}>
+              <Ionicons name="search" size={18} color={colors.textMuted} style={styles.searchIcon} />
+              <TextInput
+                placeholder="Search sermons…"
+                value={query}
+                onChangeText={setQuery}
+                style={styles.search}
+                placeholderTextColor={colors.textMuted}
+              />
+            </View>
+            <ScrollView horizontal showsHorizontalScrollIndicator={false} style={styles.chips}>
+              {seriesOptions.map((name) => {
+                const active = seriesFilter === name;
+                return (
+                  <Pressable
+                    key={name}
+                    style={[styles.chip, active && styles.chipActive]}
+                    onPress={() => setSeriesFilter(name)}
+                  >
+                    <Text style={[styles.chipText, active && styles.chipTextActive]}>{name}</Text>
+                  </Pressable>
+                );
+              })}
+            </ScrollView>
           </View>
-        ))}
-      </ScrollView>
+
+          <FlatList
+            data={filtered}
+            keyExtractor={(item) => item._id}
+            contentContainerStyle={styles.list}
+            ListEmptyComponent={
+              <Text style={styles.empty}>No sermons match your search.</Text>
+            }
+            renderItem={({ item }) => (
+              <SermonCard
+                sermon={item}
+                onPress={() => router.push(`/sermon/${item.slug.current}`)}
+              />
+            )}
+          />
+        </>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#f8fafc" },
+  container: { flex: 1, backgroundColor: colors.surface },
   centered: { flex: 1, justifyContent: "center", alignItems: "center" },
-  search: {
-    margin: 16,
-    backgroundColor: "#fff",
-    borderRadius: 10,
-    paddingHorizontal: 14,
-    paddingVertical: 12,
-    borderWidth: 1,
-    borderColor: "#e2e8f0",
-    fontSize: 16,
+  header: {
+    backgroundColor: colors.background,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+    paddingBottom: 10,
   },
-  list: { paddingHorizontal: 16, paddingBottom: 32 },
-  group: { marginBottom: 20 },
-  groupTitle: { fontSize: 18, fontWeight: "700", color: "#1B4F8A", marginBottom: 8 },
-  row: {
+  headerTitle: {
+    fontSize: 24,
+    fontWeight: "700",
+    color: colors.textPrimary,
+    paddingHorizontal: 16,
+    paddingTop: 8,
+  },
+  tabRow: {
+    flexDirection: "row",
+    gap: 8,
+    paddingHorizontal: 16,
+    marginTop: 12,
+  },
+  tab: {
+    flex: 1,
+    paddingVertical: 10,
+    borderRadius: 10,
+    backgroundColor: colors.surface,
+    alignItems: "center",
+  },
+  tabActive: { backgroundColor: colors.primary },
+  tabText: { fontWeight: "700", color: colors.textMuted },
+  tabTextActive: { color: "#fff" },
+  archiveTools: {
+    backgroundColor: colors.background,
+    borderBottomWidth: 1,
+    borderBottomColor: colors.border,
+    paddingBottom: 10,
+  },
+  searchWrap: {
     flexDirection: "row",
     alignItems: "center",
-    backgroundColor: "#fff",
+    marginHorizontal: 16,
+    marginTop: 10,
+    backgroundColor: colors.surface,
     borderRadius: 10,
-    padding: 14,
-    marginBottom: 8,
     borderWidth: 1,
-    borderColor: "#e2e8f0",
+    borderColor: colors.border,
+    paddingHorizontal: 10,
   },
-  rowBody: { flex: 1 },
-  rowTitle: { fontSize: 15, fontWeight: "600", color: "#0f172a" },
-  rowMeta: { fontSize: 13, color: "#64748b", marginTop: 2 },
-  play: { fontSize: 18, color: "#1B4F8A", marginLeft: 8 },
+  searchIcon: { marginRight: 6 },
+  search: { flex: 1, paddingVertical: 10, fontSize: 16, color: colors.textPrimary },
+  chips: { marginTop: 10, paddingHorizontal: 12 },
+  chip: {
+    marginHorizontal: 4,
+    paddingHorizontal: 14,
+    paddingVertical: 8,
+    borderRadius: 999,
+    backgroundColor: colors.surface,
+    borderWidth: 1,
+    borderColor: colors.border,
+  },
+  chipActive: { backgroundColor: colors.primary, borderColor: colors.primary },
+  chipText: { fontSize: 13, fontWeight: "600", color: colors.textMuted },
+  chipTextActive: { color: "#fff" },
+  list: { paddingTop: 8, paddingBottom: 24 },
+  empty: { textAlign: "center", color: colors.textMuted, marginTop: 24, paddingHorizontal: 20 },
 });

@@ -59,11 +59,11 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 
 | Feature | Status |
 |---------|--------|
-| Home, Sermons, Give, Prayer, More tabs | ✅ via `/api/mobile/*` |
+| Home, Sermons, Give, Prayer, More tabs | ✅ styled UI, shared components, sermon images via API |
 | Sermon detail (WebView) | ✅ |
 | Language picker (8 locales) | ✅ |
 | Magic-link auth + profile on More | ✅ [MOBILE_SETUP.md](./MOBILE_SETUP.md) |
-| NativeWind / shared tokens | ✅ scaffolded |
+| Brand tokens + shared components (`SermonCard`, `EventCard`) | ✅ StyleSheet + `constants/tokens` |
 | Offline audio / push notifications | ⏳ Phase 2 |
 
 ---

@@ -14,6 +14,7 @@ export type MobileSermon = {
   scripture?: string;
   publishedAt?: string;
   videoUrl?: string;
+  imageUrl?: string;
   series?: { title: string; slug: { current: string } } | null;
   pastor?: { name: string } | null;
 };
@@ -32,10 +33,12 @@ export type MobileBlogPost = {
   slug: { current: string };
   excerpt?: string;
   publishedAt?: string;
+  imageUrl?: string;
 };
 
 export type MobilePrayer = {
   id: string;
   content: string;
   created_at: string;
+  status?: string;
 };

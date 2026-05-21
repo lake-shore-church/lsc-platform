@@ -132,6 +132,40 @@ export const siteConfigType = defineType({
       type: "string",
       description: "Leave empty until Zeffy account is ready.",
     }),
+    defineField({
+      name: "isLiveNow",
+      title: "Is live now",
+      description:
+        "Turn ON when Sunday service is streaming. Website and app show the live player.",
+      type: "boolean",
+      initialValue: false,
+    }),
+    defineField({
+      name: "liveVideoId",
+      title: "Live video ID",
+      description: "YouTube video ID for the current live stream (11 characters).",
+      type: "string",
+    }),
+    defineField({
+      name: "liveStreamUrl",
+      title: "Live stream URL",
+      description: "Full YouTube watch URL for the current broadcast.",
+      type: "url",
+    }),
+    defineField({
+      name: "youtubeChannelId",
+      title: "YouTube channel ID",
+      description:
+        "Optional. Used for /live embed when live without a video ID (live_stream?channel=…).",
+      type: "string",
+    }),
+    defineField({
+      name: "nextServiceDate",
+      title: "Next service date (override)",
+      description:
+        "Optional. Overrides automatic next-Sunday 10:00 AM CT countdown.",
+      type: "datetime",
+    }),
   ],
   preview: {
     prepare: () => ({ title: "Site configuration" }),

@@ -38,6 +38,12 @@ export function mergeSiteConfig(
       doc.zeffyEmbedUrl !== undefined
         ? doc.zeffyEmbedUrl
         : DEFAULT_SITE_CONFIG.zeffyEmbedUrl,
+    isLiveNow: doc.isLiveNow ?? DEFAULT_SITE_CONFIG.isLiveNow,
+    liveVideoId: doc.liveVideoId ?? DEFAULT_SITE_CONFIG.liveVideoId,
+    liveStreamUrl: doc.liveStreamUrl ?? DEFAULT_SITE_CONFIG.liveStreamUrl,
+    youtubeChannelId:
+      doc.youtubeChannelId ?? DEFAULT_SITE_CONFIG.youtubeChannelId,
+    nextServiceDate: doc.nextServiceDate,
   };
 }
 

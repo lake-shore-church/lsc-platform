@@ -64,6 +64,19 @@ export {
   formatServiceStrip,
   buildChurchJsonLd,
 } from "./lib/siteConfig";
+export {
+  buildLiveStatus,
+  parseYouTubeVideoId,
+  youtubeEmbedUrl,
+  youtubeChatEmbedUrl,
+  getNextSundayServiceAt,
+  type LiveStatusResponse,
+} from "./lib/livestream";
+export {
+  patchSiteLiveFields,
+  goLiveInSanity,
+  endLiveInSanity,
+} from "./lib/patchSiteConfig";
 export { seedSiteConfig } from "./seed/siteConfig";
 export { seedSanityContent } from "./seed/content";
 export { paragraphsToBlocks } from "./seed/portableText";

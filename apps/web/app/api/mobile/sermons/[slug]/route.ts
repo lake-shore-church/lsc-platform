@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getSermonBySlug } from "@repo/cms";
+import { serializeMobileSermon } from "@/lib/mobile-serialize";
 
 export async function GET(
   _request: Request,
@@ -10,5 +11,5 @@ export async function GET(
   if (!sermon) {
     return NextResponse.json({ error: "Not found" }, { status: 404 });
   }
-  return NextResponse.json({ sermon });
+  return NextResponse.json({ sermon: serializeMobileSermon(sermon) });
 }

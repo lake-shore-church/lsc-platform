@@ -2,6 +2,7 @@ import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
+  Dimensions,
   Pressable,
   ScrollView,
   Share,
@@ -9,6 +10,7 @@ import {
   Text,
   View,
 } from "react-native";
+import { colors } from "@/constants/tokens";
 import { WebView } from "react-native-webview";
 import { fetchJson, type MobileSermon } from "@/lib/api";
 
@@ -78,15 +80,12 @@ export default function SermonDetailScreen() {
   }
 
   const embed = youtubeEmbedUrl(sermon.videoUrl);
+  const videoHeight = Math.round((Dimensions.get("window").width * 9) / 16);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <Text style={styles.title}>{sermon.title}</Text>
-      {sermon.scripture ? <Text style={styles.meta}>{sermon.scripture}</Text> : null}
-      {sermon.pastor?.name ? <Text style={styles.meta}>{sermon.pastor.name}</Text> : null}
-
       {embed ? (
-        <View style={styles.videoWrap}>
+        <View style={[styles.videoWrap, { height: videoHeight }]}>
           <WebView
             source={{ uri: embed }}
             style={styles.video}
@@ -94,11 +93,21 @@ export default function SermonDetailScreen() {
             javaScriptEnabled
           />
         </View>
-      ) : (
-        <View style={styles.artwork}>
-          <Text style={styles.artworkText}>Lake Shore Church</Text>
+      ) : null}
+
+      <Text style={styles.title}>{sermon.title}</Text>
+      {sermon.pastor?.name || sermon.publishedAt ? (
+        <Text style={styles.meta}>
+          {[sermon.pastor?.name, sermon.publishedAt && new Date(sermon.publishedAt).toLocaleDateString()]
+            .filter(Boolean)
+            .join(" · ")}
+        </Text>
+      ) : null}
+      {sermon.scripture ? (
+        <View style={styles.scriptureChip}>
+          <Text style={styles.scriptureText}>{sermon.scripture}</Text>
         </View>
-      )}
+      ) : null}
 
       {sermon.summary ? <Text style={styles.summary}>{sermon.summary}</Text> : null}
 
@@ -129,47 +138,47 @@ export default function SermonDetailScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#f8fafc" },
+  container: { flex: 1, backgroundColor: colors.surface },
   content: { padding: 16, paddingBottom: 40 },
   centered: { flex: 1, justifyContent: "center", alignItems: "center", padding: 20 },
-  title: { fontSize: 22, fontWeight: "700", color: "#1B4F8A" },
-  meta: { marginTop: 6, fontSize: 14, color: "#64748b" },
-  videoWrap: { marginTop: 16, height: 220, borderRadius: 10, overflow: "hidden" },
-  video: { flex: 1 },
-  artwork: {
-    marginTop: 16,
-    height: 160,
-    backgroundColor: "#1B4F8A",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
+  title: { fontSize: 22, fontWeight: "700", color: colors.primary, marginTop: 12 },
+  meta: { marginTop: 6, fontSize: 14, color: colors.textMuted },
+  scriptureChip: {
+    alignSelf: "flex-start",
+    marginTop: 10,
+    backgroundColor: `${colors.primary}14`,
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 999,
   },
-  artworkText: { color: "#fff", fontWeight: "700" },
-  summary: { marginTop: 16, fontSize: 15, lineHeight: 22, color: "#334155" },
+  scriptureText: { color: colors.primary, fontWeight: "600", fontSize: 13 },
+  videoWrap: { marginHorizontal: -16, overflow: "hidden", backgroundColor: "#000" },
+  video: { flex: 1 },
+  summary: { marginTop: 16, fontSize: 15, lineHeight: 22, color: colors.textPrimary },
   audioPlaceholder: {
     marginTop: 16,
     padding: 14,
-    backgroundColor: "#e2e8f0",
+    backgroundColor: colors.border,
     borderRadius: 10,
   },
-  audioText: { color: "#64748b", fontSize: 13, textAlign: "center" },
+  audioText: { color: colors.textMuted, fontSize: 13, textAlign: "center" },
   shareButton: {
     marginTop: 16,
-    backgroundColor: "#1B4F8A",
+    backgroundColor: colors.primary,
     borderRadius: 10,
     paddingVertical: 12,
     alignItems: "center",
   },
   shareText: { color: "#fff", fontWeight: "700" },
-  relatedHeading: { marginTop: 24, fontSize: 17, fontWeight: "700", color: "#1B4F8A" },
+  relatedHeading: { marginTop: 24, fontSize: 17, fontWeight: "700", color: colors.primary },
   relatedRow: {
     marginTop: 8,
     padding: 12,
-    backgroundColor: "#fff",
+    backgroundColor: colors.background,
     borderRadius: 8,
     borderWidth: 1,
-    borderColor: "#e2e8f0",
+    borderColor: colors.border,
   },
-  relatedTitle: { fontSize: 15, color: "#0f172a" },
-  link: { marginTop: 12, color: "#1B4F8A", fontWeight: "600" },
+  relatedTitle: { fontSize: 15, color: colors.textPrimary },
+  link: { marginTop: 12, color: colors.primary, fontWeight: "600" },
 });

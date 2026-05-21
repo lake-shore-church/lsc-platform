@@ -49,7 +49,12 @@ export async function getSiteConfig(cms?: SanityClient): Promise<SiteConfig> {
     serviceTimes,
     socialLinks,
     paypalGivingEnabled,
-    zeffyEmbedUrl
+    zeffyEmbedUrl,
+    isLiveNow,
+    liveVideoId,
+    liveStreamUrl,
+    youtubeChannelId,
+    nextServiceDate
   }`;
 
   try {

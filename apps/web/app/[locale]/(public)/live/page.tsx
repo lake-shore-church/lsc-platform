@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
-import Link from "next/link";
-import { getSiteConfig } from "@repo/cms";
-import { PageHeader } from "@/components/ui/PageHeader";
+import { buildLiveStatus, getSermons, getSeriesList, getSiteConfig } from "@repo/cms";
 import { Container } from "@/components/ui/Container";
-import { PrayerForm } from "@/components/forms/PrayerForm";
+import { PageHeader } from "@/components/ui/PageHeader";
+import { LivePageClient } from "@/components/live/LivePageClient";
+import { urlFor } from "@/lib/sanity";
 
 export const metadata: Metadata = {
   title: "Watch Live",
@@ -12,52 +12,34 @@ export const metadata: Metadata = {
 
 export default async function LivePage() {
   const config = await getSiteConfig();
-  const liveChannelId = process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID;
-  const embedSrc = liveChannelId
-    ? `https://www.youtube.com/embed/live_stream?channel=${liveChannelId}`
-    : "https://www.youtube.com/embed/jfKfPfyJRdk";
+  const host =
+    process.env.NEXT_PUBLIC_SITE_URL ??
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : "http://localhost:3000");
+  const embedDomain = host.replace(/^https?:\/\//, "");
+  const initial = buildLiveStatus(config, { embedDomain });
+
+  const [recentSermons, seriesList] = await Promise.all([
+    getSermons({ limit: 3 }).catch(() => []),
+    getSeriesList().catch(() => []),
+  ]);
+
+  const featuredSeries = seriesList[0];
+  const seriesImageUrl = featuredSeries?.artwork
+    ? urlFor(featuredSeries.artwork).width(1200).height(675).url()
+    : null;
 
   return (
     <>
-      <PageHeader title="Watch live" description="Join us online for worship." />
+      <PageHeader
+        title="Watch live"
+        description="Join us online for Sunday worship at 10:00 AM CT."
+      />
       <Container className="py-12">
-        <span className="inline-flex items-center gap-2 rounded-full bg-red-600 px-3 py-1 text-xs font-bold uppercase text-white">
-          <span className="h-2 w-2 animate-pulse rounded-full bg-white" />
-          Live
-        </span>
-        <div className="mt-6 aspect-video overflow-hidden rounded-xl border border-default bg-black">
-          <iframe
-            title="Live stream"
-            src={embedSrc}
-            className="h-full w-full"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowFullScreen
-          />
-        </div>
-        <section className="mt-12 grid gap-10 lg:grid-cols-2">
-          <div>
-            <h2 className="text-xl font-bold text-brand-primary">Live prayer</h2>
-            <p className="mt-2 text-sm text-foreground-secondary">
-              Submit a prayer request during the service.
-            </p>
-            <div className="mt-4">
-              <PrayerForm />
-            </div>
-          </div>
-          <div>
-            <h2 className="text-xl font-bold text-brand-primary">Missed the service?</h2>
-            <p className="mt-2 text-foreground-secondary">
-              Watch recent messages on our{" "}
-              <Link href="/sermons" className="font-semibold text-brand-primary hover:underline">
-                sermons page
-              </Link>
-              .
-            </p>
-            <p className="mt-4 text-sm text-foreground-muted">
-              {config.churchName}
-            </p>
-          </div>
-        </section>
+        <LivePageClient
+          initial={initial}
+          recentSermons={recentSermons}
+          seriesImageUrl={seriesImageUrl}
+        />
       </Container>
     </>
   );

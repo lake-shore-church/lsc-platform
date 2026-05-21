@@ -16,4 +16,8 @@ export const DEFAULT_SITE_CONFIG: Omit<SiteConfig, "_id" | "_type"> = {
   zeffyEmbedUrl: "",
   paypalGivingEnabled: false,
   activeTheme: "bold",
+  isLiveNow: false,
+  liveVideoId: "",
+  liveStreamUrl: "",
+  youtubeChannelId: "",
 };

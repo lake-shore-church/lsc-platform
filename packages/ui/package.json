@@ -9,7 +9,8 @@
     "./web/tokens/themes.css": "./web/tokens/themes.css",
     "./web/images": "./web/images.ts",
     "./web/FacebookFeed": "./web/FacebookFeed.tsx",
-    "./web/LanguageSwitcher": "./web/LanguageSwitcher.tsx"
+    "./web/LanguageSwitcher": "./web/LanguageSwitcher.tsx",
+    "./web/LiveCountdown": "./web/LiveCountdown.tsx"
   },
   "scripts": {
     "lint": "eslint . --max-warnings 0",

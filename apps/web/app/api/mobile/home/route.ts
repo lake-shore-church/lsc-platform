@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { getBlogPosts, getResources, getSermons } from "@repo/cms";
 import { getEvents } from "@repo/db";
+import { serializeMobileBlogPost, serializeMobileSermon } from "@/lib/mobile-serialize";
 
 export async function GET() {
   const [sermons, events, posts, resources] = await Promise.all([
@@ -10,10 +11,12 @@ export async function GET() {
     getResources({ publicOnly: true, limit: 1 }).catch(() => []),
   ]);
 
+  const sermon = sermons[0] ? serializeMobileSermon(sermons[0]) : null;
+
   return NextResponse.json({
-    sermon: sermons[0] ?? null,
+    sermon,
     events,
-    posts,
+    posts: posts.map(serializeMobileBlogPost),
     book: resources[0] ?? null,
   });
 }

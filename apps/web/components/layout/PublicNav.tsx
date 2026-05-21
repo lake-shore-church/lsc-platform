@@ -3,6 +3,9 @@
 import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
 import { useMemo, useState } from "react";
+import { LiveNavLink } from "@/components/live/LiveNavLink";
+import { useLiveStatus } from "@/hooks/useLiveStatus";
+import { LiveBadge } from "@/components/live/LiveBadge";
 
 export function PublicNav({
   churchName,
@@ -14,6 +17,7 @@ export function PublicNav({
   const locale = useLocale();
   const t = useTranslations("nav");
   const [mobileOpen, setMobileOpen] = useState(false);
+  const { status: liveStatus } = useLiveStatus();
 
   const NAV_GROUPS = useMemo(() => [
     {
@@ -73,6 +77,12 @@ export function PublicNav({
             {churchName}
           </Link>
 
+          {liveStatus?.isLive ? (
+            <Link href="/live" className="hidden shrink-0 lg:inline-flex">
+              <LiveBadge compact />
+            </Link>
+          ) : null}
+
           <nav className="hidden items-center gap-1 lg:flex" aria-label="Main">
             {NAV_GROUPS.map((group) => (
               <div key={group.label} className="group relative">
@@ -87,12 +97,16 @@ export function PublicNav({
                   <ul className="rounded-card border border-default bg-surface py-2 shadow-card">
                     {group.links.map((link) => (
                       <li key={`${group.label}-${link.href}-${link.label}`}>
-                        <Link
-                          href={link.href}
-                          className="link-hover block px-4 py-2 text-base text-foreground-secondary hover:bg-surface-2 hover:text-brand-primary"
-                        >
-                          {link.label}
-                        </Link>
+                        {link.href === "/live" ? (
+                          <LiveNavLink />
+                        ) : (
+                          <Link
+                            href={link.href}
+                            className="link-hover block px-4 py-2 text-base text-foreground-secondary hover:bg-surface-2 hover:text-brand-primary"
+                          >
+                            {link.label}
+                          </Link>
+                        )}
                       </li>
                     ))}
                   </ul>
@@ -140,13 +154,19 @@ export function PublicNav({
                 <ul className="mt-3 space-y-1">
                   {group.links.map((link) => (
                     <li key={`${group.label}-${link.href}-${link.label}`}>
-                      <Link
-                        href={link.href}
-                        className="link-hover block min-h-[44px] py-2 text-base text-foreground-primary"
-                        onClick={() => setMobileOpen(false)}
-                      >
-                        {link.label}
-                      </Link>
+                      {link.href === "/live" ? (
+                        <div onClick={() => setMobileOpen(false)}>
+                          <LiveNavLink />
+                        </div>
+                      ) : (
+                        <Link
+                          href={link.href}
+                          className="link-hover block min-h-[44px] py-2 text-base text-foreground-primary"
+                          onClick={() => setMobileOpen(false)}
+                        >
+                          {link.label}
+                        </Link>
+                      )}
                     </li>
                   ))}
                 </ul>

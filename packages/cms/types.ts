@@ -150,4 +150,9 @@ export type SiteConfig = {
   socialLinks?: SocialLink[];
   paypalGivingEnabled?: boolean;
   zeffyEmbedUrl?: string;
+  isLiveNow?: boolean;
+  liveVideoId?: string;
+  liveStreamUrl?: string;
+  youtubeChannelId?: string;
+  nextServiceDate?: string;
 };

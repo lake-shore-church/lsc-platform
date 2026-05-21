@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { getSermons } from "@repo/db";
+import { getSiteConfig, getSermons } from "@repo/cms";
+import { getSermons as getSupabaseSermons } from "@repo/db";
+import { LivestreamControl } from "@/components/staff/LivestreamControl";
 import { requireStaffPortal } from "@/lib/auth/session";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
@@ -11,8 +13,9 @@ export const metadata: Metadata = {
 
 export default async function StaffSermonsPage() {
   await requireStaffPortal();
+  const config = await getSiteConfig();
   const supabase = await createSupabaseServerClient();
-  const sermons = await getSermons({ limit: 50 }, supabase).catch(() => []);
+  const sermons = await getSupabaseSermons({ limit: 50 }, supabase).catch(() => []);
 
   return (
     <>
@@ -21,6 +24,11 @@ export default async function StaffSermonsPage() {
         Publish sermons in Sanity Studio. Video upload to Cloudflare R2 will connect here
         in a later phase — use Studio for titles, scripture, and video URLs today.
       </p>
+      <LivestreamControl
+        isLiveNow={Boolean(config.isLiveNow)}
+        liveVideoId={config.liveVideoId}
+      />
+
       <div className="mt-6 flex flex-wrap gap-3">
         <Link
           href="/staff/sermons/import"
