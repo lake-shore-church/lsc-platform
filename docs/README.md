@@ -7,6 +7,7 @@
 | Role | Read first |
 |------|------------|
 | **Church tech volunteer** | [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md) → [/platform/tech](http://localhost:3000/platform/tech) |
+| **Pastor / credentials meeting** | [PASTOR_MEETING_CHECKLIST.md](./PASTOR_MEETING_CHECKLIST.md) |
 | **Mobile app setup** | [MOBILE_SETUP.md](./MOBILE_SETUP.md) |
 | **Human maintainer** | [PROJECT_STATUS.md](./PROJECT_STATUS.md) → [ROADMAP.md](./ROADMAP.md) |
 | **AI agent** | [AGENTS.md](../AGENTS.md) → [ai/CONTEXT.md](./ai/CONTEXT.md) → [specs/ai-agent-preflight.md](./specs/ai-agent-preflight.md) |
@@ -22,7 +23,8 @@
 | [SDLC_STACK.md](./SDLC_STACK.md) | Services and hosting |
 | [TESTING.md](./TESTING.md) | How to verify locally |
 | [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md) | Deploy, Studio, accounts — plain language for church tech |
-| [MOBILE_SETUP.md](./MOBILE_SETUP.md) | Mobile env, Supabase redirects, EAS — pastor meeting checklist |
+| [PASTOR_MEETING_CHECKLIST.md](./PASTOR_MEETING_CHECKLIST.md) | Pastor meeting — credentials, confirmations, post-meeting steps |
+| [MOBILE_SETUP.md](./MOBILE_SETUP.md) | Mobile env, Supabase redirects, EAS — technical detail |
 | [ai/THEOLOGY-OF-TECH.md](./ai/THEOLOGY-OF-TECH.md) | Holy Spirit as Director of Technology — doc standard |
 
 ## AI & process

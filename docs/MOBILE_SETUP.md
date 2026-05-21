@@ -106,4 +106,4 @@ pnpm promote:member pastor@email.com member
 - [ ] Push notification permission + token save
 - [ ] Per-locale mobile strings (beliefs/dedication copy)
 
-**Related:** [PROJECT_STATUS.md](./PROJECT_STATUS.md), [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md)
+**Related:** [PASTOR_MEETING_CHECKLIST.md](./PASTOR_MEETING_CHECKLIST.md), [PROJECT_STATUS.md](./PROJECT_STATUS.md), [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md)
