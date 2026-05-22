@@ -9,12 +9,12 @@
 | Field | Value |
 |-------|-------|
 | **Last updated** | 2026-05-22 |
-| **Active branch** | `main` |
-| **Current phase** | Phase 2A — post–Pastor visit (credentials + giving + notifications) |
-| **Just completed** | Pastor visit (May 2026) — site approved; mobile web-parity home + themes; auth fix; `PASTOR_PRIORITIES.md` |
-| **Next up** | Zeffy live + `giving_records` sync; OneSignal/Resend (Wed prayer, Sunday, go-live); push 2 commits to GitHub |
-| **Blocked** | Pastor credentials (Zeffy, Sanity editor, optional OneSignal) |
-| **PRs** | Work lands on `main`; open PR only when large feature needs review |
+| **Active branch** | `feature/phase-2a` (push to merge → `main` after credentials) |
+| **Current phase** | Phase 2A — activate giving, email, push |
+| **Just completed** | Phase 2A code: 501c3 badge, Zeffy/mobile config, Resend acks, OneSignal crons, Mevo docs |
+| **Next up** | Paste credentials in Sanity + Vercel; test; merge; Zeffy→`giving_records` sync |
+| **Blocked** | Pastor values: Zeffy URL, Resend/OneSignal keys, EIN, YouTube channel ID |
+| **PRs** | https://github.com/lake-shore-church/lsc-platform/compare/main...feature/phase-2a |
 
 ---
 
@@ -24,57 +24,17 @@
 - **Repo:** https://github.com/lake-shore-church/lsc-platform
 - **Workspace:** `/Users/usha/Documents/LSAG Church/lsc-platform`
 - **Production web:** https://lsc-platform-kappa.vercel.app
-- **Vision:** One platform — gospel reach globally; content entered once (CMS + staff portal) → web + mobile + email/push. See [PASTOR_PRIORITIES.md](../PASTOR_PRIORITIES.md).
+- **Vision:** [PASTOR_PRIORITIES.md](../PASTOR_PRIORITIES.md) · **Activate:** [PHASE_2A_SETUP.md](../PHASE_2A_SETUP.md)
 
-## Read order
-
-1. [ai-agent-preflight.md](../specs/ai-agent-preflight.md)
-2. This file
-3. [PROJECT_STATUS.md](../PROJECT_STATUS.md)
-4. [PASTOR_PRIORITIES.md](../PASTOR_PRIORITIES.md)
-5. [.cursorrules](../../.cursorrules)
-
-Entry point: [AGENTS.md](../../AGENTS.md).
-
-## Key docs (current features)
+## Key docs
 
 | Topic | Doc |
 |-------|-----|
-| Pastor / roadmap | [PASTOR_PRIORITIES.md](../PASTOR_PRIORITIES.md), [ROADMAP.md](../ROADMAP.md) |
-| Livestream | [LIVESTREAM_SETUP.md](../LIVESTREAM_SETUP.md) |
-| Presenter / projector | [PRESENTER_MODE.md](../PRESENTER_MODE.md) |
-| Mobile + auth | [MOBILE_SETUP.md](../MOBILE_SETUP.md), [AUTH_TROUBLESHOOTING.md](../AUTH_TROUBLESHOOTING.md) |
-| Changelog | [CHANGELOG.md](../CHANGELOG.md) |
+| Claude paste prompt | [CLAUDE_SYNC_PROMPT.md](./CLAUDE_SYNC_PROMPT.md) |
+| Phase 2A activation | [PHASE_2A_SETUP.md](../PHASE_2A_SETUP.md) |
+| Livestream / Mevo | [LIVESTREAM_SETUP.md](../LIVESTREAM_SETUP.md) |
+| Mobile + auth | [MOBILE_SETUP.md](../MOBILE_SETUP.md) |
 
-## Services (names only — no secrets)
+## Shipped + Phase 2A branch
 
-| Service | Reference |
-|---------|-----------|
-| Supabase | `zstnygokvxrrszvkfejs` |
-| Sanity | `7hl877lg` / `production` |
-| Secrets | `apps/web/.env.local`, `apps/mobile/.env` (gitignored) |
-
-## Package conventions
-
-- DB: `packages/db` only
-- CMS: `packages/cms` (livestream helpers in `lib/livestream.ts`)
-- Mobile data: `/api/mobile/*` and `/api/live-status`
-- Images: `@repo/media` (`packages/media/images/home/`)
-- Web: RSC + `@repo/db`; public pages under `app/[locale]/(public)/`
-
-## Shipped highlights (do not re-build from scratch)
-
-- **Web:** 8 locales; Pastor Brian voice; livestream + `/live`; staff go-live; presenter web sync; staff/member portals; `/podcast.xml`
-- **Mobile (Expo 54):** Home ≈ web; themes (Bold/Warm/Advent/Easter); Sermons Live/Archive; Prayer; Give→web Zeffy; More; presenter mode (staff); magic-link auth
-- **Monorepo:** `pnpm run verify` = types + lint across packages
-
-## Phase 2A (not started — needs credentials)
-
-- Zeffy 0% giving + sync → `giving_records` + mobile giving history
-- OneSignal + Resend: Wednesday prayer, Sunday service, go-live
-- Staff notification schedule UI; mobile native About/Events + calendar
-- WordPress RSS decision (optional)
-
-## Documentation workflow
-
-[UPDATE-WORKFLOW.md](./UPDATE-WORKFLOW.md)
+See [CLAUDE_SYNC_PROMPT.md](./CLAUDE_SYNC_PROMPT.md) for the full sync block.
