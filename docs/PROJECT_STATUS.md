@@ -85,7 +85,8 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 |------|--------|
 | `main` up to date with production features | ✅ |
 | `feature/presenter-mode` merged | ✅ |
-| Working tree clean | 🟡 commit auth + docs after 2026-05-22 |
+| Working tree clean | ✅ |
+| `main` pushed to GitHub | ✅ (2026-05-22) |
 
 ---
 

@@ -36,3 +36,6 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+# WIP media — not imported in @repo/media yet (keeps repo lean)
+packages/media/images/home/sunday_school*
