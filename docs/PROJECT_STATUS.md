@@ -1,7 +1,7 @@
 # LSC Platform — Project Status
 
 **Last updated:** 2026-05-22  
-**Active branch:** `main` (single branch; feature branches merged and deleted)  
+**Active branch:** `feature/phase-2a` (Phase 2A — merge to `main` after credentials in Vercel + Sanity)  
 **Repository:** https://github.com/lake-shore-church/lsc-platform  
 **Production (web):** https://lsc-platform-kappa.vercel.app  
 **Pastor visit:** May 2026 — site approved; priorities in [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md)  
@@ -90,13 +90,25 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 
 ---
 
-## Immediate next steps (post–Pastor visit)
+## Phase 2A (in progress on `feature/phase-2a`)
 
-1. **Pastor credentials** — Zeffy, Sanity editor, YouTube; see checklist in [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md).
-2. **Push to GitHub** — `git push origin main` (mobile home + auth fixes on `main`).
-3. **Zeffy + giving sync** — live donation URL in Sanity; `giving_records` for finance team.
-4. **Notifications** — OneSignal + Resend for Wednesday prayer + Sunday service (+ go-live).
-5. **Staff training** — `/studio`, `/staff/events`, `/staff/sermons`, `/staff/financials` (one role per guide).
+| Item | Code | Needs Pastor/Vercel |
+|------|------|---------------------|
+| 501(c)(3) trust badge + PayPal toggle | ✅ | EIN in Sanity when ready |
+| Zeffy embed on web + mobile | ✅ | Paste Zeffy URL in Studio |
+| Resend acknowledgements | ✅ | `RESEND_*` on Vercel |
+| OneSignal scheduled crons | ✅ | `ONESIGNAL_*` + `CRON_SECRET` |
+| Mevo → Restream docs | ✅ | RTMP key in Mevo app only |
+| WordPress RSS import | ⏳ | Pastor URL decision |
+| Zeffy → `giving_records` sync | ⏳ | Phase 2A follow-up |
+
+See [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
+
+## Immediate next steps
+
+1. Paste credentials in Sanity + Vercel per [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
+2. Test giving, live, email, push.
+3. Merge `feature/phase-2a` → `main` and deploy.
 
 ---
 

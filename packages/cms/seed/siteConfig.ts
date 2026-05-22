@@ -25,7 +25,9 @@ export async function seedSiteConfig(): Promise<string> {
     serviceInvitation: DEFAULT_SITE_CONFIG.serviceInvitation,
     pastorName: DEFAULT_SITE_CONFIG.pastorName,
     zeffyEmbedUrl: DEFAULT_SITE_CONFIG.zeffyEmbedUrl,
-    paypalGivingEnabled: DEFAULT_SITE_CONFIG.paypalGivingEnabled,
+    paypalGivingEnabled: true,
+    paypalGivingUrl: DEFAULT_SITE_CONFIG.paypalGivingUrl,
+    churchTaxId: DEFAULT_SITE_CONFIG.churchTaxId,
     activeTheme: "bold",
   };
 

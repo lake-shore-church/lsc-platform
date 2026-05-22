@@ -2,5 +2,19 @@
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "framework": "nextjs",
   "installCommand": "cd ../.. && pnpm install",
-  "buildCommand": "cd ../.. && pnpm turbo build --filter=web"
+  "buildCommand": "cd ../.. && pnpm turbo build --filter=web",
+  "crons": [
+    {
+      "path": "/api/cron/church-notifications?kind=wednesday_prayer",
+      "schedule": "30 0 * * 4"
+    },
+    {
+      "path": "/api/cron/church-notifications?kind=saturday_reminder",
+      "schedule": "0 0 * * 7"
+    },
+    {
+      "path": "/api/cron/church-notifications?kind=sunday_morning",
+      "schedule": "0 14 * * 0"
+    }
+  ]
 }

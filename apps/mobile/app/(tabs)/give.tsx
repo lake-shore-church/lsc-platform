@@ -1,138 +1,189 @@
 import { Ionicons } from "@expo/vector-icons";
-import { useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import * as WebBrowser from "expo-web-browser";
+import { useEffect, useState } from "react";
+import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { WebView } from "react-native-webview";
-import { colors } from "@/constants/tokens";
+import { useTheme } from "@/lib/ThemeContext";
+import { fetchJson } from "@/lib/api";
 
-const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "http://localhost:3000";
+const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "https://lsc-platform-kappa.vercel.app";
+
+type GiveConfig = {
+  zeffyEmbedUrl: string | null;
+  paypalGivingEnabled: boolean;
+  paypalGivingUrl: string | null;
+  churchTaxId: string | null;
+};
 
 const FUNDS = [
-  {
-    icon: "business-outline" as const,
-    color: colors.primary,
-    title: "General Fund",
-    body: "Support weekly ministry and operations",
-  },
-  {
-    icon: "construct-outline" as const,
-    color: colors.accent,
-    title: "Building Fund",
-    body: "Establishing our church home",
-  },
-  {
-    icon: "earth-outline" as const,
-    color: colors.amber,
-    title: "Missions Fund",
-    body: "Reaching the world with the gospel",
-  },
+  { icon: "business-outline" as const, title: "General Fund", body: "Support weekly ministry and operations" },
+  { icon: "construct-outline" as const, title: "Building Fund", body: "Establishing our church home" },
+  { icon: "earth-outline" as const, title: "Missions Fund", body: "Reaching the world with the gospel" },
 ] as const;
 
 export default function GiveScreen() {
-  const [selected, setSelected] = useState(0);
+  const { colors } = useTheme();
+  const [config, setConfig] = useState<GiveConfig | null>(null);
+  const [loading, setLoading] = useState(true);
   const [showWebView, setShowWebView] = useState(false);
-  const giveUrl = `${APP_URL.replace(/\/$/, "")}/give`;
+
+  useEffect(() => {
+    fetchJson<GiveConfig>("/api/mobile/config")
+      .then(setConfig)
+      .catch(() =>
+        setConfig({
+          zeffyEmbedUrl: null,
+          paypalGivingEnabled: true,
+          paypalGivingUrl: null,
+          churchTaxId: null,
+        }),
+      )
+      .finally(() => setLoading(false));
+  }, []);
+
+  const zeffyUrl = config?.zeffyEmbedUrl?.trim();
+  const givePageUrl = `${APP_URL.replace(/\/$/, "")}/give`;
+  const webViewUrl = zeffyUrl || givePageUrl;
 
   if (showWebView) {
     return (
       <View style={{ flex: 1 }}>
-        <Pressable style={styles.closeBar} onPress={() => setShowWebView(false)}>
+        <Pressable
+          style={[styles.closeBar, { backgroundColor: colors.primary }]}
+          onPress={() => setShowWebView(false)}
+        >
           <Text style={styles.closeText}>← Back</Text>
         </Pressable>
-        <WebView source={{ uri: giveUrl }} style={{ flex: 1 }} />
+        <WebView source={{ uri: webViewUrl }} style={{ flex: 1 }} />
       </View>
     );
   }
 
+  if (loading) {
+    return (
+      <View style={[styles.centered, { backgroundColor: colors.surface }]}>
+        <ActivityIndicator size="large" color={colors.primary} />
+      </View>
+    );
+  }
+
+  const ein = config?.churchTaxId?.trim();
+
   return (
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      <View style={styles.hero}>
+    <ScrollView style={[styles.container, { backgroundColor: colors.surface }]}>
+      <View style={[styles.hero, { backgroundColor: colors.primary }]}>
         <Text style={styles.heroTitle}>Give to Lake Shore Church</Text>
         <Text style={styles.heroSub}>Support our ministry in the West Loop</Text>
         <Text style={styles.heroNote}>100% of your gift goes to the church</Text>
       </View>
 
-      {FUNDS.map((fund, index) => {
-        const isSelected = selected === index;
-        return (
-          <Pressable
-            key={fund.title}
-            style={[styles.fundCard, isSelected && styles.fundCardSelected]}
-            onPress={() => setSelected(index)}
-          >
-            <View style={styles.fundRow}>
-              <Ionicons name={fund.icon} size={28} color={fund.color} />
-              <View style={styles.fundBody}>
-                <Text style={styles.fundTitle}>{fund.title}</Text>
-                <Text style={styles.fundText}>{fund.body}</Text>
-              </View>
-              {isSelected ? (
-                <Ionicons name="checkmark-circle" size={24} color={colors.primary} />
-              ) : null}
+      {FUNDS.map((fund) => (
+        <View
+          key={fund.title}
+          style={[styles.fundCard, { backgroundColor: colors.background, borderColor: colors.border }]}
+        >
+          <View style={styles.fundRow}>
+            <Ionicons name={fund.icon} size={28} color={colors.primary} />
+            <View style={styles.fundBody}>
+              <Text style={[styles.fundTitle, { color: colors.textPrimary }]}>{fund.title}</Text>
+              <Text style={[styles.fundText, { color: colors.textMuted }]}>{fund.body}</Text>
             </View>
-          </Pressable>
-        );
-      })}
+          </View>
+        </View>
+      ))}
 
-      <Pressable style={styles.button} onPress={() => setShowWebView(true)}>
-        <Text style={styles.buttonText}>Give now →</Text>
+      <Pressable
+        style={[styles.button, { backgroundColor: colors.primary }]}
+        onPress={() => setShowWebView(true)}
+      >
+        <Text style={styles.buttonText}>{zeffyUrl ? "Give now (Zeffy) →" : "Give now →"}</Text>
       </Pressable>
+
+      {config?.paypalGivingEnabled ? (
+        <Pressable
+          style={[styles.paypalBtn, { borderColor: colors.primary }]}
+          onPress={() =>
+            void WebBrowser.openBrowserAsync(
+              config.paypalGivingUrl?.trim() ||
+                "https://www.paypal.com/us/webapps/mpp/givingfund",
+            )
+          }
+        >
+          <Text style={[styles.paypalText, { color: colors.primary }]}>Give via PayPal Giving Fund</Text>
+        </Pressable>
+      ) : null}
+
+      <View style={[styles.trustBadge, { backgroundColor: colors.background, borderColor: colors.border }]}>
+        <Text style={[styles.trustTitle, { color: colors.primary }]}>
+          Registered 501(c)(3) nonprofit
+        </Text>
+        <Text style={[styles.trustBody, { color: colors.textMuted }]}>
+          Your donation is tax-deductible to the full extent permitted by law.
+          {ein ? ` EIN: ${ein}` : " EIN will be listed once confirmed."}
+        </Text>
+      </View>
 
       <View style={styles.feeRow}>
         <Ionicons name="shield-checkmark-outline" size={16} color={colors.textMuted} />
-        <Text style={styles.feeText}>Zeffy · 0% platform fees</Text>
+        <Text style={[styles.feeText, { color: colors.textMuted }]}>Zeffy · 0% platform fees</Text>
       </View>
     </ScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.surface },
-  content: { paddingBottom: 40 },
-  hero: {
-    marginHorizontal: 16,
-    marginTop: 16,
-    backgroundColor: colors.primary,
-    borderRadius: 14,
-    padding: 20,
-  },
+  container: { flex: 1 },
+  centered: { flex: 1, justifyContent: "center", alignItems: "center" },
+  hero: { marginHorizontal: 16, marginTop: 16, borderRadius: 14, padding: 20 },
   heroTitle: { color: "#fff", fontSize: 22, fontWeight: "700" },
   heroSub: { color: "rgba(255,255,255,0.85)", fontSize: 14, marginTop: 6 },
   heroNote: { color: "rgba(255,255,255,0.6)", fontSize: 12, marginTop: 8 },
   fundCard: {
     marginHorizontal: 16,
     marginTop: 12,
-    backgroundColor: colors.background,
     borderRadius: 12,
     padding: 16,
     borderWidth: 1,
-    borderColor: colors.border,
-  },
-  fundCardSelected: {
-    borderWidth: 2,
-    borderColor: colors.primary,
-    backgroundColor: `${colors.primary}08`,
   },
   fundRow: { flexDirection: "row", alignItems: "center" },
   fundBody: { flex: 1, marginLeft: 12 },
-  fundTitle: { fontSize: 16, fontWeight: "700", color: colors.textPrimary },
-  fundText: { marginTop: 4, fontSize: 13, color: colors.textMuted },
+  fundTitle: { fontSize: 16, fontWeight: "700" },
+  fundText: { marginTop: 4, fontSize: 13 },
   button: {
     marginHorizontal: 16,
     marginTop: 20,
-    backgroundColor: colors.primary,
     borderRadius: 12,
     paddingVertical: 16,
     alignItems: "center",
   },
   buttonText: { color: "#fff", fontWeight: "700", fontSize: 16 },
+  paypalBtn: {
+    marginHorizontal: 16,
+    marginTop: 12,
+    borderRadius: 12,
+    borderWidth: 2,
+    paddingVertical: 14,
+    alignItems: "center",
+  },
+  paypalText: { fontWeight: "700", fontSize: 15 },
+  trustBadge: {
+    marginHorizontal: 16,
+    marginTop: 16,
+    borderRadius: 12,
+    borderWidth: 1,
+    padding: 14,
+  },
+  trustTitle: { fontSize: 14, fontWeight: "700" },
+  trustBody: { marginTop: 6, fontSize: 13, lineHeight: 19 },
   feeRow: {
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
     marginTop: 14,
+    marginBottom: 32,
     gap: 6,
   },
-  feeText: { fontSize: 12, color: colors.textMuted },
-  closeBar: { padding: 12, backgroundColor: colors.primary },
+  feeText: { fontSize: 12 },
+  closeBar: { padding: 12 },
   closeText: { color: "#fff", fontWeight: "600" },
 });

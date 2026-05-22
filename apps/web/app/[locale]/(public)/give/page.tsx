@@ -4,6 +4,7 @@ import { getSiteConfig } from "@repo/cms";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { GiveQr } from "@/components/give/GiveQr";
+import { GiveTrustBadge } from "@/components/give/GiveTrustBadge";
 import { SITE_URL } from "@/lib/site";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -54,7 +55,10 @@ export default async function GivePage() {
           <GiveQr url={`${SITE_URL}/give`} />
           {config?.paypalGivingEnabled ? (
             <a
-              href="https://www.paypal.com/donate"
+              href={
+                config.paypalGivingUrl?.trim() ||
+                "https://www.paypal.com/us/webapps/mpp/givingfund"
+              }
               className="inline-flex min-h-[44px] items-center rounded-lg bg-brand-primary px-6 font-semibold text-white hover:bg-brand-primary-hover"
               target="_blank"
               rel="noopener noreferrer"
@@ -63,7 +67,8 @@ export default async function GivePage() {
             </a>
           ) : null}
         </div>
-        <p className="mt-8 text-sm text-foreground-muted">{t("zero_fees")}</p>
+        <GiveTrustBadge churchTaxId={config.churchTaxId} />
+        <p className="mt-6 text-sm text-foreground-muted">{t("zero_fees")}</p>
       </Container>
     </>
   );

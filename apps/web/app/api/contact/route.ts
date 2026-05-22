@@ -20,6 +20,12 @@ export async function POST(request: Request) {
       html: `<p><strong>From:</strong> ${name} &lt;${email}&gt;</p><p>${message.replace(/\n/g, "<br>")}</p>`,
     });
 
+    await sendEmail({
+      to: email,
+      subject: "We received your message — Lake Shore Church",
+      html: `<p>Hi ${name},</p><p>Thank you for contacting Lake Shore Church. We have received your message and will respond soon.</p><p>— Lake Shore Church, West Loop Chicago</p>`,
+    });
+
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[api/contact]", err);

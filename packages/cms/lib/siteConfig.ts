@@ -38,6 +38,8 @@ export function mergeSiteConfig(
     })(),
     paypalGivingEnabled:
       doc.paypalGivingEnabled ?? DEFAULT_SITE_CONFIG.paypalGivingEnabled,
+    paypalGivingUrl: doc.paypalGivingUrl ?? DEFAULT_SITE_CONFIG.paypalGivingUrl,
+    churchTaxId: doc.churchTaxId ?? DEFAULT_SITE_CONFIG.churchTaxId,
     zeffyEmbedUrl:
       doc.zeffyEmbedUrl !== undefined
         ? doc.zeffyEmbedUrl

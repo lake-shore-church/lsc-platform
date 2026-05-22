@@ -8,6 +8,7 @@ export async function POST(request: Request) {
     const content = String(body.content ?? "").trim();
     const isPrivate = Boolean(body.is_private);
     const name = String(body.name ?? "").trim();
+    const replyEmail = String(body.email ?? "").trim().toLowerCase();
 
     if (!content || content.length < 10) {
       return NextResponse.json(
@@ -30,6 +31,14 @@ export async function POST(request: Request) {
       subject: isPrivate ? "New private prayer request" : "New public prayer request",
       html: `<p>A new prayer request was submitted.</p><p>${isPrivate ? "Private — view in staff portal." : "Public request."}</p>`,
     });
+
+    if (replyEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyEmail)) {
+      await sendEmail({
+        to: replyEmail,
+        subject: "We received your prayer request — Lake Shore Church",
+        html: `<p>Thank you${name ? `, ${name}` : ""}. Your prayer request has been received. Our team is praying for you.</p><p>— Lake Shore Church, West Loop Chicago</p>`,
+      });
+    }
 
     return NextResponse.json({ ok: true });
   } catch (err) {

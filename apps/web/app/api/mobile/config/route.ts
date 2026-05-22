@@ -9,5 +9,11 @@ export async function GET() {
     subTagline: config.subTagline,
     heroBody: config.heroBody,
     heroCtaText: config.heroCtaText,
+    zeffyEmbedUrl: config.zeffyEmbedUrl?.trim() || null,
+    paypalGivingEnabled: Boolean(config.paypalGivingEnabled),
+    paypalGivingUrl: config.paypalGivingUrl?.trim() || null,
+    churchTaxId: config.churchTaxId?.trim() || null,
+    youtubeChannelId: config.youtubeChannelId?.trim() || null,
+    liveStreamUrl: config.liveStreamUrl ?? null,
   });
 }

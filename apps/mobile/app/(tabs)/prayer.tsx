@@ -30,6 +30,7 @@ function statusLabel(status?: string): string {
 export default function PrayerScreen() {
   const [content, setContent] = useState("");
   const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
   const [isPrivate, setIsPrivate] = useState(false);
   const [submitted, setSubmitted] = useState(false);
   const [prayers, setPrayers] = useState<MobilePrayer[]>([]);
@@ -59,6 +60,7 @@ export default function PrayerScreen() {
           content: content.trim(),
           isPrivate,
           name: name.trim() || undefined,
+          email: email.trim() || undefined,
         }),
       });
       if (res.ok) {
@@ -66,6 +68,7 @@ export default function PrayerScreen() {
         setSubmitted(true);
         setContent("");
         setName("");
+        setEmail("");
         if (!isPrivate) loadPrayers();
       }
     } finally {
@@ -136,6 +139,15 @@ export default function PrayerScreen() {
               placeholder="Your name (optional)"
               value={name}
               onChangeText={setName}
+              placeholderTextColor={colors.textMuted}
+            />
+            <TextInput
+              style={[styles.input, { marginTop: 10 }]}
+              placeholder="Email for confirmation (optional)"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
               placeholderTextColor={colors.textMuted}
             />
 

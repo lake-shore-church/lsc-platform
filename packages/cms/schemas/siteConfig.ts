@@ -145,9 +145,21 @@ export const siteConfigType = defineType({
     defineField({
       name: "paypalGivingEnabled",
       title: "PayPal Giving Fund active",
-      description: "Toggle when 501(c)(3) approved — no code change required",
+      description: "501(c)(3) confirmed — shows secondary PayPal button on Give page",
       type: "boolean",
-      initialValue: false,
+      initialValue: true,
+    }),
+    defineField({
+      name: "paypalGivingUrl",
+      title: "PayPal Giving Fund URL",
+      description: "Church-specific PayPal Giving Fund link (from PayPal nonprofit setup).",
+      type: "url",
+    }),
+    defineField({
+      name: "churchTaxId",
+      title: "Church EIN (tax ID)",
+      description: "Shown on Give page when set (XX-XXXXXXX from IRS determination letter).",
+      type: "string",
     }),
     defineField({
       name: "zeffyEmbedUrl",

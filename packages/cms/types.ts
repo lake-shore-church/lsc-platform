@@ -153,6 +153,8 @@ export type SiteConfig = {
   serviceTimes?: ServiceTime[];
   socialLinks?: SocialLink[];
   paypalGivingEnabled?: boolean;
+  paypalGivingUrl?: string;
+  churchTaxId?: string;
   zeffyEmbedUrl?: string;
   isLiveNow?: boolean;
   liveVideoId?: string;

@@ -31,6 +31,19 @@
 
 ---
 
+## 501(c)(3) nonprofit status
+
+- [x] **Confirmed** — Lake Shore Church is a registered 501(c)(3) nonprofit (May 2026 Pastor visit).
+- [ ] **EIN (tax ID)** — from IRS determination letter (`XX-XXXXXXX`). Needed for:
+  - PayPal Giving Fund verification
+  - Google for Nonprofits ([nonprofits.google.com](https://www.nonprofits.google.com))
+  - Give page trust badge (paste in Sanity → **Church EIN**)
+- [ ] **TechSoup** registration (optional) — [techsoup.org](https://www.techsoup.org) — unlocks Microsoft/Google nonprofit bundles.
+
+**Platform:** PayPal Giving Fund defaults **ON** in Sanity; Zeffy remains **primary** (0% platform fee). See [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
+
+---
+
 ## During the meeting — credentials to collect
 
 ### Critical (platform cannot fully go live without these)

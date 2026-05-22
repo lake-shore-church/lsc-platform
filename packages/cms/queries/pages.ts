@@ -52,6 +52,8 @@ export async function getSiteConfig(cms?: SanityClient): Promise<SiteConfig> {
     serviceTimes,
     socialLinks,
     paypalGivingEnabled,
+    paypalGivingUrl,
+    churchTaxId,
     zeffyEmbedUrl,
     isLiveNow,
     liveVideoId,
