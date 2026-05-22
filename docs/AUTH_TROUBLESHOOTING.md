@@ -19,7 +19,11 @@ https://lsc-platform-kappa.vercel.app/auth/callback
 lschurch://auth/callback
 lschurch://**
 exp://**
+http://localhost:8081/**
+http://127.0.0.1:8081/**
 ```
+
+**Expo web in Chrome** uses `http://localhost:8081/auth/callback` (port may differ — check the hint on the sign-in screen after sending a link). Add that exact URL or use `http://localhost:8081/**`.
 
 For Expo Go without wildcards, you must add the **exact** URL the app uses. On the phone, request a magic link once; if Supabase returns a redirect error, the app shows the URL to paste into the dashboard. It looks like:
 

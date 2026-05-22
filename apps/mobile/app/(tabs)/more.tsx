@@ -40,7 +40,7 @@ export default function MoreScreen() {
   const router = useRouter();
   const { colors } = useTheme();
   const styles = useMemo(() => createStyles(colors), [colors]);
-  const { profile, signOut } = useAuth();
+  const { profile, session, isLoading: authLoading, signOut } = useAuth();
   const [events, setEvents] = useState<MobileEvent[]>([]);
   const [posts, setPosts] = useState<MobileBlogPost[]>([]);
   const [book, setBook] = useState<HomePayload["book"]>(null);
@@ -72,17 +72,26 @@ export default function MoreScreen() {
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {profile ? (
+      {authLoading ? (
+        <ActivityIndicator style={{ marginTop: 24 }} color={colors.primary} />
+      ) : profile || session?.user ? (
         <View style={styles.memberCard}>
           <View style={styles.avatar}>
             <Text style={styles.avatarText}>
-              {initials(profile.full_name, profile.email)}
+              {initials(
+                profile?.full_name,
+                profile?.email ?? session?.user?.email ?? null,
+              )}
             </Text>
           </View>
           <View style={styles.memberBody}>
-            <Text style={styles.memberName}>{profile.full_name ?? profile.email}</Text>
-            <Text style={styles.memberEmail}>{profile.email}</Text>
-            <Text style={styles.roleBadge}>{profile.role}</Text>
+            <Text style={styles.memberName}>
+              {profile?.full_name ?? profile?.email ?? session?.user?.email ?? "Signed in"}
+            </Text>
+            <Text style={styles.memberEmail}>
+              {profile?.email ?? session?.user?.email ?? ""}
+            </Text>
+            {profile?.role ? <Text style={styles.roleBadge}>{profile.role}</Text> : null}
           </View>
         </View>
       ) : (

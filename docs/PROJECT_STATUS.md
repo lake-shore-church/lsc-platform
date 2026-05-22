@@ -1,9 +1,10 @@
 # LSC Platform — Project Status
 
-**Last updated:** 2026-05-21 (end of day)  
+**Last updated:** 2026-05-22  
 **Active branch:** `main` (single branch; feature branches merged and deleted)  
 **Repository:** https://github.com/lake-shore-church/lsc-platform  
 **Production (web):** https://lsc-platform-kappa.vercel.app  
+**Pastor visit:** May 2026 — site approved; priorities in [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md)  
 
 ---
 
@@ -17,7 +18,7 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 
 **Presenter mode:** Staff/admin mobile `/presenter` — slide control + Realtime sync for web viewers. Requires Supabase migration — see [PRESENTER_MODE.md](./PRESENTER_MODE.md).
 
-**Mobile:** Five tabs, shared API, Supabase magic-link auth. See [MOBILE_SETUP.md](./MOBILE_SETUP.md).
+**Mobile:** Five tabs, web-parity home (hero, themes, ministry cards, testimonials), Live/Archive sermons, shared API, Supabase auth. See [MOBILE_SETUP.md](./MOBILE_SETUP.md).
 
 ---
 
@@ -68,7 +69,8 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 
 | Feature | Status |
 |---------|--------|
-| Home (quote card, live banner, latest sermon) | ✅ |
+| Home (hero, service cards, series, ministry, events, testimonials) | ✅ |
+| Themes (Bold / Warm / Advent / Easter) | ✅ |
 | Sermons — **Live** + **Archive** tabs | ✅ |
 | Give (web), Prayer, More | ✅ |
 | Presenter Mode (staff/admin) | ✅ |
@@ -83,17 +85,17 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 |------|--------|
 | `main` up to date with production features | ✅ |
 | `feature/presenter-mode` merged | ✅ |
-| Working tree clean | ✅ (after final doc commit) |
+| Working tree clean | 🟡 commit auth + docs after 2026-05-22 |
 
 ---
 
-## Immediate next steps (pastor / ops)
+## Immediate next steps (post–Pastor visit)
 
-1. **Sanity Studio** — Site Config: confirm hero copy + `Begins at 10 A.M.` (or `pnpm seed:site-config` with token).
-2. **Supabase** — Run presenter migration SQL; enable Realtime on `presentation_state`.
-3. **Supabase Auth** — Redirect URLs for mobile (`lschurch://`); see [MOBILE_SETUP.md](./MOBILE_SETUP.md).
-4. **Test livestream** — Staff `/staff/sermons` → Go live with test YouTube ID; check `/live` + mobile Live tab.
-5. **EAS** — `cd apps/mobile && npx eas init` when ready for TestFlight.
+1. **Pastor credentials** — Zeffy, Sanity editor, YouTube; see checklist in [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md).
+2. **Push to GitHub** — `git push origin main` (mobile home + auth fixes on `main`).
+3. **Zeffy + giving sync** — live donation URL in Sanity; `giving_records` for finance team.
+4. **Notifications** — OneSignal + Resend for Wednesday prayer + Sunday service (+ go-live).
+5. **Staff training** — `/studio`, `/staff/events`, `/staff/sermons`, `/staff/financials` (one role per guide).
 
 ---
 

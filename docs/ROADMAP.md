@@ -1,7 +1,7 @@
 # LSC Platform — Roadmap
 
-**Last updated:** 2026-05-21  
-Phases align with `.cursorrules` and the Lake Shore Church build blueprint.
+**Last updated:** 2026-05-22  
+Phases align with `.cursorrules` and [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md) (post–Pastor visit).
 
 ---
 
@@ -46,6 +46,19 @@ Phases align with `.cursorrules` and the Lake Shore Church build blueprint.
 | Mobile: expo-av player + offline download | ⏳ |
 | OneSignal push (go-live) | ⏳ env keys |
 | Whisper transcription | ⏳ |
+
+### Phase 2A — Pastor visit follow-up (next)
+
+| Item | Status |
+|------|--------|
+| Zeffy live + sync → `giving_records` | ⏳ Pastor credentials |
+| Member/mobile giving history | ⏳ |
+| OneSignal: Wed prayer + Sunday + go-live | ⏳ |
+| Resend: event + prayer email templates | ⏳ |
+| Staff: notification schedule UI | ⏳ |
+| Mobile: native About + Events + calendar add | ⏳ |
+| WordPress RSS → blog (if Pastor keeps WP) | ⏳ decision |
+| EAS TestFlight for Pastor/staff | ⏳ |
 
 ---
 

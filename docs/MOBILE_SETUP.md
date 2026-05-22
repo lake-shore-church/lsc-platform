@@ -48,6 +48,7 @@ In [Supabase Auth → URL Configuration](https://supabase.com/dashboard/project/
 - `lschurch://auth/callback`
 - `lschurch://**`
 - `exp://**` (Expo Go — replaces per-IP URLs like `exp://192.168.x.x:8081/--/auth/callback`)
+- `http://localhost:8081/**` (Expo **web** in Chrome — port shown on sign-in screen after sending link)
 
 If magic link still fails, see **[AUTH_TROUBLESHOOTING.md](./AUTH_TROUBLESHOOTING.md)**.
 

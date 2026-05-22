@@ -25,6 +25,7 @@
 | [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md) | Deploy, Studio, accounts — plain language for church tech |
 | [PASTOR_MEETING_CHECKLIST.md](./PASTOR_MEETING_CHECKLIST.md) | Pastor meeting — credentials, confirmations, post-meeting steps |
 | [MOBILE_SETUP.md](./MOBILE_SETUP.md) | Mobile env, Supabase redirects, EAS — technical detail |
+| [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md) | Post–visit vision: one CMS, app sync, giving, notifications (cost-free stack) |
 | [LIVESTREAM_SETUP.md](./LIVESTREAM_SETUP.md) | Restream, go-live, `/live`, mobile Live tab |
 | [PRESENTER_MODE.md](./PRESENTER_MODE.md) | Projector slide control (staff mobile app) |
 | [AUTH_TROUBLESHOOTING.md](./AUTH_TROUBLESHOOTING.md) | Magic link, rate limits, roles |

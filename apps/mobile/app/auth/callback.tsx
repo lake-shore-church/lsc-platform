@@ -1,9 +1,10 @@
 import { useRouter } from "expo-router";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, Platform, StyleSheet, Text, View } from "react-native";
 import * as Linking from "expo-linking";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { completeAuthFromUrl } from "@/lib/completeAuthFromUrl";
+import { getAuthCallbackUrl } from "@/lib/getAuthCallbackUrl";
 
 export default function AuthCallbackScreen() {
   const router = useRouter();
@@ -20,14 +21,18 @@ export default function AuthCallbackScreen() {
 
       if (error) {
         setMessage(error.message);
-        setTimeout(() => router.replace("/auth"), 3000);
+        setTimeout(() => router.replace("/auth"), 4000);
         return;
       }
 
-      router.replace("/home");
+      if (Platform.OS === "web" && typeof window !== "undefined") {
+        window.history.replaceState({}, "", `${window.location.origin}/auth/callback`);
+      }
+
+      router.replace("/(tabs)/home");
     }
 
-    void Linking.getInitialURL().then(handleUrl);
+    void getAuthCallbackUrl().then(handleUrl);
 
     const sub = Linking.addEventListener("url", ({ url }) => {
       void handleUrl(url);

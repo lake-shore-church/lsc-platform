@@ -76,7 +76,8 @@ export default function AuthScreen() {
             <>
               <Text style={styles.cardTitle}>Check your email</Text>
               <Text style={styles.cardSub}>
-                We sent a sign-in link to {email.trim()}. Open it on this device to continue.
+                We sent a sign-in link to {email.trim()}. Open it on this device in the same
+                browser or app where you requested it.
               </Text>
               <Pressable style={styles.button} onPress={() => Linking.openURL("mailto:")}>
                 <Text style={styles.buttonText}>Open email app</Text>
