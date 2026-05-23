@@ -16,9 +16,11 @@ type GiveConfig = {
 };
 
 const FUNDS = [
-  { icon: "business-outline" as const, title: "General Fund", body: "Support weekly ministry and operations" },
-  { icon: "construct-outline" as const, title: "Building Fund", body: "Establishing our church home" },
-  { icon: "earth-outline" as const, title: "Missions Fund", body: "Reaching the world with the gospel" },
+  { icon: "heart-outline" as const, title: "Tithe / Offering", body: "General giving" },
+  { icon: "earth-outline" as const, title: "Missions", body: "Outreach and missions" },
+  { icon: "construct-outline" as const, title: "Building Fund", body: "Church building" },
+  { icon: "hand-left-outline" as const, title: "Mercy Fund", body: "Helping those in need" },
+  { icon: "ellipsis-horizontal-outline" as const, title: "Other", body: "Miscellaneous giving" },
 ] as const;
 
 export default function GiveScreen() {

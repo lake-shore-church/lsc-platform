@@ -19,12 +19,16 @@ export async function sendEmail(options: {
     return false;
   }
 
-  await resend.emails.send({
+  const { error } = await resend.emails.send({
     from,
     to: options.to,
     subject: options.subject,
     html: options.html,
   });
+
+  if (error) {
+    throw new Error(error.message);
+  }
 
   return true;
 }

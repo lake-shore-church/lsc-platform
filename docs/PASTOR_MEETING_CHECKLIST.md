@@ -222,13 +222,13 @@ npx eas submit --platform all
 | 8 languages | ✅ en, es, zh, ja, ta, tl, hi, fr |
 | Beliefs + dedication pages | ✅ Web |
 | Mobile app (local / Expo) | ✅ 5 tabs + API + auth scaffold |
-| Email (Resend) | ⏳ Needs API key + domain verify |
+| Email (Resend) | ✅ API on Vercel; contact tested; verify `lschurch.com` when DNS ready |
 | Online giving (Zeffy) | ⏳ Needs embed URL in Sanity |
-| Push (OneSignal) | ⏳ Keys + implementation |
+| Push (OneSignal) | 🟡 Keys on Vercel; web SDK on branch — merge to `main` |
 | iOS App Store / TestFlight | ⏳ Apple Developer + EAS build |
 | Android Play Store | ⏳ Play Console + EAS build |
 | Podcast Apple / Spotify | ⏳ Submit RSS after meeting |
-| Custom domain lschurch.com | ⏳ DNS on Vercel |
+| Custom domain lschurch.com | 🟡 Cloudflare NS set; pending Active → DNS ([handover](../handover/README.md)) |
 | Cloudflare R2 media | ⏳ Phase 2+ |
 | Whisper transcription | ⏳ Phase 2+ |
 

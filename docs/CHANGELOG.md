@@ -9,12 +9,20 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 ### Added
 
 - **Phase 2A** — 501(c)(3) Give trust badge (web + mobile); PayPal Giving Fund default on; Sanity `churchTaxId`, `paypalGivingUrl`; mobile Give uses Zeffy embed from `/api/mobile/config`.
-- **Email** — Prayer and contact form send acknowledgement emails when donor email provided; mobile prayer optional email field.
-- **Push** — OneSignal scheduled cron routes (Wed/Sat/Sun); `docs/PHASE_2A_SETUP.md`; Mevo → Restream section in `LIVESTREAM_SETUP.md`.
+- **Email** — Prayer and contact acknowledgements via Resend; mobile prayer optional email; contact form verified on Vercel production.
+- **Push** — OneSignal scheduled cron routes (Wed/Sat/Sun); `OneSignalInit` + service workers for web push; Mevo → Restream in `LIVESTREAM_SETUP.md`.
+- **Handover** — `docs/handover/` (template + gitignored `CHURCH_ACCOUNTS.local.md`); Cloudflare NS documented.
+- **Prayer API** — Server uses `createSupabaseAdminClient` so public/private requests save correctly.
 
 ### Changed
 
 - Mobile `/api/mobile/config` returns giving + YouTube fields for app.
+- `docs/ai/CONTEXT.md`, `CLAUDE_SYNC_PROMPT.md`, `PROJECT_STATUS.md`, `PHASE_2A_SETUP.md` synced (2026-05-21 infra session).
+
+### Infrastructure (2026-05-21)
+
+- Bluehost nameservers → Cloudflare (`kaiser.ns.cloudflare.com`, `meg.ns.cloudflare.com`) for `lschurch.com`.
+- Vercel env: Resend, OneSignal, `CRON_SECRET`, Supabase service role; production redeploy.
 
 ---
 

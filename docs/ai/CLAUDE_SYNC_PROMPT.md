@@ -15,9 +15,10 @@ Reach people globally with the gospel: **God raised Jesus from the dead; there i
 
 - **GitHub:** https://github.com/lake-shore-church/lsc-platform
 - **Production web:** https://lsc-platform-kappa.vercel.app
-- **Active branch:** `feature/phase-2a` (Phase 2A code — merge to `main` after credentials + tests)
-- **`main`:** mobile home/themes, auth fix, pastor docs (`aacdcfa` and earlier)
+- **Active branch:** `feature/phase-2a` — merge to `main` after push + test (prayer fix, OneSignal web SDK on branch; not all on production yet)
+- **`main`:** mobile home/themes, auth, pastor docs
 - **Local path:** `/Users/usha/Documents/LSAG Church/lsc-platform`
+- **Handover (local secrets):** `docs/handover/CHURCH_ACCOUNTS.local.md` (gitignored)
 - **Verify:** `pnpm run verify`
 - **Never commit secrets** (`.env` files are gitignored)
 
@@ -27,6 +28,16 @@ Reach people globally with the gospel: **God raised Jesus from the dead; there i
 - Church is **501(c)(3)** confirmed — PayPal Giving Fund is **secondary**; **Zeffy is primary** (0% platform fee).
 - Wants: easy back office, Zeffy giving + bookkeeping, live stream (Mevo→Restream→YouTube), events/notifications (Wed prayer, Sun 10 AM), email, optional WordPress RSS later.
 - Full vision: repo `docs/PASTOR_PRIORITIES.md`. Activation steps: `docs/PHASE_2A_SETUP.md`.
+
+## Infrastructure (May 2026 evening session)
+
+| Item | Status |
+|------|--------|
+| Domain `lschurch.com` | Bluehost NS → Cloudflare (`kaiser` + `meg`); **pending Active** |
+| Resend email | **Live** on Vercel; contact form tested; from `onboarding@resend.dev` until domain verify |
+| OneSignal | Account + keys on Vercel + `CRON_SECRET`; Web SDK in code — **deploy after merge to main** |
+| Supabase `SUPABASE_SERVICE_ROLE_KEY` | On Vercel (prayer form) |
+| Tech steward test email | `ushadevi.pitchandi@gmail.com` (no access to `lakeshorechurch@lschurch.com` yet) |
 
 ## Architecture — single source of truth
 
@@ -43,23 +54,21 @@ Mobile uses **`/api/mobile/*`** only — no parallel mobile-only CMS.
 
 ## Already shipped (do not rebuild)
 
-**Web:** 8 locales (en, es, zh, ja, ta, tl, hi, fr); Pastor Brian copy; livestream (`/live`, staff Go live); presenter mode (Supabase Realtime); member/staff portals; `/podcast.xml`; events with iCal.
+**Web:** 8 locales; Pastor Brian copy; livestream; presenter mode; member/staff portals; `/podcast.xml`; events with iCal.
 
-**Mobile (Expo 54):** Home ≈ web (hero, service cards, series, ministry, testimonials, devotionals); themes Bold/Warm/Advent/Easter; Sermons Live/Archive; Prayer; Give; More; presenter mode (staff); Supabase magic-link auth.
+**Mobile (Expo 54):** Home ≈ web; themes; Sermons Live/Archive; Prayer; Give; More; presenter mode; magic-link auth.
 
-## On `feature/phase-2a` (code done — needs credentials to go live)
+## Phase 2A — code vs production
 
-| Item | Status |
-|------|--------|
-| 501(c)(3) trust badge on Give (web + mobile) | ✅ in code |
-| Sanity fields: `zeffyEmbedUrl`, `churchTaxId`, `paypalGivingUrl`, `paypalGivingEnabled` (default on) | ✅ |
-| Mobile Give opens Zeffy embed from CMS | ✅ |
-| Resend: prayer + contact **acknowledgement** emails | ✅ needs `RESEND_*` on Vercel |
-| OneSignal: cron routes Wed/Sat/Sun + go-live push | ✅ needs `ONESIGNAL_*` + `CRON_SECRET` |
-| Mevo → Restream instructions | ✅ `docs/LIVESTREAM_SETUP.md` |
-| Zeffy → `giving_records` nightly sync | ⏳ next commit after Zeffy live |
-| WordPress RSS → Sanity | ⏳ Pastor must confirm URL |
-| Merge `feature/phase-2a` → `main` | ⏳ after Sanity + Vercel filled |
+| Item | Code (`feature/phase-2a`) | Production (`main` deploy) |
+|------|-------------------------|----------------------------|
+| 501(c)(3) Give badge, Zeffy mobile | ✅ branch | ⏳ merge |
+| Resend acknowledgements | ✅ branch | ✅ Vercel env live |
+| Prayer API (admin Supabase client) | ✅ local branch | ⏳ push + merge |
+| OneSignal Web SDK + service workers | ✅ local branch | ⏳ push + merge |
+| OneSignal crons + go-live push | ✅ branch | ✅ keys on Vercel |
+| Zeffy → `giving_records` sync | ⏳ | ⏳ |
+| WordPress RSS | ⏳ Pastor URL | ⏳ |
 
 ## Cost-free stack
 
@@ -69,6 +78,7 @@ Sanity, Supabase, Vercel, Zeffy, YouTube/Restream, Resend + OneSignal free tiers
 
 - Supabase: `zstnygokvxrrszvkfejs`
 - Sanity: `7hl877lg` / `production`
+- OneSignal App ID: `a1c03b58-9d26-4388-8d34-11d3c882bd8f`
 
 ## Roles
 
@@ -82,11 +92,11 @@ Sanity, Supabase, Vercel, Zeffy, YouTube/Restream, Resend + OneSignal free tiers
 2. Prefer Zeffy primary; PayPal secondary; no Stripe unless we explicitly ask.
 3. No duplicate mobile nav or throwaway demo UI.
 4. Do not put API keys, RTMP stream keys, or EIN in git — Sanity/Vercel/Mevo only.
-5. If unsure what shipped, ask for `git log -3` on `feature/phase-2a` or read `docs/ai/CONTEXT.md`.
+5. If unsure what shipped, ask for `git status` / `git log -3` or read `docs/ai/CONTEXT.md`.
 
 ## Sync line (I will add after each Cursor session)
 
-`Sync: [date] — branch [name] — [1–2 sentences what changed]`
+`Sync: 2026-05-21 — feature/phase-2a — Cloudflare NS; Resend live; OneSignal+Vercel env; handover doc; prayer/OneSignal web code local (push pending).`
 ```
 
 ---
@@ -95,4 +105,5 @@ Sanity, Supabase, Vercel, Zeffy, YouTube/Restream, Resend + OneSignal free tiers
 
 - `docs/PASTOR_PRIORITIES.md`
 - `docs/PHASE_2A_SETUP.md`
+- `docs/handover/README.md` (template only — not `.local.md`)
 - `docs/ai/CONTEXT.md`

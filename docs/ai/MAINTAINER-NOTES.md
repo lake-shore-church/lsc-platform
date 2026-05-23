@@ -6,6 +6,18 @@
 
 ---
 
+## 2026-05-21 — Infrastructure: domain, Resend, OneSignal, handover
+
+- **DNS:** Bluehost nameservers for `lschurch.com` → Cloudflare `kaiser.ns.cloudflare.com` + `meg.ns.cloudflare.com`; site pending Active; imported DNS keeps Bluehost email (MX/SPF/DKIM); website still Squarespace until A/CNAME → Vercel.
+- **Resend:** API key `lsc-platform-production`; Vercel `RESEND_*` Production+Preview; contact form verified on `lsc-platform-kappa.vercel.app`; from `onboarding@resend.dev` until `lschurch.com` verified.
+- **OneSignal:** Free plan; App ID `a1c03b58-9d26-4388-8d34-11d3c882bd8f`; REST key on Vercel; Web Typical Site setup; code: `OneSignalSDKWorker.js`, `OneSignalInit.tsx` in layout (branch, not merged).
+- **Prayer:** `/api/prayer` uses `createSupabaseAdminClient`; email errors non-blocking; private prayers work without login after deploy.
+- **Handover:** `docs/handover/` + gitignored `CHURCH_ACCOUNTS.local.md`; `docs/RESUME_HERE.md` for next session.
+- **Tech steward:** `ushadevi.pitchandi@gmail.com` for testing; no access to `lakeshorechurch@lschurch.com` yet.
+- **Uncommitted on `feature/phase-2a`:** prayer route, OneSignal files, handover docs, `.gitignore` — push + merge to `main` next.
+
+---
+
 ## 2026-05-20 — Theme system (3 themes × light/dark/reading)
 
 - `packages/ui/web/tokens/themes.css`, `ThemeSwitcher.tsx`, `ThemeScript.tsx`.

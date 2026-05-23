@@ -5,6 +5,7 @@ import { getSiteConfig, buildChurchJsonLd, type ThemeId } from "@repo/cms";
 import { ThemeScript } from "@repo/ui/web/ThemeScript";
 import { ThemeSwitcher } from "@repo/ui/web/ThemeSwitcher";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { OneSignalInit } from "@/components/OneSignalInit";
 import { localeLabels, type AppLocale } from "@/i18n/routing";
 import { buildHreflangLanguages } from "@/lib/i18n/metadata";
 import { SITE_URL } from "@/lib/site";
@@ -69,6 +70,7 @@ export default async function RootLayout({
       <head>
         <ThemeScript />
         <JsonLd data={churchJsonLd} />
+        <OneSignalInit />
       </head>
       <body>
         {children}

@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { submitPrayer } from "@repo/db";
+import { createSupabaseAdminClient, submitPrayer } from "@repo/db";
 import { sendEmail } from "@/lib/email";
 
 export async function POST(request: Request) {
@@ -19,30 +19,42 @@ export async function POST(request: Request) {
 
     const prayerContent = name ? `${name}: ${content}` : content;
 
-    await submitPrayer({
-      content: prayerContent,
-      is_private: isPrivate,
-      submitter_id: null,
-    });
+    const supabase = createSupabaseAdminClient();
+    await submitPrayer(
+      {
+        content: prayerContent,
+        is_private: isPrivate,
+        submitter_id: null,
+      },
+      supabase,
+    );
 
     const staffEmail = process.env.RESEND_FROM_EMAIL ?? "hello@lschurch.com";
-    await sendEmail({
-      to: staffEmail,
-      subject: isPrivate ? "New private prayer request" : "New public prayer request",
-      html: `<p>A new prayer request was submitted.</p><p>${isPrivate ? "Private — view in staff portal." : "Public request."}</p>`,
-    });
-
-    if (replyEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyEmail)) {
+    try {
       await sendEmail({
-        to: replyEmail,
-        subject: "We received your prayer request — Lake Shore Church",
-        html: `<p>Thank you${name ? `, ${name}` : ""}. Your prayer request has been received. Our team is praying for you.</p><p>— Lake Shore Church, West Loop Chicago</p>`,
+        to: staffEmail,
+        subject: isPrivate ? "New private prayer request" : "New public prayer request",
+        html: `<p>A new prayer request was submitted.</p><p>${isPrivate ? "Private — view in staff portal." : "Public request."}</p><p>${prayerContent.replace(/</g, "&lt;")}</p>`,
       });
+
+      if (replyEmail && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(replyEmail)) {
+        await sendEmail({
+          to: replyEmail,
+          subject: "We received your prayer request — Lake Shore Church",
+          html: `<p>Thank you${name ? `, ${name}` : ""}. Your prayer request has been received. Our team is praying for you.</p><p>— Lake Shore Church, West Loop Chicago</p>`,
+        });
+      }
+    } catch (emailErr) {
+      console.error("[api/prayer] email failed (prayer saved):", emailErr);
     }
 
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[api/prayer]", err);
-    return NextResponse.json({ error: "Unable to submit prayer request." }, { status: 500 });
+    const message =
+      err instanceof Error && err.message.includes("SUPABASE_SERVICE_ROLE_KEY")
+        ? "Server configuration error. Please contact the church office."
+        : "Unable to submit prayer request.";
+    return NextResponse.json({ error: message }, { status: 500 });
   }
 }

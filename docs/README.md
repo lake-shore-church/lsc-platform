@@ -8,8 +8,9 @@
 |------|------------|
 | **Church tech volunteer** | [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md) → [/platform/tech](http://localhost:3000/platform/tech) |
 | **Pastor / credentials meeting** | [PASTOR_MEETING_CHECKLIST.md](./PASTOR_MEETING_CHECKLIST.md) |
+| **Accounts, DNS, API keys (local)** | [handover/README.md](./handover/README.md) → copy `CHURCH_ACCOUNTS.example.md` to `.local.md` |
 | **Mobile app setup** | [MOBILE_SETUP.md](./MOBILE_SETUP.md) |
-| **Human maintainer** | [PROJECT_STATUS.md](./PROJECT_STATUS.md) → [ROADMAP.md](./ROADMAP.md) |
+| **Human maintainer** | [RESUME_HERE.md](./RESUME_HERE.md) → [PROJECT_STATUS.md](./PROJECT_STATUS.md) |
 | **AI agent** | [AGENTS.md](../AGENTS.md) → [ai/CONTEXT.md](./ai/CONTEXT.md) → [specs/ai-agent-preflight.md](./specs/ai-agent-preflight.md) |
 | **New contributor** | [CONTRIBUTING.md](../CONTRIBUTING.md) |
 
@@ -27,6 +28,8 @@
 | [MOBILE_SETUP.md](./MOBILE_SETUP.md) | Mobile env, Supabase redirects, EAS — technical detail |
 | [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md) | Post–visit vision: one CMS, app sync, giving, notifications (cost-free stack) |
 | [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md) | Activate Zeffy, Resend, OneSignal, Sanity fields (no secrets in git) |
+| [handover/README.md](./handover/README.md) | Church accounts handover (secrets in `.local.md` only) |
+| [ZEFFY_SETUP.md](./ZEFFY_SETUP.md) | Zeffy donation form wizard — 5 designated funds, embed URL → Sanity |
 | [LIVESTREAM_SETUP.md](./LIVESTREAM_SETUP.md) | Restream, go-live, `/live`, mobile Live tab |
 | [PRESENTER_MODE.md](./PRESENTER_MODE.md) | Projector slide control (staff mobile app) |
 | [AUTH_TROUBLESHOOTING.md](./AUTH_TROUBLESHOOTING.md) | Magic link, rate limits, roles |

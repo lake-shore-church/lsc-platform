@@ -8,12 +8,13 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-05-22 |
-| **Active branch** | `feature/phase-2a` (push to merge → `main` after credentials) |
-| **Current phase** | Phase 2A — activate giving, email, push |
-| **Just completed** | Phase 2A code: 501c3 badge, Zeffy/mobile config, Resend acks, OneSignal crons, Mevo docs |
-| **Next up** | Paste credentials in Sanity + Vercel; test; merge; Zeffy→`giving_records` sync |
-| **Blocked** | Pastor values: Zeffy URL, Resend/OneSignal keys, EIN, YouTube channel ID |
+| **Last updated** | 2026-05-21 (evening — infra session) |
+| **Active branch** | `feature/phase-2a` (uncommitted local changes — push before production gets prayer fix + OneSignal web) |
+| **Current phase** | Phase 2A + domain migration (Cloudflare) |
+| **Just completed** | Bluehost→Cloudflare NS; Resend live on Vercel (contact tested); OneSignal account + Vercel env; handover doc; prayer API fix + OneSignal web SDK (local, not on `main` yet) |
+| **Next up** | Cloudflare **Active** → DNS → Vercel domain; push `feature/phase-2a` → `main`; test prayer; Zeffy embed in Sanity |
+| **Blocked** | `lschurch.com` Cloudflare pending; church email inbox; Zeffy bank + embed URL |
+| **Handover (secrets)** | `docs/handover/CHURCH_ACCOUNTS.local.md` (gitignored) |
 | **PRs** | https://github.com/lake-shore-church/lsc-platform/compare/main...feature/phase-2a |
 
 ---
@@ -32,8 +33,19 @@
 |-------|-----|
 | Claude paste prompt | [CLAUDE_SYNC_PROMPT.md](./CLAUDE_SYNC_PROMPT.md) |
 | Phase 2A activation | [PHASE_2A_SETUP.md](../PHASE_2A_SETUP.md) |
+| Accounts / DNS / keys (local) | [handover/README.md](../handover/README.md) |
 | Livestream / Mevo | [LIVESTREAM_SETUP.md](../LIVESTREAM_SETUP.md) |
 | Mobile + auth | [MOBILE_SETUP.md](../MOBILE_SETUP.md) |
+| Session log | [MAINTAINER-NOTES.md](./MAINTAINER-NOTES.md) |
+
+## Production credentials (May 2026 — no secrets here)
+
+| Service | Vercel / status |
+|---------|-----------------|
+| Supabase URL + anon + **service_role** | On Vercel; redeployed |
+| Resend | `RESEND_*` on Vercel; **contact form verified** |
+| OneSignal | App ID + REST + `CRON_SECRET` on Vercel; web SDK needs **git push to `main`** |
+| Custom domain | NS at Cloudflare; site **pending Active** |
 
 ## Shipped + Phase 2A branch
 

@@ -18,16 +18,18 @@ export default async function GivePage() {
   const zeffyUrl = config.zeffyEmbedUrl?.trim();
 
   const funds = [
-    { id: "general", name: t("general"), desc: t("general_desc") },
-    { id: "building", name: t("building"), desc: t("building_desc") },
+    { id: "tithe", name: t("tithe"), desc: t("tithe_desc") },
     { id: "missions", name: t("missions"), desc: t("missions_desc") },
+    { id: "building", name: t("building"), desc: t("building_desc") },
+    { id: "mercy", name: t("mercy"), desc: t("mercy_desc") },
+    { id: "other", name: t("other"), desc: t("other_desc") },
   ];
 
   return (
     <>
       <PageHeader title={t("title")} description={t("subtitle")} />
       <Container className="py-12">
-        <div className="grid gap-6 sm:grid-cols-3">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {funds.map((f) => (
             <div key={f.id} className="rounded-xl border border-default bg-surface p-5">
               <h2 className="font-semibold text-brand-primary">{f.name}</h2>

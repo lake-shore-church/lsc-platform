@@ -1,7 +1,7 @@
 # LSC Platform — Project Status
 
-**Last updated:** 2026-05-22  
-**Active branch:** `feature/phase-2a` (Phase 2A — merge to `main` after credentials in Vercel + Sanity)  
+**Last updated:** 2026-05-21  
+**Active branch:** `feature/phase-2a` (local changes + Vercel env live — **push & merge to `main`** for prayer fix + OneSignal web)  
 **Repository:** https://github.com/lake-shore-church/lsc-platform  
 **Production (web):** https://lsc-platform-kappa.vercel.app  
 **Pastor visit:** May 2026 — site approved; priorities in [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md)  
@@ -30,11 +30,14 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 | Supabase | ✅ | `zstnygokvxrrszvkfejs`; core migration applied |
 | Supabase `presentation_state` | 🟡 | Run `supabase/migrations/20260521_presentation_state.sql` + Realtime |
 | Sanity | ✅ | `7hl877lg` / `production`; refresh Site Config for new hero fields |
-| Vercel (web) | ✅ | Auto-deploy from `main` |
+| Vercel (web) | ✅ | Auto-deploy from `main`; env vars updated May 2026 |
+| Custom domain `lschurch.com` | 🟡 | Cloudflare NS set; pending **Active** → Vercel DNS |
 | EAS (mobile) | 🟡 | `eas.json` ready; `eas init` for store builds |
 | Cloudflare R2 | ⏳ | Phase 2 — audio hosting |
-| OneSignal | ⏳ | Optional; env keys for go-live push |
-| Resend / OpenAI | ⏳ | Phase 2 |
+| OneSignal | 🟡 | Keys on Vercel; Web SDK on branch — merge + deploy |
+| Resend | ✅ | Contact form tested on production (`onboarding@resend.dev`) |
+| OpenAI / Whisper | ⏳ | Phase 2 |
+| Church handover doc | ✅ | `docs/handover/CHURCH_ACCOUNTS.local.md` (gitignored) |
 
 ---
 
@@ -96,8 +99,10 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 |------|------|---------------------|
 | 501(c)(3) trust badge + PayPal toggle | ✅ | EIN in Sanity when ready |
 | Zeffy embed on web + mobile | ✅ | Paste Zeffy URL in Studio |
-| Resend acknowledgements | ✅ | `RESEND_*` on Vercel |
-| OneSignal scheduled crons | ✅ | `ONESIGNAL_*` + `CRON_SECRET` |
+| Resend acknowledgements | ✅ | `RESEND_*` on Vercel — contact verified |
+| Prayer API (service role) | ✅ code | `SUPABASE_SERVICE_ROLE_KEY` on Vercel; merge prayer fix to `main` |
+| OneSignal Web SDK | ✅ code (branch) | Push + merge; keys already on Vercel |
+| OneSignal scheduled crons | ✅ | `ONESIGNAL_*` + `CRON_SECRET` on Vercel |
 | Mevo → Restream docs | ✅ | RTMP key in Mevo app only |
 | WordPress RSS import | ⏳ | Pastor URL decision |
 | Zeffy → `giving_records` sync | ⏳ | Phase 2A follow-up |
@@ -106,9 +111,11 @@ See [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
 
 ## Immediate next steps
 
-1. Paste credentials in Sanity + Vercel per [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
-2. Test giving, live, email, push.
-3. Merge `feature/phase-2a` → `main` and deploy.
+1. **Sleep / resume:** See [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md) checklist — most Vercel env is done.
+2. When Cloudflare shows **Active** → DNS A + CNAME → Vercel domains.
+3. **Commit + push** `feature/phase-2a` (prayer fix, OneSignal web, handover template) → merge `main` → Vercel deploy.
+4. Test prayer (Public), OneSignal subscribe, Zeffy embed in Sanity.
+5. Resend: verify `lschurch.com` when DNS ready.
 
 ---
 
