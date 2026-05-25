@@ -145,6 +145,8 @@
     "link_prayer": "Prayer",
     "link_give": "Give",
     "link_contact": "Contact",
+    "link_pastor_blog": "Pastor’s blog",
+    "link_pastor_podcast": "Pastor’s podcast",
     "sign_in": "Sign in",
     "tech_guide": "Tech team guide"
   },
@@ -197,7 +199,15 @@
     "pastor_heading": "Pastor Brian",
     "pastor_name": "Craig Brian Larson",
     "pastor_bio": "Pastor Brian is a scripture teacher, author, and pastor who brings clear expository preaching from God's Word every Sunday. He is the author of Know — Gaining Wisdom from God About Everything and has served the West Loop community for many years.",
-    "book_link": "Get the book on Amazon →"
+    "book_link": "Get the book on Amazon →",
+    "teaching_heading": "Pastor Brian’s teaching online",
+    "teaching_intro": "Read articles and listen to the podcast series Knowing God and His Ways — Bible-centered teaching from Pastor Craig Brian Larson.",
+    "blog_title": "Blog & articles",
+    "blog_desc": "Short teachings and reflections updated regularly.",
+    "podcast_title": "Podcast",
+    "podcast_desc": "Audio episodes — subscribe in your favorite podcast app.",
+    "blog_cta": "Visit the blog →",
+    "podcast_cta": "Listen to the podcast →"
   },
   "beliefs": {
     "page_title": "What We Believe",
@@ -271,7 +281,9 @@
     "page_desc": "Messages from God's Word.",
     "meta_desc": "Watch and listen to sermons from Lake Shore Church.",
     "podcast_rss": "Subscribe via podcast RSS",
-    "podcast_note": "(feed at /podcast.xml)",
+    "podcast_note": "(Sunday sermons from Lake Shore Church)",
+    "pastor_podcast_link": "Pastor Brian — Knowing God and His Ways (Libsyn) →",
+    "pastor_podcast_note": "(teaching podcast, separate feed)",
     "search": "Search sermons",
     "all_series": "All series",
     "all_speakers": "All speakers"

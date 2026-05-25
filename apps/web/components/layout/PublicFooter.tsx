@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
+import { PASTOR_MEDIA } from "@/lib/pastorMedia";
 
 export async function PublicFooter({
   churchName,
@@ -46,16 +47,36 @@ export async function PublicFooter({
             </p>
           ) : null}
         </div>
-        <nav aria-label="Footer" className="flex flex-wrap gap-x-6 gap-y-3">
-          {links.map((item) => (
-            <Link
-              key={item.href}
-              href={item.href}
+        <nav aria-label="Footer" className="flex flex-col gap-4">
+          <div className="flex flex-wrap gap-x-6 gap-y-3">
+            {links.map((item) => (
+              <Link
+                key={item.href}
+                href={item.href}
+                className="link-hover text-base text-foreground-secondary"
+              >
+                {item.label}
+              </Link>
+            ))}
+          </div>
+          <div className="flex flex-wrap gap-x-6 gap-y-3 border-t border-default pt-4">
+            <a
+              href={PASTOR_MEDIA.blog.href}
+              target="_blank"
+              rel="noopener noreferrer"
               className="link-hover text-base text-foreground-secondary"
             >
-              {item.label}
-            </Link>
-          ))}
+              {t("link_pastor_blog")}
+            </a>
+            <a
+              href={PASTOR_MEDIA.podcast.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="link-hover text-base text-foreground-secondary"
+            >
+              {t("link_pastor_podcast")}
+            </a>
+          </div>
         </nav>
       </Container>
       <Container className="mt-8 flex flex-col items-center gap-2 border-t border-default pt-6 text-center text-base text-foreground-muted sm:flex-row sm:justify-center sm:gap-4">

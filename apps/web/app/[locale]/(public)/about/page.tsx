@@ -4,6 +4,7 @@ import { Link } from "@/i18n/navigation";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PastorTeachingLinks } from "@/components/about/PastorTeachingLinks";
 
 const BOOK_URL = "https://www.amazon.com/s?k=Craig+Brian+Larson+Know";
 
@@ -62,6 +63,17 @@ export default async function AboutPage() {
             {t("book_link")}
           </Link>
         </section>
+
+        <PastorTeachingLinks
+          heading={t("teaching_heading")}
+          intro={t("teaching_intro")}
+          blogTitle={t("blog_title")}
+          blogDesc={t("blog_desc")}
+          podcastTitle={t("podcast_title")}
+          podcastDesc={t("podcast_desc")}
+          blogCta={t("blog_cta")}
+          podcastCta={t("podcast_cta")}
+        />
       </Container>
       <JsonLd
         data={{
