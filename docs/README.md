@@ -9,6 +9,7 @@
 | **Church tech volunteer** | [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md) → [/platform/tech](http://localhost:3000/platform/tech) |
 | **Pastor / credentials meeting** | [PASTOR_MEETING_CHECKLIST.md](./PASTOR_MEETING_CHECKLIST.md) |
 | **Accounts, DNS, API keys (local)** | [handover/README.md](./handover/README.md) → copy `CHURCH_ACCOUNTS.example.md` to `.local.md` |
+| **Find Cloudflare Active / OneSignal Audience** | [HELP_DASHBOARD_NAV.md](./HELP_DASHBOARD_NAV.md) |
 | **Mobile app setup** | [MOBILE_SETUP.md](./MOBILE_SETUP.md) |
 | **Human maintainer** | [RESUME_HERE.md](./RESUME_HERE.md) → [PROJECT_STATUS.md](./PROJECT_STATUS.md) |
 | **AI agent** | [AGENTS.md](../AGENTS.md) → [ai/CONTEXT.md](./ai/CONTEXT.md) → [specs/ai-agent-preflight.md](./specs/ai-agent-preflight.md) |

@@ -1,6 +1,7 @@
 # Resume here — Lake Shore Church platform
 
-**Last session:** 2026-05-21 (evening)  
+**Last session:** 2026-05-22  
+**Help finding dashboards:** [HELP_DASHBOARD_NAV.md](./HELP_DASHBOARD_NAV.md)  
 **Steward:** Usha — `ushadevi.pitchandi@gmail.com`
 
 Good work today. Rest first. Pick up from the top item below.
@@ -20,20 +21,13 @@ Good work today. Rest first. Pick up from the top item below.
 
 ---
 
-## First thing tomorrow (15 min)
+## First thing today (15 min)
 
-1. **Cloudflare** → check if `lschurch.com` is **Active**
-2. **Git** → commit & push `feature/phase-2a` → merge to `main` (prayer fix + OneSignal web not on production until then):
-   ```bash
-   cd "/Users/usha/Documents/LSAG Church/lsc-platform"
-   pnpm run verify
-   git add -A && git status
-   # commit when ready
-   git push origin feature/phase-2a
-   git checkout main && git merge feature/phase-2a && git push origin main
-   ```
-3. **Test** https://lsc-platform-kappa.vercel.app/prayer — **Public** — should succeed after deploy
-4. **Test** push subscribe on site (Chrome) after deploy
+1. **Fix prayer on Vercel** — re-paste `SUPABASE_SERVICE_ROLE_KEY` (service_role from Supabase, **not** anon) → Redeploy. See [HELP_DASHBOARD_NAV.md](./HELP_DASHBOARD_NAV.md).
+2. **Cloudflare** → click `lschurch.com` → top should say **Active** (not Pending).
+3. **Test prayer** — **Public**, 10+ words → submit.
+4. **OneSignal Audience** — left menu **Audience** → All Users (after Allow on site in Chrome).
+5. **Pastor RSS links** — paste in chat; we can wire import next.
 
 ---
 

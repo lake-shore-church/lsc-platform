@@ -51,10 +51,18 @@ export async function POST(request: Request) {
     return NextResponse.json({ ok: true });
   } catch (err) {
     console.error("[api/prayer]", err);
-    const message =
-      err instanceof Error && err.message.includes("SUPABASE_SERVICE_ROLE_KEY")
-        ? "Server configuration error. Please contact the church office."
-        : "Unable to submit prayer request.";
+    const detail = err instanceof Error ? err.message : "";
+    let message = "Unable to submit prayer request.";
+    if (detail.includes("SUPABASE_SERVICE_ROLE_KEY")) {
+      message =
+        "Server configuration error (missing Supabase key). Please contact the church office.";
+    } else if (detail.includes("Invalid API key")) {
+      message =
+        "Server configuration error (invalid Supabase key). Please contact the church office.";
+    } else if (detail.includes("row-level security")) {
+      message =
+        "Server configuration error (wrong Supabase key on Vercel — need service_role, not anon). Please contact the church office.";
+    }
     return NextResponse.json({ error: message }, { status: 500 });
   }
 }

@@ -66,8 +66,8 @@ export const supabase: TypedSupabaseClient = new Proxy({} as TypedSupabaseClient
 /** Service-role client for trusted server routes only. */
 export function createSupabaseAdminClient(): TypedSupabaseClient {
   const url = getSupabaseUrl();
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
-  if (!key) {
+  const key = process.env.SUPABASE_SERVICE_ROLE_KEY?.trim();
+  if (!key || key.startsWith("your_")) {
     throw new Error("Missing SUPABASE_SERVICE_ROLE_KEY for admin client.");
   }
   return createClient<Database>(url, key) as unknown as TypedSupabaseClient;
