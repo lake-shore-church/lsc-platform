@@ -13,7 +13,18 @@ Plain clicks for stewards (no jargon).
    - **Pending** / “Complete the instructions” / “Waiting for nameservers” = still propagating. Wait and check again later.
 4. **DNS records:** left sidebar → **DNS** → **Records**.
 
-When **Active**, add website records (keep MX for email). See `docs/handover/CHURCH_ACCOUNTS.local.md` or [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
+When **Active** (you have this now), add website records (keep MX for email):
+
+| Type | Name | Content | Proxy |
+|------|------|---------|-------|
+| A | `@` | `76.76.21.21` | Proxied (orange) |
+| CNAME | `www` | `cname.vercel-dns.com` | Proxied |
+
+Remove old **Squarespace** A records on `lschurch.com` and change `www` away from `ext-cust.squarespace.com`.
+
+Then [Vercel](https://vercel.com) → **lsc-platform** → **Settings** → **Domains** → add `lschurch.com` and `www.lschurch.com`.
+
+See [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
 
 ---
 
@@ -24,21 +35,56 @@ When **Active**, add website records (keep MX for email). See `docs/handover/CHU
 3. Left sidebar → **Audience** (under “Audience” section; icon may look like people).
 4. Tab **All Users** or **Subscriptions** — you should see count **1** after someone clicks **Allow** on the website.
 
-**Test subscribe:** Chrome → https://lsc-platform-kappa.vercel.app → wait ~10 seconds → allow notifications.
+**Test subscribe:**
+
+1. Confirm **`NEXT_PUBLIC_ONESIGNAL_APP_ID`** is on Vercel (see above) and site was **redeployed**.
+2. Chrome → https://lsc-platform-kappa.vercel.app (use **Chrome**, not Safari first time).
+3. Wait **10–20 seconds** on the page (slide prompt is delayed).
+4. If no popup: click the **lock icon** left of the address bar → **Site settings** → **Notifications** → **Allow**.
+5. Or Chrome menu → **Settings** → **Privacy and security** → **Site settings** → find `lsc-platform-kappa.vercel.app` → Notifications → Allow.
+6. Refresh the page once.
+
+Then check **Audience** again.
 
 ---
 
-## Vercel — fix prayer form (most common issue)
+## Vercel — find or add environment variables
 
-Prayer needs **`SUPABASE_SERVICE_ROLE_KEY`** — the **service_role** secret, **not** the anon key.
+If you **cannot find** a variable, it may not exist yet — use **Add New**.
 
-1. [Supabase](https://supabase.com/dashboard/project/zstnygokvxrrszvkfejs/settings/api) → **Project API keys** → **service_role** → **Reveal** → Copy.
-2. Or copy from `apps/web/.env.local` line `SUPABASE_SERVICE_ROLE_KEY=...`
-3. [Vercel](https://vercel.com) → **lsc-platform** → **Settings** → **Environment Variables**
-4. Edit **`SUPABASE_SERVICE_ROLE_KEY`** — paste full key → **Production** + **Preview** → Save.
-5. **Deployments** → latest → **⋯** → **Redeploy**.
+1. [vercel.com](https://vercel.com) → project **lsc-platform**
+2. Top tabs → **Settings** (not Deployments)
+3. Left sidebar → **Environment Variables**
+4. Use the **Search** box: type `SUPABASE` or `ONESIGNAL`
 
-**Test:** Prayer page → **Public** → at least 10 characters in message → Submit.
+### Add prayer fix — `SUPABASE_SERVICE_ROLE_KEY`
+
+| Field | Value |
+|-------|--------|
+| Key | `SUPABASE_SERVICE_ROLE_KEY` |
+| Value | From Supabase → [API keys](https://supabase.com/dashboard/project/zstnygokvxrrszvkfejs/settings/api) → **service_role** → Reveal **OR** copy from `apps/web/.env.local` line 10 |
+| Environments | **Production** + **Preview** |
+
+**Not** the `anon` / `public` key.
+
+### Add push prompt — `NEXT_PUBLIC_ONESIGNAL_APP_ID`
+
+Without this, **no notification popup** appears on the website.
+
+| Field | Value |
+|-------|--------|
+| Key | `NEXT_PUBLIC_ONESIGNAL_APP_ID` |
+| Value | `a1c03b58-9d26-4388-8d34-11d3c882bd8f` |
+| Environments | **Production** + **Preview** |
+
+Also confirm: `ONESIGNAL_REST_API_KEY`, `CRON_SECRET`, `RESEND_API_KEY`, `RESEND_FROM_EMAIL`.
+
+### Redeploy (required)
+
+**Deployments** → click top deployment → **⋯** → **Redeploy** → wait **Ready**.
+
+**Test prayer:** `/prayer` → **Public** → 10+ words → Submit.  
+**Test push:** Chrome → homepage → wait 10–20 sec → Allow (see OneSignal section below).
 
 ---
 
