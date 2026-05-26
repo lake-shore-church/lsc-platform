@@ -16,6 +16,7 @@
 | **Blocked** | `lschurch.com` DNS; Pastor one-click Zoom URL; Zeffy embed URL |
 | **Handover (secrets)** | `docs/handover/CHURCH_ACCOUNTS.local.md` (gitignored) |
 | **Claude sync** | [CLAUDE_SYNC_PROMPT.md](./CLAUDE_SYNC_PROMPT.md) |
+| **Mega content platform brief** | [CONTENT_PLATFORM_EVALUATION.md](../CONTENT_PLATFORM_EVALUATION.md) — phased; no wholesale 7-page merge without Pastor sign-off |
 
 ---
 

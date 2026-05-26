@@ -8,11 +8,15 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
+- **Content platform evaluation** — `docs/CONTENT_PLATFORM_EVALUATION.md` phases the proposed 7-page mega-spec (this-week API, inline editing, weekly archive) vs current IA; Pastor sign-off required before large redirects.
 - **Phase 2A** — 501(c)(3) Give trust badge (web + mobile); PayPal Giving Fund default on; Sanity `churchTaxId`, `paypalGivingUrl`; mobile Give uses Zeffy embed from `/api/mobile/config`.
 - **Email** — Prayer and contact acknowledgements via Resend; mobile prayer optional email; contact form verified on Vercel production.
 - **Push** — OneSignal scheduled cron routes (Wed/Sat/Sun); `OneSignalInit` + service workers for web push; Mevo → Restream in `LIVESTREAM_SETUP.md`.
 - **Handover** — `docs/handover/` (template + gitignored `CHURCH_ACCOUNTS.local.md`); Cloudflare NS documented.
 - **Prayer API** — Server uses `createSupabaseAdminClient` so public/private requests save correctly.
+- **Content expansion (2026-05-26)** — ministries hub (`/ministries` + detail pages), `/faq`, `/about/leaders`, `/testimonies`, homepage year promise + weekly gatherings.
+- **Unified Zoom join (`/join`)** — same one-click redirect for web + mobile (meeting ID + passcode display); new doc `docs/ZOOM_JOIN.md`.
+- **CMS types & seed scripts** — added Sanity `ministryPage` + `testimony` schemas; seeded ministries/testimonies.
 
 ### Changed
 

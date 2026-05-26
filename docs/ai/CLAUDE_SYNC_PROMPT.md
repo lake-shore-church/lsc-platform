@@ -101,6 +101,8 @@ Tabs: Home, Sermons (Live/Archive), Give, Prayer, More. Data via `/api/mobile/*`
 
 **Planned:** Edit-on-page for allowlisted emails / staff — save to Sanity via API; Studio for tech team only. **Phase A:** home `siteConfig` fields first.
 
+**Large “7 pages + thisWeek + visual editing + auto-translate” mega-spec:** Evaluate with Pastor before implementation — see **`docs/CONTENT_PLATFORM_EVALUATION.md`** (recommended: thin slices **CP-1** this-week single source, **not** wholesale redirect merge in one PR).
+
 ---
 
 ## Operational (church still needs)
@@ -146,13 +148,14 @@ Tabs: Home, Sermons (Live/Archive), Give, Prayer, More. Data via `/api/mobile/*`
 
 ## Sync line
 
-`Sync: 2026-05-26 — main — ministries/FAQ/leaders/testimonies live; /join direct Zoom; OneSignal web OK; operational layer + edit-on-page planned (not coded).`
+`Sync: 2026-05-26 — main — ministries/FAQ/leaders/testimonies live; /join direct Zoom; OneSignal web OK; operational layer + edit-on-page planned (not coded). Mega IA/automation brief: phased only — see docs/CONTENT_PLATFORM_EVALUATION.md.`
 ```
 
 ---
 
 ## Attach to Claude Project (recommended)
 
+- `docs/CONTENT_PLATFORM_EVALUATION.md`
 - `docs/PAGES_AND_MINISTRIES_MAP.md`
 - `docs/PASTOR_PRIORITIES.md`
 - `docs/PROJECT_STATUS.md`

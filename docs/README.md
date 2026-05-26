@@ -29,6 +29,7 @@
 | [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md) | Deploy, Studio, accounts — plain language for church tech |
 | [PASTOR_MEETING_CHECKLIST.md](./PASTOR_MEETING_CHECKLIST.md) | Pastor meeting — credentials, confirmations, post-meeting steps |
 | [MOBILE_SETUP.md](./MOBILE_SETUP.md) | Mobile env, Supabase redirects, EAS — technical detail |
+| [CONTENT_PLATFORM_EVALUATION.md](./CONTENT_PLATFORM_EVALUATION.md) | Evaluation of “7 core pages + automation” mega-spec — phased plan, IA trade-offs |
 | [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md) | Post–visit vision: one CMS, app sync, giving, notifications (cost-free stack) |
 | [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md) | Activate Zeffy, Resend, OneSignal, Sanity fields (no secrets in git) |
 | [handover/README.md](./handover/README.md) | Church accounts handover (secrets in `.local.md` only) |
