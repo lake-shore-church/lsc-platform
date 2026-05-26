@@ -251,8 +251,29 @@ export const siteConfigType = defineType({
     }),
     defineField({
       name: "wednesdayZoomLink",
-      title: "Wednesday Zoom link",
+      title: "Church Zoom link (legacy field)",
+      description:
+        "Deprecated — use Church Zoom join URL below. Kept for backward compatibility.",
       type: "url",
+    }),
+    defineField({
+      name: "churchZoomJoinUrl",
+      title: "Church Zoom join URL (one-click)",
+      description:
+        "Full invite link with embedded passcode (?pwd=…) — same room for Sunday & Wednesday. Copy from Zoom → Meeting → Copy invitation.",
+      type: "url",
+    }),
+    defineField({
+      name: "churchZoomMeetingId",
+      title: "Zoom meeting ID (display)",
+      type: "string",
+      initialValue: "830 7883 7399",
+    }),
+    defineField({
+      name: "churchZoomPasscode",
+      title: "Zoom passcode (display fallback)",
+      type: "string",
+      initialValue: "662215",
     }),
     defineField({
       name: "upcomingSermonTitle",

@@ -1,26 +1,38 @@
-import type { MinistryPage, SiteConfig } from "@repo/cms";
+import type { SiteConfig } from "@repo/cms";
 import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import {
+  ZoomJoinBlock,
+} from "@/components/zoom/ZoomJoinBlock";
+import {
+  resolveChurchZoomMeetingId,
+  resolveChurchZoomPasscode,
+  churchZoomJoinPath,
+} from "@repo/cms";
 
 export async function WeeklyGatheringsSection({
   config,
   featured,
 }: {
   config: SiteConfig;
-  featured: MinistryPage[];
+  featured: import("@repo/cms").MinistryPage[];
 }) {
   const t = await getTranslations("home");
 
   const wednesday = featured.find((m) => m.slug.current === "wednesday-prayer");
   const joinPrayer = featured.find((m) => m.slug.current === "join-our-prayers");
+  const meetingId = resolveChurchZoomMeetingId(config);
+  const passcode = resolveChurchZoomPasscode(config);
 
   return (
     <section className="section-pad bg-surface">
       <Container>
         <h2 className="font-display text-h2 text-brand-primary">{t("weekly_gatherings")}</h2>
         <p className="mt-2 max-w-2xl text-foreground-secondary">{t("weekly_gatherings_intro")}</p>
+
+        <ZoomJoinBlock meetingId={meetingId} passcode={passcode} className="mt-8 max-w-2xl" />
 
         <div className="mt-10 grid gap-8 lg:grid-cols-3">
           <article className="rounded-card border border-default bg-background p-6 shadow-card lg:col-span-1">
@@ -37,8 +49,8 @@ export async function WeeklyGatheringsSection({
               {config.upcomingSermonDescription || t("upcoming_sermon_default_desc")}
             </p>
             <div className="mt-4 flex flex-wrap gap-3">
-              <Button href="/sermons" variant="primary" className="text-sm">
-                {t("watch_sermon")}
+              <Button href={churchZoomJoinPath()} variant="primary" className="text-sm">
+                {t("join_zoom")}
               </Button>
               <Button href="/live" variant="secondary" className="text-sm">
                 {t("watch_online")}
@@ -54,8 +66,11 @@ export async function WeeklyGatheringsSection({
             <p className="mt-3 text-base text-foreground-secondary">
               {joinPrayer?.summary ?? t("sunday_prayer_desc")}
             </p>
-            <Link href="/ministries/join-our-prayers" className="link-hover mt-4 inline-block font-semibold text-brand-primary">
-              {t("learn_more")} →
+            <Link
+              href={churchZoomJoinPath()}
+              className="link-hover mt-4 inline-block font-semibold text-brand-primary"
+            >
+              {t("join_zoom")} →
             </Link>
           </article>
 
@@ -68,18 +83,11 @@ export async function WeeklyGatheringsSection({
               {config.wednesdayPrayerSummary || wednesday?.summary}
             </p>
             <ul className="mt-4 space-y-2 text-sm font-semibold">
-              {config.wednesdayZoomLink ? (
-                <li>
-                  <a
-                    href={config.wednesdayZoomLink}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="link-hover text-brand-primary"
-                  >
-                    {t("wednesday_zoom")} →
-                  </a>
-                </li>
-              ) : null}
+              <li>
+                <Link href={churchZoomJoinPath()} className="link-hover text-brand-primary">
+                  {t("join_zoom")} →
+                </Link>
+              </li>
               <li>
                 <Link href="/live" className="link-hover text-brand-primary">
                   {t("wednesday_live")} →

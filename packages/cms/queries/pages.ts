@@ -68,6 +68,9 @@ export async function getSiteConfig(cms?: SanityClient): Promise<SiteConfig> {
     wednesdayPrayerTitle,
     wednesdayPrayerSummary,
     wednesdayZoomLink,
+    churchZoomJoinUrl,
+    churchZoomMeetingId,
+    churchZoomPasscode,
     upcomingSermonTitle,
     upcomingSermonDescription,
     upcomingSermonDate

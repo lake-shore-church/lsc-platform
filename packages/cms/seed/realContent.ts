@@ -40,6 +40,10 @@ export const REAL_SITE_CONFIG = {
   wednesdayPrayerTitle: "Wednesday prayer & fellowship",
   wednesdayPrayerSummary:
     "Mid-week prayer, meal, and fellowship — home host announced weekly.",
+  churchZoomJoinUrl: "https://lakeshoreassemblyofgod.subspla.sh/kfcjjpv",
+  churchZoomMeetingId: "830 7883 7399",
+  churchZoomPasscode: "662215",
+  wednesdayZoomLink: "https://lakeshoreassemblyofgod.subspla.sh/kfcjjpv",
   upcomingSermonTitle: "Next Sunday message",
   upcomingSermonDescription:
     "Join us for scripture-based teaching in the West Loop. Title announced mid-week — check back or subscribe for updates.",

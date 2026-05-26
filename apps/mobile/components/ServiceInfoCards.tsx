@@ -1,6 +1,6 @@
-import * as WebBrowser from "expo-web-browser";
+import * as Linking from "expo-linking";
 import { useRouter } from "expo-router";
-import { Linking, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { CHURCH } from "@/constants/church";
 import { useTheme } from "@/lib/ThemeContext";
 import { t } from "@/lib/i18n";
@@ -16,8 +16,10 @@ type Card = {
 };
 
 export function ServiceInfoCards() {
-  const { colors } = useTheme();
+  const { colors, siteCopy } = useTheme();
   const router = useRouter();
+
+  const zoomUrl = siteCopy.zoomJoinRedirectUrl ?? `${APP_URL.replace(/\/$/, "")}/join`;
 
   const cards: Card[] = [
     {
@@ -31,8 +33,18 @@ export function ServiceInfoCards() {
       icon: "🕙",
       labelKey: "service_time",
       lines: [t("home", "every_sunday"), "10:00 AM", t("home", "doors_open")],
-      onPress: () => void WebBrowser.openBrowserAsync(`${APP_URL}/visit`),
+      onPress: () => void Linking.openURL(`${APP_URL}/visit`),
       linkKey: "plan_visit",
+    },
+    {
+      icon: "💻",
+      labelKey: "join_zoom",
+      lines: [
+        t("home", "join_zoom_same_link"),
+        siteCopy.zoomMeetingId ?? "830 7883 7399",
+      ],
+      onPress: () => void Linking.openURL(zoomUrl),
+      linkKey: "join_zoom_cta",
     },
     {
       icon: "📺",

@@ -21,12 +21,17 @@ export function formatNextSundayLabel(from = new Date()): string {
 export async function seedSiteConfig(): Promise<string> {
   const client = getSanityWriteClient();
 
-  const zoomFromEnv = process.env.CHURCH_WEDNESDAY_ZOOM_URL?.trim();
+  const zoomFromEnv =
+    process.env.CHURCH_ZOOM_JOIN_URL?.trim() ||
+    process.env.CHURCH_WEDNESDAY_ZOOM_URL?.trim();
+
+  const zoomJoinUrl = zoomFromEnv || REAL_SITE_CONFIG.churchZoomJoinUrl;
 
   const doc = {
     ...REAL_SITE_CONFIG,
     _id: SITE_CONFIG_ID,
-    wednesdayZoomLink: zoomFromEnv || undefined,
+    churchZoomJoinUrl: zoomJoinUrl,
+    wednesdayZoomLink: zoomJoinUrl,
     upcomingSermonDate: formatNextSundayLabel(),
   };
 

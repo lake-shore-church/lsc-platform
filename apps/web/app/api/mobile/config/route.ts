@@ -1,8 +1,16 @@
 import { NextResponse } from "next/server";
-import { getSiteConfig } from "@repo/cms";
+import {
+  getSiteConfig,
+  resolveChurchZoomJoinUrl,
+  resolveChurchZoomMeetingId,
+  resolveChurchZoomPasscode,
+  churchZoomJoinPath,
+} from "@repo/cms";
 
 export async function GET() {
   const config = await getSiteConfig();
+  const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ?? "";
+
   return NextResponse.json({
     activeTheme: config.activeTheme ?? "bold",
     tagline: config.tagline,
@@ -15,5 +23,10 @@ export async function GET() {
     churchTaxId: config.churchTaxId?.trim() || null,
     youtubeChannelId: config.youtubeChannelId?.trim() || null,
     liveStreamUrl: config.liveStreamUrl ?? null,
+    zoomJoinUrl: resolveChurchZoomJoinUrl(config, process.env),
+    zoomJoinPath: churchZoomJoinPath(),
+    zoomJoinRedirectUrl: appUrl ? `${appUrl}${churchZoomJoinPath()}` : null,
+    zoomMeetingId: resolveChurchZoomMeetingId(config),
+    zoomPasscode: resolveChurchZoomPasscode(config),
   });
 }

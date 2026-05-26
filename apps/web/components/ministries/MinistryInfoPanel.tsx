@@ -59,10 +59,15 @@ export function MinistryInfoPanel({
                 rel="noopener noreferrer"
                 className="link-hover font-semibold text-brand-primary"
               >
-                Join on Zoom →
+                Join on Zoom (external) →
               </a>
             </li>
           ) : null}
+          <li>
+            <Link href="/join" className="link-hover font-semibold text-brand-primary">
+              Join on Zoom (one-click) →
+            </Link>
+          </li>
           {liveStreamLink ? (
             <li>
               {isExternalHref(liveStreamLink) ? (

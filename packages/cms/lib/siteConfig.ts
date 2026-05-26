@@ -62,6 +62,11 @@ export function mergeSiteConfig(
     wednesdayPrayerSummary:
       doc.wednesdayPrayerSummary ?? DEFAULT_SITE_CONFIG.wednesdayPrayerSummary,
     wednesdayZoomLink: doc.wednesdayZoomLink ?? DEFAULT_SITE_CONFIG.wednesdayZoomLink,
+    churchZoomJoinUrl: doc.churchZoomJoinUrl ?? DEFAULT_SITE_CONFIG.churchZoomJoinUrl,
+    churchZoomMeetingId:
+      doc.churchZoomMeetingId ?? DEFAULT_SITE_CONFIG.churchZoomMeetingId,
+    churchZoomPasscode:
+      doc.churchZoomPasscode ?? DEFAULT_SITE_CONFIG.churchZoomPasscode,
     upcomingSermonTitle: doc.upcomingSermonTitle,
     upcomingSermonDescription: doc.upcomingSermonDescription,
     upcomingSermonDate: doc.upcomingSermonDate,

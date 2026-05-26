@@ -38,6 +38,9 @@ export const DEFAULT_SITE_CONFIG: Omit<SiteConfig, "_id" | "_type"> = {
   wednesdayPrayerSummary:
     "Mid-week prayer, meal, and fellowship — home host announced weekly. Join via Zoom when you cannot attend in person.",
   wednesdayZoomLink: "",
+  churchZoomJoinUrl: "",
+  churchZoomMeetingId: "830 7883 7399",
+  churchZoomPasscode: "662215",
   upcomingSermonTitle: "",
   upcomingSermonDescription: "",
   upcomingSermonDate: "",

@@ -70,6 +70,13 @@ export { getResources } from "./queries/resources";
 
 export { DEFAULT_SITE_CONFIG } from "./defaults/siteConfig";
 export {
+  resolveChurchZoomJoinUrl,
+  resolveChurchZoomMeetingId,
+  resolveChurchZoomPasscode,
+  churchZoomJoinPath,
+  CHURCH_ZOOM_DEFAULTS,
+} from "./lib/churchZoom";
+export {
   mergeSiteConfig,
   formatSiteAddress,
   formatServiceStrip,

@@ -219,6 +219,9 @@ export type SiteConfig = {
   wednesdayPrayerTitle?: string;
   wednesdayPrayerSummary?: string;
   wednesdayZoomLink?: string;
+  churchZoomJoinUrl?: string;
+  churchZoomMeetingId?: string;
+  churchZoomPasscode?: string;
   upcomingSermonTitle?: string;
   upcomingSermonDescription?: string;
   upcomingSermonDate?: string;

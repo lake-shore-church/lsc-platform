@@ -24,6 +24,9 @@ type SiteCopy = {
   subTagline?: string;
   heroBody?: string;
   heroCtaText?: string;
+  zoomJoinRedirectUrl?: string | null;
+  zoomMeetingId?: string;
+  zoomPasscode?: string;
 };
 
 type ThemeContextValue = {
@@ -45,9 +48,14 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
       try {
         const [stored, config] = await Promise.all([
           AsyncStorage.getItem(STORAGE_KEY),
-          fetchJson<SiteCopy & { activeTheme?: string }>("/api/mobile/config").catch(
-            () => null,
-          ),
+          fetchJson<
+            SiteCopy & {
+              activeTheme?: string;
+              zoomJoinRedirectUrl?: string | null;
+              zoomMeetingId?: string;
+              zoomPasscode?: string;
+            }
+          >("/api/mobile/config").catch(() => null),
         ]);
         const cms = resolveThemeId(config?.activeTheme);
         setCmsThemeId(cms);
@@ -56,6 +64,9 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
           subTagline: config?.subTagline,
           heroBody: config?.heroBody,
           heroCtaText: config?.heroCtaText,
+          zoomJoinRedirectUrl: config?.zoomJoinRedirectUrl,
+          zoomMeetingId: config?.zoomMeetingId,
+          zoomPasscode: config?.zoomPasscode,
         });
         const picked = stored ? resolveThemeId(stored) : cms;
         setThemeIdState(picked);
