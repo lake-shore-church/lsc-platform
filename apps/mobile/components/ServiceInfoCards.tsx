@@ -4,6 +4,7 @@ import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { CHURCH } from "@/constants/church";
 import { useTheme } from "@/lib/ThemeContext";
 import { t } from "@/lib/i18n";
+import type { MobileThisWeek } from "@/lib/api";
 
 const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "https://lsc-platform-kappa.vercel.app";
 
@@ -15,24 +16,38 @@ type Card = {
   linkKey: string;
 };
 
-export function ServiceInfoCards() {
+export function ServiceInfoCards({ thisWeek }: { thisWeek?: MobileThisWeek | null }) {
   const { colors, siteCopy } = useTheme();
   const router = useRouter();
 
   const zoomUrl = siteCopy.zoomJoinRedirectUrl ?? `${APP_URL.replace(/\/$/, "")}/join`;
 
+  const serviceLines = thisWeek
+    ? [
+        thisWeek.sunday_date_label ?? t("home", "every_sunday"),
+        thisWeek.sunday_time,
+        thisWeek.venue_name,
+      ]
+    : [t("home", "every_sunday"), "10:00 AM", t("home", "doors_open")];
+
   const cards: Card[] = [
     {
       icon: "📍",
       labelKey: "where_we_meet",
-      lines: ["Merit School of Music", "38 S. Peoria St, 2nd floor", "Chicago, IL 60607"],
+      lines: thisWeek
+        ? [
+            thisWeek.venue_name,
+            thisWeek.venue_room ?? "38 S. Peoria St, 2nd floor",
+            "Chicago, IL 60607",
+          ]
+        : ["Merit School of Music", "38 S. Peoria St, 2nd floor", "Chicago, IL 60607"],
       onPress: () => void Linking.openURL(CHURCH.mapsUrl),
       linkKey: "get_directions",
     },
     {
       icon: "🕙",
       labelKey: "service_time",
-      lines: [t("home", "every_sunday"), "10:00 AM", t("home", "doors_open")],
+      lines: serviceLines,
       onPress: () => void Linking.openURL(`${APP_URL}/visit`),
       linkKey: "plan_visit",
     },

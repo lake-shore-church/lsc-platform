@@ -37,6 +37,21 @@ export type MobileBlogPost = {
   imageUrl?: string;
 };
 
+export type MobileThisWeek = {
+  source: "thisWeek" | "siteConfig";
+  sunday_time: string;
+  sermon_title: string;
+  sermon_scripture?: string;
+  sermon_description?: string;
+  venue_name: string;
+  venue_room?: string;
+  sunday_date_label?: string;
+  zoom_link?: string;
+  wednesday_topic?: string;
+  wednesday_time?: string;
+  sunday_school_topic?: string;
+};
+
 export type MobilePrayer = {
   id: string;
   content: string;

@@ -226,3 +226,53 @@ export type SiteConfig = {
   upcomingSermonDescription?: string;
   upcomingSermonDate?: string;
 };
+
+export type ThisWeek = {
+  _id?: string;
+  week_of: string;
+  sunday_date?: string;
+  sunday_time?: string;
+  sermon_title?: string;
+  sermon_scripture?: string;
+  sermon_description?: string;
+  venue_name?: string;
+  venue_address?: string;
+  venue_room?: string;
+  zoom_link?: string;
+  zoom_passcode?: string;
+  wednesday_date?: string;
+  wednesday_time?: string;
+  wednesday_topic?: string;
+  wednesday_zoom_link?: string;
+  wednesday_venue?: string;
+  sunday_school_topic?: string;
+  sunday_school_scripture?: string;
+  sunday_school_teacher?: string;
+  special_announcement?: string;
+  is_published?: boolean;
+};
+
+export type ResolvedThisWeek = {
+  source: "thisWeek" | "siteConfig";
+  week_of?: string;
+  sunday_date?: string;
+  sunday_time: string;
+  sermon_title: string;
+  sermon_scripture?: string;
+  sermon_description?: string;
+  venue_name: string;
+  venue_address?: string;
+  venue_room?: string;
+  zoom_link?: string;
+  zoom_passcode?: string;
+  wednesday_date?: string;
+  wednesday_time?: string;
+  wednesday_topic?: string;
+  wednesday_zoom_link?: string;
+  wednesday_venue?: string;
+  sunday_school_topic?: string;
+  sunday_school_scripture?: string;
+  sunday_school_teacher?: string;
+  special_announcement?: string;
+  sunday_date_label?: string;
+};

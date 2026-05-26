@@ -24,7 +24,9 @@
     "VERCEL_URL",
     "DEEPL_API_KEY",
     "GOOGLE_TRANSLATE_API_KEY",
-    "OPENAI_API_KEY"
+    "OPENAI_API_KEY",
+    "CHURCH_ZOOM_JOIN_URL",
+    "CHURCH_WEDNESDAY_ZOOM_URL"
   ],
   "tasks": {
     "build": {

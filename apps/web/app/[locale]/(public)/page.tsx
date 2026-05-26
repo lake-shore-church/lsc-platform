@@ -3,6 +3,7 @@ import { getEvents } from "@repo/db";
 import {
   getBlogPosts,
   getHomeFeaturedMinistries,
+  getResolvedThisWeek,
   getSermons,
   getSiteConfig,
 } from "@repo/cms";
@@ -26,8 +27,9 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [config, sermons, events, posts, featuredMinistries] = await Promise.all([
+  const [config, thisWeek, sermons, events, posts, featuredMinistries] = await Promise.all([
     getSiteConfig(),
+    getResolvedThisWeek(),
     getSermons({ limit: 1 }).catch(() => []),
     getEvents({ upcomingFrom: new Date().toISOString(), limit: 3 }).catch(() => []),
     getBlogPosts({ limit: 2 }).catch(() => []),
@@ -49,7 +51,7 @@ export default async function HomePage() {
       />
       <ServiceInfoStrip />
       <ChurchYearPromiseSection config={config} />
-      <WeeklyGatheringsSection config={config} featured={homeMinistries} />
+      <WeeklyGatheringsSection config={config} thisWeek={thisWeek} featured={homeMinistries} />
       <FeaturedSeriesSection latestSermon={latestSermon} />
       <NewHereSection />
       <MinistryCards />

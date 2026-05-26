@@ -4,11 +4,22 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ---
 
-## [Unreleased] — feature/phase-2a
+## [Unreleased] — feature/cp-1-this-week
 
 ### Added
 
+- **Phase CP-1 — This Week single source of truth** — Sanity `thisWeek` document type (first item in Studio: 📅 This Week); `GET /api/this-week` (5 min cache); homepage + mobile home wired via `getResolvedThisWeek()` with `siteConfig` fallback.
+- **Scripts** — `pnpm seed:this-week`, `pnpm migrate:this-week` (migrates `siteConfig` upcoming/wednesday fields without deleting old fields).
 - **Content platform evaluation** — `docs/CONTENT_PLATFORM_EVALUATION.md` phases the proposed 7-page mega-spec (this-week API, inline editing, weekly archive) vs current IA; Pastor sign-off required before large redirects.
+
+### Changed
+
+- Homepage **This Sunday** block and mobile service strip read from `/api/this-week` (or shared resolver) instead of hardcoded `siteConfig` fields alone.
+- Mobile `/api/mobile/home` and `/api/mobile/config` include `this_week` in the response.
+- `turbo.json` — `CHURCH_ZOOM_JOIN_URL`, `CHURCH_WEDNESDAY_ZOOM_URL` in `globalEnv` (fixes `@repo/cms` lint in CI).
+
+### Added (Phase 2A — prior)
+
 - **Phase 2A** — 501(c)(3) Give trust badge (web + mobile); PayPal Giving Fund default on; Sanity `churchTaxId`, `paypalGivingUrl`; mobile Give uses Zeffy embed from `/api/mobile/config`.
 - **Email** — Prayer and contact acknowledgements via Resend; mobile prayer optional email; contact form verified on Vercel production.
 - **Push** — OneSignal scheduled cron routes (Wed/Sat/Sun); `OneSignalInit` + service workers for web push; Mevo → Restream in `LIVESTREAM_SETUP.md`.

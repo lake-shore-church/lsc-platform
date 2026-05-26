@@ -8,6 +8,8 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "check-types": "turbo run check-types",
     "verify": "turbo run check-types lint",
+    "seed:this-week": "tsx scripts/seed-this-week.ts",
+    "migrate:this-week": "tsx scripts/migrate-this-week.ts",
     "seed:site-config": "tsx scripts/seed-site-config.ts",
     "seed:content": "tsx scripts/seed-content.ts",
     "seed:ministries": "tsx scripts/seed-ministries.ts",

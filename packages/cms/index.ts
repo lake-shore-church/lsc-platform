@@ -20,6 +20,7 @@ export {
   staffBioType,
   ministryPageType,
   testimonyType,
+  thisWeekType,
 } from "./schemas";
 
 export type {
@@ -40,6 +41,8 @@ export type {
   StaffBio,
   MinistryPage,
   MinistryCategory,
+  ThisWeek,
+  ResolvedThisWeek,
 } from "./types";
 
 export {
@@ -67,6 +70,17 @@ export {
 } from "./queries/ministries";
 export { getTestimonies } from "./queries/testimonies";
 export { getResources } from "./queries/resources";
+export {
+  getPublishedThisWeek,
+  getResolvedThisWeek,
+} from "./queries/thisWeek";
+export { resolveThisWeek } from "./lib/resolveThisWeek";
+export {
+  getMostRecentSundayDate,
+  getNextSundayDate,
+  formatSundayLabel,
+  formatShortDate,
+} from "./lib/thisWeekDates";
 
 export { DEFAULT_SITE_CONFIG } from "./defaults/siteConfig";
 export {
