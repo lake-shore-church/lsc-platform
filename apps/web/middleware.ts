@@ -17,6 +17,8 @@ const NON_LOCALIZED = [
   "/studio",
   "/platform",
   "/podcast.xml",
+  "/OneSignalSDKWorker.js",
+  "/OneSignalSDKUpdaterWorker.js",
 ];
 
 function isNonLocalized(pathname: string): boolean {
@@ -72,5 +74,7 @@ export async function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)"],
+  matcher: [
+    "/((?!_next/static|_next/image|favicon.ico|OneSignalSDKWorker\\.js|OneSignalSDKUpdaterWorker\\.js|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
+  ],
 };

@@ -32,8 +32,15 @@ See [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
 
 1. Go to **[onesignal.com](https://onesignal.com)** and sign in.
 2. Open app **Lake Shore Church** (top left or dashboard).
-3. Left sidebar → **Audience** (under “Audience” section; icon may look like people).
-4. Tab **All Users** or **Subscriptions** — you should see count **1** after someone clicks **Allow** on the website.
+3. Left sidebar → **Audience** → **Subscriptions** (or **Users**).
+   - **Not** the **Segments** list — segments are filters/groups; they show **0** until someone subscribes.
+4. After a successful web subscribe you should see **Push subs: 1** on **Total Subscriptions** and a row under **Subscriptions**.
+
+**OneSignal web settings (once):**
+
+1. **Settings → Platforms → Web** → Site URL must include your live site, e.g.  
+   `https://lsc-platform-kappa.vercel.app` (add `https://lschurch.com` when DNS is live).
+2. Typical Site / HTTPS is fine for Vercel.
 
 **Test subscribe:**
 
