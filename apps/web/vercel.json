@@ -10,7 +10,7 @@
     },
     {
       "path": "/api/cron/church-notifications?kind=saturday_reminder",
-      "schedule": "0 0 * * 7"
+      "schedule": "0 0 * * 6"
     },
     {
       "path": "/api/cron/church-notifications?kind=sunday_morning",
