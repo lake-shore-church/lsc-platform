@@ -59,7 +59,7 @@ Paid only when the church chooses: Apple Developer ($99/yr), Google Play ($25 on
 - Keep **YouTube Live** + staff **Go live** (Sanity + `/api/live-status`).
 - Mobile **Live** tab + home banner (done).
 - Phase 2: transcripts (Whisper), captions, archive download — no paid Vimeo unless church decides later.
-- **Zoom link** field in Site Config when needed for special meetings.
+- Unified Zoom join: web + mobile use `/join` (configured via Sanity → **Church Zoom join URL**).
 
 ### 3. Content & back office (non-technical admins)
 

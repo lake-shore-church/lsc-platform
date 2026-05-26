@@ -15,9 +15,9 @@ Pastor's 46-item vision mapped to **one route each** — no duplicate URLs. Cont
 | 7 | Plan your visit | `/visit` | i18n + Sanity `page` |
 | 8 | Upcoming events | `/events` | Supabase + staff portal |
 | 9 | Sermon archives | `/sermons` | Sanity `sermon` |
-| 10 | Upcoming sermon highlight | Home → **This week at Lake Shore** | Sanity `siteConfig` (`upcomingSermon*`) |
+| 10 | Upcoming sermon highlight | Home → **This week at Lake Shore** | Sanity `thisWeek` (CP-1); `siteConfig` fallback |
 | 11 | Prayer requests | `/prayer` | Supabase + staff |
-| 12 | Testimonies | `/testimonies` | Placeholders → future `testimony` schema |
+| 12 | Testimonies | `/testimonies` | ✅ Sample testimonies seeded via `testimony` schema |
 | — | Home year promise (3 John) | Home → blue banner | Sanity `yearPromise*` + `familyVisionLine` |
 | — | Dedication / new believers | `/dedication` | i18n |
 
@@ -29,7 +29,7 @@ Pastor's 46-item vision mapped to **one route each** — no duplicate URLs. Cont
 | # | Title | Slug | Canonical / notes |
 |---|--------|------|-------------------|
 | 13 | Sunday school | `sunday-school` | Detail page |
-| 14 | Wednesday prayer | `wednesday-prayer` | Featured on home; add Zoom in Studio |
+| 14 | Wednesday prayer | `wednesday-prayer` | Featured on home; join uses unified `/join` (Sunday + Wednesday same room) |
 | 15 | Multi conferences | `multi-conferences` | Phase 2 |
 | 16 | Planting home churches | `planting-home-churches` | |
 | 17 | Multilingual resources | `multilingual-resources` | → `/resources` |
@@ -81,16 +81,16 @@ pnpm seed:ministries
 pnpm seed:content
 ```
 
-Church photos live at `/church/*` (from `packages/media`). Set **Wednesday Zoom** via env then re-seed:
+Church photos live at `/church/*` (from `packages/media`). Set **Church Zoom join URL** in Sanity (direct one-click invite with embedded `?pwd=...`) and re-seed:
 
 ```bash
-# In apps/web/.env.local (do not commit)
-CHURCH_WEDNESDAY_ZOOM_URL=https://zoom.us/j/xxxxxxxx
+# Optional (for seed scripts) in apps/web/.env.local (do not commit)
+CHURCH_ZOOM_JOIN_URL=https://usXXweb.zoom.us/j/83078837399?pwd=YOUR_EMBEDDED_PWD
 
 pnpm seed:site-config
 ```
 
-Or edit **Wednesday Zoom link** in Sanity Studio → Site configuration.
+Or follow `docs/ZOOM_JOIN.md` for the full one-click Zoom setup.
 
 ## Phase 2 (not built in this pass)
 
