@@ -1,6 +1,6 @@
 # LSC Platform — Roadmap
 
-**Last updated:** 2026-05-22  
+**Last updated:** 2026-05-26  
 Phases align with `.cursorrules` and [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md) (post–Pastor visit).
 
 ---
@@ -38,6 +38,9 @@ Phases align with `.cursorrules` and [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.
 | Livestream (Sanity toggle, `/live`, staff go-live) | ✅ |
 | Presenter mode (mobile slides + web Realtime sync) | ✅ (Supabase SQL required) |
 | Shared `@repo/media` homepage images | ✅ |
+| Ministries hub (`/ministries`), FAQ, leaders, testimonies | ✅ |
+| Unified Zoom join redirect (`/join`) | ✅ |
+| Homepage year promise + weekly gatherings join on zoom | ✅ |
 | `docs/MOBILE_SETUP.md` + `eas.json` | ✅ |
 | Cloudflare R2 media | ⏳ |
 | Zeffy live URL in Sanity | ⏳ |
@@ -59,6 +62,7 @@ Phases align with `.cursorrules` and [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.
 | Mobile: native About + Events + calendar add | ⏳ |
 | WordPress RSS → blog (if Pastor keeps WP) | ⏳ decision |
 | EAS TestFlight for Pastor/staff | ⏳ |
+| Set Church Zoom join URL to direct Zoom one-click invite (`?pwd=...`) in Sanity | ⏳ |
 
 ---
 

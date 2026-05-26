@@ -1,26 +1,24 @@
 # Church Zoom — one link for all meetings
 
-Lake Shore Church uses **one Zoom room** for Sunday worship, Wednesday prayer, and special gatherings.
+Lake Shore Church uses **one Zoom room** for Sunday worship, Wednesday prayer, and special gatherings. We do **not** use Subsplash or other third-party join wrappers.
 
-## Why Subsplash “just worked”
-
-The old mobile link ([Subsplash](https://lakeshoreassemblyofgod.subspla.sh/kfcjjpv)) redirects to Zoom with the **passcode embedded** in the URL (`?pwd=…`). Zoom then opens without asking for a passcode.
-
-Typing **Meeting ID `830 7883 7399`** and **Passcode `662215`** manually always prompts — that is normal Zoom behavior.
-
-## Our replacement (web + mobile)
+## Our join flow (web + mobile)
 
 | What | URL |
 |------|-----|
-| **Church short link** | `https://your-domain.com/join` |
-| **What it does** | Server redirect → configured one-click join URL |
+| **Church short link** | `https://lschurch.com/join` (or `https://lsc-platform-kappa.vercel.app/join`) |
+| **What it does** | Server redirect → configured Zoom join URL |
 
 - **Web:** buttons link to `/join`
 - **Mobile app:** opens `{EXPO_PUBLIC_APP_URL}/join` (same redirect, always up to date from Sanity)
 
 Configure the target URL in **Sanity Studio → Site configuration → Church Zoom join URL**.
 
-## Get a true one-click Zoom link (drop Subsplash)
+## One-click join (recommended)
+
+Typing **Meeting ID `830 7883 7399`** and **Passcode `662215`** manually always prompts — that is normal Zoom behavior.
+
+For **one tap with no passcode prompt**, the join URL must include Zoom's embedded token (`?pwd=…`):
 
 1. Sign in to [Zoom](https://zoom.us) as the church account admin.
 2. **Settings → Meeting → Security** (or meeting-level security).
@@ -28,9 +26,9 @@ Configure the target URL in **Sanity Studio → Site configuration → Church Zo
 4. Open the recurring meeting → **Copy invitation** or **Copy invite link**.
 5. The link should look like:  
    `https://usXXweb.zoom.us/j/83078837399?pwd=xxxxxxxxxxxxxxxx`
-6. Paste that full URL into Sanity **Church Zoom join URL** (and optionally in `.env.local` as `CHURCH_ZOOM_JOIN_URL` for seeds).
+6. Paste that full URL into Sanity **Church Zoom join URL** (and optionally in Vercel as `CHURCH_ZOOM_JOIN_URL`).
 
-Until that link is set, we keep the Subsplash URL as the redirect target — it still works.
+Until that link is set, `/join` opens `https://zoom.us/j/83078837399` and members enter passcode **662215** when prompted.
 
 ## Environment (optional, for seed scripts)
 
@@ -44,6 +42,8 @@ Then run:
 ```bash
 pnpm seed:site-config
 ```
+
+Subsplash URLs are **ignored** by the app even if they remain in old CMS data.
 
 ## Display fields (fallback)
 

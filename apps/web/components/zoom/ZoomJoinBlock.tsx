@@ -19,8 +19,8 @@ export function ZoomJoinBlock({
         Join on Zoom →
       </Link>
       <p className="mt-3 text-sm text-foreground-secondary">
-        Same link for <strong>Sunday &amp; Wednesday</strong> meetings — one tap, no passcode
-        prompt when using the button above.
+        Same link for <strong>Sunday &amp; Wednesday</strong> meetings. If Zoom asks for a
+        passcode, use the details below.
       </p>
       <dl className="mt-3 grid gap-2 text-sm text-foreground-secondary sm:grid-cols-2">
         <div>
