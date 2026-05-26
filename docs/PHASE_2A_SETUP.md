@@ -80,7 +80,17 @@ See `docs/handover/CHURCH_ACCOUNTS.local.md` for nameservers (`kaiser` + `meg`).
 
 ## 4. WordPress RSS (optional)
 
-Pastor must confirm RSS URL before import.
+Pastor confirmed feeds in `docs/PASTOR_RSS_FEEDS.md`. Optional importer is now available:
+
+```bash
+# Preview
+pnpm import:pastor-blog-rss
+
+# Apply to Sanity
+pnpm import:pastor-blog-rss -- --apply
+```
+
+Use only after Pastor confirms republishing policy.
 
 ---
 

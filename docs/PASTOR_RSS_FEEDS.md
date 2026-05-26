@@ -59,7 +59,7 @@ These feeds are Pastor’s **personal teaching site and podcast** (“Knowing Go
 ## Suggested implementation order
 
 1. **Quick (no code):** Add link on About or Resources → “Pastor’s blog” / “Knowing God and His Ways podcast” (external URLs).
-2. **Phase 2A optional:** Script `pnpm import:wordpress-rss` → create/update Sanity `blogPost` from `craigbrianlarson.com/feed/` (needs Pastor approval to republish on church site).
+2. **Phase 2A optional:** Script `pnpm import:pastor-blog-rss` → create/update Sanity `blogPost` from `craigbrianlarson.com/feed/` (needs Pastor approval to republish on church site).
 3. **Later:** Libsyn episode import or Apple/Spotify submit using church `podcast.xml` when domain is live.
 
 ---
@@ -83,5 +83,21 @@ Store in `CHURCH_ACCOUNTS.local.md` and Vercel only if a cron import is added.
 - [ ] Any posts to **exclude** (categories, dates)?
 
 ---
+
+
+### Import command (implemented)
+
+```bash
+# Preview only (no writes):
+pnpm import:pastor-blog-rss
+
+# Write to Sanity blogPost documents:
+pnpm import:pastor-blog-rss -- --apply
+
+# Optional custom feed / limit:
+pnpm import:pastor-blog-rss -- --feed=https://craigbrianlarson.com/feed/ --limit=20 --apply
+```
+
+The importer creates or updates `blogPost` docs by slug and stores source URL in the content body.
 
 *See also [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md) § WordPress RSS.*
