@@ -8,14 +8,14 @@
 
 | Field | Value |
 |-------|-------|
-| **Last updated** | 2026-05-21 (evening — infra session) |
-| **Active branch** | `feature/phase-2a` (uncommitted local changes — push before production gets prayer fix + OneSignal web) |
-| **Current phase** | Phase 2A + domain migration (Cloudflare) |
-| **Just completed** | Bluehost→Cloudflare NS; Resend live on Vercel (contact tested); OneSignal account + Vercel env; handover doc; prayer API fix + OneSignal web SDK (local, not on `main` yet) |
-| **Next up** | Cloudflare **Active** → DNS → Vercel domain; push `feature/phase-2a` → `main`; test prayer; Zeffy embed in Sanity |
-| **Blocked** | `lschurch.com` Cloudflare pending; church email inbox; Zeffy bank + embed URL |
+| **Last updated** | 2026-05-26 |
+| **Active branch** | `main` (production deploys from here) |
+| **Current phase** | Phase 2A operational + content polish; edit-on-page planned |
+| **Just completed** | Ministries/FAQ/leaders/testimonies; `/join` direct Zoom; OneSignal web subscriber; Vercel deploy fixes |
+| **Next up** | Operational layer (Zeffy, Zoom pwd, weekly Sanity updates); inline edit Phase A (`siteConfig`) |
+| **Blocked** | `lschurch.com` DNS; Pastor one-click Zoom URL; Zeffy embed URL |
 | **Handover (secrets)** | `docs/handover/CHURCH_ACCOUNTS.local.md` (gitignored) |
-| **PRs** | https://github.com/lake-shore-church/lsc-platform/compare/main...feature/phase-2a |
+| **Claude sync** | [CLAUDE_SYNC_PROMPT.md](./CLAUDE_SYNC_PROMPT.md) |
 
 ---
 
@@ -44,7 +44,7 @@
 |---------|-----------------|
 | Supabase URL + anon + **service_role** | On Vercel; redeployed |
 | Resend | `RESEND_*` on Vercel; **contact form verified** |
-| OneSignal | App ID + REST + `CRON_SECRET` on Vercel; web SDK needs **git push to `main`** |
+| OneSignal | App ID + REST + `CRON_SECRET` on Vercel; web SDK on **main** (worker fix deployed) |
 | Custom domain | NS at Cloudflare; site **pending Active** |
 
 ## Shipped + Phase 2A branch
