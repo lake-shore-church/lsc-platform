@@ -1,9 +1,9 @@
 import { redirect } from "next/navigation";
 import { getSiteConfig, resolveChurchZoomJoinUrl } from "@repo/cms";
 
-/** Server redirect — works with next-intl (root Route Handlers were 404 on Vercel). */
 export const dynamic = "force-dynamic";
 
+/** Redirect to church Zoom (Sunday + Wednesday). Served at /join via next-intl as-needed routing. */
 export default async function JoinPage() {
   const config = await getSiteConfig();
   const target = resolveChurchZoomJoinUrl(config, process.env);

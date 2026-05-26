@@ -17,7 +17,6 @@ const NON_LOCALIZED = [
   "/studio",
   "/platform",
   "/podcast.xml",
-  "/join",
 ];
 
 function isNonLocalized(pathname: string): boolean {
