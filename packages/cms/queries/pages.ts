@@ -59,7 +59,18 @@ export async function getSiteConfig(cms?: SanityClient): Promise<SiteConfig> {
     liveVideoId,
     liveStreamUrl,
     youtubeChannelId,
-    nextServiceDate
+    nextServiceDate,
+    yearPromiseScripture,
+    yearPromiseTheme,
+    yearPromiseBody,
+    familyVisionLine,
+    sundayPrayerGathering,
+    wednesdayPrayerTitle,
+    wednesdayPrayerSummary,
+    wednesdayZoomLink,
+    upcomingSermonTitle,
+    upcomingSermonDescription,
+    upcomingSermonDate
   }`;
 
   try {

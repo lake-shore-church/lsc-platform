@@ -10,6 +10,8 @@
     "verify": "turbo run check-types lint",
     "seed:site-config": "tsx scripts/seed-site-config.ts",
     "seed:content": "tsx scripts/seed-content.ts",
+    "seed:ministries": "tsx scripts/seed-ministries.ts",
+    "seed:testimonies": "tsx scripts/seed-testimonies.ts",
     "promote:member": "tsx scripts/promote-member.ts",
     "import:pastor-blog-rss": "tsx scripts/import-pastor-blog-rss.ts"
   },

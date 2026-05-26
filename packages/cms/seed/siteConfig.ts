@@ -1,34 +1,33 @@
 import { getSanityWriteClient } from "../client";
-import { DEFAULT_SITE_CONFIG } from "../defaults/siteConfig";
+import { REAL_SITE_CONFIG } from "./realContent";
 
 const SITE_CONFIG_ID = "siteConfig";
 
-/** Create or replace the siteConfig singleton in Sanity with lschurch.com content. */
+/** Next Sunday label in America/Chicago (for home page highlight). */
+export function formatNextSundayLabel(from = new Date()): string {
+  const d = new Date(from);
+  const day = d.getDay();
+  const daysUntil = day === 0 ? 0 : 7 - day;
+  d.setDate(d.getDate() + daysUntil);
+  const date = d.toLocaleDateString("en-US", {
+    month: "long",
+    day: "numeric",
+    timeZone: "America/Chicago",
+  });
+  return `This Sunday · ${date} · 10:00 AM CT`;
+}
+
+/** Create or replace the siteConfig singleton in Sanity. */
 export async function seedSiteConfig(): Promise<string> {
   const client = getSanityWriteClient();
 
+  const zoomFromEnv = process.env.CHURCH_WEDNESDAY_ZOOM_URL?.trim();
+
   const doc = {
+    ...REAL_SITE_CONFIG,
     _id: SITE_CONFIG_ID,
-    _type: "siteConfig" as const,
-    churchName: DEFAULT_SITE_CONFIG.churchName,
-    tagline: DEFAULT_SITE_CONFIG.tagline,
-    subTagline: DEFAULT_SITE_CONFIG.subTagline,
-    heroBody: DEFAULT_SITE_CONFIG.heroBody,
-    addressLine1: DEFAULT_SITE_CONFIG.addressLine1,
-    addressLine2: DEFAULT_SITE_CONFIG.addressLine2,
-    cityStateZip: DEFAULT_SITE_CONFIG.cityStateZip,
-    phone: DEFAULT_SITE_CONFIG.phone,
-    serviceDay: DEFAULT_SITE_CONFIG.serviceDay,
-    serviceTime: DEFAULT_SITE_CONFIG.serviceTime,
-    heroCtaText: DEFAULT_SITE_CONFIG.heroCtaText,
-    distinctives: DEFAULT_SITE_CONFIG.distinctives,
-    serviceInvitation: DEFAULT_SITE_CONFIG.serviceInvitation,
-    pastorName: DEFAULT_SITE_CONFIG.pastorName,
-    zeffyEmbedUrl: DEFAULT_SITE_CONFIG.zeffyEmbedUrl,
-    paypalGivingEnabled: true,
-    paypalGivingUrl: DEFAULT_SITE_CONFIG.paypalGivingUrl,
-    churchTaxId: DEFAULT_SITE_CONFIG.churchTaxId,
-    activeTheme: "bold",
+    wednesdayZoomLink: zoomFromEnv || undefined,
+    upcomingSermonDate: formatNextSundayLabel(),
   };
 
   const result = await client.createOrReplace(doc);

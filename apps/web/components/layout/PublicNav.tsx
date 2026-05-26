@@ -38,9 +38,11 @@ export function PublicNav({
     {
       label: t("grow"),
       links: [
+        { href: "/ministries", label: t("ministries") },
         { href: "/blog", label: t("blog") },
         { href: "/resources", label: t("resources") },
         { href: "/beliefs", label: t("beliefs") },
+        { href: "/faq", label: t("faq") },
       ],
     },
     {
@@ -54,7 +56,9 @@ export function PublicNav({
       label: t("about"),
       links: [
         { href: "/about", label: t("about_us") },
+        { href: "/about/leaders", label: t("leaders") },
         { href: "/about#pastor", label: t("pastor") },
+        { href: "/testimonies", label: t("testimonies") },
         { href: "/contact", label: t("contact") },
       ],
     },

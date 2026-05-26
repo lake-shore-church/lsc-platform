@@ -9,6 +9,8 @@ import {
   STAFF_PASTOR,
   sermonPublishedAt,
 } from "./realContent";
+import { seedMinistryPages } from "./ministries";
+import { seedTestimonies } from "./testimonies";
 
 /** Seed real Lake Shore Church content via Sanity write API. */
 export async function seedSanityContent(): Promise<void> {
@@ -109,4 +111,7 @@ export async function seedSanityContent(): Promise<void> {
     seoDescription:
       "Find inerrant truth from Scripture in a world of confusion — the statement of faith of Lake Shore Church.",
   });
+
+  await seedMinistryPages();
+  await seedTestimonies();
 }

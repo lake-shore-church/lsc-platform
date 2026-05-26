@@ -50,6 +50,21 @@ export function mergeSiteConfig(
     youtubeChannelId:
       doc.youtubeChannelId ?? DEFAULT_SITE_CONFIG.youtubeChannelId,
     nextServiceDate: doc.nextServiceDate,
+    yearPromiseScripture:
+      doc.yearPromiseScripture ?? DEFAULT_SITE_CONFIG.yearPromiseScripture,
+    yearPromiseTheme: doc.yearPromiseTheme ?? DEFAULT_SITE_CONFIG.yearPromiseTheme,
+    yearPromiseBody: doc.yearPromiseBody ?? DEFAULT_SITE_CONFIG.yearPromiseBody,
+    familyVisionLine: doc.familyVisionLine ?? DEFAULT_SITE_CONFIG.familyVisionLine,
+    sundayPrayerGathering:
+      doc.sundayPrayerGathering ?? DEFAULT_SITE_CONFIG.sundayPrayerGathering,
+    wednesdayPrayerTitle:
+      doc.wednesdayPrayerTitle ?? DEFAULT_SITE_CONFIG.wednesdayPrayerTitle,
+    wednesdayPrayerSummary:
+      doc.wednesdayPrayerSummary ?? DEFAULT_SITE_CONFIG.wednesdayPrayerSummary,
+    wednesdayZoomLink: doc.wednesdayZoomLink ?? DEFAULT_SITE_CONFIG.wednesdayZoomLink,
+    upcomingSermonTitle: doc.upcomingSermonTitle,
+    upcomingSermonDescription: doc.upcomingSermonDescription,
+    upcomingSermonDate: doc.upcomingSermonDate,
   };
 }
 

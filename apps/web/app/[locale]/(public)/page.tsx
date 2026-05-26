@@ -1,8 +1,15 @@
 import type { Metadata } from "next";
 import { getEvents } from "@repo/db";
-import { getBlogPosts, getSermons, getSiteConfig } from "@repo/cms";
+import {
+  getBlogPosts,
+  getHomeFeaturedMinistries,
+  getSermons,
+  getSiteConfig,
+} from "@repo/cms";
 import { HeroSection } from "@/components/home/HeroSection";
 import { ServiceInfoStrip } from "@/components/home/ServiceInfoStrip";
+import { ChurchYearPromiseSection } from "@/components/home/ChurchYearPromiseSection";
+import { WeeklyGatheringsSection } from "@/components/home/WeeklyGatheringsSection";
 import { FeaturedSeriesSection } from "@/components/home/FeaturedSeriesSection";
 import { NewHereSection } from "@/components/home/NewHereSection";
 import { MinistryCards } from "@/components/home/MinistryCards";
@@ -10,6 +17,7 @@ import { UpcomingEventsSection } from "@/components/home/UpcomingEventsSection";
 import { TestimonialsSection } from "@/components/home/TestimonialsSection";
 import { StayConnectedSection } from "@/components/home/StayConnectedSection";
 import { FooterCtaBanner } from "@/components/home/FooterCtaBanner";
+import { getFallbackMinistries } from "@/lib/ministriesFallback";
 
 export const metadata: Metadata = {
   title: "Lake Shore Church — West Loop Chicago",
@@ -18,14 +26,18 @@ export const metadata: Metadata = {
 };
 
 export default async function HomePage() {
-  const [config, sermons, events, posts] = await Promise.all([
+  const [config, sermons, events, posts, featuredMinistries] = await Promise.all([
     getSiteConfig(),
     getSermons({ limit: 1 }).catch(() => []),
     getEvents({ upcomingFrom: new Date().toISOString(), limit: 3 }).catch(() => []),
     getBlogPosts({ limit: 2 }).catch(() => []),
+    getHomeFeaturedMinistries().catch(() => []),
   ]);
 
   const latestSermon = sermons[0] ?? null;
+  const homeMinistries = featuredMinistries.length
+    ? featuredMinistries
+    : getFallbackMinistries().filter((m) => m.showOnHome);
 
   return (
     <>
@@ -36,6 +48,8 @@ export default async function HomePage() {
         heroCtaText={config.heroCtaText}
       />
       <ServiceInfoStrip />
+      <ChurchYearPromiseSection config={config} />
+      <WeeklyGatheringsSection config={config} featured={homeMinistries} />
       <FeaturedSeriesSection latestSermon={latestSermon} />
       <NewHereSection />
       <MinistryCards />

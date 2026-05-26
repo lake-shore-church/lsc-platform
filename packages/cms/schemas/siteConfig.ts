@@ -201,6 +201,76 @@ export const siteConfigType = defineType({
         "Optional. Overrides automatic next-Sunday 10:00 AM CT countdown.",
       type: "datetime",
     }),
+    defineField({
+      name: "yearPromiseScripture",
+      title: "Year promise — scripture reference",
+      type: "string",
+      initialValue: "3 John 1:2 (NKJV)",
+    }),
+    defineField({
+      name: "yearPromiseTheme",
+      title: "Year promise — theme line",
+      type: "string",
+      initialValue: "Prosper as your soul prospers",
+    }),
+    defineField({
+      name: "yearPromiseBody",
+      title: "Year promise — body",
+      type: "text",
+      rows: 3,
+      initialValue:
+        "Beloved, I pray that you may prosper in all things and be in health, just as your soul prospers.",
+    }),
+    defineField({
+      name: "familyVisionLine",
+      title: "Family vision line (home page)",
+      type: "text",
+      rows: 3,
+      initialValue:
+        "We are a family of God — wise virgins with oil and fire — preparing together to meet the Bridegroom, Jesus.",
+    }),
+    defineField({
+      name: "sundayPrayerGathering",
+      title: "Sunday morning prayer (home)",
+      type: "string",
+      initialValue: "Sunday 9:30 AM — prayer before worship",
+    }),
+    defineField({
+      name: "wednesdayPrayerTitle",
+      title: "Wednesday prayer — title",
+      type: "string",
+      initialValue: "Wednesday prayer & fellowship",
+    }),
+    defineField({
+      name: "wednesdayPrayerSummary",
+      title: "Wednesday prayer — summary",
+      type: "text",
+      rows: 2,
+      initialValue:
+        "Mid-week prayer, meal, and fellowship — home host announced weekly. Join via Zoom when you cannot attend in person.",
+    }),
+    defineField({
+      name: "wednesdayZoomLink",
+      title: "Wednesday Zoom link",
+      type: "url",
+    }),
+    defineField({
+      name: "upcomingSermonTitle",
+      title: "Upcoming sermon — title",
+      type: "string",
+    }),
+    defineField({
+      name: "upcomingSermonDescription",
+      title: "Upcoming sermon — description",
+      type: "text",
+      rows: 2,
+    }),
+    defineField({
+      name: "upcomingSermonDate",
+      title: "Upcoming sermon — date label",
+      type: "string",
+      description: "e.g. This Sunday · March 15",
+    }),
   ],
   preview: {
     prepare: () => ({ title: "Site configuration" }),

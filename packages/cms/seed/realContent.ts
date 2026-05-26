@@ -30,6 +30,20 @@ export const REAL_SITE_CONFIG = {
   activeTheme: "bold" as const,
   paypalGivingEnabled: false,
   zeffyEmbedUrl: "",
+  yearPromiseScripture: "3 John 1:2 (NKJV)",
+  yearPromiseTheme: "Prosper as your soul prospers",
+  yearPromiseBody:
+    "Beloved, I pray that you may prosper in all things and be in health, just as your soul prospers.",
+  familyVisionLine:
+    "We are a family of God — wise virgins with oil and fire — preparing together to meet the Bridegroom, Jesus.",
+  sundayPrayerGathering: "Sunday 9:30 AM — prayer before worship",
+  wednesdayPrayerTitle: "Wednesday prayer & fellowship",
+  wednesdayPrayerSummary:
+    "Mid-week prayer, meal, and fellowship — home host announced weekly.",
+  upcomingSermonTitle: "Next Sunday message",
+  upcomingSermonDescription:
+    "Join us for scripture-based teaching in the West Loop. Title announced mid-week — check back or subscribe for updates.",
+  upcomingSermonDate: "This Sunday · 10:00 AM CT",
 };
 
 export const SERIES = [

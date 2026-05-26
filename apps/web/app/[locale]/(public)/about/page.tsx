@@ -48,6 +48,12 @@ export default async function AboutPage() {
           ))}
         </div>
 
+        <p className="mt-8">
+          <Link href="/about/leaders" className="link-hover font-semibold text-brand-primary">
+            {t("leaders_link")} →
+          </Link>
+        </p>
+
         <section id="pastor" className="mt-14 scroll-mt-24">
           <h2 className="font-display text-h2 text-brand-primary">{t("pastor_heading")}</h2>
           <p className="mt-1 text-sm font-semibold text-brand-accent">{t("pastor_name")}</p>

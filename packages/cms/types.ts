@@ -117,6 +117,56 @@ export type Page = {
   seoDescription?: string;
 };
 
+export type MinistryCategory =
+  | "watch"
+  | "connect"
+  | "grow"
+  | "serve"
+  | "missions"
+  | "church-life";
+
+export type Testimony = {
+  _id: string;
+  _type: "testimony";
+  title: string;
+  slug: SanitySlug;
+  kind?: "story" | "video" | "audio";
+  excerpt?: string;
+  body?: PortableTextBlock[];
+  imageUrl?: string;
+  videoUrl?: string;
+  audioUrl?: string;
+  publishedAt?: string;
+  status?: "published" | "draft";
+};
+
+export type MinistryPage = {
+  _id: string;
+  _type: "ministryPage";
+  title: string;
+  slug: SanitySlug;
+  category: MinistryCategory;
+  summary?: string;
+  body?: PortableTextBlock[];
+  canonicalPath?: string;
+  scheduleLabel?: string;
+  scheduleDetails?: string;
+  venueName?: string;
+  venueAddress?: string;
+  zoomLink?: string;
+  liveStreamLink?: string;
+  externalUrl?: string;
+  ctaLabel?: string;
+  ctaHref?: string;
+  heroImageUrl?: string;
+  imageAlt?: string;
+  sortOrder?: number;
+  showOnHome?: boolean;
+  status?: "published" | "draft";
+  seoTitle?: string;
+  seoDescription?: string;
+};
+
 export type ThemeId = "bold" | "warm" | "advent" | "easter";
 
 export type Resource = {
@@ -161,4 +211,15 @@ export type SiteConfig = {
   liveStreamUrl?: string;
   youtubeChannelId?: string;
   nextServiceDate?: string;
+  yearPromiseScripture?: string;
+  yearPromiseTheme?: string;
+  yearPromiseBody?: string;
+  familyVisionLine?: string;
+  sundayPrayerGathering?: string;
+  wednesdayPrayerTitle?: string;
+  wednesdayPrayerSummary?: string;
+  wednesdayZoomLink?: string;
+  upcomingSermonTitle?: string;
+  upcomingSermonDescription?: string;
+  upcomingSermonDate?: string;
 };

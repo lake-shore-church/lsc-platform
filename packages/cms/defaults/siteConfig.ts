@@ -27,4 +27,18 @@ export const DEFAULT_SITE_CONFIG: Omit<SiteConfig, "_id" | "_type"> = {
   liveVideoId: "",
   liveStreamUrl: "",
   youtubeChannelId: "",
+  yearPromiseScripture: "3 John 1:2 (NKJV)",
+  yearPromiseTheme: "Prosper as your soul prospers",
+  yearPromiseBody:
+    "Beloved, I pray that you may prosper in all things and be in health, just as your soul prospers.",
+  familyVisionLine:
+    "We are a family of God — wise virgins with oil and fire — preparing together to meet the Bridegroom, Jesus.",
+  sundayPrayerGathering: "Sunday 9:30 AM — prayer before worship",
+  wednesdayPrayerTitle: "Wednesday prayer & fellowship",
+  wednesdayPrayerSummary:
+    "Mid-week prayer, meal, and fellowship — home host announced weekly. Join via Zoom when you cannot attend in person.",
+  wednesdayZoomLink: "",
+  upcomingSermonTitle: "",
+  upcomingSermonDescription: "",
+  upcomingSermonDate: "",
 };

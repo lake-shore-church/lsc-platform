@@ -18,6 +18,8 @@ export {
   sermonSeriesType,
   siteConfigType,
   staffBioType,
+  ministryPageType,
+  testimonyType,
 } from "./schemas";
 
 export type {
@@ -36,6 +38,8 @@ export type {
   SiteConfig,
   SocialLink,
   StaffBio,
+  MinistryPage,
+  MinistryCategory,
 } from "./types";
 
 export {
@@ -55,6 +59,13 @@ export {
 } from "./queries/blog";
 
 export { getPage, getSiteConfig, getAllStaffBios } from "./queries/pages";
+export {
+  getMinistryPages,
+  getMinistryPageBySlug,
+  getHomeFeaturedMinistries,
+  getAllMinistrySlugs,
+} from "./queries/ministries";
+export { getTestimonies } from "./queries/testimonies";
 export { getResources } from "./queries/resources";
 
 export { DEFAULT_SITE_CONFIG } from "./defaults/siteConfig";
@@ -79,4 +90,10 @@ export {
 } from "./lib/patchSiteConfig";
 export { seedSiteConfig } from "./seed/siteConfig";
 export { seedSanityContent } from "./seed/content";
+export {
+  seedMinistryPages,
+  MINISTRY_SEEDS,
+  ministrySeedToDocument,
+} from "./seed/ministries";
+export { seedTestimonies } from "./seed/testimonies";
 export { paragraphsToBlocks } from "./seed/portableText";

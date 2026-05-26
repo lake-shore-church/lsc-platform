@@ -16,10 +16,12 @@ export async function PublicFooter({
 
   const links = [
     { href: "/visit" as const, label: t("link_visit") },
+    { href: "/ministries" as const, label: t("link_ministries") },
     { href: "/sermons" as const, label: t("link_sermons") },
     { href: "/events" as const, label: t("link_events") },
     { href: "/prayer" as const, label: t("link_prayer") },
     { href: "/give" as const, label: t("link_give") },
+    { href: "/faq" as const, label: t("link_faq") },
     { href: "/contact" as const, label: t("link_contact") },
   ];
 
