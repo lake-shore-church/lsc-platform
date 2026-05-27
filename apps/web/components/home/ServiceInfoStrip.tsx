@@ -29,7 +29,7 @@ export async function ServiceInfoStrip() {
       icon: "📺",
       label: t("watch_online"),
       lines: [t("miss_service"), t("watch_archive")],
-      href: "/sermons",
+      href: "/live",
       linkLabel: t("watch_now"),
     },
     {

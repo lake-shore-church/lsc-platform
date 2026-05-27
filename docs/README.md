@@ -8,6 +8,7 @@
 |------|------------|
 | **Church tech volunteer** | [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md) → [/platform/tech](http://localhost:3000/platform/tech) |
 | **Pastor / credentials meeting** | [PASTOR_MEETING_CHECKLIST.md](./PASTOR_MEETING_CHECKLIST.md) |
+| **Today: website demo for Pastor** | [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md) |
 | **Accounts, DNS, API keys (local)** | [handover/README.md](./handover/README.md) → copy `CHURCH_ACCOUNTS.example.md` to `.local.md` |
 | **Custom domain (simple checklist)** | [DOMAIN_SETUP_SIMPLE.md](./DOMAIN_SETUP_SIMPLE.md) |
 | **Find Cloudflare Active / OneSignal Audience** | [HELP_DASHBOARD_NAV.md](./HELP_DASHBOARD_NAV.md) |
@@ -35,6 +36,8 @@
 | [handover/README.md](./handover/README.md) | Church accounts handover (secrets in `.local.md` only) |
 | [ZEFFY_SETUP.md](./ZEFFY_SETUP.md) | Zeffy donation form wizard — 5 designated funds, embed URL → Sanity |
 | [LIVESTREAM_SETUP.md](./LIVESTREAM_SETUP.md) | Restream, go-live, `/live`, mobile Live tab |
+| [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) | Subsplash-style in-house video (primary) + YouTube secondary |
+| [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md) | Website walkthrough for Pastor / members meeting |
 | [PRESENTER_MODE.md](./PRESENTER_MODE.md) | Projector slide control (staff mobile app) |
 | [AUTH_TROUBLESHOOTING.md](./AUTH_TROUBLESHOOTING.md) | Magic link, rate limits, roles |
 | [ai/THEOLOGY-OF-TECH.md](./ai/THEOLOGY-OF-TECH.md) | Holy Spirit as Director of Technology — doc standard |

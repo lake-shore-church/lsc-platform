@@ -17,30 +17,31 @@ const PLATFORM_CARDS = [
   {
     icon: "🌐",
     title: "Watch here",
-    subtitle: "Best experience, no app needed",
+    subtitle: "Lake Shore Church website — our primary home for live worship",
     href: null as string | null,
     badge: "You're here ✓",
   },
   {
+    icon: "📖",
+    title: "Sermon archive",
+    subtitle: "Watch last Sunday and recent messages anytime",
+    href: "/sermons",
+    badge: null,
+    internal: true,
+  },
+  {
     icon: "📺",
-    title: "YouTube Live",
-    subtitle: "Subscribe for notifications",
+    title: "YouTube",
+    subtitle: "Optional — we'll simulcast here when in-house live is enabled",
     href: "https://www.youtube.com/@lakeshorechurch",
     badge: null,
   },
   {
     icon: "👥",
-    title: "Facebook Live",
-    subtitle: "Join us on Facebook",
+    title: "Facebook",
+    subtitle: "Community updates and optional live simulcast",
     href: "https://www.facebook.com/lschurchchicago",
     badge: null,
-  },
-  {
-    icon: "📱",
-    title: "Lake Shore Church App",
-    subtitle: "Download for iOS + Android",
-    href: null,
-    badge: "Coming soon",
   },
 ] as const;
 
@@ -149,6 +150,11 @@ export function LivePageClient({
           <p className="mt-2 text-sm text-white/80">
             Merit School of Music · West Loop Chicago
           </p>
+          <p className="mx-auto mt-4 max-w-lg text-sm text-white/75">
+            We are upgrading this page so Sunday video plays here on our site
+            (like our previous in-house stream). Until then, watch recent messages
+            below or join us in person.
+          </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link
               href="/contact"
@@ -188,9 +194,9 @@ function WatchEverywhere({ status }: { status: LiveStatusResponse }) {
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         {PLATFORM_CARDS.map((card) => {
           const href =
-            card.title === "YouTube Live"
+            card.title === "YouTube"
               ? status.youtubeUrl
-              : card.title === "Facebook Live"
+              : card.title === "Facebook"
                 ? status.facebookUrl
                 : card.href;
           const inner = (
@@ -208,6 +214,13 @@ function WatchEverywhere({ status }: { status: LiveStatusResponse }) {
             </div>
           );
           if (!href) return <div key={card.title}>{inner}</div>;
+          if ("internal" in card && card.internal) {
+            return (
+              <Link key={card.title} href={href} className="block">
+                {inner}
+              </Link>
+            );
+          }
           return (
             <a
               key={card.title}

@@ -49,7 +49,11 @@ export default async function HomePage() {
       />
       <ServiceInfoStrip />
       <ChurchYearPromiseSection config={config} />
-      <WeeklyGatheringsSection config={config} featured={homeMinistries} />
+      <WeeklyGatheringsSection
+        config={config}
+        featured={homeMinistries}
+        latestSermon={latestSermon}
+      />
       <FeaturedSeriesSection latestSermon={latestSermon} />
       <NewHereSection />
       <MinistryCards />

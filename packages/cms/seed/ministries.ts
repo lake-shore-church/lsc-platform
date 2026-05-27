@@ -1,4 +1,5 @@
 import type { MinistryCategory } from "../types";
+import { getSanityWriteClient } from "../client";
 import { paragraphsToBlocks } from "./portableText";
 
 export type MinistrySeed = {
@@ -729,7 +730,6 @@ export function ministrySeedToDocument(seed: MinistrySeed) {
 }
 
 export async function seedMinistryPages(): Promise<void> {
-  const { getSanityWriteClient } = await import("../client");
   const client = getSanityWriteClient();
   for (const seed of MINISTRY_SEEDS) {
     await client.createOrReplace(ministrySeedToDocument(seed));

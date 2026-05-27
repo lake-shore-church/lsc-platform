@@ -35,7 +35,8 @@ No temporary “mobile-only” content paths — mobile reads `/api/mobile/*` ba
 | **Supabase** | Free tier | Auth, events, prayers, giving records, profiles, Realtime |
 | **Vercel** | Free tier | Website + API routes |
 | **Zeffy** | 0% platform fee (501(c)(3)) | Donations + recurring + donor data → export/sync |
-| **YouTube + Restream** | Free | Live stream (no extra video host bill) |
+| **Mux / Livepeer** (planned) | Usage-based | **In-house** live video (Subsplash replacement) |
+| **YouTube + Restream** (optional) | Free | **Secondary** simulcast — not primary member UX |
 | **Resend** | Free tier (limits) | Magic links, event reminders, prayer confirmations |
 | **OneSignal** | Free tier | Mobile push (Sunday, Wednesday, go-live) |
 | **Expo / EAS** | Free until store accounts | iOS/Android builds |
@@ -56,10 +57,12 @@ Paid only when the church chooses: Apple Developer ($99/yr), Google Play ($25 on
 
 ### 2. Live stream & media
 
-- Keep **YouTube Live** + staff **Go live** (Sanity + `/api/live-status`).
+- **Primary (Pastor expectation):** **In-house** live on `/live` + mobile **Live** tab — Mevo → hosted ingest → our player (like former **Subsplash**). Plan: [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md).
+- **Secondary (optional):** YouTube / Facebook simulcast for reach — not where members must watch.
+- **Today:** Live page shell, countdown, prayer, staff go-live toggle — ✅; in-house **video** — ⏳ L2 build.
 - Mobile **Live** tab + home banner (done).
-- Phase 2: transcripts (Whisper), captions, archive download — no paid Vimeo unless church decides later.
-- **Zoom link** field in Site Config when needed for special meetings.
+- Phase 2: transcripts (Whisper), captions, VOD → sermon archive.
+- **Zoom:** unified `/join` (Sunday + Wednesday) — see [ZOOM_JOIN.md](./ZOOM_JOIN.md).
 
 ### 3. Content & back office (non-technical admins)
 

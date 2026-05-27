@@ -1,7 +1,7 @@
 # LSC Platform — Project Status
 
-**Last updated:** 2026-05-21  
-**Active branch:** `feature/phase-2a` (local changes + Vercel env live — **push & merge to `main`** for prayer fix + OneSignal web)  
+**Last updated:** 2026-05-26  
+**Active branch:** `main` — **demo meeting prep** + in-house livestream plan documented  
 **Repository:** https://github.com/lake-shore-church/lsc-platform  
 **Production (web):** https://lsc-platform-kappa.vercel.app  
 **Pastor visit:** May 2026 — site approved; priorities in [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md)  
@@ -14,7 +14,7 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 
 **Voice & content:** Pastor Brian’s words from [lschurch.com](https://lschurch.com/) — resurrection-centred hero, distinctives on About/Beliefs, exact Sunday service copy (`Begins at 10 A.M.`, Merit School of Music). No “Authentic Christianity Together” on the site.
 
-**Livestream:** Manual Sanity toggle + staff **Go live** on `/staff/sermons`; `/live` page; mobile **Sermons → Live** tab; site-wide live banner. See [LIVESTREAM_SETUP.md](./LIVESTREAM_SETUP.md).
+**Livestream:** `/live` shell + mobile Live tab ✅; **in-house video** (Subsplash replacement) planned — [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md). Today’s site demo: [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md).
 
 **Presenter mode:** Staff/admin mobile `/presenter` — slide control + Realtime sync for web viewers. Requires Supabase migration — see [PRESENTER_MODE.md](./PRESENTER_MODE.md).
 

@@ -34,22 +34,6 @@ export default async function TestimoniesPage() {
             excerpt: t("sample_2_body"),
             imageUrl: "/church/worship.jpg",
           },
-          {
-            _id: "fallback-3",
-            kind: "video" as const,
-            title: t("sample_3_title"),
-            excerpt: t("sample_3_body"),
-            imageUrl: "/church/worship.jpg",
-            mediaNote: t("video_placeholder"),
-          },
-          {
-            _id: "fallback-4",
-            kind: "audio" as const,
-            title: t("sample_4_title"),
-            excerpt: t("sample_4_body"),
-            imageUrl: "/church/serve.jpg",
-            mediaNote: t("audio_placeholder"),
-          },
         ];
 
   const kinds = [
@@ -83,8 +67,8 @@ export default async function TestimoniesPage() {
             const image = item.imageUrl ?? FALLBACK_IMAGE;
             const hasVideo = "videoUrl" in item && item.videoUrl;
             const hasAudio = "audioUrl" in item && item.audioUrl;
-            const mediaNote =
-              "mediaNote" in item && item.mediaNote
+            const mediaNote: string | undefined =
+              "mediaNote" in item && typeof item.mediaNote === "string"
                 ? item.mediaNote
                 : hasVideo
                   ? t("video_placeholder")

@@ -1,7 +1,8 @@
 import { getTranslations } from "next-intl/server";
+import { getTestimonies } from "@repo/cms";
 import { Container } from "@/components/ui/Container";
 
-const TESTIMONIALS = [
+const FALLBACK_TESTIMONIALS = [
   {
     quote:
       "Pastor Brian is a legend. A righteous man who truly spends time in prayer before stepping into the pulpit. Lake Shore Church is one place where you can experience heaven on earth.",
@@ -20,6 +21,16 @@ const TESTIMONIALS = [
 
 export async function TestimonialsSection() {
   const t = await getTranslations("home");
+  const cmsItems = await getTestimonies().catch(() => []);
+  const fromCms = cmsItems
+    .filter((item) => item.kind === "story" || !item.kind)
+    .slice(0, 3)
+    .map((item) => ({
+      quote: item.excerpt?.trim() || item.title,
+      name: item.title,
+      detail: undefined as string | undefined,
+    }));
+  const items = fromCms.length >= 2 ? fromCms : [...FALLBACK_TESTIMONIALS];
 
   return (
     <section className="section-pad bg-surface">
@@ -29,7 +40,7 @@ export async function TestimonialsSection() {
         </h2>
         <p className="mt-2 text-base text-foreground-secondary">{t("ratings")}</p>
         <div className="mt-10 grid gap-6 md:grid-cols-3">
-          {TESTIMONIALS.map((item) => (
+          {items.map((item) => (
             <blockquote
               key={item.name}
               className="rounded-card border border-default bg-background p-6 shadow-card"

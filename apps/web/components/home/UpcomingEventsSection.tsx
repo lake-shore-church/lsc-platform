@@ -18,7 +18,7 @@ export async function UpcomingEventsSection({ events }: { events: Event[] }) {
           </Link>
         </div>
         {display.length === 0 ? (
-          <p className="mt-6 text-foreground-muted">No upcoming events — check back soon.</p>
+          <p className="mt-6 text-base text-foreground-secondary">{t("no_upcoming_events")}</p>
         ) : (
           <ul className="mt-8 grid gap-6 md:grid-cols-3">
             {display.map((ev) => (

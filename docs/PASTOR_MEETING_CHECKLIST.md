@@ -4,6 +4,9 @@
 **Date:** May 2026  
 **Purpose:** Collect credentials and accounts needed to fully activate the LSC digital platform.
 
+**Website demo today (members visiting):** [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md)  
+**Live streaming plan (Subsplash-style):** [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md)
+
 **Related technical docs (do not duplicate secrets here):**
 
 - Mobile env + Supabase redirects → [MOBILE_SETUP.md](./MOBILE_SETUP.md)

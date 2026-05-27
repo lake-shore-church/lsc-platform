@@ -1,5 +1,9 @@
 # Lake Shore Church — Livestream Setup Guide
 
+> **Pastor priority:** Watch on **our website/app** (Subsplash-style), not YouTube-first.  
+> **Plan:** [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) — Mevo → Mux/Livepeer → `/live`.  
+> **This doc** covers interim steps and optional YouTube simulcast until in-house video ships.
+
 ## What you need (all free)
 
 - [Restream.io](https://restream.io) account (free tier: 2 destinations)

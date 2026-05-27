@@ -4,7 +4,19 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ---
 
-## [Unreleased] — feature/phase-2a
+## [Unreleased]
+
+### Added
+
+- **In-house livestream plan** — [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) (Subsplash-style primary; YouTube/Facebook secondary).
+- **Demo meeting checklist** — [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md) for Pastor/members website walkthrough.
+
+### Changed
+
+- Homepage presentation: testimonials from CMS when available, warmer upcoming-sermon copy, `/live` strip links to live page, friendlier empty events message.
+- `/live` and `/testimonies`: honest copy about in-house video upgrade; removed placeholder video/audio cards from testimonies fallback.
+
+### Added (prior — feature/phase-2a)
 
 ### Added
 
