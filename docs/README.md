@@ -9,6 +9,7 @@
 | **Church tech volunteer** | [TECH-TEAM-GUIDE.md](./TECH-TEAM-GUIDE.md) → [/platform/tech](http://localhost:3000/platform/tech) |
 | **Pastor / credentials meeting** | [PASTOR_MEETING_CHECKLIST.md](./PASTOR_MEETING_CHECKLIST.md) |
 | **Today: website demo for Pastor** | [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md) |
+| **Production v1 launch (what ships now vs later)** | [PRODUCTION_V1_LAUNCH.md](./PRODUCTION_V1_LAUNCH.md) |
 | **Accounts, DNS, API keys (local)** | [handover/README.md](./handover/README.md) → copy `CHURCH_ACCOUNTS.example.md` to `.local.md` |
 | **Custom domain (simple checklist)** | [DOMAIN_SETUP_SIMPLE.md](./DOMAIN_SETUP_SIMPLE.md) |
 | **Find Cloudflare Active / OneSignal Audience** | [HELP_DASHBOARD_NAV.md](./HELP_DASHBOARD_NAV.md) |

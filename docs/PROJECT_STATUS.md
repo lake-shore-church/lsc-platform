@@ -1,7 +1,7 @@
 # LSC Platform — Project Status
 
 **Last updated:** 2026-05-26  
-**Active branch:** `main` — **demo meeting prep** + in-house livestream plan documented  
+**Active branch:** `main` — **Production v1 ready** ([PRODUCTION_V1_LAUNCH.md](./PRODUCTION_V1_LAUNCH.md)); Deployment 2 = in-house live + Zeffy  
 **Repository:** https://github.com/lake-shore-church/lsc-platform  
 **Production (web):** https://lsc-platform-kappa.vercel.app  
 **Pastor visit:** May 2026 — site approved; priorities in [PASTOR_PRIORITIES.md](./PASTOR_PRIORITIES.md)  
@@ -109,13 +109,25 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 
 See [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
 
+## Production v1 vs Deployment 2
+
+| | Production v1 (now) | Deployment 2 (later) |
+|--|---------------------|----------------------|
+| Public site + ministries + sermons + events | ✅ | — |
+| Weekly content / Zoom `/join` | ✅ | — |
+| Podcast RSS `/podcast.xml` | ✅ | — |
+| Custom domain `lschurch.com` | 🟡 DNS | — |
+| In-house live on `/live` | Countdown + prayer only | Mux + Mevo |
+| Give page Zeffy iframe | Fund info; embed when URL ready | Zeffy account |
+
+See [PRODUCTION_V1_LAUNCH.md](./PRODUCTION_V1_LAUNCH.md).
+
 ## Immediate next steps
 
-1. **Sleep / resume:** See [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md) checklist — most Vercel env is done.
-2. When Cloudflare shows **Active** → DNS A + CNAME → Vercel domains.
-3. **Commit + push** `feature/phase-2a` (prayer fix, OneSignal web, handover template) → merge `main` → Vercel deploy.
-4. Test prayer (Public), OneSignal subscribe, Zeffy embed in Sanity.
-5. Resend: verify `lschurch.com` when DNS ready.
+1. **Today:** Pastor demo — [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md); share https://lsc-platform-kappa.vercel.app
+2. When Cloudflare **Active** → `lschurch.com` on Vercel
+3. Optional: merge PR #3 (`thisWeek` CMS)
+4. **Deployment 2:** [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) + Zeffy embed in Studio
 
 ---
 
