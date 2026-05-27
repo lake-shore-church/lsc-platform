@@ -12,7 +12,8 @@
 - [ ] Open site in Chrome (incognito optional) — confirm homepage loads  
 - [ ] Language switcher: show **English** (other locales if time)  
 - [ ] Sanity Studio: glance at **Site configuration** — hero text looks correct  
-- [ ] Optional: `pnpm seed:site-config` only if content looks empty (needs `SANITY_API_TOKEN`)  
+- [ ] **This week’s content** (May 31): `pnpm seed:weekly-update` and `pnpm seed:week-events` (needs `SANITY_API_TOKEN` + `SUPABASE_SERVICE_ROLE_KEY` in `apps/web/.env.local`)  
+- [ ] Optional: `pnpm seed:site-config` only if content looks empty  
 - [ ] Do **not** turn **Is live now** ON unless you have a test YouTube ID (in-house player not live yet)  
 - [ ] Phone: open same URL — responsive check  
 

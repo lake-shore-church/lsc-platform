@@ -19,7 +19,7 @@ export async function FeaturedSeriesSection({ latestSermon }: { latestSermon: Se
               {t("series_desc")}
             </p>
             <Link
-              href="/sermons?series=sheer-goodness-of-jesus"
+              href="/sermons"
               className="mt-8 inline-flex min-h-[48px] items-center rounded-card bg-brand-accent px-6 text-base font-semibold text-white hover:opacity-90"
             >
               {t("watch_series")}

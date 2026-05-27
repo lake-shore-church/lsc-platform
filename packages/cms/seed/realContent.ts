@@ -36,18 +36,21 @@ export const REAL_SITE_CONFIG = {
     "Beloved, I pray that you may prosper in all things and be in health, just as your soul prospers.",
   familyVisionLine:
     "We are a family of God — wise virgins with oil and fire — preparing together to meet the Bridegroom, Jesus.",
-  sundayPrayerGathering: "Sunday 9:30 AM — prayer before worship",
-  wednesdayPrayerTitle: "Wednesday prayer & fellowship",
+  sundayPrayerGathering:
+    "Saturday 6:30–6:45 p.m. on Zoom — prayer for Sunday worship. Sunday doors open 9:30 AM; worship 10:00 AM at Merit School.",
+  wednesdayPrayerTitle: "Midweek meeting — Wednesday, May 27",
   wednesdayPrayerSummary:
-    "Mid-week prayer, meal, and fellowship — home host announced weekly.",
-  churchZoomJoinUrl: "https://zoom.us/j/83078837399",
+    "Hosted by Nancy and Pastor Brian. Presidential Towers, Tower 1, 555 W. Madison St, Apt 2010. 6:15 p.m.",
+  churchZoomJoinUrl:
+    "https://us02web.zoom.us/j/83078837399?pwd=SVRmWjNrdS80L3hid0tqSVFyeGg3Zz09",
   churchZoomMeetingId: "830 7883 7399",
   churchZoomPasscode: "662215",
-  wednesdayZoomLink: "https://zoom.us/j/83078837399",
-  upcomingSermonTitle: "Next Sunday message",
+  wednesdayZoomLink:
+    "https://us02web.zoom.us/j/83078837399?pwd=SVRmWjNrdS80L3hid0tqSVFyeGg3Zz09",
+  upcomingSermonTitle: "How Satan Influences the World",
   upcomingSermonDescription:
-    "Join us for scripture-based teaching in the West Loop. Title announced mid-week — check back or subscribe for updates.",
-  upcomingSermonDate: "This Sunday · 10:00 AM CT",
+    "Pastor Brian resumes this series. Key text: “We know that we are from God, and the whole world lies in the power of the evil one.” (1 John 5:19 ESV). After worship: providence lunch together.",
+  upcomingSermonDate: "This Sunday · May 31 · 10:00 A.M. CT",
 };
 
 export const SERIES = [
