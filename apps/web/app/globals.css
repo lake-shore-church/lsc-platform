@@ -84,7 +84,7 @@
   }
 
   .link-hover {
-    @apply underline-offset-2 decoration-brand-primary/80 hover:underline;
+    @apply underline-offset-2 hover:underline;
   }
 
   /* Text links in public pages without .link-hover still underline on hover */
