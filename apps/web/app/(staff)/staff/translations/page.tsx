@@ -89,7 +89,7 @@ export default async function StaffTranslationsPage() {
         </table>
       </div>
 
-      <Link href="/studio" className="mt-8 inline-block font-semibold text-brand-primary">
+      <Link href="/studio" className="link-hover mt-8 inline-block font-semibold text-brand-primary">
         Open Sanity Studio to approve →
       </Link>
     </>

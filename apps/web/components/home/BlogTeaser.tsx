@@ -1,6 +1,7 @@
 import Link from "next/link";
 import type { BlogPost } from "@repo/cms";
 import { Container } from "@/components/ui/Container";
+import { TextLink } from "@/components/ui/TextLink";
 import { formatDate } from "@/lib/format";
 import { slugValue } from "@/lib/sanity";
 
@@ -12,9 +13,9 @@ export function BlogTeaser({ posts }: { posts: BlogPost[] }) {
       <Container>
         <div className="flex items-end justify-between gap-4">
           <h2 className="font-display text-h2 text-brand-primary">From the blog</h2>
-          <Link href="/blog" className="link-hover text-base font-semibold text-brand-primary">
-            Read all posts →
-          </Link>
+          <TextLink href="/blog" className="text-base">
+            Read all posts
+          </TextLink>
         </div>
         {display.length === 0 ? (
           <p className="mt-6 text-foreground-muted">New posts coming soon.</p>
@@ -24,19 +25,22 @@ export function BlogTeaser({ posts }: { posts: BlogPost[] }) {
               <li key={post._id} className="rounded-card border border-default bg-background p-6 shadow-card">
                 <p className="text-base text-foreground-muted">{formatDate(post.publishedAt)}</p>
                 <h3 className="mt-2 text-xl font-semibold text-foreground-primary">
-                  <Link href={`/blog/${slugValue(post.slug)}`} className="hover:text-brand-primary">
+                  <Link
+                    href={`/blog/${slugValue(post.slug)}`}
+                    className="link-hover hover:text-brand-primary"
+                  >
                     {post.title}
                   </Link>
                 </h3>
                 {post.excerpt ? (
                   <p className="mt-2 line-clamp-3 text-foreground-secondary">{post.excerpt}</p>
                 ) : null}
-                <Link
+                <TextLink
                   href={`/blog/${slugValue(post.slug)}`}
-                  className="link-hover mt-4 inline-block text-base font-semibold text-brand-accent"
+                  className="mt-4 inline-block text-base text-brand-accent"
                 >
-                  Read more →
-                </Link>
+                  Read more
+                </TextLink>
               </li>
             ))}
           </ul>

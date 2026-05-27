@@ -2,6 +2,7 @@ import { getTranslations } from "next-intl/server";
 import { Link } from "@/i18n/navigation";
 import type { Sermon } from "@repo/cms";
 import { Container } from "@/components/ui/Container";
+import { TextLink } from "@/components/ui/TextLink";
 import { formatDate } from "@/lib/format";
 
 export async function FeaturedSeriesSection({ latestSermon }: { latestSermon: Sermon | null }) {
@@ -37,12 +38,13 @@ export async function FeaturedSeriesSection({ latestSermon }: { latestSermon: Se
                   {formatDate(latestSermon.publishedAt)}
                 </p>
               ) : null}
-              <Link
+              <TextLink
                 href={`/sermons/${latestSermon.slug.current}`}
-                className="link-hover mt-4 inline-block font-semibold text-brand-accent"
+                className="mt-4 inline-block text-brand-accent"
+                withArrow={false}
               >
                 {t("watch_now")}
-              </Link>
+              </TextLink>
             </article>
           ) : null}
         </div>

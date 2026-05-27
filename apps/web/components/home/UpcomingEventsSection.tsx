@@ -1,7 +1,7 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import type { Event } from "@repo/db";
 import { Container } from "@/components/ui/Container";
+import { TextLink } from "@/components/ui/TextLink";
 import { formatDateTime } from "@/lib/format";
 
 export async function UpcomingEventsSection({ events }: { events: Event[] }) {
@@ -13,9 +13,9 @@ export async function UpcomingEventsSection({ events }: { events: Event[] }) {
       <Container>
         <div className="flex items-end justify-between gap-4">
           <h2 className="font-display text-h2 text-brand-primary">{t("upcoming_events")}</h2>
-          <Link href="/events" className="link-hover text-base font-semibold text-brand-primary">
+          <TextLink href="/events" className="text-base" withArrow={false}>
             {t("see_all_events")}
-          </Link>
+          </TextLink>
         </div>
         {display.length === 0 ? (
           <p className="mt-6 text-base text-foreground-secondary">{t("no_upcoming_events")}</p>
@@ -35,12 +35,9 @@ export async function UpcomingEventsSection({ events }: { events: Event[] }) {
                 {ev.location ? (
                   <p className="mt-1 text-sm text-foreground-muted">{ev.location}</p>
                 ) : null}
-                <Link
-                  href="/events"
-                  className="link-hover mt-4 text-sm font-semibold text-brand-primary"
-                >
-                  RSVP →
-                </Link>
+                <TextLink href="/events" className="mt-4 text-sm">
+                  RSVP
+                </TextLink>
               </li>
             ))}
           </ul>

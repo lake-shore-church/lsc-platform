@@ -84,7 +84,13 @@
   }
 
   .link-hover {
-    @apply hover:underline underline-offset-2;
+    @apply underline-offset-2 decoration-brand-primary/80 hover:underline;
+  }
+
+  /* Text links in public pages without .link-hover still underline on hover */
+  .site-main a:not(.no-link-hover):not([class*="btn"]):not([class*="Button"]):hover {
+    text-decoration-line: underline;
+    text-underline-offset: 2px;
   }
 
   /* Ministry cards — distinct tints per theme variables */

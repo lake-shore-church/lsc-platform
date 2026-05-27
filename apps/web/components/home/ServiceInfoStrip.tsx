@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
-import { Link } from "@/i18n/navigation";
 import { Container } from "@/components/ui/Container";
+import { TextLink } from "@/components/ui/TextLink";
 
 export async function ServiceInfoStrip() {
   const t = await getTranslations("home");
@@ -58,23 +58,9 @@ export async function ServiceInfoStrip() {
                   <p key={line}>{line}</p>
                 ))}
               </div>
-              {"external" in card && card.external ? (
-                <a
-                  href={card.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="link-hover mt-4 inline-block text-base font-semibold text-brand-primary"
-                >
-                  {card.linkLabel}
-                </a>
-              ) : (
-                <Link
-                  href={card.href}
-                  className="link-hover mt-4 inline-block text-base font-semibold text-brand-primary"
-                >
-                  {card.linkLabel}
-                </Link>
-              )}
+              <TextLink href={card.href} className="mt-4 inline-block text-base" withArrow={false}>
+                {card.linkLabel}
+              </TextLink>
             </article>
           ))}
         </div>

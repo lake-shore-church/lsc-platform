@@ -8,7 +8,9 @@ import {
   MINISTRY_CATEGORY_LABELS,
   MINISTRY_CATEGORY_ORDER,
 } from "@/lib/ministryCategories";
+import { MinistriesQuickLinks } from "@/components/ministries/MinistriesQuickLinks";
 import { getFallbackMinistries } from "@/lib/ministriesFallback";
+import { filterMinistriesForHub } from "@/lib/ministriesHub";
 import type { MinistryCategory, MinistryPage } from "@repo/cms";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -33,6 +35,7 @@ export default async function MinistriesPage() {
   const t = await getTranslations("ministries");
   let ministries = await getMinistryPages().catch(() => [] as MinistryPage[]);
   if (!ministries.length) ministries = getFallbackMinistries();
+  ministries = filterMinistriesForHub(ministries);
 
   const grouped = groupByCategory(ministries);
 
@@ -43,6 +46,7 @@ export default async function MinistriesPage() {
         <p className="max-w-3xl text-base leading-relaxed text-foreground-secondary">
           {t("intro")}
         </p>
+        <MinistriesQuickLinks heading={t("quick_links_heading")} />
 
         {MINISTRY_CATEGORY_ORDER.map((category) => {
           const items = grouped.get(category) ?? [];
@@ -54,7 +58,11 @@ export default async function MinistriesPage() {
               </h2>
               <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
                 {items.map((ministry) => (
-                  <MinistryCard key={ministry._id} ministry={ministry} />
+                  <MinistryCard
+                    key={ministry._id}
+                    ministry={ministry}
+                    learnMoreLabel={t("learn_more")}
+                  />
                 ))}
               </div>
             </section>

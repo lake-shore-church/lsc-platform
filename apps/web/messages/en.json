@@ -324,7 +324,9 @@
     "page_desc": "Worship, prayer, missions, and ways to serve at Lake Shore Church.",
     "title": "Ministries & services",
     "subtitle": "One church family — many ways to worship, grow, and reach the world.",
-    "intro": "Browse by category. Many links go to dedicated pages (Give, Live, Blog); others open a ministry detail page you can edit in Sanity Studio."
+    "intro": "Core church pages (giving, visiting, sermons, and more) are linked below. The cards that follow are ministries and teams with their own detail pages.",
+    "quick_links_heading": "Main pages",
+    "learn_more": "Learn more"
   },
   "faq": {
     "page_title": "FAQ",

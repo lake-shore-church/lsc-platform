@@ -2,6 +2,7 @@
 
 import { Link } from "@/i18n/navigation";
 import type { LiveStatusResponse, Sermon } from "@repo/cms";
+import { TextLink } from "@/components/ui/TextLink";
 import { LiveCountdown } from "@repo/ui/web/LiveCountdown";
 import { PrayerForm } from "@/components/forms/PrayerForm";
 import { SermonCard } from "@/components/sermons/SermonCard";
@@ -248,12 +249,9 @@ function RecentServices({ sermons }: { sermons: Sermon[] }) {
           <SermonCard key={s._id} sermon={s} />
         ))}
       </div>
-      <Link
-        href="/sermons"
-        className="mt-6 inline-block font-semibold text-brand-primary hover:underline"
-      >
-        View all sermons →
-      </Link>
+      <TextLink href="/sermons" className="mt-6 inline-block">
+        View all sermons
+      </TextLink>
     </section>
   );
 }

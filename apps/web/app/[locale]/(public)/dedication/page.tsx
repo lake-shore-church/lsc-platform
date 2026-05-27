@@ -103,7 +103,7 @@ export default async function DedicationPage() {
                       {link.external ? (
                         <a
                           href={link.href}
-                          className="font-semibold text-brand-primary hover:underline"
+                          className="link-hover font-semibold text-brand-primary"
                           target="_blank"
                           rel="noopener noreferrer"
                         >
@@ -112,7 +112,7 @@ export default async function DedicationPage() {
                       ) : (
                         <Link
                           href={link.href}
-                          className="font-semibold text-brand-primary hover:underline"
+                          className="link-hover font-semibold text-brand-primary"
                         >
                           {link.label} →
                         </Link>

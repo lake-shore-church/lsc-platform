@@ -29,7 +29,7 @@ export default async function SermonsPage() {
       <Container className="py-12">
         <div className="mb-6 space-y-2 text-sm">
           <p>
-            <a href="/podcast.xml" className="font-semibold text-brand-primary hover:underline">
+            <a href="/podcast.xml" className="link-hover font-semibold text-brand-primary">
               {t("podcast_rss")}
             </a>
             <span className="text-foreground-muted"> {t("podcast_note")}</span>
@@ -39,7 +39,7 @@ export default async function SermonsPage() {
               href={PASTOR_MEDIA.podcast.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="font-semibold text-brand-primary hover:underline"
+              className="link-hover font-semibold text-brand-primary"
             >
               {t("pastor_podcast_link")}
             </a>

@@ -56,7 +56,7 @@ export default async function BeliefsPage() {
           {t("aog_intro")}{" "}
           <a
             href={AOG_BELIEFS_URL}
-            className="font-semibold text-brand-primary hover:underline"
+            className="link-hover font-semibold text-brand-primary"
             target="_blank"
             rel="noopener noreferrer"
           >

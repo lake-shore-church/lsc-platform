@@ -14,7 +14,7 @@ export default async function PublicLayout({
     <div className="flex min-h-screen flex-col bg-background">
       <PublicHeader config={config} />
       <LiveSiteBanner />
-      <main className="flex-1">{children}</main>
+      <main className="site-main flex-1">{children}</main>
       <PublicFooter
         churchName={config.churchName}
         address={formatSiteAddress(config)}

@@ -35,6 +35,11 @@ const IMG = {
   family: "/church/community.webp",
   serve: "/church/serve.jpg",
   sundaySchool: "/church/sunday-school.jpg",
+  mens: "/church/mens-ministry.jpg",
+  womens: "/church/womens-fellowship.jpg",
+  coffee: "/church/coffee-fellowship.jpg",
+  outreach: "/church/street-outreach.jpg",
+  podcast: "/church/podcast-mic.jpg",
 };
 
 /**
@@ -313,7 +318,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "Men meet for prayer, accountability, and practical teaching on walking honestly before God in family and workplace.",
     ],
     sortOrder: 20,
-    heroImageUrl: IMG.serve,
+    heroImageUrl: IMG.mens,
     imageAlt: "Men's fellowship",
   },
   {
@@ -326,7 +331,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "Women gather to study the Word, intercede, and share Christ in neighborhoods, workplaces, and gyms — like the simple ministers stories we celebrate on our Testimonies page.",
     ],
     sortOrder: 21,
-    heroImageUrl: IMG.family,
+    heroImageUrl: IMG.womens,
     imageAlt: "Women's fellowship",
   },
   {
@@ -357,7 +362,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Request a meeting",
     ctaHref: "/contact",
     sortOrder: 15,
-    heroImageUrl: IMG.community,
+    heroImageUrl: IMG.coffee,
     imageAlt: "Conversation over coffee",
   },
   {
@@ -419,7 +424,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Open podcast",
     ctaHref: "https://craigbrianlarson.libsyn.com/website",
     sortOrder: 18,
-    heroImageUrl: IMG.bible,
+    heroImageUrl: IMG.podcast,
     imageAlt: "Podcast listening",
   },
   {
@@ -562,7 +567,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "Teams go out with prayer, literature, and invitations to church. Training emphasizes love, respect, and bold witness.",
     ],
     sortOrder: 31,
-    heroImageUrl: IMG.missions,
+    heroImageUrl: IMG.outreach,
     imageAlt: "Street outreach",
   },
   {

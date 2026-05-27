@@ -1,9 +1,15 @@
 import type { MinistryPage } from "@repo/cms";
-import { Link } from "@/i18n/navigation";
+import { TextLink } from "@/components/ui/TextLink";
 import { ministryHref } from "@/lib/ministryLinks";
 import { MINISTRY_CATEGORY_LABELS } from "@/lib/ministryCategories";
 
-export function MinistryCard({ ministry }: { ministry: MinistryPage }) {
+export function MinistryCard({
+  ministry,
+  learnMoreLabel = "Learn more",
+}: {
+  ministry: MinistryPage;
+  learnMoreLabel?: string;
+}) {
   const href = ministryHref(ministry);
 
   return (
@@ -30,9 +36,9 @@ export function MinistryCard({ ministry }: { ministry: MinistryPage }) {
             {ministry.summary}
           </p>
         ) : null}
-        <Link href={href} className="link-hover mt-4 inline-block font-semibold text-brand-primary">
-          Learn more →
-        </Link>
+        <TextLink href={href} className="mt-4 inline-block">
+          {learnMoreLabel}
+        </TextLink>
       </div>
     </article>
   );
