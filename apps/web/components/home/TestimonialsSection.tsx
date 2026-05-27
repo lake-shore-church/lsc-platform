@@ -1,8 +1,8 @@
 import { getTranslations } from "next-intl/server";
-import { getTestimonies } from "@repo/cms";
 import { Container } from "@/components/ui/Container";
 
-const FALLBACK_TESTIMONIALS = [
+/** Real Google reviews — homepage always uses these (not /testimonies CMS stories). */
+const HOME_TESTIMONIALS = [
   {
     quote:
       "Pastor Brian is a legend. A righteous man who truly spends time in prayer before stepping into the pulpit. Lake Shore Church is one place where you can experience heaven on earth.",
@@ -21,16 +21,7 @@ const FALLBACK_TESTIMONIALS = [
 
 export async function TestimonialsSection() {
   const t = await getTranslations("home");
-  const cmsItems = await getTestimonies().catch(() => []);
-  const fromCms = cmsItems
-    .filter((item) => item.kind === "story" || !item.kind)
-    .slice(0, 3)
-    .map((item) => ({
-      quote: item.excerpt?.trim() || item.title,
-      name: item.title,
-      detail: undefined as string | undefined,
-    }));
-  const items = fromCms.length >= 2 ? fromCms : [...FALLBACK_TESTIMONIALS];
+  const items = HOME_TESTIMONIALS;
 
   return (
     <section className="section-pad bg-surface">
@@ -42,7 +33,7 @@ export async function TestimonialsSection() {
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {items.map((item) => (
             <blockquote
-              key={item.name}
+              key={`${item.name}-${item.quote.slice(0, 24)}`}
               className="rounded-card border border-default bg-background p-6 shadow-card"
             >
               <p className="text-brand-accent" aria-label="5 stars">
