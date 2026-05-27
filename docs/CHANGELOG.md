@@ -18,8 +18,6 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added (prior — feature/phase-2a)
 
-### Added
-
 - **Content platform evaluation** — `docs/CONTENT_PLATFORM_EVALUATION.md` phases the proposed 7-page mega-spec (this-week API, inline editing, weekly archive) vs current IA; Pastor sign-off required before large redirects.
 - **Phase 2A** — 501(c)(3) Give trust badge (web + mobile); PayPal Giving Fund default on; Sanity `churchTaxId`, `paypalGivingUrl`; mobile Give uses Zeffy embed from `/api/mobile/config`.
 - **Email** — Prayer and contact acknowledgements via Resend; mobile prayer optional email; contact form verified on Vercel production.
