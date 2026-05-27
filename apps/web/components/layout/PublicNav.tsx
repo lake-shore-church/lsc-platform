@@ -31,7 +31,8 @@ export function PublicNav({
       label: t("connect"),
       links: [
         { href: "/visit", label: t("visit") },
-        { href: "/events", label: t("groups") },
+        { href: "/events", label: t("events") },
+        { href: "/ministries/sunday-school", label: t("groups") },
         { href: "/prayer", label: t("prayer") },
       ],
     },
@@ -47,10 +48,7 @@ export function PublicNav({
     },
     {
       label: t("give"),
-      links: [
-        { href: "/give", label: t("give") },
-        { href: "/give", label: t("about_giving") },
-      ],
+      links: [{ href: "/give", label: t("give") }],
     },
     {
       label: t("about"),
