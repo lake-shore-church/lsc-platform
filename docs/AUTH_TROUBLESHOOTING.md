@@ -6,10 +6,13 @@ If sign-in fails on **web** (`/login`) or **mobile** (More → Sign in) with err
 
 Open [Supabase → Authentication → URL Configuration](https://supabase.com/dashboard/project/zstnygokvxrrszvkfejs/auth/url-configuration).
 
-**Site URL** (pick one for production testing):
+**Site URL** — use **one** canonical production URL (not localhost) when pastors or members sign in on the live site:
 
-- `https://lsc-platform-kappa.vercel.app`  
-- or `http://localhost:3000` when only testing locally
+- `https://lsc-platform-kappa.vercel.app` (or `https://lschurch.com` when the domain is live)
+
+Use `http://localhost:3000` **only** when everyone on your team is testing locally that day. If Site URL is still `localhost`, **every magic-link email will point at localhost** even when someone uses `/login` on Vercel.
+
+If the email link looks like `http://localhost:3000/?code=...` (root URL, no `/auth/callback`), fix Site URL + Redirect URLs below, request a **new** link, and the app will forward `?code=` to `/auth/callback` automatically.
 
 **Redirect URLs** — add every line below (wildcards reduce Expo Go pain):
 

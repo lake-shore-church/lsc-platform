@@ -2,25 +2,33 @@
 
 import { headers } from "next/headers";
 import { redirect } from "next/navigation";
+import { getPublicSiteUrl } from "@/lib/site";
 import { createSupabaseServerClient } from "@/lib/supabase/server";
 
 export type LoginActionState = { error?: string } | null;
 
-function getOrigin(headersList: Headers): string {
+/** Origin embedded in magic-link emails — must match Supabase redirect allow list. */
+function getMagicLinkOrigin(headersList: Headers): string {
   const host = headersList.get("x-forwarded-host") ?? headersList.get("host");
-  const proto = headersList.get("x-forwarded-proto") ?? "http";
+  const proto = headersList.get("x-forwarded-proto") ?? "https";
 
-  // Local dev: magic link must return to the same host you're testing on.
+  // Local dev: return to the same host you used on /login.
   if (host && (host.includes("localhost") || host.startsWith("127.0.0.1"))) {
-    return `${proto}://${host}`;
+    return `http://${host.replace(/^https?:\/\//, "")}`;
   }
 
-  const configured = process.env.NEXT_PUBLIC_APP_URL?.trim();
+  // Production deploy: always use canonical site URL (Vercel env), not a stray preview host.
+  if (process.env.VERCEL === "1") {
+    return getPublicSiteUrl();
+  }
+
+  const configured =
+    process.env.NEXT_PUBLIC_APP_URL?.trim() || process.env.NEXT_PUBLIC_SITE_URL?.trim();
   if (configured?.startsWith("http")) return configured.replace(/\/$/, "");
 
   if (host) return `${proto}://${host}`;
 
-  return "http://localhost:3000";
+  return getPublicSiteUrl();
 }
 
 export async function sendMagicLink(
@@ -35,7 +43,7 @@ export async function sendMagicLink(
   }
 
   const headersList = await headers();
-  const origin = getOrigin(headersList);
+  const origin = getMagicLinkOrigin(headersList);
   const supabase = await createSupabaseServerClient();
 
   // Drop broken/stale sessions so sign-in uses the anon key (not a corrupted Bearer token).

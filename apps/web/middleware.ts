@@ -33,7 +33,20 @@ function mergeSupabaseCookies(source: NextResponse, target: NextResponse): NextR
 }
 
 export async function middleware(request: NextRequest) {
-  const { pathname } = request.nextUrl;
+  const { pathname, searchParams } = request.nextUrl;
+
+  // Supabase PKCE often lands on Site URL root (?code=) when callback URL is not allow-listed.
+  if (
+    !pathname.startsWith("/auth/callback") &&
+    (searchParams.has("code") || searchParams.has("token_hash"))
+  ) {
+    const callback = new URL("/auth/callback", request.url);
+    searchParams.forEach((value, key) => {
+      callback.searchParams.set(key, value);
+    });
+    return NextResponse.redirect(callback);
+  }
+
   const { supabase, response: supabaseResponse } = createSupabaseMiddlewareClient(request);
 
   const {
