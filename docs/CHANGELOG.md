@@ -13,6 +13,8 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Changed
 
+- **Podcast RSS** — canonical site URL from deployment host; dedupe duplicate sermon episodes; video link in description.
+- **Nav** — Small Groups → Sunday school ministry; Events own link; removed duplicate About Giving.
 - Homepage presentation: testimonials from CMS when available, warmer upcoming-sermon copy, `/live` strip links to live page, friendlier empty events message.
 - `/live` and `/testimonies`: honest copy about in-house video upgrade; removed placeholder video/audio cards from testimonies fallback.
 

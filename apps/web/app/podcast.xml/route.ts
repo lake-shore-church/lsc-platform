@@ -1,7 +1,9 @@
 import { getSermons } from "@repo/cms";
-
-const SITE_URL =
-  process.env.NEXT_PUBLIC_APP_URL ?? "https://lsc-platform-kappa.vercel.app";
+import {
+  dedupeSermonsForPodcast,
+  sermonEpisodeDescription,
+} from "@/lib/podcastRss";
+import { getPublicSiteUrl } from "@/lib/site";
 
 function escapeXml(value: string): string {
   return value
@@ -18,15 +20,17 @@ function formatRssDate(iso?: string): string {
 }
 
 export async function GET() {
-  const sermons = await getSermons().catch(() => []);
+  const siteUrl = getPublicSiteUrl();
+  const raw = await getSermons().catch(() => []);
+  const sermons = dedupeSermonsForPodcast(raw);
 
   const items = sermons
     .map((sermon) => {
       const slug = sermon.slug?.current ?? sermon._id;
-      const link = `${SITE_URL}/sermons/${slug}`;
-      const description = escapeXml(sermon.summary ?? sermon.title);
-      const enclosure = sermon.audioUrl
-        ? `<enclosure url="${escapeXml(sermon.audioUrl)}" length="0" type="audio/mpeg" />`
+      const link = `${siteUrl}/sermons/${slug}`;
+      const description = escapeXml(sermonEpisodeDescription(sermon));
+      const enclosure = sermon.audioUrl?.trim()
+        ? `<enclosure url="${escapeXml(sermon.audioUrl.trim())}" length="0" type="audio/mpeg" />`
         : "";
 
       return `    <item>
@@ -49,7 +53,7 @@ export async function GET() {
   xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Lake Shore Church — Sermons</title>
-    <link>${escapeXml(SITE_URL)}</link>
+    <link>${escapeXml(siteUrl)}</link>
     <description>Scripture-based teaching from Pastor Brian at Lake Shore Church, West Loop Chicago. God raised Jesus from the dead — there is hope for all who follow him.</description>
     <language>en-us</language>
     <copyright>Lake Shore Church</copyright>
@@ -58,7 +62,7 @@ export async function GET() {
       <itunes:category text="Christianity" />
     </itunes:category>
     <itunes:explicit>no</itunes:explicit>
-    <atom:link href="${escapeXml(`${SITE_URL}/podcast.xml`)}" rel="self" type="application/rss+xml" />
+    <atom:link href="${escapeXml(`${siteUrl}/podcast.xml`)}" rel="self" type="application/rss+xml" />
 ${items}
   </channel>
 </rss>`;

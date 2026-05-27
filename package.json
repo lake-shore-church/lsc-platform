@@ -11,6 +11,7 @@
     "seed:site-config": "tsx scripts/seed-site-config.ts",
     "seed:weekly-update": "tsx scripts/seed-weekly-update.ts",
     "seed:week-events": "tsx scripts/seed-week-events.ts",
+    "cleanup:duplicate-sermon": "tsx scripts/cleanup-duplicate-sermon.ts",
     "seed:content": "tsx scripts/seed-content.ts",
     "seed:ministries": "tsx scripts/seed-ministries.ts",
     "seed:testimonies": "tsx scripts/seed-testimonies.ts",
