@@ -7,6 +7,7 @@ import community from "../images/home/plan_a_visit.webp";
 import worship from "../images/home/worship.jpg";
 import bible from "../images/home/flipping_bible.webp";
 import serve from "../images/home/serve.jpg";
+import pastorBrian from "../images/people/pastor-brian.jpg";
 
 /** Bundled image modules (Next.js Image + Expo Image / RN Image). */
 export const homeImages = {
@@ -15,6 +16,10 @@ export const homeImages = {
   worship,
   bible,
   serve,
+} as const;
+
+export const peopleImages = {
+  pastorBrian,
 } as const;
 
 /** @deprecated Prefer homeImages — kept for existing imports */

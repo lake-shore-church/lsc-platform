@@ -13,6 +13,7 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Changed
 
+- **About Pastor Brian** — full biography from [craigbrianlarson.com/about](https://craigbrianlarson.com/about/), portrait photo, published works list, and external links; leaders page shows photo.
 - **Podcast RSS** — canonical site URL from deployment host; dedupe duplicate sermon episodes; video link in description.
 - **Nav** — Small Groups → Sunday school ministry; Events own link; removed duplicate About Giving.
 - Homepage presentation: testimonials from CMS when available, warmer upcoming-sermon copy, `/live` strip links to live page, friendlier empty events message.

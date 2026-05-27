@@ -4,9 +4,8 @@ import { Link } from "@/i18n/navigation";
 import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { JsonLd } from "@/components/seo/JsonLd";
+import { PastorAboutSection } from "@/components/about/PastorAboutSection";
 import { PastorTeachingLinks } from "@/components/about/PastorTeachingLinks";
-
-const BOOK_URL = "https://www.amazon.com/s?k=Craig+Brian+Larson+Know";
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("about");
@@ -54,21 +53,14 @@ export default async function AboutPage() {
           </Link>
         </p>
 
-        <section id="pastor" className="mt-14 scroll-mt-24">
-          <h2 className="font-display text-h2 text-brand-primary">{t("pastor_heading")}</h2>
-          <p className="mt-1 text-sm font-semibold text-brand-accent">{t("pastor_name")}</p>
-          <p className="mt-4 text-base leading-relaxed text-foreground-secondary">
-            {t("pastor_bio")}
-          </p>
-          <Link
-            href={BOOK_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="link-hover mt-4 inline-block font-semibold text-brand-primary"
-          >
-            {t("book_link")}
-          </Link>
-        </section>
+        <PastorAboutSection
+          heading={t("pastor_heading")}
+          name={t("pastor_name")}
+          worksHeading={t("pastor_works_heading")}
+          connectHeading={t("pastor_connect_heading")}
+          bookKnowLabel={t("book_link")}
+          amazonLabel={t("pastor_amazon_link")}
+        />
 
         <PastorTeachingLinks
           heading={t("teaching_heading")}

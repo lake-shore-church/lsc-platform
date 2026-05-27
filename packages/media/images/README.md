@@ -2,6 +2,14 @@
 
 **One folder for web + mobile.** Drop your church photos here; both apps import from `@repo/media`.
 
+## People
+
+| File | Use |
+|------|-----|
+| `people/pastor-brian.jpg` | About → Pastor Brian (also copied to `apps/web/public/church/pastor-brian.jpg`) |
+
+Source: [craigbrianlarson.com/about](https://craigbrianlarson.com/about/) (Pastor’s author site).
+
 ## Homepage images (required)
 
 | File | Web | Mobile (when wired) |

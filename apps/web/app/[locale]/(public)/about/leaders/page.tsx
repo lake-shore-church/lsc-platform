@@ -6,6 +6,8 @@ import { PageHeader } from "@/components/ui/PageHeader";
 import { Container } from "@/components/ui/Container";
 import { PortableText } from "@/components/content/PortableText";
 import { Link } from "@/i18n/navigation";
+import { PastorLeaderCard } from "@/components/about/PastorLeaderCard";
+import { PASTOR_PHOTO_SRC } from "@/lib/pastorBioContent";
 import { urlFor } from "@/lib/sanity";
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -28,7 +30,14 @@ export default async function LeadersPage() {
         <div className="mt-10 grid gap-8 md:grid-cols-2">
           {bios.length ? (
             bios.map((person) => {
-              const photoUrl = person.photo ? urlFor(person.photo).width(400).height(400).url() : null;
+              const slug = person.slug?.current ?? "";
+              const isPastor =
+                slug === "pastor-brian" || person.name.toLowerCase().includes("larson");
+              const photoUrl = person.photo
+                ? urlFor(person.photo).width(400).height(400).url()
+                : isPastor
+                  ? PASTOR_PHOTO_SRC
+                  : null;
               return (
                 <article
                   key={person._id}
@@ -67,19 +76,12 @@ export default async function LeadersPage() {
               );
             })
           ) : (
-            <article className="rounded-card border border-default bg-surface p-6 md:col-span-2">
-              <h2 className="font-display text-h3 text-brand-primary">{t("pastor_name")}</h2>
-              <p className="text-sm font-semibold text-brand-accent">{t("pastor_role")}</p>
-              <p className="mt-3 text-base leading-relaxed text-foreground-secondary">
-                {t("pastor_bio")}
-              </p>
-              <Link
-                href="/about#pastor"
-                className="link-hover mt-4 inline-block font-semibold text-brand-primary"
-              >
-                {t("about_pastor")} →
-              </Link>
-            </article>
+            <PastorLeaderCard
+              name={t("pastor_name")}
+              role={t("pastor_role")}
+              summary={t("pastor_bio")}
+              moreLabel={t("about_pastor")}
+            />
           )}
         </div>
 
