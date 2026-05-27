@@ -25,21 +25,52 @@ export type MinistrySeed = {
   showOnHome?: boolean;
 };
 
-/** Church photos in apps/web/public/church/ (also used on home page). */
+/** Unique hero image per ministry — apps/web/public/church/ */
 const IMG = {
-  prayer: "/church/worship.jpg",
-  worship: "/church/worship.jpg",
-  bible: "/church/bible.webp",
-  community: "/church/community.webp",
-  missions: "/church/chicago.webp",
-  family: "/church/community.webp",
-  serve: "/church/serve.jpg",
   sundaySchool: "/church/sunday-school.jpg",
   mens: "/church/mens-ministry.jpg",
   womens: "/church/womens-fellowship.jpg",
   coffee: "/church/coffee-fellowship.jpg",
   outreach: "/church/street-outreach.jpg",
   podcast: "/church/podcast-mic.jpg",
+  pastor: "/church/pastor-brian.jpg",
+  providenceLunch: "/church/providence-lunch.jpg",
+  wednesdayPrayer: "/church/ministry-wednesday-prayer.jpg",
+  worshipTeam: "/church/ministry-worship-team.jpg",
+  getInvolved: "/church/ministry-get-involved.jpg",
+  joinPrayers: "/church/ministry-join-prayers.jpg",
+  levites: "/church/ministry-levites.jpg",
+  technology: "/church/ministry-technology.jpg",
+  admin: "/church/ministry-admin.jpg",
+  personalDev: "/church/ministry-personal-dev.jpg",
+  homeChurches: "/church/ministry-home-churches.jpg",
+  prophecies: "/church/ministry-prophecies.jpg",
+  give: "/church/ministry-give.jpg",
+  live: "/church/ministry-live.jpg",
+  blog: "/church/ministry-blog.jpg",
+  faq: "/church/ministry-faq.jpg",
+  leaders: "/church/ministry-leaders.jpg",
+  beliefs: "/church/ministry-beliefs.jpg",
+  visit: "/church/ministry-visit.jpg",
+  events: "/church/ministry-events.jpg",
+  sermons: "/church/ministry-sermons.jpg",
+  prayer: "/church/ministry-prayer.jpg",
+  testimonies: "/church/ministry-testimonies.jpg",
+  resources: "/church/ministry-multilingual.jpg",
+  dedication: "/church/ministry-dedication.jpg",
+  missionaries: "/church/ministry-missionaries.jpg",
+  conferences: "/church/ministry-conferences.jpg",
+  radio: "/church/ministry-radio.jpg",
+  homeVisit: "/church/ministry-home-visit.jpg",
+  holySpirit: "/church/ministry-holy-spirit.jpg",
+  waterBaptism: "/church/ministry-water-baptism.jpg",
+  simpleMinisters: "/church/ministry-simple-ministers.jpg",
+  churchHistory: "/church/ministry-church-history.jpg",
+  membership: "/church/ministry-membership.jpg",
+  pastorLife: "/church/ministry-pastor-life.jpg",
+  godTest: "/church/ministry-god-test.jpg",
+  heavenHell: "/church/ministry-heaven-hell.jpg",
+  bibleAssistant: "/church/ministry-bible-assistant.jpg",
 };
 
 /**
@@ -61,7 +92,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Give now",
     ctaHref: "/give",
     sortOrder: 1,
-    heroImageUrl: IMG.community,
+    heroImageUrl: IMG.give,
     imageAlt: "Hands joined in fellowship",
   },
   {
@@ -80,7 +111,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaHref: "/live",
     sortOrder: 2,
     showOnHome: true,
-    heroImageUrl: IMG.worship,
+    heroImageUrl: IMG.live,
     imageAlt: "Worship gathering",
   },
   {
@@ -97,7 +128,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Read the blog",
     ctaHref: "/blog",
     sortOrder: 3,
-    heroImageUrl: IMG.bible,
+    heroImageUrl: IMG.blog,
     imageAlt: "Open Bible study",
   },
   {
@@ -113,7 +144,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "View FAQ",
     ctaHref: "/faq",
     sortOrder: 4,
-    heroImageUrl: IMG.community,
+    heroImageUrl: IMG.faq,
     imageAlt: "People in conversation",
   },
   {
@@ -129,7 +160,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Meet the leaders",
     ctaHref: "/about/leaders",
     sortOrder: 5,
-    heroImageUrl: IMG.family,
+    heroImageUrl: IMG.leaders,
     imageAlt: "Church leadership",
   },
   {
@@ -145,7 +176,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Our beliefs",
     ctaHref: "/beliefs",
     sortOrder: 6,
-    heroImageUrl: IMG.bible,
+    heroImageUrl: IMG.beliefs,
     imageAlt: "Scripture",
   },
   {
@@ -162,7 +193,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaHref: "/visit",
     sortOrder: 7,
     showOnHome: true,
-    heroImageUrl: IMG.community,
+    heroImageUrl: IMG.visit,
     imageAlt: "Welcoming church entrance",
   },
   {
@@ -176,7 +207,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "See events",
     ctaHref: "/events",
     sortOrder: 8,
-    heroImageUrl: IMG.community,
+    heroImageUrl: IMG.events,
     imageAlt: "Community event",
   },
   {
@@ -193,7 +224,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Sermon archive",
     ctaHref: "/sermons",
     sortOrder: 9,
-    heroImageUrl: IMG.worship,
+    heroImageUrl: IMG.sermons,
     imageAlt: "Preaching",
   },
   {
@@ -211,7 +242,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     sortOrder: 10,
     showOnHome: true,
     heroImageUrl: IMG.prayer,
-    imageAlt: "Praying together",
+    imageAlt: "Prayer requests",
   },
   {
     _id: "ministry-testimonies",
@@ -226,7 +257,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Read testimonies",
     ctaHref: "/testimonies",
     sortOrder: 11,
-    heroImageUrl: IMG.family,
+    heroImageUrl: IMG.testimonies,
     imageAlt: "Sharing testimony",
   },
   {
@@ -249,9 +280,9 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     slug: "wednesday-prayer",
     title: "Wednesday prayer & fellowship",
     category: "connect",
-    summary: "Mid-week prayer, worship, and shared meal in a home setting — also online via Zoom and live stream.",
+    summary: "Mid-week prayer, worship, and providence dinner in a home setting — also online via Zoom and live stream.",
     paragraphs: [
-      "Wednesday gatherings strengthen our church family between Sundays. We pray for one another, the city, and the nations; share a meal; and often host the meeting in a member's home (address announced weekly).",
+      "Wednesday gatherings strengthen our church family between Sundays. We pray for one another, the city, and the nations; share a providence dinner; and often host the meeting in a member's home (address announced weekly).",
       "Join online when you cannot attend in person — Zoom link and live stream appear on the home page when active.",
     ],
     scheduleLabel: "Wednesdays · evening (CT)",
@@ -263,7 +294,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaHref: "/prayer",
     sortOrder: 13,
     showOnHome: true,
-    heroImageUrl: IMG.prayer,
+    heroImageUrl: IMG.wednesdayPrayer,
     imageAlt: "Wednesday prayer gathering",
   },
   {
@@ -277,7 +308,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "Subscribe to email updates on the home page to hear when the next conference opens.",
     ],
     sortOrder: 40,
-    heroImageUrl: IMG.missions,
+    heroImageUrl: IMG.conferences,
     imageAlt: "Global connection",
   },
   {
@@ -291,7 +322,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "If you sense a call to plant, speak with Pastor Brian after a Sunday service or through Contact.",
     ],
     sortOrder: 41,
-    heroImageUrl: IMG.missions,
+    heroImageUrl: IMG.homeChurches,
     imageAlt: "Home fellowship",
   },
   {
@@ -305,7 +336,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ],
     canonicalPath: "/resources",
     sortOrder: 42,
-    heroImageUrl: IMG.bible,
+    heroImageUrl: IMG.resources,
     imageAlt: "Languages and scripture",
   },
   {
@@ -345,7 +376,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "Watch recent worship moments on our Live and Sermons pages. To audition, contact the worship leader through the church office.",
     ],
     sortOrder: 14,
-    heroImageUrl: IMG.worship,
+    heroImageUrl: IMG.worshipTeam,
     imageAlt: "Worship team",
   },
   {
@@ -379,7 +410,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Our beliefs",
     ctaHref: "/beliefs",
     sortOrder: 16,
-    heroImageUrl: IMG.worship,
+    heroImageUrl: IMG.holySpirit,
     imageAlt: "Worship in the Spirit",
   },
   {
@@ -389,13 +420,13 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     category: "serve",
     summary: "Serve as Levites, intercessors, musicians, technologists, hospitality, and more.",
     paragraphs: [
-      "God gifts every believer for service. Tell us your interests — prayer team, music, media, children's ministry, hospitality, finance, or outreach — and we will connect you with a leader.",
+      "God gifts every believer for service. Tell us your interests — prayer team, music, media, children's ministry, providence lunch, finance, or outreach — and we will connect you with a leader.",
     ],
     ctaLabel: "Volunteer interest",
     ctaHref: "/contact",
     sortOrder: 17,
     showOnHome: true,
-    heroImageUrl: IMG.serve,
+    heroImageUrl: IMG.getInvolved,
     imageAlt: "Serving together",
   },
   {
@@ -408,7 +439,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "Short teachings and testimonies air through partner stations. Details and airtimes will be posted here as partnerships are confirmed.",
     ],
     sortOrder: 30,
-    heroImageUrl: IMG.worship,
+    heroImageUrl: IMG.radio,
     imageAlt: "Radio broadcast",
   },
   {
@@ -429,16 +460,18 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
   },
   {
     _id: "ministry-cooking",
-    slug: "cooking-ministry",
-    title: "Cooking & potluck ministry",
+    slug: "providence-lunch",
+    title: "Providence lunch ministry",
     category: "connect",
-    summary: "Shared meals on Sundays and at special gatherings — breaking bread as family.",
+    summary:
+      "Providence lunches after Sunday worship and at special gatherings — breaking bread as family.",
     paragraphs: [
-      "On selected Sundays we enjoy potluck fellowship after service. Sign up to bring a dish or help with setup through the church office.",
+      "After worship on selected Sundays we gather for a providence lunch together — sharing food as family, giving thanks for God's provision, and celebrating milestones in the church.",
+      "Sign up to bring a dish or help with setup through the church office.",
     ],
     sortOrder: 22,
-    heroImageUrl: IMG.family,
-    imageAlt: "Shared meal",
+    heroImageUrl: IMG.providenceLunch,
+    imageAlt: "Providence lunch fellowship",
   },
   {
     _id: "ministry-home-visit",
@@ -453,7 +486,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Request a visit",
     ctaHref: "/prayer",
     sortOrder: 23,
-    heroImageUrl: IMG.family,
+    heroImageUrl: IMG.homeVisit,
     imageAlt: "Home visit",
   },
   {
@@ -468,7 +501,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     scheduleLabel: "Saturday evening & Sunday 9:30 AM",
     sortOrder: 24,
     showOnHome: true,
-    heroImageUrl: IMG.prayer,
+    heroImageUrl: IMG.joinPrayers,
     imageAlt: "Corporate prayer",
   },
   {
@@ -481,7 +514,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "The Levites team supports Sunday flow — ushers, setup, communion prep, and altar ministry coordination. Training is provided.",
     ],
     sortOrder: 25,
-    heroImageUrl: IMG.serve,
+    heroImageUrl: IMG.levites,
     imageAlt: "Serving in church",
   },
   {
@@ -494,7 +527,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "Technologists and creatives serve behind the scenes so the gospel is heard clearly on Sunday and Wednesday. Experience with audio, video, or ProPresenter is welcome — willing hearts are essential.",
     ],
     sortOrder: 26,
-    heroImageUrl: IMG.serve,
+    heroImageUrl: IMG.technology,
     imageAlt: "Media ministry",
   },
   {
@@ -507,7 +540,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "Authorized staff and volunteers handle bookkeeping, Zeffy reconciliation, and facility coordination. Financial summaries are reviewed by church leadership.",
     ],
     sortOrder: 27,
-    heroImageUrl: IMG.community,
+    heroImageUrl: IMG.admin,
     imageAlt: "Administration",
   },
   {
@@ -524,7 +557,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Start here",
     ctaHref: "/dedication",
     sortOrder: 19,
-    heroImageUrl: IMG.bible,
+    heroImageUrl: IMG.dedication,
     imageAlt: "New believer study",
   },
   {
@@ -540,7 +573,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Read testimonies",
     ctaHref: "/testimonies",
     sortOrder: 28,
-    heroImageUrl: IMG.worship,
+    heroImageUrl: IMG.waterBaptism,
     imageAlt: "Baptism",
   },
   {
@@ -554,7 +587,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "Join a small group, attend Sunday school, and use Pastor Brian's blog and podcast for steady teaching.",
     ],
     sortOrder: 29,
-    heroImageUrl: IMG.bible,
+    heroImageUrl: IMG.personalDev,
     imageAlt: "Personal devotion",
   },
   {
@@ -581,7 +614,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ],
     canonicalPath: "/beliefs",
     sortOrder: 32,
-    heroImageUrl: IMG.bible,
+    heroImageUrl: IMG.godTest,
     imageAlt: "Reflection",
   },
   {
@@ -594,7 +627,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "A guarded Bible study assistant — aligned with Assemblies of God teaching — is in development for members. It will not replace pastoral counsel or the local church.",
     ],
     sortOrder: 43,
-    heroImageUrl: IMG.bible,
+    heroImageUrl: IMG.bibleAssistant,
     imageAlt: "Bible study technology",
   },
   {
@@ -608,7 +641,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ],
     canonicalPath: "/beliefs",
     sortOrder: 33,
-    heroImageUrl: IMG.bible,
+    heroImageUrl: IMG.heavenHell,
     imageAlt: "Eternal hope",
   },
   {
@@ -625,7 +658,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "Give to missions",
     ctaHref: "/give",
     sortOrder: 34,
-    heroImageUrl: IMG.missions,
+    heroImageUrl: IMG.missionaries,
     imageAlt: "Global missions",
   },
   {
@@ -640,7 +673,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ],
     canonicalPath: "/testimonies",
     sortOrder: 35,
-    heroImageUrl: IMG.family,
+    heroImageUrl: IMG.simpleMinisters,
     imageAlt: "Everyday witness",
   },
   {
@@ -656,7 +689,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "About us",
     ctaHref: "/about",
     sortOrder: 36,
-    heroImageUrl: IMG.community,
+    heroImageUrl: IMG.churchHistory,
     imageAlt: "Church history",
   },
   {
@@ -671,7 +704,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ],
     canonicalPath: "/visit",
     sortOrder: 37,
-    heroImageUrl: IMG.family,
+    heroImageUrl: IMG.membership,
     imageAlt: "Church membership",
   },
   {
@@ -689,7 +722,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
     ctaLabel: "About Pastor Brian",
     ctaHref: "/about#pastor",
     sortOrder: 38,
-    heroImageUrl: IMG.bible,
+    heroImageUrl: IMG.pastorLife,
     imageAlt: "Pastor teaching",
   },
   {
@@ -702,7 +735,7 @@ export const MINISTRY_SEEDS: MinistrySeed[] = [
       "When prophecy is given in a Sunday service, staff may publish a summary or transcript here (with pastoral review). Multilingual translations use our staff translations workflow.",
     ],
     sortOrder: 39,
-    heroImageUrl: IMG.worship,
+    heroImageUrl: IMG.prophecies,
     imageAlt: "Prophetic ministry",
   },
 ];

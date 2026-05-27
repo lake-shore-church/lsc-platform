@@ -41,7 +41,7 @@ Pastor's 46-item vision mapped to **one route each** — no duplicate URLs. Cont
 | 23 | Get involved | `get-involved` | |
 | 24 | Radio ministry | `radio-ministry` | |
 | 25 | Podcasts | `podcasts` | Libsyn external link |
-| 26 | Cooking / potluck | `cooking-ministry` | |
+| 26 | Providence lunch | `providence-lunch` | (was `cooking-ministry`) |
 | 27 | Home visit request | `pastor-home-visit` | → `/prayer` |
 | 28 | Join our prayers | `join-our-prayers` | Home featured |
 | 29 | Levites | `levites` | |

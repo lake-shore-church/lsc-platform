@@ -12,6 +12,15 @@ const nextConfig = {
     root: path.join(__dirname, "../.."),
   },
   transpilePackages: ["@repo/ui", "@repo/cms", "@repo/db", "@repo/media"],
+  async redirects() {
+    return [
+      {
+        source: "/ministries/cooking-ministry",
+        destination: "/ministries/providence-lunch",
+        permanent: true,
+      },
+    ];
+  },
   images: {
     remotePatterns: [
       {
