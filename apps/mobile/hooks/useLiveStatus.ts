@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from "react";
 import { fetchLiveStatus, type LiveStatus } from "@/lib/live";
 
 const POLL_MS = 60_000;
+const POLL_LIVE_MS = 15_000;
 
 export function useLiveStatus() {
   const [status, setStatus] = useState<LiveStatus | null>(null);
@@ -19,9 +20,10 @@ export function useLiveStatus() {
 
   useEffect(() => {
     void refresh();
-    const id = setInterval(() => void refresh(), POLL_MS);
+    const pollMs = status?.isLive ? POLL_LIVE_MS : POLL_MS;
+    const id = setInterval(() => void refresh(), pollMs);
     return () => clearInterval(id);
-  }, [refresh]);
+  }, [refresh, status?.isLive]);
 
   return { status, loading, refresh };
 }

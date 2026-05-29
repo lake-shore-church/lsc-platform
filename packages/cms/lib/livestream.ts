@@ -1,7 +1,12 @@
 import type { SiteConfig } from "../types";
 
+export type LiveStreamMode = "inhouse" | "youtube";
+
 export type LiveStatusResponse = {
   isLive: boolean;
+  streamMode: LiveStreamMode;
+  /** HLS .m3u8 for in-house player (mobile + web) */
+  playbackUrl: string | null;
   videoId: string | null;
   embedUrl: string | null;
   chatEmbedUrl: string | null;
@@ -123,11 +128,20 @@ function chicagoLocalToUtc(
   return Date.parse(`${local}-06:00`);
 }
 
+export function resolveLiveStreamMode(config: SiteConfig): LiveStreamMode {
+  if (config.liveStreamMode === "youtube") return "youtube";
+  if (config.livePlaybackUrl?.trim()) return "inhouse";
+  return "youtube";
+}
+
 export function buildLiveStatus(
   config: SiteConfig,
   options?: { embedDomain?: string },
 ): LiveStatusResponse {
   const isLive = Boolean(config.isLiveNow);
+  const streamMode = resolveLiveStreamMode(config);
+  const playbackUrl = config.livePlaybackUrl?.trim() || null;
+
   const videoId =
     parseYouTubeVideoId(config.liveVideoId) ??
     parseYouTubeVideoId(config.liveStreamUrl);
@@ -140,13 +154,20 @@ export function buildLiveStatus(
     config.nextServiceDate ??
     getNextSundayServiceAt().toISOString();
 
-  const embedUrl = isLive
-    ? youtubeEmbedUrl(videoId, channelId)
-    : null;
+  let embedUrl: string | null = null;
+  if (isLive) {
+    if (streamMode === "inhouse" && playbackUrl) {
+      embedUrl = playbackUrl;
+    } else {
+      embedUrl = youtubeEmbedUrl(videoId, channelId);
+    }
+  }
 
   const embedDomain = options?.embedDomain ?? "localhost";
   const chatEmbedUrl =
-    isLive && videoId ? youtubeChatEmbedUrl(videoId, embedDomain) : null;
+    isLive && streamMode === "youtube" && videoId
+      ? youtubeChatEmbedUrl(videoId, embedDomain)
+      : null;
 
   const youtubeUrl = config.liveStreamUrl?.trim() || YOUTUBE_CHANNEL_URL;
 
@@ -156,6 +177,8 @@ export function buildLiveStatus(
 
   return {
     isLive,
+    streamMode,
+    playbackUrl: isLive && streamMode === "inhouse" ? playbackUrl : null,
     videoId: videoId ?? null,
     embedUrl,
     chatEmbedUrl,

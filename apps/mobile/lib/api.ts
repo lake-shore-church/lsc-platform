@@ -14,6 +14,7 @@ export type MobileSermon = {
   scripture?: string;
   publishedAt?: string;
   videoUrl?: string;
+  audioUrl?: string;
   imageUrl?: string;
   slideUrls?: string[];
   series?: { title: string; slug: { current: string } } | null;

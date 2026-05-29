@@ -56,6 +56,8 @@ export async function getSiteConfig(cms?: SanityClient): Promise<SiteConfig> {
     churchTaxId,
     zeffyEmbedUrl,
     isLiveNow,
+    liveStreamMode,
+    livePlaybackUrl,
     liveVideoId,
     liveStreamUrl,
     youtubeChannelId,

@@ -27,6 +27,8 @@ export default async function StaffSermonsPage() {
       <LivestreamControl
         isLiveNow={Boolean(config.isLiveNow)}
         liveVideoId={config.liveVideoId}
+        streamMode={config.liveStreamMode}
+        livePlaybackUrl={config.livePlaybackUrl}
       />
 
       <div className="mt-6 flex flex-wrap gap-3">

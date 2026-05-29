@@ -1,5 +1,4 @@
 import * as Haptics from "expo-haptics";
-import * as WebBrowser from "expo-web-browser";
 import { useRouter } from "expo-router";
 import { useState } from "react";
 import {
@@ -13,9 +12,13 @@ import {
   View,
 } from "react-native";
 import { WebView } from "react-native-webview";
+import { HlsVideoPlayer } from "@/components/HlsVideoPlayer";
+import { LiveReplaysSection } from "@/components/LiveReplaysSection";
 import { colors } from "@/constants/tokens";
+import { recentLiveReplays } from "@/lib/liveReplays";
 import { countdownParts, type LiveStatus } from "@/lib/live";
 import type { MobileSermon } from "@/lib/api";
+import { pickVideoSource } from "@/lib/video";
 
 const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "http://localhost:3000";
 const { width: SCREEN_WIDTH } = Dimensions.get("window");
@@ -24,12 +27,15 @@ type Props = {
   status: LiveStatus | null;
   loading: boolean;
   latestSermon: MobileSermon | null;
+  sermons: MobileSermon[];
 };
 
-export function LiveTabContent({ status, loading, latestSermon }: Props) {
+export function LiveTabContent({ status, loading, latestSermon, sermons }: Props) {
   const router = useRouter();
   const [prayer, setPrayer] = useState("");
   const [sending, setSending] = useState(false);
+
+  const replays = recentLiveReplays(sermons, 31);
 
   if (loading && !status) {
     return (
@@ -39,39 +45,41 @@ export function LiveTabContent({ status, loading, latestSermon }: Props) {
     );
   }
 
-  if (status?.isLive && status.embedUrl) {
-    const videoHeight = (SCREEN_WIDTH - 32) * (9 / 16);
+  const videoHeight = (SCREEN_WIDTH - 32) * (9 / 16);
+  const inhouseLive =
+    status?.isLive &&
+    status.streamMode === "inhouse" &&
+    Boolean(status.playbackUrl);
+  const youtubeLive =
+    status?.isLive &&
+    !inhouseLive &&
+    Boolean(status.embedUrl) &&
+    pickVideoSource(status.embedUrl) === "youtube";
 
-    async function sendPrayer() {
-      const content = prayer.trim();
-      if (content.length < 10) {
-        Alert.alert("Prayer", "Please share at least a few words.");
-        return;
-      }
-      setSending(true);
-      try {
-        const res = await fetch(`${APP_URL}/api/prayer`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ content, is_private: false }),
-        });
-        if (!res.ok) throw new Error("Failed");
-        setPrayer("");
-        void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
-        Alert.alert("Thank you", "We're praying with you.");
-      } catch {
-        Alert.alert("Error", "Could not send prayer. Try again.");
-      } finally {
-        setSending(false);
-      }
-    }
-
+  if (inhouseLive && status?.playbackUrl) {
     return (
       <View style={styles.liveWrap}>
-        <View style={styles.liveBadge}>
-          <View style={styles.pulseDot} />
-          <Text style={styles.liveBadgeText}>LIVE NOW</Text>
-        </View>
+        <LiveNowHeader />
+        <HlsVideoPlayer uri={status.playbackUrl} height={videoHeight} />
+        <LiveMeta status={status} />
+        <PrayerDuringService
+          prayer={prayer}
+          setPrayer={setPrayer}
+          sending={sending}
+          setSending={setSending}
+        />
+        <Text style={styles.inhouseNote}>
+          Watching on Lake Shore Church — same experience as the old Subsplash app.
+        </Text>
+        <LiveReplaysSection replays={replays} />
+      </View>
+    );
+  }
+
+  if (youtubeLive && status?.embedUrl) {
+    return (
+      <View style={styles.liveWrap}>
+        <LiveNowHeader />
         <View style={[styles.player, { height: videoHeight }]}>
           <WebView
             source={{ uri: status.embedUrl }}
@@ -80,33 +88,14 @@ export function LiveTabContent({ status, loading, latestSermon }: Props) {
             style={styles.webview}
           />
         </View>
-        <Text style={styles.watching}>Watching: Sunday Service</Text>
-        <Text style={styles.meta}>{status.serviceLabel}</Text>
-        <Text style={styles.meta}>{status.locationLabel}</Text>
-
-        <Text style={styles.prayerLabel}>Submit prayer during service</Text>
-        <TextInput
-          value={prayer}
-          onChangeText={setPrayer}
-          placeholder="Share your prayer request…"
-          multiline
-          numberOfLines={2}
-          style={styles.prayerInput}
-          placeholderTextColor={colors.textMuted}
+        <LiveMeta status={status} />
+        <PrayerDuringService
+          prayer={prayer}
+          setPrayer={setPrayer}
+          sending={sending}
+          setSending={setSending}
         />
-        <Pressable
-          style={[styles.prayerBtn, sending && styles.disabled]}
-          onPress={() => void sendPrayer()}
-          disabled={sending}
-        >
-          <Text style={styles.prayerBtnText}>Send Prayer 🙏</Text>
-        </Pressable>
-
-        <Pressable
-          onPress={() => void WebBrowser.openBrowserAsync(status.facebookUrl)}
-        >
-          <Text style={styles.fbLink}>Also streaming on Facebook →</Text>
-        </Pressable>
+        <LiveReplaysSection replays={replays} />
       </View>
     );
   }
@@ -128,7 +117,7 @@ export function LiveTabContent({ status, loading, latestSermon }: Props) {
           void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           Alert.alert(
             "Reminders",
-            "Enable push notifications in the app when TestFlight is available, or contact us on the website.",
+            "Enable push notifications when TestFlight is available, or contact us on the website.",
           );
         }}
       >
@@ -147,7 +136,86 @@ export function LiveTabContent({ status, loading, latestSermon }: Props) {
       >
         <Text style={styles.primaryBtnText}>Watch last Sunday</Text>
       </Pressable>
+
+      <LiveReplaysSection replays={replays} />
     </View>
+  );
+}
+
+function LiveNowHeader() {
+  return (
+    <View style={styles.liveBadge}>
+      <View style={styles.pulseDot} />
+      <Text style={styles.liveBadgeText}>LIVE NOW</Text>
+    </View>
+  );
+}
+
+function LiveMeta({ status }: { status: LiveStatus }) {
+  return (
+    <>
+      <Text style={styles.watching}>Watching: Sunday Service</Text>
+      <Text style={styles.meta}>{status.serviceLabel}</Text>
+      <Text style={styles.meta}>{status.locationLabel}</Text>
+    </>
+  );
+}
+
+function PrayerDuringService({
+  prayer,
+  setPrayer,
+  sending,
+  setSending,
+}: {
+  prayer: string;
+  setPrayer: (v: string) => void;
+  sending: boolean;
+  setSending: (v: boolean) => void;
+}) {
+  async function sendPrayer() {
+    const content = prayer.trim();
+    if (content.length < 10) {
+      Alert.alert("Prayer", "Please share at least a few words.");
+      return;
+    }
+    setSending(true);
+    try {
+      const res = await fetch(`${APP_URL}/api/prayer`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ content, is_private: false }),
+      });
+      if (!res.ok) throw new Error("Failed");
+      setPrayer("");
+      void Haptics.notificationAsync(Haptics.NotificationFeedbackType.Success);
+      Alert.alert("Thank you", "We're praying with you.");
+    } catch {
+      Alert.alert("Error", "Could not send prayer. Try again.");
+    } finally {
+      setSending(false);
+    }
+  }
+
+  return (
+    <>
+      <Text style={styles.prayerLabel}>Submit prayer during service</Text>
+      <TextInput
+        value={prayer}
+        onChangeText={setPrayer}
+        placeholder="Share your prayer request…"
+        multiline
+        numberOfLines={2}
+        style={styles.prayerInput}
+        placeholderTextColor={colors.textMuted}
+      />
+      <Pressable
+        style={[styles.prayerBtn, sending && styles.disabled]}
+        onPress={() => void sendPrayer()}
+        disabled={sending}
+      >
+        <Text style={styles.prayerBtnText}>Send Prayer 🙏</Text>
+      </Pressable>
+    </>
   );
 }
 
@@ -181,6 +249,12 @@ const styles = StyleSheet.create({
   webview: { flex: 1 },
   watching: { marginTop: 14, fontSize: 16, fontWeight: "700", color: colors.textPrimary },
   meta: { fontSize: 14, color: colors.textMuted, marginTop: 4 },
+  inhouseNote: {
+    marginTop: 12,
+    fontSize: 13,
+    color: colors.textMuted,
+    lineHeight: 18,
+  },
   prayerLabel: { marginTop: 20, fontWeight: "600", color: colors.textPrimary },
   prayerInput: {
     marginTop: 8,
@@ -202,12 +276,6 @@ const styles = StyleSheet.create({
   },
   prayerBtnText: { color: "#fff", fontWeight: "700" },
   disabled: { opacity: 0.6 },
-  fbLink: {
-    marginTop: 16,
-    color: colors.primary,
-    fontWeight: "600",
-    fontSize: 15,
-  },
   offlineWrap: { padding: 24, alignItems: "center" },
   countdownTitle: { fontSize: 18, fontWeight: "700", color: colors.textPrimary },
   countdown: {

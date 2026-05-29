@@ -35,3 +35,8 @@ export async function goLiveInSanity(videoInput: string): Promise<string | null>
 export async function endLiveInSanity(): Promise<void> {
   await patchSiteLiveFields({ isLiveNow: false });
 }
+
+/** Go live using in-house HLS (Mevo → Mux). Requires livePlaybackUrl in Site Config. */
+export async function goLiveInhouseInSanity(): Promise<void> {
+  await patchSiteLiveFields({ isLiveNow: true });
+}

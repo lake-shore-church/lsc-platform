@@ -85,14 +85,17 @@ export {
 export {
   buildLiveStatus,
   parseYouTubeVideoId,
+  resolveLiveStreamMode,
   youtubeEmbedUrl,
   youtubeChatEmbedUrl,
   getNextSundayServiceAt,
   type LiveStatusResponse,
+  type LiveStreamMode,
 } from "./lib/livestream";
 export {
   patchSiteLiveFields,
   goLiveInSanity,
+  goLiveInhouseInSanity,
   endLiveInSanity,
 } from "./lib/patchSiteConfig";
 export { seedSiteConfig } from "./seed/siteConfig";

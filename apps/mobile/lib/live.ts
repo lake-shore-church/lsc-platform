@@ -2,6 +2,8 @@ import { fetchJson } from "./api";
 
 export type LiveStatus = {
   isLive: boolean;
+  streamMode: "inhouse" | "youtube";
+  playbackUrl: string | null;
   videoId: string | null;
   embedUrl: string | null;
   chatEmbedUrl: string | null;

@@ -34,6 +34,7 @@ export function serializeMobileSermon(sermon: Sermon) {
     scripture: sermon.scripture,
     publishedAt: sermon.publishedAt,
     videoUrl: sermon.videoUrl,
+    audioUrl: sermon.audioUrl,
     series: sermon.series
       ? { title: sermon.series.title, slug: sermon.series.slug }
       : null,

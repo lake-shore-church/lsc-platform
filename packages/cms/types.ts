@@ -207,6 +207,10 @@ export type SiteConfig = {
   churchTaxId?: string;
   zeffyEmbedUrl?: string;
   isLiveNow?: boolean;
+  /** `inhouse` = Mevo → Mux HLS on our app; `youtube` = legacy embed fallback */
+  liveStreamMode?: "inhouse" | "youtube";
+  /** HLS playback URL (.m3u8) when liveStreamMode is inhouse */
+  livePlaybackUrl?: string;
   liveVideoId?: string;
   liveStreamUrl?: string;
   youtubeChannelId?: string;

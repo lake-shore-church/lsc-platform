@@ -168,6 +168,28 @@ export const siteConfigType = defineType({
       description: "Leave empty until Zeffy account is ready.",
     }),
     defineField({
+      name: "liveStreamMode",
+      title: "Live stream mode",
+      description:
+        "In-house = Mevo → Mux HLS on website/app (Subsplash replacement). YouTube = legacy embed fallback.",
+      type: "string",
+      options: {
+        list: [
+          { title: "In-house (Mux HLS)", value: "inhouse" },
+          { title: "YouTube embed", value: "youtube" },
+        ],
+        layout: "radio",
+      },
+      initialValue: "inhouse",
+    }),
+    defineField({
+      name: "livePlaybackUrl",
+      title: "Live playback URL (HLS)",
+      description:
+        "Mux (or other) HLS .m3u8 URL shown in the app when Is live now is ON. Example: https://stream.mux.com/PLAYBACK_ID.m3u8",
+      type: "url",
+    }),
+    defineField({
       name: "isLiveNow",
       title: "Is live now",
       description:

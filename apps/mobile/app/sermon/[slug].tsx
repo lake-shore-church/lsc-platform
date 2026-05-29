@@ -10,20 +10,14 @@ import {
   Text,
   View,
 } from "react-native";
-import { colors } from "@/constants/tokens";
 import { WebView } from "react-native-webview";
+import { HlsVideoPlayer } from "@/components/HlsVideoPlayer";
+import { colors } from "@/constants/tokens";
+import { downloadMediaToDevice } from "@/lib/downloadMedia";
 import { fetchJson, type MobileSermon } from "@/lib/api";
+import { pickVideoSource, youtubeEmbedUrl } from "@/lib/video";
 
 const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "http://localhost:3000";
-
-function youtubeEmbedUrl(url?: string): string | null {
-  if (!url) return null;
-  const match = url.match(
-    /(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([a-zA-Z0-9_-]{11})/,
-  );
-  if (!match?.[1]) return null;
-  return `https://www.youtube.com/embed/${match[1]}`;
-}
 
 export default function SermonDetailScreen() {
   const { slug } = useLocalSearchParams<{ slug: string }>();
@@ -31,6 +25,7 @@ export default function SermonDetailScreen() {
   const [sermon, setSermon] = useState<MobileSermon | null>(null);
   const [related, setRelated] = useState<MobileSermon[]>([]);
   const [loading, setLoading] = useState(true);
+  const [downloading, setDownloading] = useState(false);
 
   useEffect(() => {
     if (!slug) return;
@@ -60,6 +55,17 @@ export default function SermonDetailScreen() {
     });
   }
 
+  async function handleDownload() {
+    if (!sermon?.videoUrl) return;
+    setDownloading(true);
+    try {
+      const safe = sermon.slug.current.replace(/[^a-z0-9-]/gi, "-");
+      await downloadMediaToDevice(sermon.videoUrl, `${safe}.mp4`);
+    } finally {
+      setDownloading(false);
+    }
+  }
+
   if (loading) {
     return (
       <View style={styles.centered}>
@@ -79,15 +85,18 @@ export default function SermonDetailScreen() {
     );
   }
 
-  const embed = youtubeEmbedUrl(sermon.videoUrl);
   const videoHeight = Math.round((Dimensions.get("window").width * 9) / 16);
+  const source = pickVideoSource(sermon.videoUrl);
+  const youtubeEmbed = youtubeEmbedUrl(sermon.videoUrl);
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
-      {embed ? (
+      {source === "hls" && sermon.videoUrl ? (
+        <HlsVideoPlayer uri={sermon.videoUrl} height={videoHeight} />
+      ) : youtubeEmbed ? (
         <View style={[styles.videoWrap, { height: videoHeight }]}>
           <WebView
-            source={{ uri: embed }}
+            source={{ uri: youtubeEmbed }}
             style={styles.video}
             allowsFullscreenVideo
             javaScriptEnabled
@@ -111,13 +120,30 @@ export default function SermonDetailScreen() {
 
       {sermon.summary ? <Text style={styles.summary}>{sermon.summary}</Text> : null}
 
-      <View style={styles.audioPlaceholder}>
-        <Text style={styles.audioText}>Audio player — ready when files are on R2</Text>
-      </View>
+      {sermon.audioUrl ? (
+        <Text style={styles.audioNote}>Audio: open from website or podcast for now.</Text>
+      ) : (
+        <View style={styles.audioPlaceholder}>
+          <Text style={styles.audioText}>Audio — available when uploaded to our media library</Text>
+        </View>
+      )}
 
-      <Pressable style={styles.shareButton} onPress={handleShare}>
-        <Text style={styles.shareText}>Share</Text>
-      </Pressable>
+      <View style={styles.actions}>
+        <Pressable style={styles.shareButton} onPress={handleShare}>
+          <Text style={styles.shareText}>Share</Text>
+        </Pressable>
+        {sermon.videoUrl ? (
+          <Pressable
+            style={[styles.downloadButton, downloading && styles.disabled]}
+            onPress={() => void handleDownload()}
+            disabled={downloading}
+          >
+            <Text style={styles.downloadText}>
+              {downloading ? "Preparing…" : "Download video"}
+            </Text>
+          </Pressable>
+        ) : null}
+      </View>
 
       {related.length > 0 ? (
         <>
@@ -162,14 +188,24 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   audioText: { color: colors.textMuted, fontSize: 13, textAlign: "center" },
+  audioNote: { marginTop: 16, fontSize: 13, color: colors.textMuted },
+  actions: { marginTop: 16, gap: 10 },
   shareButton: {
-    marginTop: 16,
     backgroundColor: colors.primary,
     borderRadius: 10,
     paddingVertical: 12,
     alignItems: "center",
   },
   shareText: { color: "#fff", fontWeight: "700" },
+  downloadButton: {
+    borderWidth: 1,
+    borderColor: colors.primary,
+    borderRadius: 10,
+    paddingVertical: 12,
+    alignItems: "center",
+  },
+  downloadText: { color: colors.primary, fontWeight: "700" },
+  disabled: { opacity: 0.6 },
   relatedHeading: { marginTop: 24, fontSize: 17, fontWeight: "700", color: colors.primary },
   relatedRow: {
     marginTop: 8,

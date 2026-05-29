@@ -95,6 +95,7 @@ export default function SermonsScreen() {
             status={liveStatus}
             loading={liveLoading}
             latestSermon={latestSermon}
+            sermons={sermons}
           />
         </ScrollView>
       ) : loading ? (
