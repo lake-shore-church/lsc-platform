@@ -8,10 +8,17 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
-- **In-house livestream plan** — [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) (Subsplash-style primary; YouTube/Facebook secondary).
+- **Zero-cost live streaming** — [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md): Mevo → YouTube, embed on web/mobile; Sunday checklist.
+- **Web HLS player** — `/live` plays `.m3u8` in-house streams (hls.js) when Mux is enabled later.
+- **In-house livestream plan** — [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) (deferred paid upgrade).
 - **Demo meeting checklist** — [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md) for Pastor/members website walkthrough.
 
 ### Changed
+
+- **Live streaming default** — CMS defaults and docs use **YouTube embed ($0)**; Mux path optional.
+- **`/live` page** — Accurate copy when offline; in-app message when live; HLS + YouTube players.
+- **Staff livestream control** — Copy reflects Mevo → YouTube → Go live workflow.
+- **Mobile Live tab** — Clearer in-app message for YouTube embed mode.
 
 - **About Pastor Brian** — full biography from [craigbrianlarson.com/about](https://craigbrianlarson.com/about/), portrait photo, published works list, and external links; leaders page shows photo.
 - **Podcast RSS** — canonical site URL from deployment host; dedupe duplicate sermon episodes; video link in description.

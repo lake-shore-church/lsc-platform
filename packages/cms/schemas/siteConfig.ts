@@ -171,16 +171,16 @@ export const siteConfigType = defineType({
       name: "liveStreamMode",
       title: "Live stream mode",
       description:
-        "In-house = Mevo → Mux HLS on website/app (Subsplash replacement). YouTube = legacy embed fallback.",
+        "YouTube embed ($0) = Mevo → YouTube, watch in app/site. In-house = paid Mux HLS (optional upgrade).",
       type: "string",
       options: {
         list: [
+          { title: "YouTube embed ($0 — recommended)", value: "youtube" },
           { title: "In-house (Mux HLS)", value: "inhouse" },
-          { title: "YouTube embed", value: "youtube" },
         ],
         layout: "radio",
       },
-      initialValue: "inhouse",
+      initialValue: "youtube",
     }),
     defineField({
       name: "livePlaybackUrl",

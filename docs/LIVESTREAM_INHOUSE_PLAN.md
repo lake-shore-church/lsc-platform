@@ -1,7 +1,6 @@
 # In-house live streaming plan (Subsplash replacement)
 
-**Status:** Planned — not yet built on production  
-**Last updated:** 2026-05-26  
+**Status:** Deferred — use [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md) until budget for Mux (~$10–40/mo). Code for in-house HLS is already in the repo.  
 **Audience:** Pastor Brian, tech steward, Cursor agents  
 
 ---

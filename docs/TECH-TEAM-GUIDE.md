@@ -113,6 +113,23 @@ Requires `SANITY_API_TOKEN` and `SUPABASE_SERVICE_ROLE_KEY` in `apps/web/.env.lo
 
 ---
 
+## Sunday live streaming ($0)
+
+**Full guide:** [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md)
+
+| Step | Who | Action |
+|------|-----|--------|
+| One-time | Tech | Mevo → YouTube RTMP (remove old Subsplash destination) |
+| Before service | Tech | Start Mevo; confirm “Live” in YouTube Studio |
+| Service start | Staff | `/staff/sermons` → paste YouTube **video ID** → **Go live** |
+| After service | Staff | **End stream**; add Sermon with YouTube replay URL |
+
+Sanity **Site Config** → **Live stream mode** should be **YouTube embed** (default).
+
+Members watch on **`/live`** and the mobile app **Live** tab — not by searching YouTube.
+
+---
+
 ## Go live on Vercel (step-by-step)
 
 **Goal:** A public link anyone can open (e.g. for Pastor Brian), without your laptop running.

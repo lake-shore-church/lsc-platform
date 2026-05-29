@@ -54,7 +54,7 @@ export function LiveTabContent({ status, loading, latestSermon, sermons }: Props
     status?.isLive &&
     !inhouseLive &&
     Boolean(status.embedUrl) &&
-    pickVideoSource(status.embedUrl) === "youtube";
+    (status.streamMode === "youtube" || pickVideoSource(status.embedUrl) === "youtube");
 
   if (inhouseLive && status?.playbackUrl) {
     return (
@@ -95,6 +95,9 @@ export function LiveTabContent({ status, loading, latestSermon, sermons }: Props
           sending={sending}
           setSending={setSending}
         />
+        <Text style={styles.inhouseNote}>
+          Watching on Lake Shore Church — live video plays here in the app.
+        </Text>
         <LiveReplaysSection replays={replays} />
       </View>
     );

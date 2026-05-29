@@ -6,6 +6,7 @@ import { TextLink } from "@/components/ui/TextLink";
 import { LiveCountdown } from "@repo/ui/web/LiveCountdown";
 import { PrayerForm } from "@/components/forms/PrayerForm";
 import { SermonCard } from "@/components/sermons/SermonCard";
+import { HlsLivePlayer } from "@/components/live/HlsLivePlayer";
 import { useLiveStatus } from "@/hooks/useLiveStatus";
 
 type Props = {
@@ -33,7 +34,7 @@ const PLATFORM_CARDS = [
   {
     icon: "📺",
     title: "YouTube",
-    subtitle: "Optional — we'll simulcast here when in-house live is enabled",
+    subtitle: "Optional — find us on YouTube if you prefer that app",
     href: "https://www.youtube.com/@lakeshorechurch",
     badge: null,
   },
@@ -73,7 +74,13 @@ export function LivePageClient({
 }: Props) {
   const { status: polled } = useLiveStatus();
   const status = polled ?? initial;
-  const isLive = status.isLive && status.embedUrl;
+  const inhouseLive =
+    status.isLive &&
+    status.streamMode === "inhouse" &&
+    Boolean(status.playbackUrl);
+  const youtubeLive =
+    status.isLive && !inhouseLive && Boolean(status.embedUrl);
+  const isLive = inhouseLive || youtubeLive;
 
   if (isLive) {
     return (
@@ -82,15 +89,25 @@ export function LivePageClient({
           <div className="grid gap-8 lg:grid-cols-[1fr_320px]">
             <div className="space-y-6">
               <div className="relative aspect-video overflow-hidden rounded-xl border border-default bg-black">
-                <iframe
-                  title="Live stream"
-                  src={status.embedUrl!}
-                  className="h-full w-full"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                  allowFullScreen
-                />
+                {inhouseLive && status.playbackUrl ? (
+                  <HlsLivePlayer
+                    src={status.playbackUrl}
+                    className="h-full w-full object-contain"
+                  />
+                ) : (
+                  <iframe
+                    title="Live stream"
+                    src={status.embedUrl!}
+                    className="h-full w-full"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                  />
+                )}
                 <LivePlayerOverlay status={status} />
               </div>
+              <p className="text-sm text-foreground-secondary">
+                Watching on Lake Shore Church — live video plays here on our site.
+              </p>
               <div className="rounded-xl border border-default bg-surface p-4">
                 <h2 className="text-lg font-bold text-brand-primary">
                   Submit a prayer during service
@@ -152,9 +169,9 @@ export function LivePageClient({
             Merit School of Music · West Loop Chicago
           </p>
           <p className="mx-auto mt-4 max-w-lg text-sm text-white/75">
-            We are upgrading this page so Sunday video plays here on our site
-            (like our previous in-house stream). Until then, watch recent messages
-            below or join us in person.
+            When we are live, video plays on this page and in the mobile app.
+            Staff turn on the stream from the staff portal after Mevo starts on
+            YouTube. Watch recent messages below or join us in person.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-3">
             <Link

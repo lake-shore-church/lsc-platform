@@ -36,8 +36,9 @@
 | [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md) | Activate Zeffy, Resend, OneSignal, Sanity fields (no secrets in git) |
 | [handover/README.md](./handover/README.md) | Church accounts handover (secrets in `.local.md` only) |
 | [ZEFFY_SETUP.md](./ZEFFY_SETUP.md) | Zeffy donation form wizard — 5 designated funds, embed URL → Sanity |
-| [LIVESTREAM_SETUP.md](./LIVESTREAM_SETUP.md) | Restream, go-live, `/live`, mobile Live tab |
-| [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) | Subsplash-style in-house video (primary) + YouTube secondary |
+| [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md) | **$0 Sunday streaming** — Mevo → YouTube, watch in app/site |
+| [LIVESTREAM_SETUP.md](./LIVESTREAM_SETUP.md) | Full setup, go-live, `/live`, mobile Live tab |
+| [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) | Optional paid Mux HLS upgrade (deferred) |
 | [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md) | Website walkthrough for Pastor / members meeting |
 | [PRESENTER_MODE.md](./PRESENTER_MODE.md) | Projector slide control (staff mobile app) |
 | [AUTH_TROUBLESHOOTING.md](./AUTH_TROUBLESHOOTING.md) | Magic link, rate limits, roles |

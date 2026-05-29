@@ -1,15 +1,16 @@
 # Lake Shore Church — Livestream Setup Guide
 
-> **Pastor priority:** Watch on **our website/app** (Subsplash-style), not YouTube-first.  
-> **Plan:** [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) — Mevo → Mux/Livepeer → `/live`.  
-> **This doc** covers interim steps and optional YouTube simulcast until in-house video ships.
+> **Recommended ($0): [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md)** — Mevo → YouTube Live, watch in our app/site.  
+> **Future paid upgrade:** [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) — Mux HLS when budget allows.
+
+Members open the **church website or app** and tap **Live**. YouTube handles video delivery for free; the platform embeds it so the experience stays on Lake Shore Church pages.
 
 ## What you need (all free)
 
-- [Restream.io](https://restream.io) account (free tier: 2 destinations)
 - YouTube channel for Lake Shore Church
-- Facebook page: [facebook.com/lschurchchicago](https://www.facebook.com/lschurchchicago)
-- Phone or laptop with camera
+- Mevo camera **or** phone with Larix / Streamlabs (free apps)
+- Optional: [Restream.io](https://restream.io) (free tier: YouTube + Facebook at once)
+- Optional: Facebook page [facebook.com/lschurchchicago](https://www.facebook.com/lschurchchicago)
 
 ## One-time setup
 
@@ -17,70 +18,68 @@
 
 1. Go to [youtube.com](https://www.youtube.com) and sign in with the church Google account.
 2. Create channel: **Lake Shore Church**.
-3. In YouTube Studio → **Go Live**, note your **Channel ID** (from the channel URL).
-4. Optional: add `youtubeChannelId` in Sanity **Site Config** for embed fallback.
+3. YouTube Studio → **Create** → **Go live** → **Stream**.
+4. Note **Stream URL** and **Stream key** (for Mevo). Optional: **Channel ID** for Sanity fallback.
 
-### Step 2 — Set up Restream.io
+### Step 2 — Point Mevo at YouTube (replace Subsplash)
+
+**Direct to YouTube (simplest — $0, one destination):**
+
+1. Open the **Mevo** app.
+2. Remove old **Subsplash** destination.
+3. **Add destination** → **Custom RTMP**.
+4. Enter YouTube **Stream URL** and **Stream key** from Step 1 (keep the key private).
+5. Save as `Lake Shore Church — YouTube`.
+
+**Optional — Restream for YouTube + Facebook:**
 
 1. Sign up at [restream.io](https://restream.io) (free).
 2. Add **YouTube** and **Facebook** as destinations.
-3. Copy the Restream **RTMP URL** and **Stream Key**.
+3. In Mevo, use Restream’s **RTMP URL** and **Stream key** instead of YouTube’s directly.
 
-### Step 3 — Mevo camera reconfiguration (replace Subsplash)
+### Step 3 — Sanity Site Config
 
-If the church uses a **Mevo** camera, point it at Restream instead of Subsplash:
+`/studio` → **Site Config**:
 
-1. Open the **Mevo** app on the phone or tablet used for Sunday service.
-2. Go to **Destinations** or **Stream settings**.
-3. **Remove** the old **Subsplash** destination (if present).
-4. Tap **Add destination** → **Custom RTMP** (or **RTMP**).
-5. Enter credentials from [Restream](https://restream.io) → **Stream settings**:
-   - **Server / URL:** Restream RTMP URL (paste from Restream dashboard — do not commit this key to git)
-   - **Stream key:** Restream stream key (paste from dashboard — keep private)
-6. **Save** and name the destination e.g. `Lake Shore Church — Restream`.
-7. Before service: select this destination and confirm **YouTube** and **Facebook** are enabled as Restream outputs.
-
-After reconfiguration, a single Mevo broadcast feeds **Restream → YouTube + Facebook**, and staff **Go live** on the website uses the YouTube video ID from that stream.
+- **Live stream mode:** **YouTube embed** (default)
+- **Is live now:** OFF until service
 
 ### Step 4 — Streaming from phone (no Mevo)
 
-Download one of these free apps:
-
-- **Larix Broadcaster** (iOS + Android)
-- **Streamlabs Mobile**
-
-Enter the Restream RTMP URL + key, then start streaming — video goes to **YouTube and Facebook** at once.
+- **Larix Broadcaster** (iOS + Android) or **Streamlabs Mobile**
+- Enter YouTube RTMP URL + key (or Restream credentials)
 
 ### Step 5 — Before each service (go live on website + app)
 
 **Option A — Staff portal (recommended)**
 
 1. Sign in at `/staff/sermons`.
-2. In **Livestream control**, paste the YouTube **video ID** or full watch URL.
-3. Click **Go live**.
-4. Site header, `/live`, and the mobile app update within ~60 seconds.
-5. If `ONESIGNAL_REST_API_KEY` is set in Vercel, subscribers get a push notification.
+2. Start Mevo → confirm live in YouTube Studio.
+3. In **Livestream control**, paste the YouTube **video ID** or full watch URL.
+4. Click **Go live**.
+5. Site header, `/live`, and mobile **Live** tab update within ~60 seconds.
+6. Optional push if OneSignal is configured.
 
 **Option B — Sanity Studio**
 
-1. Open `/studio` → **Site Config**.
-2. Set **Live video ID** (11 characters, e.g. from the YouTube watch URL).
+1. `/studio` → **Site Config**.
+2. Set **Live video ID** (11 characters).
 3. Turn **Is live now** **ON**.
 
 ### Step 6 — After service
 
-1. Stop the stream on your phone or Restream.
+1. Stop Mevo / YouTube stream.
 2. Staff portal → **End stream**, or Sanity → **Is live now** **OFF**.
 3. YouTube saves the replay automatically.
-4. Add the service as a new **Sermon** in Sanity Studio (title, scripture, video URL).
+4. Add a new **Sermon** in Sanity (title, scripture, YouTube replay URL).
 
 ## How the platform works
 
 | Piece | Behavior |
 |--------|----------|
-| `GET /api/live-status` | Reads Sanity `isLiveNow` + `liveVideoId` (cached 60s) |
-| `/live` | Live player + chat + prayer form when live; countdown when not |
-| Mobile **Sermons → Live** | Same status API; YouTube WebView when live |
+| `GET /api/live-status` | Reads Sanity `isLiveNow`, `liveStreamMode`, `liveVideoId` (cached ~60s) |
+| `/live` | Embedded player when live; countdown when not |
+| Mobile **Sermons → Live** | Same API; in-app YouTube embed when live |
 | Staff **Go live / End** | Updates Sanity; optional OneSignal push |
 
 ## Environment variables (Vercel / `apps/web/.env.local`)
@@ -89,24 +88,25 @@ Enter the Restream RTMP URL + key, then start streaming — video goes to **YouT
 |----------|---------|
 | `SANITY_API_TOKEN` | Staff go-live / end-live writes |
 | `NEXT_PUBLIC_YOUTUBE_CHANNEL_ID` | Fallback embed if live with no video ID |
-| `NEXT_PUBLIC_SITE_URL` | Push notification link + chat embed domain |
+| `NEXT_PUBLIC_SITE_URL` | Magic links, push links, embed domain |
 | `NEXT_PUBLIC_ONESIGNAL_APP_ID` | Push (optional) |
 | `ONESIGNAL_REST_API_KEY` | Push (optional) |
-| `CRON_SECRET` | Protects `/api/cron/church-notifications` (Vercel Cron) |
+| `CRON_SECRET` | Protects `/api/cron/church-notifications` |
 | `RESEND_API_KEY` | Prayer/contact/RSVP emails |
-| `RESEND_FROM_EMAIL` | Church sender address (verified in Resend) |
+| `RESEND_FROM_EMAIL` | Church sender (verified in Resend) |
 
 ## Cost: $0
 
-- Restream free plan: 2 platforms
-- YouTube Live: free
-- Facebook Live: free
+- YouTube Live: free ingest, CDN, and archive
+- Restream free plan (optional): 2 platforms
+- Facebook Live (optional): free
 
 ## Test checklist
 
-1. Sanity or staff portal: `isLiveNow = true`, `liveVideoId = dQw4w9WgXcQ` (test ID).
-2. Homepage nav: **Live now** badge.
-3. `/live`: video player + prayer form.
-4. Mobile home: red **LIVE NOW** banner.
-5. Mobile Sermons → **Live** tab: player.
-6. Set `isLiveNow = false` → countdown on `/live` and mobile.
+See [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md) for the full Sunday checklist. Quick test:
+
+1. Staff portal: paste test video ID → **Go live**.
+2. Homepage: **Live now** badge.
+3. `/live`: embedded player + prayer form.
+4. Mobile **Live** tab: in-app player.
+5. **End stream** → countdown returns.

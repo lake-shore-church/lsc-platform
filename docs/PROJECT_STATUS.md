@@ -103,7 +103,7 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 | Prayer API (service role) | ✅ code | `SUPABASE_SERVICE_ROLE_KEY` on Vercel; merge prayer fix to `main` |
 | OneSignal Web SDK | ✅ code (branch) | Push + merge; keys already on Vercel |
 | OneSignal scheduled crons | ✅ | `ONESIGNAL_*` + `CRON_SECRET` on Vercel |
-| Mevo → Restream docs | ✅ | RTMP key in Mevo app only |
+| $0 livestream docs + app/web player | ✅ | [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md); Mevo → YouTube |
 | WordPress RSS import | ⏳ | Pastor URL decision |
 | Zeffy → `giving_records` sync | ⏳ | Phase 2A follow-up |
 
@@ -117,7 +117,7 @@ See [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
 | Weekly content / Zoom `/join` | ✅ | — |
 | Podcast RSS `/podcast.xml` | ✅ | — |
 | Custom domain `lschurch.com` | 🟡 DNS | — |
-| In-house live on `/live` | Countdown + prayer only | Mux + Mevo |
+| In-house live on `/live` | YouTube embed when staff go-live ($0) | Paid Mux HLS (optional) |
 | Give page Zeffy iframe | Fund info; embed when URL ready | Zeffy account |
 
 See [PRODUCTION_V1_LAUNCH.md](./PRODUCTION_V1_LAUNCH.md).
@@ -127,7 +127,8 @@ See [PRODUCTION_V1_LAUNCH.md](./PRODUCTION_V1_LAUNCH.md).
 1. **Today:** Pastor demo — [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md); share https://lsc-platform-kappa.vercel.app
 2. When Cloudflare **Active** → `lschurch.com` on Vercel
 3. Optional: merge PR #3 (`thisWeek` CMS)
-4. **Deployment 2:** [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) + Zeffy embed in Studio
+4. **Sunday:** Mevo → YouTube + staff go-live — [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md)
+5. **Deployment 2:** Zeffy embed in Studio; optional Mux — [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md)
 
 ---
 

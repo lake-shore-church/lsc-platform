@@ -24,6 +24,7 @@
     "@sanity/vision": "^3.88.2",
     "@supabase/ssr": "^0.6.1",
     "clsx": "^2.1.1",
+    "hls.js": "^1.6.16",
     "negotiator": "^1.0.0",
     "next": "16.2.0",
     "next-intl": "^4.12.0",

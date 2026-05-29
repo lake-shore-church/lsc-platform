@@ -11,8 +11,8 @@
 | **Last updated** | 2026-05-26 |
 | **Active branch** | `main` (production deploys from here) |
 | **Current phase** | Phase 2A operational + content polish; edit-on-page planned |
-| **Just completed** | Ministries/FAQ/leaders/testimonies; `/join` direct Zoom; OneSignal web subscriber; Vercel deploy fixes |
-| **Next up** | Operational layer (Zeffy, Zoom pwd, weekly Sanity updates); inline edit Phase A (`siteConfig`) |
+| **Just completed** | $0 livestream docs + defaults; web `/live` HLS/YouTube players; magic link fix |
+| **Next up** | Mevo → YouTube one-time setup (church); Zeffy embed; `lschurch.com` DNS when Cloudflare Active |
 | **Blocked** | `lschurch.com` DNS; Pastor one-click Zoom URL; Zeffy embed URL |
 | **Handover (secrets)** | `docs/handover/CHURCH_ACCOUNTS.local.md` (gitignored) |
 | **Claude sync** | [CLAUDE_SYNC_PROMPT.md](./CLAUDE_SYNC_PROMPT.md) |
@@ -35,7 +35,7 @@
 | Claude paste prompt | [CLAUDE_SYNC_PROMPT.md](./CLAUDE_SYNC_PROMPT.md) |
 | Phase 2A activation | [PHASE_2A_SETUP.md](../PHASE_2A_SETUP.md) |
 | Accounts / DNS / keys (local) | [handover/README.md](../handover/README.md) |
-| Livestream / Mevo | [LIVESTREAM_SETUP.md](../LIVESTREAM_SETUP.md) |
+| Livestream / Mevo ($0) | [ZERO_COST_LIVESTREAM.md](../ZERO_COST_LIVESTREAM.md) |
 | Mobile + auth | [MOBILE_SETUP.md](../MOBILE_SETUP.md) |
 | Session log | [MAINTAINER-NOTES.md](./MAINTAINER-NOTES.md) |
 

@@ -32,7 +32,7 @@ export default async function LivePage() {
     <>
       <PageHeader
         title="Watch live"
-        description="Sunday worship at 10:00 AM CT — live video on this page is being upgraded to match our in-house experience. Sermon replays and prayer are available now."
+        description="Sunday worship at 10:00 AM CT — live video on this page and in the mobile app when we are streaming. Sermon replays and prayer are always available."
       />
       <Container className="py-12">
         <LivePageClient

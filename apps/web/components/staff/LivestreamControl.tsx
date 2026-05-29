@@ -63,9 +63,9 @@ export function LivestreamControl({
     <section className="mt-8 rounded-xl border-2 border-brand-accent/30 bg-surface p-6">
       <h2 className="font-display text-h3 text-brand-primary">Livestream control</h2>
       <p className="mt-2 text-sm text-foreground-secondary">
-        Toggle live on the website and mobile app. In-house mode uses your Mevo → Mux HLS
-        URL from Site Config (Subsplash replacement). Push notifications send when OneSignal
-        keys are configured.
+        Toggle live on the website and mobile app. Default ($0): start Mevo → YouTube, paste
+        the YouTube video ID here — members watch inside our app, not on YouTube.com. Push
+        notifications send when OneSignal keys are configured.
       </p>
 
       {inhouse ? (
@@ -101,7 +101,7 @@ export function LivestreamControl({
           {!inhouse ? (
             <label className="flex-1 text-sm">
               <span className="font-semibold text-brand-primary">
-                YouTube video ID or URL (legacy mode)
+                YouTube video ID or URL
               </span>
               <input
                 type="text"

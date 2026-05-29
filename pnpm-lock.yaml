@@ -226,6 +226,9 @@ importers:
       clsx:
         specifier: ^2.1.1
         version: 2.1.1
+      hls.js:
+        specifier: ^1.6.16
+        version: 1.6.16
       negotiator:
         specifier: ^1.0.0
         version: 1.0.0

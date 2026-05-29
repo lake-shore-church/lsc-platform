@@ -35,8 +35,9 @@ No temporary “mobile-only” content paths — mobile reads `/api/mobile/*` ba
 | **Supabase** | Free tier | Auth, events, prayers, giving records, profiles, Realtime |
 | **Vercel** | Free tier | Website + API routes |
 | **Zeffy** | 0% platform fee (501(c)(3)) | Donations + recurring + donor data → export/sync |
-| **Mux / Livepeer** (planned) | Usage-based | **In-house** live video (Subsplash replacement) |
-| **YouTube + Restream** (optional) | Free | **Secondary** simulcast — not primary member UX |
+| **YouTube Live** | Free | **Primary delivery** for Sunday — embedded in website/app ($0) |
+| **Restream** (optional) | Free | Simulcast to Facebook while app uses YouTube |
+| **Mux / Livepeer** (optional later) | Usage-based | Native HLS if church adds budget |
 | **Resend** | Free tier (limits) | Magic links, event reminders, prayer confirmations |
 | **OneSignal** | Free tier | Mobile push (Sunday, Wednesday, go-live) |
 | **Expo / EAS** | Free until store accounts | iOS/Android builds |

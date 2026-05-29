@@ -24,7 +24,7 @@ export const DEFAULT_SITE_CONFIG: Omit<SiteConfig, "_id" | "_type"> = {
   churchTaxId: "",
   activeTheme: "bold",
   isLiveNow: false,
-  liveStreamMode: "inhouse",
+  liveStreamMode: "youtube",
   livePlaybackUrl: "",
   liveVideoId: "",
   liveStreamUrl: "",

@@ -56,7 +56,7 @@ You do **not** need a second codebase deploy for v1 — you need confidence in c
 
 | Feature | Why wait | Doc |
 |---------|----------|-----|
-| **In-house live video** | Needs Mux/Livepeer + Mevo RTMP (Subsplash replacement) | [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) |
+| **Paid Mux in-house video** | Optional upgrade; **$0 path ships now** (Mevo → YouTube in app) | [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md) |
 | **Zeffy giving embed** | Needs church Zeffy account + embed URL in Studio | [ZEFFY_SETUP.md](./ZEFFY_SETUP.md) |
 | **PayPal Giving Fund** | Optional; enable in Studio when 501(c)(3) ready | [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md) |
 | **OneSignal push** | Nice-to-have; not required for website v1 | [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md) |
@@ -91,7 +91,8 @@ Tell Pastor: *“The website is live. Giving and Sunday video on the site are ph
 ### Deployment 2 (next sprint)
 
 - [ ] Zeffy embed URL in Studio
-- [ ] In-house live (Mux) — [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md)
+- [ ] Mevo → YouTube one-time setup — [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md)
+- [ ] Optional: paid Mux in-house — [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md)
 - [ ] Optional: `pnpm import:pastor-blog-rss` if Pastor wants WordPress posts in Sanity
 
 ---
@@ -100,4 +101,4 @@ Tell Pastor: *“The website is live. Giving and Sunday video on the site are ph
 
 **Yes — you can treat the website as v1 production today** on the Vercel URL (and `lschurch.com` when DNS is ready).  
 
-Live streaming and full online giving are **honest “coming next”** items, not blockers for a strong church site tour.
+**$0 live streaming** is documented and ready once Mevo points at YouTube; full online giving (Zeffy embed) is the main “coming next” item for the site tour.
