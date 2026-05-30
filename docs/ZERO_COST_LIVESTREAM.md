@@ -34,8 +34,10 @@ After service: YouTube saves replay → add URL to Sermon in Sanity
 
 ### 1. YouTube channel
 
+**Church channel (Pastor):** [Lake Shore Church Chicago](https://www.youtube.com/@lakeshorechurchchicago8615) · channel ID `UCvd4npADnhNfLXXiM_4DQgQ`
+
 1. Sign in at [youtube.com](https://www.youtube.com) with the church Google account.
-2. Create channel: **Lake Shore Church**.
+2. Channel is **Lake Shore Church Chicago** (handle `@lakeshorechurchchicago8615`).
 3. YouTube Studio → **Create** → **Go live** → choose **Stream** (not webcam).
 4. Copy **Stream URL** (`rtmp://a.rtmp.youtube.com/live2`) and **Stream key** (keep private).
 
@@ -60,8 +62,10 @@ In `/studio` → **Site Config**:
 | **Live stream mode** | YouTube embed |
 | **Is live now** | OFF (until service) |
 | **Live video ID** | Leave empty until Sunday |
+| **YouTube channel ID** | `UCvd4npADnhNfLXXiM_4DQgQ` |
+| **Live stream URL** | `https://www.youtube.com/@lakeshorechurchchicago8615` (optional link for members) |
 
-Optional: **YouTube channel ID** for fallback embed when ID is missing.
+Optional: **YouTube channel ID** is already set above for fallback embed when no video ID is pasted yet.
 
 ### 4. Test once before Sunday
 

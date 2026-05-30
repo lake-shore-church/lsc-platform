@@ -16,17 +16,18 @@ import {
   Text,
   View,
 } from "react-native";
-import { VolumeManager } from "react-native-volume-manager";
 import { WebView } from "react-native-webview";
-import { colors } from "@/constants/tokens";
+import type { ThemePalette } from "@/constants/themes";
 import { useAuth } from "@/lib/AuthContext";
 import { fetchJson, type MobileSermon } from "@/lib/api";
+import { bindVolumeSlideControl } from "@/lib/volumeManager";
 import {
   endPresentation,
   startPresentation,
   subscribePresentation,
   updatePresentationSlide,
 } from "@/lib/presentation";
+import { useThemedStyles } from "@/lib/useThemedStyles";
 
 const HIDE_MS = 3000;
 
@@ -44,6 +45,7 @@ function isStaffRole(role: string | null | undefined): boolean {
 
 export default function PresenterScreen() {
   const router = useRouter();
+  const styles = useThemedStyles(createStyles);
   const { slug } = useLocalSearchParams<{ slug?: string }>();
   const { profile, role, isLoading: authLoading, user } = useAuth();
 
@@ -54,7 +56,6 @@ export default function PresenterScreen() {
   const [showControls, setShowControls] = useState(true);
   const [videoOpen, setVideoOpen] = useState(false);
   const hideTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const lastVolume = useRef<number | null>(null);
   const syncingRemote = useRef(false);
 
   const slides = sermon?.slideUrls?.length
@@ -155,28 +156,12 @@ export default function PresenterScreen() {
   }, [sermon?.slug.current]);
 
   useEffect(() => {
-    let mounted = true;
-    void VolumeManager.showNativeVolumeUI({ enabled: false });
-    void VolumeManager.getVolume().then((v) => {
-      if (mounted) lastVolume.current = v.volume ?? null;
+    let unbind = () => {};
+    void bindVolumeSlideControl((delta) => changeSlide(delta)).then((cleanup) => {
+      unbind = cleanup;
     });
-
-    const sub = VolumeManager.addVolumeListener((result) => {
-      if (lastVolume.current === null) {
-        lastVolume.current = result.volume;
-        return;
-      }
-      const delta = result.volume - lastVolume.current;
-      lastVolume.current = result.volume;
-      if (Math.abs(delta) < 0.001) return;
-      if (delta > 0) changeSlide(1);
-      else changeSlide(-1);
-    });
-
     return () => {
-      mounted = false;
-      sub.remove();
-      void VolumeManager.showNativeVolumeUI({ enabled: true });
+      unbind();
     };
   }, [changeSlide]);
 
@@ -337,7 +322,8 @@ export default function PresenterScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemePalette) {
+  return StyleSheet.create({
   root: { flex: 1, backgroundColor: "#000" },
   centered: {
     flex: 1,
@@ -418,3 +404,4 @@ const styles = StyleSheet.create({
   videoCloseText: { color: "#fff", fontWeight: "700", fontSize: 16 },
   videoWeb: { flex: 1 },
 });
+}

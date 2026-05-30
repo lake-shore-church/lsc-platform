@@ -11,17 +11,15 @@ import {
   Text,
   View,
 } from "react-native";
-import { WebView } from "react-native-webview";
 import { EventCard } from "@/components/EventCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ThemePicker } from "@/components/ThemePicker";
 import { CHURCH } from "@/constants/church";
+import { blogHref, nativeRoutes } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
 import { fetchJson, type MobileBlogPost, type MobileEvent } from "@/lib/api";
 import { useAuth } from "@/lib/AuthContext";
 import { getI18n, localeOptions, setMobileLocale, t } from "@/lib/i18n";
-
-const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "http://localhost:3000";
 
 type HomePayload = {
   events: MobileEvent[];
@@ -44,7 +42,6 @@ export default function MoreScreen() {
   const [events, setEvents] = useState<MobileEvent[]>([]);
   const [posts, setPosts] = useState<MobileBlogPost[]>([]);
   const [book, setBook] = useState<HomePayload["book"]>(null);
-  const [webUrl, setWebUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [, setLocaleTick] = useState(0);
 
@@ -58,17 +55,6 @@ export default function MoreScreen() {
       .catch(() => {})
       .finally(() => setLoading(false));
   }, []);
-
-  if (webUrl) {
-    return (
-      <View style={{ flex: 1 }}>
-        <Pressable style={styles.closeBar} onPress={() => setWebUrl(null)}>
-          <Text style={styles.closeText}>← Back</Text>
-        </Pressable>
-        <WebView source={{ uri: webUrl }} style={{ flex: 1 }} />
-      </View>
-    );
-  }
 
   return (
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
@@ -107,17 +93,14 @@ export default function MoreScreen() {
 
       <ThemePicker />
 
-      <SectionHeader title="Upcoming events" />
+      <SectionHeader
+        title="Upcoming events"
+        actionLabel="See all"
+        onAction={() => router.push(nativeRoutes.events)}
+      />
       {loading ? <ActivityIndicator color={colors.primary} /> : null}
       {events.length ? (
-        events.map((e) => (
-          <EventCard
-            key={e.id}
-            event={e}
-            showRsvp
-            onRsvp={() => setWebUrl(`${APP_URL}/events`)}
-          />
-        ))
+        events.map((e) => <EventCard key={e.id} event={e} />)
       ) : (
         <Text style={styles.empty}>No upcoming events.</Text>
       )}
@@ -127,7 +110,7 @@ export default function MoreScreen() {
         <Pressable
           key={p._id}
           style={styles.postCard}
-          onPress={() => setWebUrl(`${APP_URL}/blog/${p.slug.current}`)}
+          onPress={() => router.push(blogHref(p.slug.current, "more"))}
         >
           <Text style={styles.postTitle} numberOfLines={2}>
             {p.title}
@@ -181,6 +164,14 @@ export default function MoreScreen() {
         >
           <Ionicons name="call-outline" size={18} color={colors.primary} />
           <Text style={styles.aboutText}>{CHURCH.phone}</Text>
+        </Pressable>
+        <Pressable style={styles.aboutRow} onPress={() => router.push(nativeRoutes.visit)}>
+          <Ionicons name="calendar-outline" size={18} color={colors.primary} />
+          <Text style={[styles.aboutText, styles.aboutLink]}>Plan a visit</Text>
+        </Pressable>
+        <Pressable style={styles.aboutRow} onPress={() => router.push(nativeRoutes.contact)}>
+          <Ionicons name="mail-outline" size={18} color={colors.primary} />
+          <Text style={[styles.aboutText, styles.aboutLink]}>Contact us</Text>
         </Pressable>
         <View style={styles.aboutRow}>
           <Ionicons name="time-outline" size={18} color={colors.primary} />
@@ -336,6 +327,7 @@ function createStyles(colors: ReturnType<typeof useTheme>["colors"]) {
   },
   aboutRow: { flexDirection: "row", alignItems: "flex-start", marginBottom: 12, gap: 8 },
   aboutText: { flex: 1, fontSize: 14, color: colors.textMuted, lineHeight: 20 },
+  aboutLink: { color: colors.primary, fontWeight: "600" },
   socialRow: {
     flexDirection: "row",
     justifyContent: "space-around",
@@ -389,7 +381,5 @@ function createStyles(colors: ReturnType<typeof useTheme>["colors"]) {
     color: colors.textMuted,
     lineHeight: 16,
   },
-  closeBar: { padding: 12, backgroundColor: colors.primary },
-  closeText: { color: "#fff", fontWeight: "600" },
   });
 }

@@ -1,4 +1,4 @@
-import { useLocalSearchParams, useRouter } from "expo-router";
+import { Stack, useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useState } from "react";
 import {
   ActivityIndicator,
@@ -11,17 +11,23 @@ import {
   View,
 } from "react-native";
 import { WebView } from "react-native-webview";
+import type { ThemePalette } from "@/constants/themes";
 import { HlsVideoPlayer } from "@/components/HlsVideoPlayer";
-import { colors } from "@/constants/tokens";
 import { downloadMediaToDevice } from "@/lib/downloadMedia";
 import { fetchJson, type MobileSermon } from "@/lib/api";
+import { useThemedStyles } from "@/lib/useThemedStyles";
+import { useTheme } from "@/lib/ThemeContext";
+import { backLabelFrom, sermonHref } from "@/lib/navigation";
 import { pickVideoSource, youtubeEmbedUrl } from "@/lib/video";
 
 const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "http://localhost:3000";
 
 export default function SermonDetailScreen() {
-  const { slug } = useLocalSearchParams<{ slug: string }>();
+  const { slug, from } = useLocalSearchParams<{ slug: string; from?: string }>();
   const router = useRouter();
+  const { colors } = useTheme();
+  const styles = useThemedStyles(createStyles);
+  const backTitle = backLabelFrom(from);
   const [sermon, setSermon] = useState<MobileSermon | null>(null);
   const [related, setRelated] = useState<MobileSermon[]>([]);
   const [loading, setLoading] = useState(true);
@@ -68,20 +74,26 @@ export default function SermonDetailScreen() {
 
   if (loading) {
     return (
-      <View style={styles.centered}>
-        <ActivityIndicator size="large" color="#1B4F8A" />
-      </View>
+      <>
+        <Stack.Screen options={{ title: "Sermon", headerBackTitle: backTitle }} />
+        <View style={[styles.centered, { backgroundColor: colors.surface }]}>
+          <ActivityIndicator size="large" color={colors.primary} />
+        </View>
+      </>
     );
   }
 
   if (!sermon) {
     return (
-      <View style={styles.centered}>
-        <Text>Sermon not found.</Text>
-        <Pressable onPress={() => router.back()}>
-          <Text style={styles.link}>Go back</Text>
-        </Pressable>
-      </View>
+      <>
+        <Stack.Screen options={{ title: "Sermon", headerBackTitle: backTitle }} />
+        <View style={[styles.centered, { backgroundColor: colors.surface }]}>
+          <Text style={{ color: colors.textPrimary }}>Sermon not found.</Text>
+          <Pressable onPress={() => router.back()}>
+            <Text style={styles.link}>Go back</Text>
+          </Pressable>
+        </View>
+      </>
     );
   }
 
@@ -90,6 +102,13 @@ export default function SermonDetailScreen() {
   const youtubeEmbed = youtubeEmbedUrl(sermon.videoUrl);
 
   return (
+    <>
+      <Stack.Screen
+        options={{
+          title: sermon.title,
+          headerBackTitle: backTitle,
+        }}
+      />
     <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       {source === "hls" && sermon.videoUrl ? (
         <HlsVideoPlayer uri={sermon.videoUrl} height={videoHeight} />
@@ -152,7 +171,7 @@ export default function SermonDetailScreen() {
             <Pressable
               key={s._id}
               style={styles.relatedRow}
-              onPress={() => router.push(`/sermon/${s.slug.current}`)}
+              onPress={() => router.push(sermonHref(s.slug.current, "sermons"))}
             >
               <Text style={styles.relatedTitle}>{s.title}</Text>
             </Pressable>
@@ -160,61 +179,64 @@ export default function SermonDetailScreen() {
         </>
       ) : null}
     </ScrollView>
+    </>
   );
 }
 
-const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: colors.surface },
-  content: { padding: 16, paddingBottom: 40 },
-  centered: { flex: 1, justifyContent: "center", alignItems: "center", padding: 20 },
-  title: { fontSize: 22, fontWeight: "700", color: colors.primary, marginTop: 12 },
-  meta: { marginTop: 6, fontSize: 14, color: colors.textMuted },
-  scriptureChip: {
-    alignSelf: "flex-start",
-    marginTop: 10,
-    backgroundColor: `${colors.primary}14`,
-    paddingHorizontal: 12,
-    paddingVertical: 6,
-    borderRadius: 999,
-  },
-  scriptureText: { color: colors.primary, fontWeight: "600", fontSize: 13 },
-  videoWrap: { marginHorizontal: -16, overflow: "hidden", backgroundColor: "#000" },
-  video: { flex: 1 },
-  summary: { marginTop: 16, fontSize: 15, lineHeight: 22, color: colors.textPrimary },
-  audioPlaceholder: {
-    marginTop: 16,
-    padding: 14,
-    backgroundColor: colors.border,
-    borderRadius: 10,
-  },
-  audioText: { color: colors.textMuted, fontSize: 13, textAlign: "center" },
-  audioNote: { marginTop: 16, fontSize: 13, color: colors.textMuted },
-  actions: { marginTop: 16, gap: 10 },
-  shareButton: {
-    backgroundColor: colors.primary,
-    borderRadius: 10,
-    paddingVertical: 12,
-    alignItems: "center",
-  },
-  shareText: { color: "#fff", fontWeight: "700" },
-  downloadButton: {
-    borderWidth: 1,
-    borderColor: colors.primary,
-    borderRadius: 10,
-    paddingVertical: 12,
-    alignItems: "center",
-  },
-  downloadText: { color: colors.primary, fontWeight: "700" },
-  disabled: { opacity: 0.6 },
-  relatedHeading: { marginTop: 24, fontSize: 17, fontWeight: "700", color: colors.primary },
-  relatedRow: {
-    marginTop: 8,
-    padding: 12,
-    backgroundColor: colors.background,
-    borderRadius: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-  },
-  relatedTitle: { fontSize: 15, color: colors.textPrimary },
-  link: { marginTop: 12, color: colors.primary, fontWeight: "600" },
-});
+function createStyles(colors: ThemePalette) {
+  return StyleSheet.create({
+    container: { flex: 1, backgroundColor: colors.surface },
+    content: { padding: 16, paddingBottom: 40 },
+    centered: { flex: 1, justifyContent: "center", alignItems: "center", padding: 20 },
+    title: { fontSize: 22, fontWeight: "700", color: colors.primary, marginTop: 12 },
+    meta: { marginTop: 6, fontSize: 14, color: colors.textMuted },
+    scriptureChip: {
+      alignSelf: "flex-start",
+      marginTop: 10,
+      backgroundColor: `${colors.primary}14`,
+      paddingHorizontal: 12,
+      paddingVertical: 6,
+      borderRadius: 999,
+    },
+    scriptureText: { color: colors.primary, fontWeight: "600", fontSize: 13 },
+    videoWrap: { marginHorizontal: -16, overflow: "hidden", backgroundColor: "#000" },
+    video: { flex: 1 },
+    summary: { marginTop: 16, fontSize: 15, lineHeight: 22, color: colors.textPrimary },
+    audioPlaceholder: {
+      marginTop: 16,
+      padding: 14,
+      backgroundColor: colors.border,
+      borderRadius: 10,
+    },
+    audioText: { color: colors.textMuted, fontSize: 13, textAlign: "center" },
+    audioNote: { marginTop: 16, fontSize: 13, color: colors.textMuted },
+    actions: { marginTop: 16, gap: 10 },
+    shareButton: {
+      backgroundColor: colors.primary,
+      borderRadius: 10,
+      paddingVertical: 12,
+      alignItems: "center",
+    },
+    shareText: { color: "#fff", fontWeight: "700" },
+    downloadButton: {
+      borderWidth: 1,
+      borderColor: colors.primary,
+      borderRadius: 10,
+      paddingVertical: 12,
+      alignItems: "center",
+    },
+    downloadText: { color: colors.primary, fontWeight: "700" },
+    disabled: { opacity: 0.6 },
+    relatedHeading: { marginTop: 24, fontSize: 17, fontWeight: "700", color: colors.primary },
+    relatedRow: {
+      marginTop: 8,
+      padding: 12,
+      backgroundColor: colors.background,
+      borderRadius: 8,
+      borderWidth: 1,
+      borderColor: colors.border,
+    },
+    relatedTitle: { fontSize: 15, color: colors.textPrimary },
+    link: { marginTop: 12, color: colors.primary, fontWeight: "600" },
+  });
+}

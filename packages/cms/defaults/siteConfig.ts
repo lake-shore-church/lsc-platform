@@ -27,8 +27,8 @@ export const DEFAULT_SITE_CONFIG: Omit<SiteConfig, "_id" | "_type"> = {
   liveStreamMode: "youtube",
   livePlaybackUrl: "",
   liveVideoId: "",
-  liveStreamUrl: "",
-  youtubeChannelId: "",
+  liveStreamUrl: "https://www.youtube.com/@lakeshorechurchchicago8615",
+  youtubeChannelId: "UCvd4npADnhNfLXXiM_4DQgQ",
   yearPromiseScripture: "3 John 1:2 (NKJV)",
   yearPromiseTheme: "Prosper as your soul prospers",
   yearPromiseBody:

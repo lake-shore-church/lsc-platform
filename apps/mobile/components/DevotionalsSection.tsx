@@ -1,17 +1,18 @@
 import * as WebBrowser from "expo-web-browser";
+import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { CHURCH } from "@/constants/church";
+import { blogHref } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
 import { t } from "@/lib/i18n";
 import type { MobileBlogPost } from "@/lib/api";
-
-const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "https://lsc-platform-kappa.vercel.app";
 
 type Props = {
   posts: MobileBlogPost[];
 };
 
 export function DevotionalsSection({ posts }: Props) {
+  const router = useRouter();
   const { colors } = useTheme();
 
   return (
@@ -36,7 +37,7 @@ export function DevotionalsSection({ posts }: Props) {
             <Pressable
               key={post._id}
               style={[styles.post, { backgroundColor: colors.surface, borderColor: colors.border }]}
-              onPress={() => void WebBrowser.openBrowserAsync(`${APP_URL}/blog/${post.slug.current}`)}
+              onPress={() => router.push(blogHref(post.slug.current, "home"))}
             >
               <Text style={[styles.postTitle, { color: colors.textPrimary }]} numberOfLines={2}>
                 {post.title}

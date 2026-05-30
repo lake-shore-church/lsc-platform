@@ -3,11 +3,14 @@ import { useEffect, useState } from "react";
 import { ActivityIndicator, Platform, StyleSheet, Text, View } from "react-native";
 import * as Linking from "expo-linking";
 import { SafeAreaView } from "react-native-safe-area-context";
+import type { ThemePalette } from "@/constants/themes";
 import { completeAuthFromUrl } from "@/lib/completeAuthFromUrl";
 import { getAuthCallbackUrl } from "@/lib/getAuthCallbackUrl";
+import { useThemedStyles } from "@/lib/useThemedStyles";
 
 export default function AuthCallbackScreen() {
   const router = useRouter();
+  const styles = useThemedStyles(createStyles);
   const [message, setMessage] = useState("Signing you in…");
 
   useEffect(() => {
@@ -51,8 +54,10 @@ export default function AuthCallbackScreen() {
   );
 }
 
-const styles = StyleSheet.create({
-  safe: { flex: 1, backgroundColor: "#1B4F8A" },
-  center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24 },
-  text: { color: "#fff", marginTop: 16, fontSize: 16, textAlign: "center" },
-});
+function createStyles(colors: ThemePalette) {
+  return StyleSheet.create({
+    safe: { flex: 1, backgroundColor: colors.primary },
+    center: { flex: 1, alignItems: "center", justifyContent: "center", padding: 24 },
+    text: { color: "#fff", marginTop: 16, fontSize: 16, textAlign: "center" },
+  });
+}

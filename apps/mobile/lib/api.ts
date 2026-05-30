@@ -38,6 +38,11 @@ export type MobileBlogPost = {
   imageUrl?: string;
 };
 
+export type MobileBlogPostDetail = MobileBlogPost & {
+  body?: string;
+  authorName?: string | null;
+};
+
 export type MobilePrayer = {
   id: string;
   content: string;

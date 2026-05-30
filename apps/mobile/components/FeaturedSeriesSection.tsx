@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { SermonCard } from "@/components/SermonCard";
 import { useTheme } from "@/lib/ThemeContext";
 import { t } from "@/lib/i18n";
+import { nativeRoutes, sermonHref } from "@/lib/navigation";
 import type { MobileSermon } from "@/lib/api";
 
 type Props = {
@@ -21,7 +22,7 @@ export function FeaturedSeriesSection({ latestSermon }: Props) {
       <Text style={styles.desc}>{t("home", "series_desc")}</Text>
       <Pressable
         style={[styles.seriesBtn, { backgroundColor: colors.accent }]}
-        onPress={() => router.push("/(tabs)/sermons")}
+        onPress={() => router.push(nativeRoutes.sermons)}
       >
         <Text style={styles.seriesBtnText}>{t("home", "watch_series")}</Text>
       </Pressable>
@@ -32,7 +33,7 @@ export function FeaturedSeriesSection({ latestSermon }: Props) {
           <SermonCard
             sermon={latestSermon}
             compact
-            onPress={() => router.push(`/sermon/${latestSermon.slug.current}`)}
+            onPress={() => router.push(sermonHref(latestSermon.slug.current, "home"))}
           />
         </View>
       ) : null}

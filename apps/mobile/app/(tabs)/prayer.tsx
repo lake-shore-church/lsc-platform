@@ -1,6 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as Haptics from "expo-haptics";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
   Pressable,
@@ -11,7 +11,10 @@ import {
   View,
 } from "react-native";
 import { fetchJson, type MobilePrayer } from "@/lib/api";
-import { colors } from "@/constants/tokens";
+import type { ThemePalette } from "@/constants/themes";
+import { useTheme } from "@/lib/ThemeContext";
+
+const SUCCESS = "#166534";
 
 const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "http://localhost:3000";
 const MAX_CHARS = 500;
@@ -28,6 +31,8 @@ function statusLabel(status?: string): string {
 }
 
 export default function PrayerScreen() {
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const [content, setContent] = useState("");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -86,7 +91,7 @@ export default function PrayerScreen() {
       <View style={styles.formCard}>
         {submitted ? (
           <View style={styles.success}>
-            <Ionicons name="checkmark-circle" size={56} color={colors.success} />
+            <Ionicons name="checkmark-circle" size={56} color={SUCCESS} />
             <Text style={styles.successTitle}>Your prayer has been received</Text>
             <Text style={styles.successSub}>Our team will pray for you</Text>
             <Pressable style={styles.linkBtn} onPress={resetForm}>
@@ -201,7 +206,8 @@ export default function PrayerScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemePalette) {
+  return StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.surface },
   content: { padding: 16, paddingBottom: 40 },
   formCard: {
@@ -291,7 +297,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: `${colors.primary}14`,
   },
-  prayBtnDone: { backgroundColor: `${colors.success}18` },
+  prayBtnDone: { backgroundColor: `${SUCCESS}18` },
   prayBtnText: { color: colors.primary, fontWeight: "700", fontSize: 13 },
-  prayBtnTextDone: { color: colors.success },
+  prayBtnTextDone: { color: SUCCESS },
 });
+}

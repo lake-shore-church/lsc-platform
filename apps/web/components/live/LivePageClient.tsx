@@ -35,7 +35,7 @@ const PLATFORM_CARDS = [
     icon: "📺",
     title: "YouTube",
     subtitle: "Optional — find us on YouTube if you prefer that app",
-    href: "https://www.youtube.com/@lakeshorechurch",
+    href: "https://www.youtube.com/@lakeshorechurchchicago8615",
     badge: null,
   },
   {

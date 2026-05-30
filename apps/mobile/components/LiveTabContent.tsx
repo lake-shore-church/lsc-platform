@@ -1,6 +1,6 @@
 import * as Haptics from "expo-haptics";
 import { useRouter } from "expo-router";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import {
   ActivityIndicator,
   Alert,
@@ -14,10 +14,12 @@ import {
 import { WebView } from "react-native-webview";
 import { HlsVideoPlayer } from "@/components/HlsVideoPlayer";
 import { LiveReplaysSection } from "@/components/LiveReplaysSection";
-import { colors } from "@/constants/tokens";
+import type { ThemePalette } from "@/constants/themes";
+import { sermonHref, nativeRoutes } from "@/lib/navigation";
 import { recentLiveReplays } from "@/lib/liveReplays";
 import { countdownParts, type LiveStatus } from "@/lib/live";
 import type { MobileSermon } from "@/lib/api";
+import { useTheme } from "@/lib/ThemeContext";
 import { pickVideoSource } from "@/lib/video";
 
 const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "http://localhost:3000";
@@ -30,8 +32,12 @@ type Props = {
   sermons: MobileSermon[];
 };
 
+type LiveStyles = ReturnType<typeof createStyles>;
+
 export function LiveTabContent({ status, loading, latestSermon, sermons }: Props) {
   const router = useRouter();
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const [prayer, setPrayer] = useState("");
   const [sending, setSending] = useState(false);
 
@@ -59,14 +65,16 @@ export function LiveTabContent({ status, loading, latestSermon, sermons }: Props
   if (inhouseLive && status?.playbackUrl) {
     return (
       <View style={styles.liveWrap}>
-        <LiveNowHeader />
+        <LiveNowHeader styles={styles} />
         <HlsVideoPlayer uri={status.playbackUrl} height={videoHeight} />
-        <LiveMeta status={status} />
+        <LiveMeta status={status} styles={styles} />
         <PrayerDuringService
           prayer={prayer}
           setPrayer={setPrayer}
           sending={sending}
           setSending={setSending}
+          styles={styles}
+          colors={colors}
         />
         <Text style={styles.inhouseNote}>
           Watching on Lake Shore Church — same experience as the old Subsplash app.
@@ -79,7 +87,7 @@ export function LiveTabContent({ status, loading, latestSermon, sermons }: Props
   if (youtubeLive && status?.embedUrl) {
     return (
       <View style={styles.liveWrap}>
-        <LiveNowHeader />
+        <LiveNowHeader styles={styles} />
         <View style={[styles.player, { height: videoHeight }]}>
           <WebView
             source={{ uri: status.embedUrl }}
@@ -88,12 +96,14 @@ export function LiveTabContent({ status, loading, latestSermon, sermons }: Props
             style={styles.webview}
           />
         </View>
-        <LiveMeta status={status} />
+        <LiveMeta status={status} styles={styles} />
         <PrayerDuringService
           prayer={prayer}
           setPrayer={setPrayer}
           sending={sending}
           setSending={setSending}
+          styles={styles}
+          colors={colors}
         />
         <Text style={styles.inhouseNote}>
           Watching on Lake Shore Church — live video plays here in the app.
@@ -120,7 +130,7 @@ export function LiveTabContent({ status, loading, latestSermon, sermons }: Props
           void Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           Alert.alert(
             "Reminders",
-            "Enable push notifications when TestFlight is available, or contact us on the website.",
+            "Enable push notifications when TestFlight is available, or contact us from the More tab.",
           );
         }}
       >
@@ -131,9 +141,9 @@ export function LiveTabContent({ status, loading, latestSermon, sermons }: Props
         style={styles.primaryBtn}
         onPress={() => {
           if (latestSermon) {
-            router.push(`/sermon/${latestSermon.slug.current}`);
+            router.push(sermonHref(latestSermon.slug.current, "sermons"));
           } else {
-            router.push("/(tabs)/sermons");
+            router.push(nativeRoutes.sermons);
           }
         }}
       >
@@ -145,7 +155,7 @@ export function LiveTabContent({ status, loading, latestSermon, sermons }: Props
   );
 }
 
-function LiveNowHeader() {
+function LiveNowHeader({ styles }: { styles: LiveStyles }) {
   return (
     <View style={styles.liveBadge}>
       <View style={styles.pulseDot} />
@@ -154,7 +164,7 @@ function LiveNowHeader() {
   );
 }
 
-function LiveMeta({ status }: { status: LiveStatus }) {
+function LiveMeta({ status, styles }: { status: LiveStatus; styles: LiveStyles }) {
   return (
     <>
       <Text style={styles.watching}>Watching: Sunday Service</Text>
@@ -169,11 +179,15 @@ function PrayerDuringService({
   setPrayer,
   sending,
   setSending,
+  styles,
+  colors,
 }: {
   prayer: string;
   setPrayer: (v: string) => void;
   sending: boolean;
   setSending: (v: boolean) => void;
+  styles: LiveStyles;
+  colors: ThemePalette;
 }) {
   async function sendPrayer() {
     const content = prayer.trim();
@@ -222,87 +236,89 @@ function PrayerDuringService({
   );
 }
 
-const styles = StyleSheet.create({
-  centered: { padding: 40, alignItems: "center" },
-  liveWrap: { padding: 16, paddingBottom: 32 },
-  liveBadge: {
-    flexDirection: "row",
-    alignItems: "center",
-    alignSelf: "flex-start",
-    backgroundColor: "#dc2626",
-    paddingHorizontal: 10,
-    paddingVertical: 6,
-    borderRadius: 999,
-    marginBottom: 12,
-    gap: 6,
-  },
-  pulseDot: {
-    width: 8,
-    height: 8,
-    borderRadius: 4,
-    backgroundColor: "#fff",
-  },
-  liveBadgeText: { color: "#fff", fontWeight: "800", fontSize: 12 },
-  player: {
-    width: "100%",
-    borderRadius: 12,
-    overflow: "hidden",
-    backgroundColor: "#000",
-  },
-  webview: { flex: 1 },
-  watching: { marginTop: 14, fontSize: 16, fontWeight: "700", color: colors.textPrimary },
-  meta: { fontSize: 14, color: colors.textMuted, marginTop: 4 },
-  inhouseNote: {
-    marginTop: 12,
-    fontSize: 13,
-    color: colors.textMuted,
-    lineHeight: 18,
-  },
-  prayerLabel: { marginTop: 20, fontWeight: "600", color: colors.textPrimary },
-  prayerInput: {
-    marginTop: 8,
-    borderWidth: 1,
-    borderColor: colors.border,
-    borderRadius: 10,
-    padding: 12,
-    minHeight: 72,
-    textAlignVertical: "top",
-    color: colors.textPrimary,
-    backgroundColor: colors.background,
-  },
-  prayerBtn: {
-    marginTop: 10,
-    backgroundColor: colors.primary,
-    paddingVertical: 14,
-    borderRadius: 10,
-    alignItems: "center",
-  },
-  prayerBtnText: { color: "#fff", fontWeight: "700" },
-  disabled: { opacity: 0.6 },
-  offlineWrap: { padding: 24, alignItems: "center" },
-  countdownTitle: { fontSize: 18, fontWeight: "700", color: colors.textPrimary },
-  countdown: {
-    fontSize: 36,
-    fontWeight: "800",
-    color: colors.primary,
-    marginTop: 12,
-  },
-  countdownSub: { marginTop: 8, color: colors.textMuted },
-  primaryBtn: {
-    marginTop: 20,
-    backgroundColor: colors.primary,
-    paddingHorizontal: 24,
-    paddingVertical: 14,
-    borderRadius: 10,
-  },
-  primaryBtnText: { color: "#fff", fontWeight: "700" },
-  secondaryBtn: {
-    marginTop: 24,
-    borderWidth: 1,
-    borderColor: colors.border,
-    paddingHorizontal: 24,
-    paddingVertical: 14,
-    borderRadius: 10,
-  },
-  secondaryBtnText: { color: colors.primary, fontWeight: "600" },
-});
+function createStyles(colors: ThemePalette) {
+  return StyleSheet.create({
+    centered: { padding: 40, alignItems: "center" },
+    liveWrap: { padding: 16, paddingBottom: 32 },
+    liveBadge: {
+      flexDirection: "row",
+      alignItems: "center",
+      alignSelf: "flex-start",
+      backgroundColor: "#dc2626",
+      paddingHorizontal: 10,
+      paddingVertical: 6,
+      borderRadius: 999,
+      marginBottom: 12,
+      gap: 6,
+    },
+    pulseDot: {
+      width: 8,
+      height: 8,
+      borderRadius: 4,
+      backgroundColor: "#fff",
+    },
+    liveBadgeText: { color: "#fff", fontWeight: "800", fontSize: 12 },
+    player: {
+      width: "100%",
+      borderRadius: 12,
+      overflow: "hidden",
+      backgroundColor: "#000",
+    },
+    webview: { flex: 1 },
+    watching: { marginTop: 14, fontSize: 16, fontWeight: "700", color: colors.textPrimary },
+    meta: { fontSize: 14, color: colors.textMuted, marginTop: 4 },
+    inhouseNote: {
+      marginTop: 12,
+      fontSize: 13,
+      color: colors.textMuted,
+      lineHeight: 18,
+    },
+    prayerLabel: { marginTop: 20, fontWeight: "600", color: colors.textPrimary },
+    prayerInput: {
+      marginTop: 8,
+      borderWidth: 1,
+      borderColor: colors.border,
+      borderRadius: 10,
+      padding: 12,
+      minHeight: 72,
+      textAlignVertical: "top",
+      color: colors.textPrimary,
+      backgroundColor: colors.background,
+    },
+    prayerBtn: {
+      marginTop: 10,
+      backgroundColor: colors.primary,
+      paddingVertical: 14,
+      borderRadius: 10,
+      alignItems: "center",
+    },
+    prayerBtnText: { color: "#fff", fontWeight: "700" },
+    disabled: { opacity: 0.6 },
+    offlineWrap: { padding: 24, alignItems: "center" },
+    countdownTitle: { fontSize: 18, fontWeight: "700", color: colors.textPrimary },
+    countdown: {
+      fontSize: 36,
+      fontWeight: "800",
+      color: colors.primary,
+      marginTop: 12,
+    },
+    countdownSub: { marginTop: 8, color: colors.textMuted },
+    primaryBtn: {
+      marginTop: 20,
+      backgroundColor: colors.primary,
+      paddingHorizontal: 24,
+      paddingVertical: 14,
+      borderRadius: 10,
+    },
+    primaryBtnText: { color: "#fff", fontWeight: "700" },
+    secondaryBtn: {
+      marginTop: 24,
+      borderWidth: 1,
+      borderColor: colors.border,
+      paddingHorizontal: 24,
+      paddingVertical: 14,
+      borderRadius: 10,
+    },
+    secondaryBtnText: { color: colors.primary, fontWeight: "600" },
+  });
+}

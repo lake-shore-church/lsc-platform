@@ -1,12 +1,18 @@
 import { Ionicons } from "@expo/vector-icons";
 import * as WebBrowser from "expo-web-browser";
 import { useEffect, useState } from "react";
-import { ActivityIndicator, Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import {
+  ActivityIndicator,
+  Alert,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { WebView } from "react-native-webview";
 import { useTheme } from "@/lib/ThemeContext";
 import { fetchJson } from "@/lib/api";
-
-const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "https://lsc-platform-kappa.vercel.app";
 
 type GiveConfig = {
   zeffyEmbedUrl: string | null;
@@ -27,7 +33,7 @@ export default function GiveScreen() {
   const { colors } = useTheme();
   const [config, setConfig] = useState<GiveConfig | null>(null);
   const [loading, setLoading] = useState(true);
-  const [showWebView, setShowWebView] = useState(false);
+  const [showZeffy, setShowZeffy] = useState(false);
 
   useEffect(() => {
     fetchJson<GiveConfig>("/api/mobile/config")
@@ -44,19 +50,17 @@ export default function GiveScreen() {
   }, []);
 
   const zeffyUrl = config?.zeffyEmbedUrl?.trim();
-  const givePageUrl = `${APP_URL.replace(/\/$/, "")}/give`;
-  const webViewUrl = zeffyUrl || givePageUrl;
 
-  if (showWebView) {
+  if (showZeffy && zeffyUrl) {
     return (
       <View style={{ flex: 1 }}>
         <Pressable
           style={[styles.closeBar, { backgroundColor: colors.primary }]}
-          onPress={() => setShowWebView(false)}
+          onPress={() => setShowZeffy(false)}
         >
           <Text style={styles.closeText}>← Back</Text>
         </Pressable>
-        <WebView source={{ uri: webViewUrl }} style={{ flex: 1 }} />
+        <WebView source={{ uri: zeffyUrl }} style={{ flex: 1 }} />
       </View>
     );
   }
@@ -70,6 +74,23 @@ export default function GiveScreen() {
   }
 
   const ein = config?.churchTaxId?.trim();
+
+  function onGiveNow() {
+    if (zeffyUrl) {
+      setShowZeffy(true);
+      return;
+    }
+    if (config?.paypalGivingEnabled) {
+      void WebBrowser.openBrowserAsync(
+        config.paypalGivingUrl?.trim() || "https://www.paypal.com/us/webapps/mpp/givingfund",
+      );
+      return;
+    }
+    Alert.alert(
+      "Online giving",
+      "Online giving is not configured yet. Contact the church office for other ways to give.",
+    );
+  }
 
   return (
     <ScrollView style={[styles.container, { backgroundColor: colors.surface }]}>
@@ -96,12 +117,14 @@ export default function GiveScreen() {
 
       <Pressable
         style={[styles.button, { backgroundColor: colors.primary }]}
-        onPress={() => setShowWebView(true)}
+        onPress={onGiveNow}
       >
-        <Text style={styles.buttonText}>{zeffyUrl ? "Give now (Zeffy) →" : "Give now →"}</Text>
+        <Text style={styles.buttonText}>
+          {zeffyUrl ? "Give now (Zeffy) →" : "Give via PayPal →"}
+        </Text>
       </Pressable>
 
-      {config?.paypalGivingEnabled ? (
+      {config?.paypalGivingEnabled && zeffyUrl ? (
         <Pressable
           style={[styles.paypalBtn, { borderColor: colors.primary }]}
           onPress={() =>
@@ -127,7 +150,9 @@ export default function GiveScreen() {
 
       <View style={styles.feeRow}>
         <Ionicons name="shield-checkmark-outline" size={16} color={colors.textMuted} />
-        <Text style={[styles.feeText, { color: colors.textMuted }]}>Zeffy · 0% platform fees</Text>
+        <Text style={[styles.feeText, { color: colors.textMuted }]}>
+          {zeffyUrl ? "Zeffy · 0% platform fees" : "PayPal Giving Fund"}
+        </Text>
       </View>
     </ScrollView>
   );

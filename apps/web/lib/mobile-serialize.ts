@@ -54,3 +54,25 @@ export function serializeMobileBlogPost(post: BlogPost) {
     imageUrl: imageUrl(post.featuredImage, 400, 240),
   };
 }
+
+/** Plain text for mobile readers (no Portable Text renderer on device). */
+export function portableTextToPlain(
+  blocks?: Array<{ _type?: string; children?: Array<{ text?: string }> }>,
+): string {
+  if (!blocks?.length) return "";
+  return blocks
+    .map((block) => {
+      if (block._type !== "block" || !Array.isArray(block.children)) return "";
+      return block.children.map((child) => child.text ?? "").join("");
+    })
+    .filter(Boolean)
+    .join("\n\n");
+}
+
+export function serializeMobileBlogPostDetail(post: BlogPost) {
+  return {
+    ...serializeMobileBlogPost(post),
+    body: portableTextToPlain(post.content),
+    authorName: post.author?.name ?? null,
+  };
+}

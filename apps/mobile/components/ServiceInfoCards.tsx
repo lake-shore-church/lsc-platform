@@ -2,10 +2,11 @@ import * as Linking from "expo-linking";
 import { useRouter } from "expo-router";
 import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import { CHURCH } from "@/constants/church";
+import { nativeRoutes } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
 import { t } from "@/lib/i18n";
 
-const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "https://lsc-platform-kappa.vercel.app";
+const DEFAULT_ZOOM_URL = "https://zoom.us/j/83078837399";
 
 type Card = {
   icon: string;
@@ -19,7 +20,7 @@ export function ServiceInfoCards() {
   const { colors, siteCopy } = useTheme();
   const router = useRouter();
 
-  const zoomUrl = siteCopy.zoomJoinRedirectUrl ?? `${APP_URL.replace(/\/$/, "")}/join`;
+  const zoomUrl = siteCopy.zoomJoinUrl?.trim() || DEFAULT_ZOOM_URL;
 
   const cards: Card[] = [
     {
@@ -33,16 +34,13 @@ export function ServiceInfoCards() {
       icon: "🕙",
       labelKey: "service_time",
       lines: [t("home", "every_sunday"), "10:00 AM", t("home", "doors_open")],
-      onPress: () => void Linking.openURL(`${APP_URL}/visit`),
+      onPress: () => router.push(nativeRoutes.visit),
       linkKey: "plan_visit",
     },
     {
       icon: "💻",
       labelKey: "join_zoom",
-      lines: [
-        t("home", "join_zoom_same_link"),
-        siteCopy.zoomMeetingId ?? "830 7883 7399",
-      ],
+      lines: [t("home", "join_zoom_same_link"), siteCopy.zoomMeetingId ?? "830 7883 7399"],
       onPress: () => void Linking.openURL(zoomUrl),
       linkKey: "join_zoom_cta",
     },
@@ -50,14 +48,14 @@ export function ServiceInfoCards() {
       icon: "📺",
       labelKey: "watch_online",
       lines: [t("home", "miss_service"), t("home", "watch_archive")],
-      onPress: () => router.push("/(tabs)/sermons"),
+      onPress: () => router.push(nativeRoutes.sermons),
       linkKey: "watch_now",
     },
     {
       icon: "🙏",
       labelKey: "prayer_request",
       lines: [t("home", "submit_prayer_line1"), t("home", "submit_prayer_line2")],
-      onPress: () => router.push("/(tabs)/prayer"),
+      onPress: () => router.push(nativeRoutes.prayer),
       linkKey: "request_prayer",
     },
   ];

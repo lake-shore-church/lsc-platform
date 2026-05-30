@@ -1,5 +1,4 @@
 import { useRouter } from "expo-router";
-import * as WebBrowser from "expo-web-browser";
 import { useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
@@ -20,11 +19,10 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { ServiceInfoCards } from "@/components/ServiceInfoCards";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { useLiveStatus } from "@/hooks/useLiveStatus";
+import { nativeRoutes } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
 import { fetchJson, type MobileBlogPost, type MobileEvent, type MobileSermon } from "@/lib/api";
 import { t } from "@/lib/i18n";
-
-const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "https://lsc-platform-kappa.vercel.app";
 
 type HomeData = {
   sermon: MobileSermon | null;
@@ -70,7 +68,7 @@ export default function HomeScreen() {
         {liveStatus?.isLive ? (
           <Pressable
             style={styles.liveBanner}
-            onPress={() => router.push("/(tabs)/sermons?tab=live")}
+            onPress={() => router.push(nativeRoutes.sermonsLive)}
           >
             <View style={styles.liveDot} />
             <Text style={styles.liveBannerText}>LIVE NOW — Join Sunday Service</Text>
@@ -84,7 +82,7 @@ export default function HomeScreen() {
         <SectionHeader
           title={t("home", "upcoming_events")}
           actionLabel={t("home", "see_all_events")}
-          onAction={() => void WebBrowser.openBrowserAsync(`${APP_URL}/events`)}
+          onAction={() => router.push(nativeRoutes.events)}
         />
         {data?.events?.length ? (
           data.events.map((event) => <EventCard key={event.id} event={event} />)

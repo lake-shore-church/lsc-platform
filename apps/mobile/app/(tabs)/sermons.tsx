@@ -1,6 +1,7 @@
 import { Ionicons } from "@expo/vector-icons";
 import { useLocalSearchParams, useRouter } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
+import type { ThemePalette } from "@/constants/themes";
 import {
   ActivityIndicator,
   FlatList,
@@ -13,14 +14,17 @@ import {
 } from "react-native";
 import { LiveTabContent } from "@/components/LiveTabContent";
 import { SermonCard } from "@/components/SermonCard";
-import { colors } from "@/constants/tokens";
 import { useLiveStatus } from "@/hooks/useLiveStatus";
+import { useTheme } from "@/lib/ThemeContext";
+import { sermonHref } from "@/lib/navigation";
 import { fetchJson, type MobileSermon } from "@/lib/api";
 
 type TabId = "live" | "archive";
 
 export default function SermonsScreen() {
   const router = useRouter();
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const { tab } = useLocalSearchParams<{ tab?: string }>();
   const [activeTab, setActiveTab] = useState<TabId>("archive");
   const [sermons, setSermons] = useState<MobileSermon[]>([]);
@@ -141,7 +145,7 @@ export default function SermonsScreen() {
             renderItem={({ item }) => (
               <SermonCard
                 sermon={item}
-                onPress={() => router.push(`/sermon/${item.slug.current}`)}
+                onPress={() => router.push(sermonHref(item.slug.current, "sermons"))}
               />
             )}
           />
@@ -151,7 +155,8 @@ export default function SermonsScreen() {
   );
 }
 
-const styles = StyleSheet.create({
+function createStyles(colors: ThemePalette) {
+  return StyleSheet.create({
   container: { flex: 1, backgroundColor: colors.surface },
   centered: { flex: 1, justifyContent: "center", alignItems: "center" },
   header: {
@@ -218,3 +223,4 @@ const styles = StyleSheet.create({
   list: { paddingTop: 8, paddingBottom: 24 },
   empty: { textAlign: "center", color: colors.textMuted, marginTop: 24, paddingHorizontal: 20 },
 });
+}

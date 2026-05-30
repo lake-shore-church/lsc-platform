@@ -1,11 +1,9 @@
-import * as WebBrowser from "expo-web-browser";
 import { Image } from "expo-image";
 import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { homeImages } from "@repo/media";
+import { nativeRoutes } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
-
-const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "https://lsc-platform-kappa.vercel.app";
 
 export function HomeHero() {
   const router = useRouter();
@@ -28,13 +26,13 @@ export function HomeHero() {
         <View style={styles.actions}>
           <Pressable
             style={[styles.btnPrimary, { backgroundColor: colors.accent }]}
-            onPress={() => router.push("/(tabs)/sermons")}
+            onPress={() => router.push(nativeRoutes.sermons)}
           >
             <Text style={styles.btnPrimaryText}>Watch a sermon</Text>
           </Pressable>
           <Pressable
             style={styles.btnOutline}
-            onPress={() => void WebBrowser.openBrowserAsync(`${APP_URL}/visit`)}
+            onPress={() => router.push(nativeRoutes.visit)}
           >
             <Text style={styles.btnOutlineText}>Plan a visit</Text>
           </Pressable>

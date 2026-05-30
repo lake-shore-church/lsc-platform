@@ -24,6 +24,7 @@ type SiteCopy = {
   subTagline?: string;
   heroBody?: string;
   heroCtaText?: string;
+  zoomJoinUrl?: string | null;
   zoomJoinRedirectUrl?: string | null;
   zoomMeetingId?: string;
   zoomPasscode?: string;
@@ -51,6 +52,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
           fetchJson<
             SiteCopy & {
               activeTheme?: string;
+              zoomJoinUrl?: string | null;
               zoomJoinRedirectUrl?: string | null;
               zoomMeetingId?: string;
               zoomPasscode?: string;
@@ -65,6 +67,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
           heroBody: config?.heroBody,
           heroCtaText: config?.heroCtaText,
           zoomJoinRedirectUrl: config?.zoomJoinRedirectUrl,
+          zoomJoinUrl: config?.zoomJoinUrl,
           zoomMeetingId: config?.zoomMeetingId,
           zoomPasscode: config?.zoomPasscode,
         });

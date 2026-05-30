@@ -1,13 +1,13 @@
-import * as WebBrowser from "expo-web-browser";
 import { Image } from "expo-image";
+import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { homeImages } from "@repo/media";
+import { nativeRoutes } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
 import { t } from "@/lib/i18n";
 
-const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "https://lsc-platform-kappa.vercel.app";
-
 export function NewHereSection() {
+  const router = useRouter();
   const { colors } = useTheme();
 
   return (
@@ -16,7 +16,7 @@ export function NewHereSection() {
       <Text style={[styles.body, { color: colors.textMuted }]}>{t("home", "welcome_body")}</Text>
       <Pressable
         style={[styles.btn, { backgroundColor: colors.primary }]}
-        onPress={() => void WebBrowser.openBrowserAsync(`${APP_URL}/visit`)}
+        onPress={() => router.push(nativeRoutes.visit)}
       >
         <Text style={styles.btnText}>{t("home", "plan_visit_btn")}</Text>
       </Pressable>

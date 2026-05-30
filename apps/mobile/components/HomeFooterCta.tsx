@@ -1,11 +1,11 @@
-import * as WebBrowser from "expo-web-browser";
+import { useRouter } from "expo-router";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import { nativeRoutes } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
 import { t } from "@/lib/i18n";
 
-const APP_URL = process.env.EXPO_PUBLIC_APP_URL ?? "https://lsc-platform-kappa.vercel.app";
-
 export function HomeFooterCta() {
+  const router = useRouter();
   const { colors } = useTheme();
 
   return (
@@ -15,13 +15,13 @@ export function HomeFooterCta() {
       <View style={styles.actions}>
         <Pressable
           style={[styles.btnPrimary, { backgroundColor: colors.accent }]}
-          onPress={() => void WebBrowser.openBrowserAsync(`${APP_URL}/visit`)}
+          onPress={() => router.push(nativeRoutes.visit)}
         >
           <Text style={styles.btnPrimaryText}>{t("home", "plan_visit")}</Text>
         </Pressable>
         <Pressable
           style={styles.btnOutline}
-          onPress={() => void WebBrowser.openBrowserAsync(`${APP_URL}/contact`)}
+          onPress={() => router.push(nativeRoutes.contact)}
         >
           <Text style={styles.btnOutlineText}>{t("home", "contact_us")}</Text>
         </Pressable>

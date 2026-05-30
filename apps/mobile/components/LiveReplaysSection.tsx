@@ -1,7 +1,10 @@
 import { useRouter } from "expo-router";
+import { useMemo } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import { colors } from "@/constants/tokens";
+import type { ThemePalette } from "@/constants/themes";
 import type { MobileSermon } from "@/lib/api";
+import { sermonHref } from "@/lib/navigation";
+import { useTheme } from "@/lib/ThemeContext";
 
 type Props = {
   replays: MobileSermon[];
@@ -10,6 +13,8 @@ type Props = {
 
 export function LiveReplaysSection({ replays, days = 31 }: Props) {
   const router = useRouter();
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
 
   if (!replays.length) return null;
 
@@ -24,7 +29,7 @@ export function LiveReplaysSection({ replays, days = 31 }: Props) {
         <Pressable
           key={s._id}
           style={styles.row}
-          onPress={() => router.push(`/sermon/${s.slug.current}`)}
+          onPress={() => router.push(sermonHref(s.slug.current, "sermons"))}
         >
           <Text style={styles.title}>{s.title}</Text>
           {s.publishedAt ? (
@@ -42,18 +47,20 @@ export function LiveReplaysSection({ replays, days = 31 }: Props) {
   );
 }
 
-const styles = StyleSheet.create({
-  wrap: { marginTop: 28, paddingHorizontal: 16, paddingBottom: 24 },
-  heading: { fontSize: 18, fontWeight: "700", color: colors.primary },
-  note: { marginTop: 6, fontSize: 13, lineHeight: 18, color: colors.textMuted },
-  row: {
-    marginTop: 10,
-    padding: 14,
-    borderRadius: 10,
-    borderWidth: 1,
-    borderColor: colors.border,
-    backgroundColor: colors.background,
-  },
-  title: { fontSize: 15, fontWeight: "600", color: colors.textPrimary },
-  date: { marginTop: 4, fontSize: 13, color: colors.textMuted },
-});
+function createStyles(colors: ThemePalette) {
+  return StyleSheet.create({
+    wrap: { marginTop: 28, paddingHorizontal: 16, paddingBottom: 24 },
+    heading: { fontSize: 18, fontWeight: "700", color: colors.primary },
+    note: { marginTop: 6, fontSize: 13, lineHeight: 18, color: colors.textMuted },
+    row: {
+      marginTop: 10,
+      padding: 14,
+      borderRadius: 10,
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.background,
+    },
+    title: { fontSize: 15, fontWeight: "600", color: colors.textPrimary },
+    date: { marginTop: 4, fontSize: 13, color: colors.textMuted },
+  });
+}

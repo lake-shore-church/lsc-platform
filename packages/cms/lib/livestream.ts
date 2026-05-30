@@ -19,7 +19,9 @@ export type LiveStatusResponse = {
 };
 
 const FACEBOOK_URL = "https://www.facebook.com/lschurchchicago";
-const YOUTUBE_CHANNEL_URL = "https://www.youtube.com/@lakeshorechurch";
+const YOUTUBE_CHANNEL_URL =
+  "https://www.youtube.com/@lakeshorechurchchicago8615";
+const YOUTUBE_CHANNEL_ID = "UCvd4npADnhNfLXXiM_4DQgQ";
 const CHICAGO_TZ = "America/Chicago";
 const SERVICE_HOUR = 10;
 const SERVICE_MINUTE = 0;
@@ -146,9 +148,9 @@ export function buildLiveStatus(
     parseYouTubeVideoId(config.liveVideoId) ??
     parseYouTubeVideoId(config.liveStreamUrl);
   const channelId =
-    config.youtubeChannelId ??
-    process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID ??
-    null;
+    config.youtubeChannelId?.trim() ||
+    process.env.NEXT_PUBLIC_YOUTUBE_CHANNEL_ID?.trim() ||
+    YOUTUBE_CHANNEL_ID;
 
   const nextServiceAt =
     config.nextServiceDate ??

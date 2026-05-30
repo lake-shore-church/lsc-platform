@@ -10,7 +10,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 
 import { useColorScheme } from "@/components/useColorScheme";
 import { AuthProvider } from "@/lib/AuthContext";
-import { ThemeProvider as LscThemeProvider } from "@/lib/ThemeContext";
+import { ThemeProvider as LscThemeProvider, useTheme } from "@/lib/ThemeContext";
 import { initMobileI18n } from "@/lib/i18n";
 
 export { ErrorBoundary } from "expo-router";
@@ -59,15 +59,39 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const colorScheme = useColorScheme();
+  const { colors } = useTheme();
+
+  const navTheme = {
+    ...(colorScheme === "dark" ? DarkTheme : DefaultTheme),
+    colors: {
+      ...(colorScheme === "dark" ? DarkTheme.colors : DefaultTheme.colors),
+      primary: colors.primary,
+      background: colors.surface,
+      card: colors.background,
+      text: colors.textPrimary,
+      border: colors.border,
+    },
+  };
 
   return (
-    <NavThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
-      <Stack>
+    <NavThemeProvider value={navTheme}>
+      <Stack
+        screenOptions={{
+          headerStyle: { backgroundColor: colors.primary },
+          headerTintColor: "#fff",
+          headerTitleStyle: { fontWeight: "700" },
+          contentStyle: { backgroundColor: colors.surface },
+        }}
+      >
         <Stack.Screen name="index" options={{ headerShown: false }} />
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="auth/index" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false, title: "Home" }} />
+        <Stack.Screen name="auth/index" options={{ headerShown: false, title: "More" }} />
         <Stack.Screen name="auth/callback" options={{ headerShown: false }} />
-        <Stack.Screen name="sermon/[slug]" options={{ title: "Sermon" }} />
+        <Stack.Screen name="sermon/[slug]" options={{ title: "Sermon", headerBackTitle: "Back" }} />
+        <Stack.Screen name="visit" options={{ title: "Plan a visit" }} />
+        <Stack.Screen name="contact" options={{ title: "Contact" }} />
+        <Stack.Screen name="events" options={{ title: "Events" }} />
+        <Stack.Screen name="blog/[slug]" options={{ title: "Article", headerBackTitle: "Back" }} />
         <Stack.Screen
           name="presenter"
           options={{ headerShown: false, orientation: "landscape" }}

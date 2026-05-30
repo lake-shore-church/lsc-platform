@@ -21,7 +21,7 @@
     "seed:testimonies": "tsx scripts/seed-testimonies.ts",
     "promote:member": "tsx scripts/promote-member.ts",
     "import:pastor-blog-rss": "tsx scripts/import-pastor-blog-rss.ts",
-    "mobile:start": "pnpm --filter mobile start",
+    "mobile:start": "pnpm --filter mobile start:go",
     "mobile:ios": "pnpm --filter mobile ios"
   },
   "devDependencies": {

@@ -1,10 +1,13 @@
 import {
   ActivityIndicator,
   Pressable,
+  StyleSheet,
   Text,
   type PressableProps,
 } from "react-native";
-import { colors } from "@/constants/tokens";
+import { useThemedStyles } from "@/lib/useThemedStyles";
+import { useTheme } from "@/lib/ThemeContext";
+import type { ThemePalette } from "@/constants/themes";
 
 type Variant = "primary" | "secondary" | "ghost";
 
@@ -13,7 +16,6 @@ export function Button({
   variant = "primary",
   loading,
   disabled,
-  className,
   ...props
 }: PressableProps & {
   label: string;
@@ -21,14 +23,19 @@ export function Button({
   loading?: boolean;
   className?: string;
 }) {
+  const { colors } = useTheme();
+  const styles = useThemedStyles(createStyles);
   const isPrimary = variant === "primary";
   const isSecondary = variant === "secondary";
 
   return (
     <Pressable
-      className={`min-h-[44px] items-center justify-center rounded-lg px-4 ${
-        isPrimary ? "bg-primary" : isSecondary ? "border border-primary bg-white" : ""
-      } ${disabled || loading ? "opacity-50" : ""} ${className ?? ""}`}
+      style={[
+        styles.base,
+        isPrimary && styles.primary,
+        isSecondary && styles.secondary,
+        (disabled || loading) && styles.disabled,
+      ]}
       disabled={disabled || loading}
       {...props}
     >
@@ -36,13 +43,36 @@ export function Button({
         <ActivityIndicator color={isPrimary ? "#fff" : colors.primary} />
       ) : (
         <Text
-          className={`text-base font-semibold ${
-            isPrimary ? "text-white" : isSecondary ? "text-primary" : "text-primary"
-          }`}
+          style={[
+            styles.label,
+            isPrimary && styles.labelPrimary,
+            (isSecondary || variant === "ghost") && { color: colors.primary },
+          ]}
         >
           {label}
         </Text>
       )}
     </Pressable>
   );
+}
+
+function createStyles(colors: ThemePalette) {
+  return StyleSheet.create({
+    base: {
+      minHeight: 44,
+      alignItems: "center",
+      justifyContent: "center",
+      borderRadius: 8,
+      paddingHorizontal: 16,
+    },
+    primary: { backgroundColor: colors.primary },
+    secondary: {
+      borderWidth: 1,
+      borderColor: colors.primary,
+      backgroundColor: colors.background,
+    },
+    disabled: { opacity: 0.5 },
+    label: { fontSize: 16, fontWeight: "600" },
+    labelPrimary: { color: "#fff" },
+  });
 }
