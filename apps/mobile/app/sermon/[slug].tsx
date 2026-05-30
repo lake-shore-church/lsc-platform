@@ -140,7 +140,7 @@ export default function SermonDetailScreen() {
       {sermon.summary ? <Text style={styles.summary}>{sermon.summary}</Text> : null}
 
       {sermon.audioUrl ? (
-        <Text style={styles.audioNote}>Audio: open from website or podcast for now.</Text>
+        <Text style={styles.audioNote}>Audio will appear here when uploaded to our media library.</Text>
       ) : (
         <View style={styles.audioPlaceholder}>
           <Text style={styles.audioText}>Audio — available when uploaded to our media library</Text>

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { getTranslations } from "next-intl/server";
 import { getEvents } from "@repo/db";
 import { PageHeader } from "@/components/ui/PageHeader";
@@ -33,7 +34,9 @@ export default async function EventsPage() {
       {eventsJsonLd.length ? <JsonLd data={eventsJsonLd} /> : null}
       <PageHeader title={t("page_title")} description={t("page_desc")} />
       <Container className="py-12">
-        <EventsClient events={events} />
+        <Suspense fallback={<p className="text-foreground-muted">{t("no_events")}</p>}>
+          <EventsClient events={events} />
+        </Suspense>
       </Container>
     </>
   );

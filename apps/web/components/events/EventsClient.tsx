@@ -1,6 +1,7 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { useSearchParams } from "next/navigation";
 import { useTranslations } from "next-intl";
 import type { Event } from "@repo/db";
 import { formatDateTime } from "@/lib/format";
@@ -8,10 +9,18 @@ import { Button } from "@/components/ui/Button";
 
 export function EventsClient({ events }: { events: Event[] }) {
   const t = useTranslations("events");
+  const searchParams = useSearchParams();
   const [view, setView] = useState<"list" | "calendar">("list");
   const [ministry, setMinistry] = useState("");
   const [rsvpEvent, setRsvpEvent] = useState<Event | null>(null);
   const [rsvpStatus, setRsvpStatus] = useState<string>("");
+
+  useEffect(() => {
+    const eventId = searchParams.get("event");
+    if (!eventId) return;
+    const match = events.find((e) => e.id === eventId);
+    if (match) setRsvpEvent(match);
+  }, [searchParams, events]);
 
   const ministries = useMemo(
     () => [...new Set(events.map((e) => e.ministry_area).filter(Boolean))] as string[],

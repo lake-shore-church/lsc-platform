@@ -76,3 +76,28 @@ export function serializeMobileBlogPostDetail(post: BlogPost) {
     authorName: post.author?.name ?? null,
   };
 }
+
+/** JSON-safe event payload — same Supabase rows as the website /events page. */
+export function serializeMobileEvent(event: {
+  id: string;
+  title: string;
+  description?: string | null;
+  starts_at: string;
+  ends_at?: string | null;
+  location?: string | null;
+  ministry_area?: string | null;
+  capacity?: number | null;
+  image_url?: string | null;
+}) {
+  return {
+    id: event.id,
+    title: event.title,
+    description: event.description ?? null,
+    starts_at: event.starts_at,
+    ends_at: event.ends_at ?? null,
+    location: event.location ?? null,
+    ministry_area: event.ministry_area ?? null,
+    capacity: event.capacity ?? null,
+    image_url: event.image_url ?? null,
+  };
+}

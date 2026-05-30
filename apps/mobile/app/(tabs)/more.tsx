@@ -100,7 +100,7 @@ export default function MoreScreen() {
       />
       {loading ? <ActivityIndicator color={colors.primary} /> : null}
       {events.length ? (
-        events.map((e) => <EventCard key={e.id} event={e} />)
+        events.map((e) => <EventCard key={e.id} event={e} from="more" />)
       ) : (
         <Text style={styles.empty}>No upcoming events.</Text>
       )}

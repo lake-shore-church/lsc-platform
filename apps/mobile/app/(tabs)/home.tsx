@@ -85,7 +85,9 @@ export default function HomeScreen() {
           onAction={() => router.push(nativeRoutes.events)}
         />
         {data?.events?.length ? (
-          data.events.map((event) => <EventCard key={event.id} event={event} />)
+          data.events.map((event) => (
+            <EventCard key={event.id} event={event} from="home" />
+          ))
         ) : (
           <Text style={styles.empty}>No upcoming events.</Text>
         )}

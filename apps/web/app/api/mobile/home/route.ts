@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import { getBlogPosts, getResources, getSermons } from "@repo/cms";
 import { getEvents } from "@repo/db";
-import { serializeMobileBlogPost, serializeMobileSermon } from "@/lib/mobile-serialize";
+import { serializeMobileBlogPost, serializeMobileEvent, serializeMobileSermon } from "@/lib/mobile-serialize";
 
 export async function GET() {
   const [sermons, events, posts, resources] = await Promise.all([
@@ -15,7 +15,7 @@ export async function GET() {
 
   return NextResponse.json({
     sermon,
-    events,
+    events: events.map(serializeMobileEvent),
     posts: posts.map(serializeMobileBlogPost),
     book: resources[0] ?? null,
   });

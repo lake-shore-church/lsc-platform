@@ -18,9 +18,13 @@ export type MobileSermon = {
 export type MobileEvent = {
   id: string;
   title: string;
+  description?: string | null;
   starts_at: string;
   ends_at?: string | null;
   location?: string | null;
+  ministry_area?: string | null;
+  capacity?: number | null;
+  image_url?: string | null;
 };
 
 export type MobileBlogPost = {

@@ -38,3 +38,7 @@ export function sermonHref(slug: string, from?: TabBackFrom): `/sermon/${string}
 export function blogHref(slug: string, from?: TabBackFrom): `/blog/${string}` {
   return from ? (`/blog/${slug}?from=${from}` as const) : (`/blog/${slug}` as const);
 }
+
+export function eventHref(id: string, from?: TabBackFrom): `/events/${string}` {
+  return from ? (`/events/${id}?from=${from}` as const) : (`/events/${id}` as const);
+}
