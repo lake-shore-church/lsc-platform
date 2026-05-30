@@ -1,15 +1,25 @@
 import { NextResponse } from "next/server";
-import { buildLiveStatus, getSiteConfig, getSanityWriteClient } from "@repo/cms";
+import {
+  buildLiveStatus,
+  endLiveInSanity,
+  getSiteConfig,
+  getSanityWriteClient,
+  isWithinSundayLiveWindow,
+} from "@repo/cms";
 
 export const revalidate = 60;
 
 export async function GET() {
-  // Fresh Sanity read (no CDN) so go-live shows within seconds, not minutes.
-  const cms =
-    process.env.SANITY_API_TOKEN != null && process.env.SANITY_API_TOKEN !== ""
-      ? getSanityWriteClient()
-      : undefined;
+  const canWrite =
+    process.env.SANITY_API_TOKEN != null && process.env.SANITY_API_TOKEN !== "";
+  const cms = canWrite ? getSanityWriteClient() : undefined;
   const config = await getSiteConfig(cms);
+
+  // Auto-clear stale test/live flags after Sunday noon CT (or any day outside the window).
+  if (config.isLiveNow && !isWithinSundayLiveWindow() && canWrite) {
+    void endLiveInSanity().catch(() => {});
+  }
+
   const host =
     process.env.NEXT_PUBLIC_SITE_URL ??
     process.env.VERCEL_URL ??

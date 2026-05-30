@@ -25,6 +25,11 @@ const YOUTUBE_CHANNEL_ID = "UCvd4npADnhNfLXXiM_4DQgQ";
 const CHICAGO_TZ = "America/Chicago";
 const SERVICE_HOUR = 10;
 const SERVICE_MINUTE = 0;
+/** Sunday live UI window in Chicago — staff must also set isLiveNow in CMS. */
+const LIVE_WINDOW_START_HOUR = 9;
+const LIVE_WINDOW_START_MINUTE = 30;
+const LIVE_WINDOW_END_HOUR = 12;
+const LIVE_WINDOW_END_MINUTE = 0;
 
 /** Extract 11-char YouTube video ID from URL or raw id. */
 export function parseYouTubeVideoId(input?: string | null): string | null {
@@ -136,11 +141,36 @@ export function resolveLiveStreamMode(config: SiteConfig): LiveStreamMode {
   return "youtube";
 }
 
+/** True on Sunday between 9:30 AM and 12:00 PM America/Chicago. */
+export function isWithinSundayLiveWindow(from = new Date()): boolean {
+  const parts = chicagoParts(from);
+  if (parts.weekday !== "Sun") return false;
+
+  const nowMs = from.getTime();
+  const startMs = chicagoLocalToUtc(
+    parts.year,
+    parts.month,
+    parts.day,
+    LIVE_WINDOW_START_HOUR,
+    LIVE_WINDOW_START_MINUTE,
+  );
+  const endMs = chicagoLocalToUtc(
+    parts.year,
+    parts.month,
+    parts.day,
+    LIVE_WINDOW_END_HOUR,
+    LIVE_WINDOW_END_MINUTE,
+  );
+
+  return nowMs >= startMs && nowMs < endMs;
+}
+
 export function buildLiveStatus(
   config: SiteConfig,
   options?: { embedDomain?: string },
 ): LiveStatusResponse {
-  const isLive = Boolean(config.isLiveNow);
+  const cmsLive = Boolean(config.isLiveNow);
+  const isLive = cmsLive && isWithinSundayLiveWindow();
   const streamMode = resolveLiveStreamMode(config);
   const playbackUrl = config.livePlaybackUrl?.trim() || null;
 

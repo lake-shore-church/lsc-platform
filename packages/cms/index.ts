@@ -84,6 +84,7 @@ export {
 } from "./lib/siteConfig";
 export {
   buildLiveStatus,
+  isWithinSundayLiveWindow,
   parseYouTubeVideoId,
   resolveLiveStreamMode,
   youtubeEmbedUrl,

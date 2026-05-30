@@ -32,10 +32,7 @@ export default function SermonsScreen() {
   const [seriesFilter, setSeriesFilter] = useState("All");
   const [loading, setLoading] = useState(true);
   const { status: liveStatus, loading: liveLoading } = useLiveStatus();
-
-  useEffect(() => {
-    if (tab === "live") setActiveTab("live");
-  }, [tab]);
+  const showLiveTab = Boolean(liveStatus?.isLive);
 
   useEffect(() => {
     fetchJson<{ sermons: MobileSermon[] }>("/api/mobile/sermons")
@@ -43,6 +40,14 @@ export default function SermonsScreen() {
       .catch(() => setSermons([]))
       .finally(() => setLoading(false));
   }, []);
+
+  useEffect(() => {
+    if (tab === "live" && showLiveTab) {
+      setActiveTab("live");
+    } else if (activeTab === "live" && !showLiveTab) {
+      setActiveTab("archive");
+    }
+  }, [tab, showLiveTab, activeTab]);
 
   const seriesOptions = useMemo(() => {
     const names = new Set<string>();
@@ -73,6 +78,7 @@ export default function SermonsScreen() {
     <View style={styles.container}>
       <View style={styles.header}>
         <Text style={styles.headerTitle}>Sermons</Text>
+        {showLiveTab ? (
         <View style={styles.tabRow}>
           <Pressable
             style={[styles.tab, activeTab === "live" && styles.tabActive]}
@@ -91,9 +97,10 @@ export default function SermonsScreen() {
             </Text>
           </Pressable>
         </View>
+        ) : null}
       </View>
 
-      {activeTab === "live" ? (
+      {showLiveTab && activeTab === "live" ? (
         <ScrollView>
           <LiveTabContent
             status={liveStatus}
