@@ -15,7 +15,7 @@ import {
   type ThemeId,
   type ThemePalette,
 } from "@/constants/themes";
-import { fetchJson } from "@/lib/api";
+import { fetchJson } from "@/lib/fetchJson";
 
 const STORAGE_KEY = "lsc-mobile-theme";
 

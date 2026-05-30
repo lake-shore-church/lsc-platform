@@ -109,7 +109,7 @@ export default function SermonDetailScreen() {
           headerBackTitle: backTitle,
         }}
       />
-    <ScrollView style={styles.container} contentContainerStyle={styles.content}>
+      <ScrollView style={styles.container} contentContainerStyle={styles.content}>
       {source === "hls" && sermon.videoUrl ? (
         <HlsVideoPlayer uri={sermon.videoUrl} height={videoHeight} />
       ) : youtubeEmbed ? (
@@ -178,7 +178,7 @@ export default function SermonDetailScreen() {
           ))}
         </>
       ) : null}
-    </ScrollView>
+      </ScrollView>
     </>
   );
 }

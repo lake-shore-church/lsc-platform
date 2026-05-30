@@ -1,4 +1,4 @@
-import { fetchJson } from "./api";
+import { fetchJson } from "./fetchJson";
 
 export type LiveStatus = {
   isLive: boolean;

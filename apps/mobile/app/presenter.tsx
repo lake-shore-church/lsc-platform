@@ -27,7 +27,7 @@ import {
   subscribePresentation,
   updatePresentationSlide,
 } from "@/lib/presentation";
-import { useThemedStyles } from "@/lib/useThemedStyles";
+import { useTheme } from "@/lib/ThemeContext";
 
 const HIDE_MS = 3000;
 
@@ -45,7 +45,8 @@ function isStaffRole(role: string | null | undefined): boolean {
 
 export default function PresenterScreen() {
   const router = useRouter();
-  const styles = useThemedStyles(createStyles);
+  const { colors } = useTheme();
+  const styles = useMemo(() => createStyles(colors), [colors]);
   const { slug } = useLocalSearchParams<{ slug?: string }>();
   const { profile, role, isLoading: authLoading, user } = useAuth();
 
