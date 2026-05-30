@@ -1,6 +1,10 @@
 {
   "name": "lsc-platform",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev",
@@ -16,7 +20,9 @@
     "seed:ministries": "tsx scripts/seed-ministries.ts",
     "seed:testimonies": "tsx scripts/seed-testimonies.ts",
     "promote:member": "tsx scripts/promote-member.ts",
-    "import:pastor-blog-rss": "tsx scripts/import-pastor-blog-rss.ts"
+    "import:pastor-blog-rss": "tsx scripts/import-pastor-blog-rss.ts",
+    "mobile:start": "pnpm --filter mobile start",
+    "mobile:ios": "pnpm --filter mobile ios"
   },
   "devDependencies": {
     "prettier": "^3.7.4",

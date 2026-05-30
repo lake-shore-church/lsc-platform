@@ -80,14 +80,26 @@ If magic link still fails, see **[AUTH_TROUBLESHOOTING.md](./AUTH_TROUBLESHOOTIN
 ## 5. Run the app locally
 
 ```bash
-# Terminal 1 — web API (required for sermons/home)
-pnpm --filter web dev
+# From repo root (recommended):
+pnpm mobile:start
 
-# Terminal 2 — mobile
+# Or from apps/mobile:
 cd apps/mobile
-pnpm start
-# Press i (iOS simulator) or scan QR in Expo Go
+pnpm start -- --clear
 ```
+
+Then scan the **QR code** with **Expo Go** on your iPhone (same Wi‑Fi as your Mac).
+
+**Do not** use `pnpm start:web` for phone testing — that is browser-only and causes **HTTP 500** in Expo Go.
+
+If Expo Go shows *“problem running the requested app — 500”*:
+
+1. Stop any old server (`Ctrl+C` in the terminal).
+2. Run from **`apps/mobile`**: `pnpm start -- --clear`
+3. Force-quit **Expo Go** on your phone and scan the **new** QR code (not an old “Recent” project).
+4. Mac and phone must be on the **same Wi‑Fi**.
+
+Expected tabs when it works: **Home · Sermons · Prayer · Give · More**
 
 ---
 
