@@ -90,7 +90,8 @@ function RootLayoutNav() {
         <Stack.Screen name="sermon/[slug]" options={{ title: "Sermon", headerBackTitle: "Back" }} />
         <Stack.Screen name="visit" options={{ title: "Plan a visit" }} />
         <Stack.Screen name="contact" options={{ title: "Contact" }} />
-        <Stack.Screen name="events" options={{ headerShown: false }} />
+        <Stack.Screen name="events" options={{ title: "Events", headerBackTitle: "Back" }} />
+        <Stack.Screen name="event/[id]" options={{ title: "Event", headerBackTitle: "Back" }} />
         <Stack.Screen name="blog/[slug]" options={{ title: "Article", headerBackTitle: "Back" }} />
         <Stack.Screen
           name="presenter"

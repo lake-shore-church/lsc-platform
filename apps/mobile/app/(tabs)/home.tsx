@@ -19,7 +19,7 @@ import { SectionHeader } from "@/components/SectionHeader";
 import { ServiceInfoCards } from "@/components/ServiceInfoCards";
 import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { useLiveStatus } from "@/hooks/useLiveStatus";
-import { nativeRoutes } from "@/lib/navigation";
+import { nativeRoutes, eventsHref } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
 import { fetchJson, type MobileBlogPost, type MobileEvent, type MobileSermon } from "@/lib/api";
 import { t } from "@/lib/i18n";
@@ -82,7 +82,7 @@ export default function HomeScreen() {
         <SectionHeader
           title={t("home", "upcoming_events")}
           actionLabel={t("home", "see_all_events")}
-          onAction={() => router.push(nativeRoutes.events)}
+          onAction={() => router.push(eventsHref("home"))}
         />
         {data?.events?.length ? (
           data.events.map((event) => (

@@ -1,4 +1,4 @@
-import { Stack } from "expo-router";
+import { Stack, useLocalSearchParams } from "expo-router";
 import { useEffect, useMemo, useState } from "react";
 import {
   ActivityIndicator,
@@ -11,13 +11,16 @@ import {
 import { EventCard } from "@/components/EventCard";
 import type { ThemePalette } from "@/constants/themes";
 import { fetchJson, type MobileEvent } from "@/lib/api";
+import { backLabelFrom } from "@/lib/navigation";
 import { t } from "@/lib/i18n";
 import { useThemedStyles } from "@/lib/useThemedStyles";
 import { useTheme } from "@/lib/ThemeContext";
 
-export default function EventsListScreen() {
+export default function EventsScreen() {
+  const { from } = useLocalSearchParams<{ from?: string }>();
   const { colors } = useTheme();
   const styles = useThemedStyles(createStyles);
+  const backTitle = backLabelFrom(from);
   const [events, setEvents] = useState<MobileEvent[]>([]);
   const [loading, setLoading] = useState(true);
   const [ministry, setMinistry] = useState("");
@@ -40,9 +43,11 @@ export default function EventsListScreen() {
     return events.filter((e) => e.ministry_area === ministry);
   }, [events, ministry]);
 
+  const cardFrom = from === "more" ? ("more" as const) : ("events" as const);
+
   return (
     <>
-      <Stack.Screen options={{ title: t("events", "page_title"), headerBackTitle: "Home" }} />
+      <Stack.Screen options={{ title: t("events", "page_title"), headerBackTitle: backTitle }} />
       <ScrollView style={styles.container} contentContainerStyle={styles.content}>
         <Text style={styles.lead}>{t("events", "page_desc")}</Text>
 
@@ -73,7 +78,9 @@ export default function EventsListScreen() {
         {loading ? (
           <ActivityIndicator size="large" color={colors.primary} style={{ marginTop: 24 }} />
         ) : filtered.length ? (
-          filtered.map((event) => <EventCard key={event.id} event={event} from="events" />)
+          filtered.map((event) => (
+            <EventCard key={event.id} event={event} from={cardFrom} />
+          ))
         ) : (
           <Text style={styles.empty}>{t("events", "no_events")}</Text>
         )}

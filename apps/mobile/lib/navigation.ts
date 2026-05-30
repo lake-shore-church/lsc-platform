@@ -39,6 +39,10 @@ export function blogHref(slug: string, from?: TabBackFrom): `/blog/${string}` {
   return from ? (`/blog/${slug}?from=${from}` as const) : (`/blog/${slug}` as const);
 }
 
-export function eventHref(id: string, from?: TabBackFrom): `/events/${string}` {
-  return from ? (`/events/${id}?from=${from}` as const) : (`/events/${id}` as const);
+export function eventHref(id: string, from?: TabBackFrom): `/event/${string}` {
+  return from ? (`/event/${id}?from=${from}` as const) : (`/event/${id}` as const);
+}
+
+export function eventsHref(from?: TabBackFrom): "/events" | `/events?from=${TabBackFrom}` {
+  return from ? (`/events?from=${from}` as const) : "/events";
 }

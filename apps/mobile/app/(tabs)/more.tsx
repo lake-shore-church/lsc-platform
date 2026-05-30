@@ -15,7 +15,7 @@ import { EventCard } from "@/components/EventCard";
 import { SectionHeader } from "@/components/SectionHeader";
 import { ThemePicker } from "@/components/ThemePicker";
 import { CHURCH } from "@/constants/church";
-import { blogHref, nativeRoutes } from "@/lib/navigation";
+import { blogHref, eventsHref, nativeRoutes } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
 import { fetchJson, type MobileBlogPost, type MobileEvent } from "@/lib/api";
 import { useAuth } from "@/lib/AuthContext";
@@ -96,7 +96,7 @@ export default function MoreScreen() {
       <SectionHeader
         title="Upcoming events"
         actionLabel="See all"
-        onAction={() => router.push(nativeRoutes.events)}
+        onAction={() => router.push(eventsHref("more"))}
       />
       {loading ? <ActivityIndicator color={colors.primary} /> : null}
       {events.length ? (
