@@ -46,7 +46,11 @@ export function mergeSiteConfig(
         : DEFAULT_SITE_CONFIG.zeffyEmbedUrl,
     isLiveNow: doc.isLiveNow ?? DEFAULT_SITE_CONFIG.isLiveNow,
     liveStreamMode:
-      doc.liveStreamMode === "youtube" ? "youtube" : "inhouse",
+      doc.liveStreamMode === "inhouse"
+        ? "inhouse"
+        : doc.liveStreamMode === "youtube"
+          ? "youtube"
+          : DEFAULT_SITE_CONFIG.liveStreamMode,
     livePlaybackUrl: doc.livePlaybackUrl ?? DEFAULT_SITE_CONFIG.livePlaybackUrl,
     liveVideoId: doc.liveVideoId ?? DEFAULT_SITE_CONFIG.liveVideoId,
     liveStreamUrl: doc.liveStreamUrl ?? DEFAULT_SITE_CONFIG.liveStreamUrl,
