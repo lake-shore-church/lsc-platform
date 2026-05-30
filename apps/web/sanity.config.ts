@@ -12,7 +12,28 @@ export default defineConfig({
   projectId,
   dataset,
   basePath: "/studio",
-  plugins: [structureTool(), visionTool()],
+  plugins: [
+    structureTool({
+      structure: (S) =>
+        S.list()
+          .title("Content")
+          .items([
+            S.listItem()
+              .title("📅 This Week")
+              .schemaType("thisWeek")
+              .child(
+                S.documentTypeList("thisWeek")
+                  .title("This Week")
+                  .defaultOrdering([{ field: "week_of", direction: "desc" }]),
+              ),
+            S.divider(),
+            ...S.documentTypeListItems().filter(
+              (item) => item.getId() !== "thisWeek",
+            ),
+          ]),
+    }),
+    visionTool(),
+  ],
   schema: {
     types: schemaTypes,
   },

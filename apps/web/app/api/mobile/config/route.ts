@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import {
   getSiteConfig,
+  getResolvedThisWeek,
   resolveChurchZoomJoinUrl,
   resolveChurchZoomMeetingId,
   resolveChurchZoomPasscode,
@@ -8,7 +9,10 @@ import {
 } from "@repo/cms";
 
 export async function GET() {
-  const config = await getSiteConfig();
+  const [config, thisWeek] = await Promise.all([
+    getSiteConfig(),
+    getResolvedThisWeek().catch(() => null),
+  ]);
   const appUrl = process.env.NEXT_PUBLIC_APP_URL?.replace(/\/$/, "") ?? "";
 
   return NextResponse.json({
@@ -28,5 +32,6 @@ export async function GET() {
     zoomJoinRedirectUrl: appUrl ? `${appUrl}${churchZoomJoinPath()}` : null,
     zoomMeetingId: resolveChurchZoomMeetingId(config),
     zoomPasscode: resolveChurchZoomPasscode(config),
+    this_week: thisWeek,
   });
 }

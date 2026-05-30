@@ -8,27 +8,42 @@ All notable changes to this monorepo. Format based on [Keep a Changelog](https:/
 
 ### Added
 
+- **Phase CP-1 — This Week single source of truth** — Sanity `thisWeek` document type (first item in Studio: 📅 This Week); `GET /api/this-week` (5 min cache); homepage + mobile home wired via `getResolvedThisWeek()` with `siteConfig` fallback.
+- **Scripts** — `pnpm seed:this-week`, `pnpm migrate:this-week` (migrates `siteConfig` upcoming/wednesday fields without deleting old fields).
 - **Zero-cost live streaming** — [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md): Mevo → YouTube, embed on web/mobile; Sunday checklist.
 - **Web HLS player** — `/live` plays `.m3u8` in-house streams (hls.js) when Mux is enabled later.
 - **In-house livestream plan** — [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md) (deferred paid upgrade).
 - **Demo meeting checklist** — [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md) for Pastor/members website walkthrough.
+- **Native mobile events** — `/events` list + `/event/[id]` detail with RSVP; synced with Supabase via `/api/mobile/events`.
+- **Mobile native navigation** — Visit, contact, blog, events stay in-app; themed UI across tabs.
 
 ### Changed
 
+- Homepage **This Sunday** block and mobile service strip read from `/api/this-week` (or shared resolver) instead of hardcoded `siteConfig` fields alone.
+- Mobile `/api/mobile/home` and `/api/mobile/config` include `this_week` in the response.
 - **Live streaming default** — CMS defaults and docs use **YouTube embed ($0)**; Mux path optional.
-- **`/live` page** — Accurate copy when offline; in-app message when live; HLS + YouTube players.
+- **`/live` page** — Accurate copy when offline; in-app message when live; HLS + YouTube players; auto-hide outside Sunday 9:30 AM–12 PM CT window.
 - **Staff livestream control** — Copy reflects Mevo → YouTube → Go live workflow.
-- **Mobile Live tab** — Clearer in-app message for YouTube embed mode.
-
+- **Mobile Live tab** — Hidden when not live; clearer in-app message for YouTube embed mode.
 - **About Pastor Brian** — full biography from [craigbrianlarson.com/about](https://craigbrianlarson.com/about/), portrait photo, published works list, and external links; leaders page shows photo.
 - **Podcast RSS** — canonical site URL from deployment host; dedupe duplicate sermon episodes; video link in description.
 - **Nav** — Small Groups → Sunday school ministry; Events own link; removed duplicate About Giving.
 - Homepage presentation: testimonials from CMS when available, warmer upcoming-sermon copy, `/live` strip links to live page, friendlier empty events message.
 - `/live` and `/testimonies`: honest copy about in-house video upgrade; removed placeholder video/audio cards from testimonies fallback.
+- `turbo.json` — `CHURCH_ZOOM_JOIN_URL`, `CHURCH_WEDNESDAY_ZOOM_URL` in `globalEnv` (fixes `@repo/cms` lint in CI).
 
 ### Added (prior — feature/phase-2a)
 
 - **Content platform evaluation** — `docs/CONTENT_PLATFORM_EVALUATION.md` phases the proposed 7-page mega-spec (this-week API, inline editing, weekly archive) vs current IA; Pastor sign-off required before large redirects.
+
+### Changed
+
+- Homepage **This Sunday** block and mobile service strip read from `/api/this-week` (or shared resolver) instead of hardcoded `siteConfig` fields alone.
+- Mobile `/api/mobile/home` and `/api/mobile/config` include `this_week` in the response.
+- `turbo.json` — `CHURCH_ZOOM_JOIN_URL`, `CHURCH_WEDNESDAY_ZOOM_URL` in `globalEnv` (fixes `@repo/cms` lint in CI).
+
+### Added (Phase 2A — prior)
+
 - **Phase 2A** — 501(c)(3) Give trust badge (web + mobile); PayPal Giving Fund default on; Sanity `churchTaxId`, `paypalGivingUrl`; mobile Give uses Zeffy embed from `/api/mobile/config`.
 - **Email** — Prayer and contact acknowledgements via Resend; mobile prayer optional email; contact form verified on Vercel production.
 - **Push** — OneSignal scheduled cron routes (Wed/Sat/Sun); `OneSignalInit` + service workers for web push; Mevo → Restream in `LIVESTREAM_SETUP.md`.

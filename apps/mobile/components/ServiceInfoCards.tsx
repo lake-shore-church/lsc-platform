@@ -5,6 +5,7 @@ import { CHURCH } from "@/constants/church";
 import { nativeRoutes } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
 import { t } from "@/lib/i18n";
+import type { MobileThisWeek } from "@/lib/api";
 
 const DEFAULT_ZOOM_URL = "https://zoom.us/j/83078837399";
 
@@ -16,24 +17,38 @@ type Card = {
   linkKey: string;
 };
 
-export function ServiceInfoCards() {
+export function ServiceInfoCards({ thisWeek }: { thisWeek?: MobileThisWeek | null }) {
   const { colors, siteCopy } = useTheme();
   const router = useRouter();
 
   const zoomUrl = siteCopy.zoomJoinUrl?.trim() || DEFAULT_ZOOM_URL;
 
+  const serviceLines = thisWeek
+    ? [
+        thisWeek.sunday_date_label ?? t("home", "every_sunday"),
+        thisWeek.sunday_time,
+        thisWeek.venue_name,
+      ]
+    : [t("home", "every_sunday"), "10:00 AM", t("home", "doors_open")];
+
   const cards: Card[] = [
     {
       icon: "📍",
       labelKey: "where_we_meet",
-      lines: ["Merit School of Music", "38 S. Peoria St, 2nd floor", "Chicago, IL 60607"],
+      lines: thisWeek
+        ? [
+            thisWeek.venue_name,
+            thisWeek.venue_room ?? "38 S. Peoria St, 2nd floor",
+            "Chicago, IL 60607",
+          ]
+        : ["Merit School of Music", "38 S. Peoria St, 2nd floor", "Chicago, IL 60607"],
       onPress: () => void Linking.openURL(CHURCH.mapsUrl),
       linkKey: "get_directions",
     },
     {
       icon: "🕙",
       labelKey: "service_time",
-      lines: [t("home", "every_sunday"), "10:00 AM", t("home", "doors_open")],
+      lines: serviceLines,
       onPress: () => router.push(nativeRoutes.visit),
       linkKey: "plan_visit",
     },

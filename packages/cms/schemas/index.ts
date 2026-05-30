@@ -7,10 +7,12 @@ import { resourceType } from "./resource";
 import { sermonType } from "./sermon";
 import { sermonSeriesType } from "./sermonSeries";
 import { siteConfigType } from "./siteConfig";
+import { thisWeekType } from "./thisWeek";
 import { staffBioType } from "./staffBio";
 
 /** All document types for Sanity Studio config. */
 export const schemaTypes = [
+  thisWeekType,
   siteConfigType,
   sermonType,
   sermonSeriesType,
@@ -31,6 +33,7 @@ export {
   sermonType,
   sermonSeriesType,
   siteConfigType,
+  thisWeekType,
   staffBioType,
   ministryPageType,
   testimonyType,

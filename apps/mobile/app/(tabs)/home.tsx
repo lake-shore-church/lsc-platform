@@ -21,13 +21,15 @@ import { TestimonialsSection } from "@/components/TestimonialsSection";
 import { useLiveStatus } from "@/hooks/useLiveStatus";
 import { nativeRoutes, eventsHref } from "@/lib/navigation";
 import { useTheme } from "@/lib/ThemeContext";
-import { fetchJson, type MobileBlogPost, type MobileEvent, type MobileSermon } from "@/lib/api";
+import { ThisWeekSection } from "@/components/ThisWeekSection";
+import { fetchJson, type MobileBlogPost, type MobileEvent, type MobileSermon, type MobileThisWeek } from "@/lib/api";
 import { t } from "@/lib/i18n";
 
 type HomeData = {
   sermon: MobileSermon | null;
   events: MobileEvent[];
   posts: MobileBlogPost[];
+  this_week: MobileThisWeek | null;
 };
 
 export default function HomeScreen() {
@@ -45,9 +47,10 @@ export default function HomeScreen() {
           sermon: res.sermon ?? null,
           events: res.events ?? [],
           posts: res.posts ?? [],
+          this_week: res.this_week ?? null,
         }),
       )
-      .catch(() => setData({ sermon: null, events: [], posts: [] }))
+      .catch(() => setData({ sermon: null, events: [], posts: [], this_week: null }))
       .finally(() => setLoading(false));
   }, []);
 
@@ -63,7 +66,8 @@ export default function HomeScreen() {
     <View style={styles.root}>
       <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent}>
         <HomeHero />
-        <ServiceInfoCards />
+        <ServiceInfoCards thisWeek={data?.this_week} />
+        {data?.this_week ? <ThisWeekSection thisWeek={data.this_week} /> : null}
 
         {liveStatus?.isLive ? (
           <Pressable

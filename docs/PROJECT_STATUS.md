@@ -60,6 +60,10 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 | Area | Status |
 |------|--------|
 | Public pages (home, about, beliefs, visit, sermons, live, …) | ✅ |
+| Ministries hub + FAQ + leaders + testimonies | ✅ |
+| Unified Zoom join redirect (`/join`) | ✅ |
+| Home year promise + weekly gatherings (incl. Join on Zoom) | ✅ |
+| **This Week CMS + `/api/this-week`** (CP-1) | ✅ |
 | 8-locale i18n + CMS hero (English) | ✅ |
 | Member / staff portals, Studio, APIs | ✅ |
 | Livestream (`/live`, `/api/live-status`, staff go-live) | ✅ |
@@ -73,6 +77,8 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 | Feature | Status |
 |---------|--------|
 | Home (hero, service cards, series, ministry, events, testimonials) | ✅ |
+| Home “Join on Zoom” (one-click `/join`) | ✅ |
+| **This Week** card + service strip from `/api/mobile/home` | ✅ |
 | Themes (Bold / Warm / Advent / Easter) | ✅ |
 | Sermons — **Live** + **Archive** tabs | ✅ |
 | Give (web), Prayer, More | ✅ |
@@ -89,11 +95,11 @@ Lake Shore Church **lsc-platform** — Next.js public site (**8 locales:** en, e
 | `main` up to date with production features | ✅ |
 | `feature/presenter-mode` merged | ✅ |
 | Working tree clean | ✅ |
-| `main` pushed to GitHub | ✅ (2026-05-22) |
+| `main` pushed to GitHub | ✅ (2026-05-26) |
 
 ---
 
-## Phase 2A (in progress on `feature/phase-2a`)
+## Phase 2A (code shipped; follow-up tasks)
 
 | Item | Code | Needs Pastor/Vercel |
 |------|------|---------------------|
@@ -122,13 +128,25 @@ See [PHASE_2A_SETUP.md](./PHASE_2A_SETUP.md).
 
 See [PRODUCTION_V1_LAUNCH.md](./PRODUCTION_V1_LAUNCH.md).
 
+## Content platform phases
+
+| Phase | Status | Notes |
+|-------|--------|-------|
+| **CP-0** | ✅ | Pastor IA sign-off doc (`CONTENT_PLATFORM_EVALUATION.md`) |
+| **CP-1** | ✅ | `thisWeek` Sanity type, `/api/this-week`, homepage + mobile wired; seed + migrate scripts |
+| **CP-2** | ⏳ **Next** | Pastor-simple PATCH editing; remove duplicate `siteConfig` weekly fields |
+| **CP-3** | ⏳ | Optional `/connect` merge (events + prayer) |
+| **CP-4** | ⏳ | `/updates` weekly archive |
+
+See [CONTENT_PLATFORM_EVALUATION.md](./CONTENT_PLATFORM_EVALUATION.md).
+
 ## Immediate next steps
 
-1. **Today:** Pastor demo — [DEMO_MEETING_CHECKLIST.md](./DEMO_MEETING_CHECKLIST.md); share https://lsc-platform-kappa.vercel.app
-2. When Cloudflare **Active** → `lschurch.com` on Vercel
-3. Optional: merge PR #3 (`thisWeek` CMS)
-4. **Sunday:** Mevo → YouTube + staff go-live — [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md)
-5. **Deployment 2:** Zeffy embed in Studio; optional Mux — [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md)
+1. **Sunday:** Mevo → YouTube + staff go-live — [ZERO_COST_LIVESTREAM.md](./ZERO_COST_LIVESTREAM.md)
+2. **Weekly workflow:** Sanity Studio → **📅 This Week** — update every Tuesday; homepage + mobile refresh within 5 minutes.
+3. When Cloudflare **Active** → `lschurch.com` on Vercel
+4. **Deployment 2:** Zeffy embed in Studio; optional Mux — [LIVESTREAM_INHOUSE_PLAN.md](./LIVESTREAM_INHOUSE_PLAN.md)
+5. Continue Phase 2A: prayer (Supabase role) + OneSignal subscribe + Zeffy embed URL in Sanity.
 
 ---
 
